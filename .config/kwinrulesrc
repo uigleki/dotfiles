@@ -1,0 +1,15 @@
+# 终端最大化
+[1]
+Description=alacritty 的窗口设置
+clientmachine=localhost
+maximizehoriz=true
+maximizehorizrule=3
+maximizevert=true
+maximizevertrule=3
+types=1
+wmclass=alacritty
+wmclassmatch=1
+
+[General]
+count=1
+rules=1

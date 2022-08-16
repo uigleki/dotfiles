@@ -1,0 +1,15 @@
+[General]
+# 默认应用
+BrowserApplication=firefox.desktop
+TerminalApplication=alacritty
+TerminalService=Alacritty.desktop
+
+# 字体
+fixed=Ubuntu Mono,10,-1,5,50,0,0,0,0,0
+font=Ubuntu,10,-1,5,50,0,0,0,0,0
+menuFont=Ubuntu,10,-1,5,50,0,0,0,0,0
+smallestReadableFont=Ubuntu,8,-1,5,50,0,0,0,0,0
+toolBarFont=Ubuntu,10,-1,5,50,0,0,0,0,0
+
+[WM]
+activeFont=Ubuntu,10,-1,5,50,0,0,0,0,0

@@ -1,0 +1,3 @@
+# 将 CapsLock 作为额外的 Ctrl
+[Layout]
+Options=caps:ctrl_modifier

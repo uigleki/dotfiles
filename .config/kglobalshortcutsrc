@@ -1,0 +1,12 @@
+# 应用快捷键
+
+[Alacritty.desktop]
+New=none,none,New Terminal
+_k_friendly_name=Alacritty
+_launch=Meta+Return,none,Alacritty
+
+[firefox.desktop]
+_k_friendly_name=Firefox
+_launch=Meta+Z,none,Firefox
+new-private-window=none,none,新建隐私浏览窗口
+new-window=none,none,新建窗口
