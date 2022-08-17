@@ -1,6 +1,5 @@
-# 终端最大化
 [1]
-Description=alacritty 的窗口设置
+Description=终端最大化
 clientmachine=localhost
 maximizehoriz=true
 maximizehorizrule=3
