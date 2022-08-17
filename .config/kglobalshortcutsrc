@@ -5,6 +5,11 @@ New=none,none,New Terminal
 _k_friendly_name=Alacritty
 _launch=Meta+Return,none,Alacritty
 
+[com.github.johnfactotum.Foliate.desktop]
+_k_friendly_name=Foliate
+_launch=Meta+X,none,Foliate
+new-window=none,none,书库
+
 [firefox.desktop]
 _k_friendly_name=Firefox
 _launch=Meta+Z,none,Firefox
