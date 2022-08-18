@@ -15,3 +15,10 @@ _k_friendly_name=Firefox
 _launch=Meta+Z,none,Firefox
 new-private-window=none,none,新建隐私浏览窗口
 new-window=none,none,新建窗口
+
+[org.flameshot.Flameshot.desktop]
+Capture=Print,none,进行截图
+Configure=none,none,配置
+Launcher=none,none,打开启动器
+_k_friendly_name=火焰截图
+_launch=none,none,火焰截图
