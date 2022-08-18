@@ -11,7 +11,3 @@ export SDL_IM_MODULE=fcitx
 
 # 默认编辑器
 export EDITOR=emacs
-
-# 默认主题
-#export GTK_THEME=Adwaita:dark
-#export QT_STYLE_OVERRIDE=Adwaita-Dark
