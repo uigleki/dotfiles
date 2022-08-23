@@ -1,4 +1,10 @@
 (use-package org
-  :bind (:map org-mode-map ("C-c v" . visible-mode)))
+  :bind
+  ("C-c a" . org-agenda)
+  ("C-c c" . org-capture)
+  (:map org-mode-map ("C-c v" . visible-mode))
+  :custom
+  (org-agenda-files '("~/org"))
+  (org-default-notes-file "~/org/todo.org"))
 
 (provide 'init-org)
