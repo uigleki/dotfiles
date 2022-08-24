@@ -12,8 +12,8 @@
       "* TODO %^{任务名}\n%u\n%a")
      ("d" "Diary" entry (file+datetree "~/org/diary.org")
       "* %^{heading}\n%?")
-     ("i" "Inbox" entry (file "~/org/inbox.org")
-      "* %^{heading} %t %^g\n%?")
+     ("i" "Idea" entry (file "~/org/idea.org")
+      "* %^{heading} %t\n- %?")
      ("n" "Notes" entry (file "~/org/note.org")
       "* %^{heading} %t %^g\n%?"))))
 
