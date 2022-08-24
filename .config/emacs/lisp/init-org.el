@@ -11,9 +11,9 @@
    '(("t" "Todo" entry (file+headline "~/org/todo.org" "Tasks")
       "* TODO %^{任务名}\n%u\n%a")
      ("d" "Diary" entry (file+datetree "~/org/diary.org")
-      "* %U - %^{heading}\n%?")
+      "* %^{heading}\n%?")
      ("i" "Inbox" entry (file "~/org/inbox.org")
-      "* %U - %^{heading} %^g\n%?")
+      "* %^{heading} %t %^g\n%?")
      ("n" "Notes" entry (file "~/org/note.org")
       "* %^{heading} %t %^g\n%?"))))
 
