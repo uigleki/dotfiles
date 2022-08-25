@@ -13,7 +13,7 @@
      ("d" "Diary" entry (file+datetree "~/org/diary.org")
       "* %^{heading}\n%?")
      ("i" "Idea" entry (file "~/org/idea.org")
-      "* %^{heading} %t\n- %?")
+      "* %^{heading} %U\n- %?")
      ("n" "Notes" entry (file "~/org/note.org")
       "* %^{heading} %t %^g\n%?"))))
 
