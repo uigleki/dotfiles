@@ -3,6 +3,7 @@
   ([remap switch-to-buffer] . consult-buffer)
   ([remap goto-line] . consult-goto-line)
   (:map mode-specific-map
-              ("q" . consult-ripgrep)))
+        ("f" . consult-find)
+        ("q" . consult-ripgrep)))
 
 (provide 'init-consult)
