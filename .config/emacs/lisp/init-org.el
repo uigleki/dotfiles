@@ -15,6 +15,12 @@
      ("i" "Idea" entry (file "~/org/idea.org")
       "* %^{heading} %U\n- %?")
      ("n" "Notes" entry (file "~/org/note.org")
-      "* %^{heading} %t %^g\n%?"))))
+      "* %^{heading} %t %^g\n%?")))
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages            ; 可以在 org 缓冲区执行的语言
+   '((emacs-lisp . t)
+     (python . t)
+     (shell . t))))
 
 (provide 'init-org)
