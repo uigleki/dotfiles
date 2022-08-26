@@ -21,6 +21,7 @@
 (require 'init-consult)                 ; 全局搜索补全
 (require 'init-diff-hl)                 ; git 差异显示
 (require 'init-magit)                   ; git 管理
+(require 'init-keycast)                 ; 模式行显示按键执行的命令
 
 ;; 语言
 (require 'init-go-translate)            ; 语言翻译
