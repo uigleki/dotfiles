@@ -21,7 +21,6 @@
 (require 'init-consult)                 ; 全局搜索补全
 (require 'init-diff-hl)                 ; git 差异显示
 (require 'init-magit)                   ; git 管理
-(require 'init-keycast)                 ; 模式行显示按键执行的命令
 (require 'init-saveplace)               ; 记住光标位置
 
 ;; 语言
