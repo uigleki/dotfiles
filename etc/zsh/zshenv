@@ -1,15 +1,18 @@
-# 语言设置
+# 用户配置文件目录
+export ZDOTDIR=~/.config/zsh
+
+# 语言
 export LANG=zh_CN.UTF-8
 export LANGUAGE=zh_CN:en_US
 export LC_CTYPE=en_US.UTF-8
 
-# 设定输入法
+# 输入法
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export SDL_IM_MODULE=fcitx
 
-# 默认编辑器
+# 编辑器
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c -a emacs"
