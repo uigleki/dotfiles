@@ -61,4 +61,9 @@
   (tool-bar-mode -1)                    ; 禁用工具栏
   (add-to-list 'default-frame-alist '(font . "Ubuntu Mono-16")))
 
+;;; 服务器模式
+
+(unless (server-running-p)
+  (server-start))
+
 (provide 'init-option)

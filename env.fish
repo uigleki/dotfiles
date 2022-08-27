@@ -22,7 +22,7 @@ abbr -Ua gs  'git status'
 
 # 其他
 abbr -Ua 1   'cd -'
-abbr -Ua f   'emacsclient'
+abbr -Ua f   'emacs'
 abbr -Ua fu  'fusermount -u'
 abbr -Ua k   'btm'
 abbr -Ua l   'exa -laF'
