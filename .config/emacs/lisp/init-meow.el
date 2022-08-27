@@ -96,7 +96,6 @@
      '("'" . repeat)
      '("<escape>" . ignore)))
   (meow-setup)
-  (meow-setup-indicator)                ; 显示当前模式到模式行
   (meow-global-mode 1)
   ;; 项目前缀键
   (defalias 'project-prefix-map project-prefix-map)
