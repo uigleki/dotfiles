@@ -11,6 +11,7 @@
 (require 'init-gruvbox-theme)           ; gruvbox 主题
 (require 'init-doom-modeline)           ; 模式行样式
 (require 'init-keymap)                  ; 按键映射
+(require 'init-restart-emacs)           ; 重启 emacs 命令
 
 ;; 补全
 (require 'init-saveplace)               ; 记住光标位置
