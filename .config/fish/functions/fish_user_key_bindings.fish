@@ -1,4 +1,9 @@
-# 有这个才能启用 fish 中的 fzf 补全
+# 启用 fzf 快捷键：
+#
+# ctrl + t 选择文件
+# ctrl + r 选择历史记录
+#  alt + c 目录跳转
+
 function fish_user_key_bindings
     fzf_key_bindings
 end
