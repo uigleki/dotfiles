@@ -31,7 +31,7 @@
 (require 'init-org)                     ; org 模式
 (require 'init-quickrun)                ; 快速执行缓冲区
 (require 'init-realgud)                 ; 调试器
-;; (require 'init-tree-sitter)             ; 语法树
+(require 'init-tree-sitter)             ; 语法树
 
 ;; 语言包
 (use-package markdown-mode)

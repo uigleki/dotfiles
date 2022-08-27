@@ -1,6 +1,7 @@
 (use-package go-translate
-  :bind (:map mode-specific-map
-               ("t" . gts-do-translate))
+  :bind
+  (:map mode-specific-map
+        ("t" . gts-do-translate))
   :custom
   (gts-translate-list '(("en" "zh")))   ; 翻译语言对
   :config
