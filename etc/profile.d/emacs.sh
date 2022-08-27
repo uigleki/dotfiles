@@ -1,2 +1,4 @@
-# emacs 自启动，使用真彩色
-(COLORTERM=truecolor emacsclient -nt &>/dev/null &)
+# 启动 emacs 守护进程，使用真彩色
+if [ -x "$(command -v emacsclient)" ]; then
+    (COLORTERM=truecolor emacsclient -nt &>/dev/null &)
+fi
