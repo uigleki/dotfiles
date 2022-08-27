@@ -1,6 +1,5 @@
 (use-package tree-sitter
-  :hook ((python-mode
-          sh-mode) . tree-sitter-hl-mode)
+  :hook (tree-sitter-after-on . tree-sitter-hl-mode)
   :config (global-tree-sitter-mode))
 
 (use-package tree-sitter-langs)
