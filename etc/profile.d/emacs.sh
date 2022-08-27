@@ -1,2 +1,4 @@
 # emacs 自启动，使用真彩色
-COLORTERM=truecolor emacs --daemon &>/dev/null &
+if [ -z "$SSH_TTY" ] && [ -x "$(command -v zellij)" ]; then
+    COLORTERM=truecolor emacs --daemon &>/dev/null &
+fi
