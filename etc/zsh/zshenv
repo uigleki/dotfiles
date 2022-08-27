@@ -10,4 +10,4 @@ export XMODIFIERS=@im=fcitx
 export SDL_IM_MODULE=fcitx
 
 # 默认编辑器
-export EDITOR=emacs
+export EDITOR=emacsclient
