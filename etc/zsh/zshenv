@@ -13,6 +13,6 @@ export XMODIFIERS=@im=fcitx
 export SDL_IM_MODULE=fcitx
 
 # 编辑器
-export ALTERNATE_EDITOR=""
+export ALTERNATE_EDITOR=""      # 必须为空，emacsclient 才会自动启用守护进程
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c -a emacs"
