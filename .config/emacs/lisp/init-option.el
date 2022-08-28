@@ -61,10 +61,4 @@
     (scroll-bar-mode -1))
 (add-to-list 'default-frame-alist '(font . "Ubuntu Mono-16"))
 
-;;; 服务器模式
-
-(require 'server)
-(unless (server-running-p)
-  (server-start))
-
 (provide 'init-option)
