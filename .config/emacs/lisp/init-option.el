@@ -56,8 +56,9 @@
 ;;; 图形界面
 
 (blink-cursor-mode -1)                ; 禁用光标闪烁
-(scroll-bar-mode -1)                  ; 禁用滚动条
 (tool-bar-mode -1)                    ; 禁用工具栏
+(if (fboundp 'scroll-bar-mode)        ; 禁用滚动条
+    (scroll-bar-mode -1))
 (add-to-list 'default-frame-alist '(font . "Ubuntu Mono-16"))
 
 ;;; 服务器模式
