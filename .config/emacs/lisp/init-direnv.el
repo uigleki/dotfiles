@@ -1,4 +1,5 @@
 (use-package direnv
-  :config (direnv-always-show-summary nil))
+  :custom (direnv-always-show-summary nil)
+  :config (direnv-mode))
 
 (provide 'init-direnv)
