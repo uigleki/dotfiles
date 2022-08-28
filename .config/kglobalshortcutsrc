@@ -10,6 +10,12 @@ _k_friendly_name=Foliate
 _launch=Meta+X,none,Foliate
 new-window=none,none,书库
 
+[emacsclient.desktop]
+_k_friendly_name=Emacs (Client)
+_launch=none,none,Emacs (Client)
+new-instance=none,none,New Instance
+new-window=Meta+E,none,New Window
+
 [firefox.desktop]
 _k_friendly_name=Firefox
 _launch=Meta+Z,none,Firefox
