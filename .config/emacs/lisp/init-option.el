@@ -55,11 +55,10 @@
 
 ;;; 图形界面
 
-(when (display-graphic-p)
-  (blink-cursor-mode -1)                ; 禁用光标闪烁
-  (scroll-bar-mode -1)                  ; 禁用滚动条
-  (tool-bar-mode -1)                    ; 禁用工具栏
-  (add-to-list 'default-frame-alist '(font . "Ubuntu Mono-16")))
+(blink-cursor-mode -1)                ; 禁用光标闪烁
+(scroll-bar-mode -1)                  ; 禁用滚动条
+(tool-bar-mode -1)                    ; 禁用工具栏
+(add-to-list 'default-frame-alist '(font . "Ubuntu Mono-16"))
 
 ;;; 服务器模式
 
