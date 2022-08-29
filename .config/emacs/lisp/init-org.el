@@ -4,9 +4,12 @@
   ("C-c c" . org-capture)
   (:map org-mode-map ("C-c v" . visible-mode))
   :custom
-  (org-agenda-files '("~/org"))
-  (org-default-notes-file "~/org/todo.org")
+  (org-enforce-todo-dependencies t)     ; 强制任务依赖
   (org-log-done 'time)                  ; 记录完成时间
+  (org-startup-indented t)              ; 启用缩进排版
+  ;; 代办事项
+  (org-agenda-files '("~/org"))         ; 日程扫描目录
+  (org-default-notes-file "~/org/todo.org")
   (org-capture-templates
    '(("t" "Todo" entry (file+headline "~/org/todo.org" "Tasks")
       "* TODO %^{任务名}\n%u\n%a")
