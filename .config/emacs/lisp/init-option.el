@@ -30,7 +30,6 @@
  inhibit-splash-screen t                ; 禁用启动画面
  initial-scratch-message nil            ; 禁用暂存讯息
  ring-bell-function 'ignore             ; 禁用响铃
- truncate-lines t                       ; 取消自动折行
  visible-cursor nil                     ; 禁用光标闪烁
 
  auto-save-default nil                  ; 禁用保存访问
