@@ -59,7 +59,7 @@
 (if (fboundp 'scroll-bar-mode)        ; 禁用滚动条
     (scroll-bar-mode -1))
 ;; 字体
-(add-to-list 'default-frame-alist '(font . "Ubuntu Mono-16"))
+(add-to-list 'default-frame-alist '(font . "Monospace-16"))
 
 (when (fboundp 'set-fontset-font)
   (defun set-chinese-font (&optional frame)
