@@ -74,5 +74,4 @@
       (add-hook 'after-make-frame-functions #'set-chinese-font)
     (set-chinese-font)))
 
-
 (provide 'init-option)
