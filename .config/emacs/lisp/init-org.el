@@ -5,7 +5,7 @@
   (:map org-mode-map ("C-c v" . visible-mode))
   :custom
   (org-enforce-todo-dependencies t)     ; 强制任务依赖
-  (org-image-actual-width nil)          ; 图片可以调整大小
+  (org-image-actual-width (list 500))   ; 图片可以调整宽度，默认 500
   (org-log-done 'time)                  ; 记录完成时间
   (org-startup-indented t)              ; 启用缩进排版
   ;; 代办事项
