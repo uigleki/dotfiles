@@ -72,28 +72,5 @@ scrolling:
   multiplier: 7
 
 # ======= 字体 =======
-# 字体设置为等宽字体，可以用命令 fc-list 查看你系统的字体
-font:
-  size: 11
-
-  normal:
-    family: Ubuntu Mono
-    style: Regular
-
-  bold:
-    family: Ubuntu Mono
-    style: Bold
-
-  italic:
-    family: Ubuntu Mono
-    style: Italic
-
-  bold_italic:
-    family: Ubuntu Mono
-    style: Bold Italic
-
-  # 偏移量是每个字符周围的多余空间。
-  # `offset.y` 可以被认为是改变行距，而 `offset.x` 可以被认为是改变字母间距。
-  offset:
-    x: 0
-    y: 0
+# font:
+#   size: 11
