@@ -68,7 +68,9 @@
       (dolist (charset '(kana han cjk-misc bopomofo gb18030))
         (with-selected-frame frame
           (set-fontset-font "fontset-default" charset chinese-font)))))
-  (add-hook 'after-make-frame-functions #'set-chinese-font))
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions #'set-chinese-font)
+    (set-chinese-font (selected-frame))))
 
 
 (provide 'init-option)
