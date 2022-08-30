@@ -61,4 +61,15 @@
 ;; 字体
 (add-to-list 'default-frame-alist '(font . "Ubuntu Mono-16"))
 
+(defun set-chinese-font (frame)
+  "更改中文字体"
+  (select-frame frame)
+  (if (fboundp 'set-fontset-font)
+      (let ((chinese-font "Noto Sans Mono CJK SC-16"))
+        (dolist (charset '(kana han cjk-misc bopomofo gb18030))
+          (set-fontset-font "fontset-default" charset chinese-font)))
+    (remove-hook 'after-make-frame-functions #'set-chinese-font)))
+(add-hook 'after-make-frame-functions #'set-chinese-font)
+
+
 (provide 'init-option)
