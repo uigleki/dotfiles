@@ -9,9 +9,10 @@
   :config
   (global-corfu-mode 1))
 
-(unless (display-graphic-p)             ; 在非图形环境使用 corfu
-  (use-package corfu-terminal
-    :config (corfu-terminal-mode 1)))
+(use-package corfu-terminal             ; 在非图形环境使用 corfu
+  :config
+  (unless (display-graphic-p)
+    (corfu-terminal-mode 1)))
 
 (use-package corfu-doc
   :hook (corfu-mode . corfu-doc-mode))
