@@ -27,7 +27,7 @@ ToolBoxButtonState=top
 Image=file:///usr/share/wallpapers/Next/contents/images/1920x1080.jpg
 
 [Containments][1][Wallpaper][org.kde.slideshow][General]
-SlidePaths=/usr/share/wallpapers
+SlidePaths=/usr/share/wallpapers,/home/ges/a/pixra/bimple
 
 [Containments][2]
 activityId=
