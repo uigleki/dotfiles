@@ -5,11 +5,11 @@ TerminalApplication=alacritty
 TerminalService=Alacritty.desktop
 
 # 字体
-fixed=Ubuntu Mono,10,-1,5,50,0,0,0,0,0
-font=Ubuntu,10,-1,5,50,0,0,0,0,0
-menuFont=Ubuntu,10,-1,5,50,0,0,0,0,0
-smallestReadableFont=Ubuntu,8,-1,5,50,0,0,0,0,0
-toolBarFont=Ubuntu,10,-1,5,50,0,0,0,0,0
+fixed=Monospace,10,-1,5,50,0,0,0,0,0
+font=Sans Serif,10,-1,5,50,0,0,0,0,0
+menuFont=Sans Serif,10,-1,5,50,0,0,0,0,0
+smallestReadableFont=Sans Serif,8,-1,5,50,0,0,0,0,0
+toolBarFont=Sans Serif,10,-1,5,50,0,0,0,0,0
 
 [WM]
-activeFont=Ubuntu,10,-1,5,50,0,0,0,0,0
+activeFont=Sans Serif,10,-1,5,50,0,0,0,0,0
