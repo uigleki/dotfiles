@@ -1,9 +1,10 @@
 (use-package diff-hl
   :hook
-  (after-init . global-diff-hl-mode)
   (dired-mode . diff-hl-dired-mode)
+  (diff-hl-mode-on . (lambda ()
+                       (unless (window-system)
+                         (diff-hl-margin-local-mode))))
   :config
-  (unless (display-graphic-p)
-    (diff-hl-margin-mode)))
+  (global-diff-hl-mode))
 
 (provide 'init-diff-hl)
