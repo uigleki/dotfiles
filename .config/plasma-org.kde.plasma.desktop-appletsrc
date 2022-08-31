@@ -24,7 +24,6 @@ Image=file:///usr/share/wallpapers/Next/contents/images/1920x1080.jpg
 SlidePaths=/usr/share/wallpapers,/home/ges/a/pixra/bimple
 
 [Containments][2]
-activityId=
 formfactor=2
 immutability=1
 lastScreen=0
