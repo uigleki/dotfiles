@@ -1,4 +1,4 @@
-# 自动创建 emacs 的守护进程
-function emacs --wraps='emacsclient -c' --description 'alias emacs=emacsclient -c'
-    emacsclient -c $argv
+# emacs 连接到守护进程
+function emacs --wraps='emacsclient -t' --description 'alias emacs=emacsclient -t'
+    emacsclient -t $argv
 end
