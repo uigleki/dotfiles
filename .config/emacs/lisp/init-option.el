@@ -55,10 +55,9 @@
 ;;; 图形界面
 
 (blink-cursor-mode -1)                ; 禁用光标闪烁
-(if (fboundp 'tool-bar-mode)          ; 禁用工具栏
-    (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode)        ; 禁用滚动条
-    (scroll-bar-mode -1))
+(when (fboundp 'scroll-bar-mode)      ; 确保函数存在
+  (tool-bar-mode -1)                  ; 禁用工具栏
+  (scroll-bar-mode -1))               ; 禁用滚动条
 
 ;; 字体
 (add-to-list 'default-frame-alist '(font . "Monospace-16"))
