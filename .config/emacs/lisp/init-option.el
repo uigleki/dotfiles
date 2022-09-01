@@ -58,6 +58,7 @@
 (tool-bar-mode -1)                    ; 禁用工具栏
 (if (fboundp 'scroll-bar-mode)        ; 禁用滚动条
     (scroll-bar-mode -1))
+
 ;; 字体
 (add-to-list 'default-frame-alist '(font . "Monospace-16"))
 
