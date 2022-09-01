@@ -1,3 +1,5 @@
+;;; 语言翻译
+
 (use-package go-translate
   :bind
   (:map mode-specific-map

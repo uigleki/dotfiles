@@ -1,3 +1,5 @@
+;;; 猫态编辑，一种模态编辑模式
+
 (use-package meow
   :config
   (defun meow-setup ()                  ; 按键绑定

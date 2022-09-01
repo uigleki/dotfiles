@@ -1,3 +1,5 @@
+;;; git 差异显示
+
 (use-package diff-hl
   :hook
   (after-init . global-diff-hl-mode)

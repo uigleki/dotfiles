@@ -1,3 +1,5 @@
+;;; 自动软件包更新
+
 (use-package auto-package-update
   :custom
   (auto-package-update-delete-old-versions t)

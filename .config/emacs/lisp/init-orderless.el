@@ -1,3 +1,5 @@
+;;; 补全候选排序
+
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))

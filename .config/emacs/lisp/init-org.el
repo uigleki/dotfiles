@@ -1,3 +1,5 @@
+;;; 组织模式
+
 (use-package org
   :bind
   ("C-c a" . org-agenda)

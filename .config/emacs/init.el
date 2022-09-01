@@ -10,8 +10,7 @@
 (require 'init-use-package)             ; 包管理器
 (require 'init-gruvbox-theme)           ; gruvbox 主题
 (require 'init-doom-modeline)           ; 模式行样式
-(require 'init-keymap)                  ; 按键映射
-(require 'init-restart-emacs)           ; 重启 emacs 命令
+(require 'init-keymap)                  ; 按键绑定
 
 ;; 补全
 (require 'init-saveplace)               ; 记住光标位置
@@ -20,8 +19,8 @@
 (require 'init-recentf)                 ; 最近文件
 (require 'init-orderless)               ; 补全候选排序
 (require 'init-vertico)                 ; 命令缓冲区补全
-(require 'init-corfu)                   ; 插入模式补全
-(require 'init-consult)                 ; 全局搜索补全
+(require 'init-corfu)                   ; 编辑缓冲区补全
+(require 'init-consult)                 ; 跳转预览
 (require 'init-diff-hl)                 ; git 差异显示
 (require 'init-magit)                   ; git 管理
 
@@ -31,7 +30,7 @@
 (require 'init-flymake)                 ; 语法检查
 (require 'init-org)                     ; org 模式
 (require 'init-tree-sitter)             ; 语法树
-(require 'init-quickrun)                ; 快速执行缓冲区
+(require 'init-quickrun)                ; 执行缓冲区
 (require 'init-realgud)                 ; 调试器
 
 ;; 语言包

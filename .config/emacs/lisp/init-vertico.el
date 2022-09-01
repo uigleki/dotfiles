@@ -1,3 +1,5 @@
+;;; 命令缓冲区补全
+
 (use-package vertico
   :config (vertico-mode))
 

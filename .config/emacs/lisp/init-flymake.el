@@ -1,3 +1,5 @@
+;;; 语法检查工具
+
 (use-package flymake
   :hook
   (prog-mode . flymake-mode)

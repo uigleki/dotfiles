@@ -1,3 +1,5 @@
+;;; 撤销树可视化
+
 (use-package undo-tree
   :custom
   (undo-tree-history-directory-alist `(("." . ,(expand-file-name ".undo-tree" user-emacs-directory))))

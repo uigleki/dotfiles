@@ -1,3 +1,5 @@
+;;; 模式行样式
+
 (use-package doom-modeline
   :config (doom-modeline-mode 1))
 

@@ -1,3 +1,5 @@
+;;; 编辑缓冲区补全
+
 (use-package corfu
   :bind
   (:map corfu-map
