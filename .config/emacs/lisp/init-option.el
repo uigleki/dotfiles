@@ -55,7 +55,8 @@
 ;;; 图形界面
 
 (blink-cursor-mode -1)                ; 禁用光标闪烁
-(tool-bar-mode -1)                    ; 禁用工具栏
+(if (fboundp 'tool-bar-mode)          ; 禁用工具栏
+    (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode)        ; 禁用滚动条
     (scroll-bar-mode -1))
 
