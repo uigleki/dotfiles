@@ -1,10 +1,14 @@
 * emacs 常用按键绑定
 
-- ~C~ = Control = ~Ctrl~ 键
-- ~M~ = Meta = ~Alt~ 键
-- ~SPC~ = Space = 空格键
-- ~RET~ = Return = 回车键
-- ~DEL~ = Delete = 退格键
+** 缩写
+
+| 缩写  | 原文    | 按键   |
+|-------+---------+--------|
+| ~C~   | Control | ~Ctrl~ |
+| ~M~   | Meta    | ~Alt~  |
+| ~SPC~ | Space   | 空格键 |
+| ~RET~ | Return  | 回车键 |
+| ~DEL~ | Delete  | 退格键 |
 
 ** 特殊
 
