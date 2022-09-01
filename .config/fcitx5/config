@@ -1,3 +1,4 @@
+# 切换输入法用 Alt + Shift，默认 Ctrl + Space
 [Hotkey/TriggerKeys]
 0=Alt+Shift+Meta_L
 1=Zenkaku_Hankaku
