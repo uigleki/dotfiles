@@ -5,6 +5,7 @@ local plugins = {
    require('init-nvim-lspconfig'), -- 语言客户端
    require('init-nvim-treesitter'), -- 语法树
    require('init-nvim-cmp'),        -- 插入模式补全
+   require('init-orgmode'),         -- org 模式
 }
 
 local function load_plugins()
