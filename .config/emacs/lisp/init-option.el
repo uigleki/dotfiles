@@ -70,7 +70,7 @@
     (with-selected-frame (or frame (selected-frame))
       (when (display-graphic-p)
         (let ((chinese-font "Noto Sans Mono CJK SC-16.5"))
-          (dolist (charset '(kana han cjk-misc bopomofo gb18030))
+          (dolist (charset '(kana han cjk-misc bopomofo))
             (set-fontset-font "fontset-default" charset chinese-font)))
         (remove-hook 'after-make-frame-functions #'set-chinese-font))))
   (if (daemonp)
