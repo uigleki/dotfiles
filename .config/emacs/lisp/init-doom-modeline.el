@@ -1,4 +1,4 @@
-;;; 模式行样式
+;;; 状态栏样式
 
 (use-package doom-modeline
   :config (doom-modeline-mode 1))

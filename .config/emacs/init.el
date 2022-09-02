@@ -9,7 +9,7 @@
 (require 'init-option)                  ; 默认选项
 (require 'init-use-package)             ; 包管理器
 (require 'init-gruvbox-theme)           ; gruvbox 主题
-(require 'init-doom-modeline)           ; 模式行样式
+(require 'init-doom-modeline)           ; 状态栏样式
 (require 'init-keymap)                  ; 按键绑定
 (require 'init-dashboard)               ; 欢迎界面
 
