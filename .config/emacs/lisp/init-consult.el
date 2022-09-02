@@ -5,6 +5,7 @@
 (use-package consult
   :bind
   ([remap apropos-command] . consult-apropos)      ; key: C-h a
+  ([remap bookmark-jump] . consult-bookmark)       ; key: C-x r b
   ([remap goto-line] . consult-goto-line)          ; key: M-g g
   ([remap imenu] . consult-imenu)                  ; key: C-c i
   ([remap project-find-regexp] . consult-git-grep) ; key: C-x p g
