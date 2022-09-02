@@ -5,11 +5,11 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 (unless (bound-and-true-p package--initialized)
-  (package-initialize))
+  (package-initialize))                 ; 初始化包管理器
 
 ;; 安装 use-package
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents)
+  (package-refresh-contents)            ; 更新本地缓存
   (package-install 'use-package))
 
 (setq use-package-always-ensure t       ; 自动安装软件包
