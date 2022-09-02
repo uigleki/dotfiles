@@ -12,14 +12,23 @@
     ;; 领导键映射，包括 mode-specific-map
     (meow-leader-define-key
      ;; high frequency keybindings
+     '("," . xref-pop-marker-stack)
+     '("." . xref-find-definitions)
+     '(";" . comment-dwim)
+     '("b" . switch-to-buffer)
+     '("d" . dired)
      '("e" . "C-x C-e")
+     '("f" . find-file)
+     '("i" . imenu)
+     '("j" . project-switch-to-buffer)
+     '("k" . kill-this-buffer)
+     '("o" . delete-other-windows)
+     '("p" . project-find-file)
      '("s" . split-window-right)
+     '("u" . meow-universal-argument)
      '("v" . split-window-below)
      '("w" . other-window)
-     '("i" . imenu)
-     '("b" . switch-to-buffer)
-     '("o" . delete-other-windows)
-     '("u" . meow-universal-argument)
+     '("W" . window-swap-states)
 
      ;; Use SPC (0-9) for digit arguments.
      '("1" . meow-digit-argument)
@@ -97,10 +106,8 @@
      '("z" . meow-pop-selection)
      '("'" . repeat)
      '("<escape>" . ignore)))
+
   (meow-setup)
-  (meow-global-mode 1)
-  ;; 项目前缀键
-  (defalias 'project-prefix-map project-prefix-map)
-  (define-key mode-specific-map "p" 'project-prefix-map))
+  (meow-global-mode 1))
 
 (provide 'init-meow)
