@@ -7,7 +7,7 @@
 (unless (bound-and-true-p package--initialized)
   (package-initialize))                 ; 初始化包管理器
 
-;; 安装 use-package
+;; 如果 use-package 没安装
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)            ; 更新本地缓存
   (package-install 'use-package))
