@@ -23,10 +23,13 @@
      ("n" "Notes" entry (file "~/org/note.org")
       "* %^{heading} %t %^g\n%?")))
   :config
-  (make-directory org-agenda-files t)   ; 自动创建日程目录，否则要报错
+  ;; 自动创建日程目录，否则要报错
+  (dolist (dir org-agenda-files)
+    (make-directory dir t))
 
+  ;; 可以在 org 缓冲区执行的语言
   (org-babel-do-load-languages
-   'org-babel-load-languages            ; 可以在 org 缓冲区执行的语言
+   'org-babel-load-languages
    '((emacs-lisp . t)
      (python . t)
      (shell . t))))
