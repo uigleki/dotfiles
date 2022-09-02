@@ -1,7 +1,16 @@
+;;;; emacs 配置文件
+
+;;; 路径设置
+
 ;; 设定源码加载路径
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 ;; 自定义信息文件位置
 (setq custom-file (locate-user-emacs-file "custom.el"))
+;; 定义常量
+(defconst *is-graphic*
+  (and (getenv "DISPLAY")               ; 是不是图形环境
+       (fboundp 'set-fontset-font))     ; emacs 是否支持图形
+  "是否启用图形界面")
 
 ;;; 加载配置
 

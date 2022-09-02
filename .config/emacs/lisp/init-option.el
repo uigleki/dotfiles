@@ -56,15 +56,14 @@
 
 ;;; 图形界面
 
-(blink-cursor-mode -1)                ; 禁用光标闪烁
-(when (fboundp 'scroll-bar-mode)      ; 确保函数存在
-  (tool-bar-mode -1)                  ; 禁用工具栏
-  (scroll-bar-mode -1))               ; 禁用滚动条
+(when *is-graphic*
+  (blink-cursor-mode -1)                ; 禁用光标闪烁
+  (tool-bar-mode -1)                    ; 禁用工具栏
+  (scroll-bar-mode -1)                  ; 禁用滚动条
 
-;; 字体
-(add-to-list 'default-frame-alist '(font . "Monospace-16"))
+  ;; 字体
+  (add-to-list 'default-frame-alist '(font . "Monospace-16"))
 
-(when (fboundp 'set-fontset-font)
   (defun set-chinese-font (&optional frame)
     "设置中文字体"
     (with-selected-frame (or frame (selected-frame))
@@ -73,6 +72,7 @@
           (dolist (charset '(kana han cjk-misc bopomofo))
             (set-fontset-font "fontset-default" charset chinese-font)))
         (remove-hook 'after-make-frame-functions #'set-chinese-font))))
+
   (if (daemonp)
       (add-hook 'after-make-frame-functions #'set-chinese-font)
     (set-chinese-font)))

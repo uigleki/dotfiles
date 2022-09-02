@@ -5,7 +5,7 @@
   (after-init . global-diff-hl-mode)
   (dired-mode . diff-hl-dired-mode)
   :config
-  (unless (display-graphic-p)
+  (unless *is-graphic*
     (diff-hl-margin-mode)))
 
 (provide 'init-diff-hl)
