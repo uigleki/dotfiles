@@ -2,13 +2,15 @@
 
 (use-package lsp-mode
   :hook
-  (prog-mode . lsp)
+  ((python-mode
+    sh-mode) . lsp)
   (lsp-mode . lsp-enable-which-key-integration)
   :custom
   (lsp-keymap-prefix "C-c l")
   :commands lsp)
 
-(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ui
+  :commands lsp-ui-mode)
 
 (use-package dap-mode)
 
