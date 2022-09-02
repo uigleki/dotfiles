@@ -9,10 +9,18 @@ return {
       require'nvim-treesitter.configs'.setup {
          ensure_installed = {'org'},
                                              }
+
       require('orgmode').setup {
          -- 日程扫描目录
          org_agenda_files = {'~/org/*'},
          org_default_notes_file = '~/org/todo.org',
                                }
+
+      -- 启用补全
+      require'cmp'.setup {
+         sources = {
+            { name = 'orgmode' }
+         }
+                         }
    end
 }
