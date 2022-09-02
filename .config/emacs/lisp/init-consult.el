@@ -7,7 +7,6 @@
   ([remap apropos-command] . consult-apropos)      ; key: C-h a
   ([remap goto-line] . consult-goto-line)          ; key: M-g g
   ([remap imenu] . consult-imenu)                  ; key: C-c i
-  ([remap project-find-regexp] . consult-git-grep) ; key: C-x p g
   ([remap project-switch-to-buffer] . consult-project-buffer) ; key: C-c j
   ([remap switch-to-buffer] . consult-buffer) ; key: C-c b
   ([remap yank-pop] . consult-yank-pop)       ; key: M-y
