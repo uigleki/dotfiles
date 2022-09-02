@@ -11,6 +11,7 @@
 (require 'init-gruvbox-theme)           ; gruvbox 主题
 (require 'init-doom-modeline)           ; 模式行样式
 (require 'init-keymap)                  ; 按键绑定
+(require 'init-dashboard)               ; 欢迎界面
 
 ;; 补全
 (require 'init-saveplace)               ; 记住光标位置
