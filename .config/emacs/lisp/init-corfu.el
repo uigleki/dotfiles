@@ -12,9 +12,7 @@
   (global-corfu-mode 1))
 
 (use-package corfu-terminal             ; 在非图形环境使用 corfu
-  :config
-  (unless (display-graphic-p)
-    (corfu-terminal-mode 1)))
+  :config (corfu-terminal-mode 1))
 
 (when *is-graphic*
   (use-package corfu-doc
