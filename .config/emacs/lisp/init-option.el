@@ -8,7 +8,7 @@
 ;; 启动后，降低垃圾收集阈值使垃圾收集暂停更快，减少卡顿
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (setq gc-cons-threshold (* 16 1024 1024))))
+            (setq gc-cons-threshold (* 128 1024 1024))))
 
 ;;; 函数选项
 
