@@ -1,4 +1,5 @@
-# 将 CapsLock 作为额外的 Ctrl
+# 将 CapsLock 作为额外的 Esc
+# 交换左 Alt 和左 Ctrl
 [Layout]
-Options=caps:ctrl_modifier
+Options=caps:escape,ctrl:swap_lalt_lctl
 ResetOldOptions=true
