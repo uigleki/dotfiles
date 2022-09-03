@@ -1,6 +1,6 @@
 ;;;; emacs 默认行为选项
 
-;;; 垃圾收集
+;;; 提升性能
 
 ;; 提升垃圾收集阈值，减少垃圾收集的频率来加快启动速度
 (setq gc-cons-threshold most-positive-fixnum)
@@ -9,6 +9,9 @@
 (add-hook 'emacs-startup-hook
           (lambda ()
             (setq gc-cons-threshold (* 128 1024 1024))))
+
+;; 提高进程通信量
+(setq read-process-output-max (* 1024 1024))
 
 ;;; 函数选项
 
