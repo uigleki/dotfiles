@@ -9,9 +9,10 @@
   (lsp-keymap-prefix "C-c l")
   :commands lsp)
 
-(use-package lsp-ui
-  :commands lsp-ui-mode)
+(when *is-graphic*
+  (use-package lsp-ui
+    :commands lsp-ui-mode)
 
-(use-package dap-mode)
+  (use-package dap-mode))
 
 (provide 'init-lsp-mode)
