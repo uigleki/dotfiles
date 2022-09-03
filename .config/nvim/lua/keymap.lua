@@ -5,6 +5,7 @@ keymaps['n'] = {                -- 普通模式
    ['q'] = ':q<cr>',
    ['<leader>xc'] = ':q<cr>',
    ['<leader>xs'] = ':w<cr>',
+   ['<leader>U'] = ':PackerSync<cr>',
 }
 
 keymaps['i'] = {                -- 插入模式

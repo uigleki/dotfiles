@@ -17,6 +17,7 @@
 (require 'init-version)                 ; 检查版本
 (require 'init-option)                  ; 默认选项
 (require 'init-use-package)             ; 包管理器
+(require 'init-auto-package-update)     ; 软件包更新
 (require 'init-gruvbox-theme)           ; gruvbox 主题
 (require 'init-doom-modeline)           ; 状态栏样式
 (require 'init-keymap)                  ; 按键绑定

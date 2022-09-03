@@ -4,7 +4,8 @@
   :bind
   ("C-c a" . org-agenda)
   ("C-c c" . org-capture)
-  (:map org-mode-map ("C-c v" . visible-mode))
+  (:map org-mode-map
+        ("C-c v" . visible-mode))
   :custom
   (org-enforce-todo-dependencies t)     ; 强制任务依赖
   (org-image-actual-width (list 500))   ; 图片可以调整宽度，默认 500
