@@ -34,6 +34,8 @@
 (require 'init-consult)                 ; 跳转预览
 (require 'init-diff-hl)                 ; git 差异显示
 (require 'init-magit)                   ; git 管理
+(require 'init-dirvish)                 ; 文件管理器
+(require 'init-keyfreq)                 ; 统计命令频率
 
 ;; 语言
 (require 'init-go-translate)            ; 语言翻译
