@@ -22,17 +22,17 @@
      '("r" . query-replace)
      '("t" . xah-show-kill-ring)
      '("y" . xah-search-current-word)
-     ;; '("u" . xah-close-current-buffer)
+     ;; '("u" . xah-close-current-buffer)  ; 冲突 meow 的 C-u
 
      '("a" . mark-whole-buffer)
      '("s" . exchange-point-and-mark)
      '("f" . switch-to-buffer)
-     ;; '("g" . kill-line)
-     ;; '("h" . beginning-of-buffer)
+     ;; '("g" . kill-line)                 ; 冲突 meow 的 C-M-
+     ;; '("h" . beginning-of-buffer)       ; 冲突 meow 的 C-h
      '(";" . save-buffer)
 
-     ;; '("x" . xah-cut-all-or-region)
-     ;; '("c" . xah-copy-all-or-region)
+     ;; '("x" . xah-cut-all-or-region)     ; 冲突 meow 的 C-x
+     ;; '("c" . xah-copy-all-or-region)    ; 冲突 meow 的 C-c
      '("n" . end-of-buffer)
      '("m" . dired-jump)
 
