@@ -51,7 +51,6 @@
     (meow-normal-define-key
      '("C-d" . pop-global-mark)
      '("C-q" . quoted-insert)
-
      '("<escape>" . ignore)
 
      '("`" . other-frame)
