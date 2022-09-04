@@ -2,8 +2,9 @@
 
 (use-package org
   :bind
-  ("C-c a" . org-agenda)
-  ("C-c c" . org-capture)
+  (:map mode-specific-map
+        ("e" . org-agenda)
+        ("E" . org-capture))
   (:map org-mode-map
         ("C-c v" . visible-mode))
   :custom
