@@ -3,8 +3,18 @@ local keymaps = {}
 keymaps['n'] = {                -- 普通模式
    [';'] = ':',
    ['q'] = ':q<cr>',
+   ['f'] = 'i',                 -- 插入
+
+   -- 移动
+   ['i'] = 'k',
+   ['j'] = 'h',
+   ['k'] = 'j',
+   ['l'] = 'l',
+
+   -- 其他
    ['<leader>xc'] = ':q<cr>',
    ['<leader>xs'] = ':w<cr>',
+
    ['<leader>U'] = ':PackerSync<cr>',
 }
 
