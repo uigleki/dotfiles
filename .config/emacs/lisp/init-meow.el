@@ -22,17 +22,17 @@
      '("r" . query-replace)
      '("t" . xah-show-kill-ring)
      '("y" . xah-search-current-word)
-     ;; '("u" . xah-close-current-buffer)  ; 冲突 meow 的 C-u
+     '("U" . xah-close-current-buffer)  ; 冲突 meow 的 C-u
 
      '("a" . mark-whole-buffer)
      '("s" . exchange-point-and-mark)
      '("f" . switch-to-buffer)
-     ;; '("g" . kill-line)                 ; 冲突 meow 的 C-M-
-     ;; '("h" . beginning-of-buffer)       ; 冲突 meow 的 C-h
+     '("G" . kill-line)                 ; 冲突 meow 的 C-M-
+     '("H" . beginning-of-buffer)       ; 冲突 meow 的 C-h
      '(";" . save-buffer)
 
-     ;; '("x" . xah-cut-all-or-region)     ; 冲突 meow 的 C-x
-     ;; '("c" . xah-copy-all-or-region)    ; 冲突 meow 的 C-c
+     '("X" . xah-cut-all-or-region)     ; 冲突 meow 的 C-x
+     '("C" . xah-copy-all-or-region)    ; 冲突 meow 的 C-c
      '("n" . end-of-buffer)
      '("m" . dired-jump)
 
@@ -64,7 +64,8 @@
      '("-" . xah-backward-punct)
      '("=" . xah-forward-punct)
 
-     '("q" . xah-reformat-lines)
+     '("Q" . xah-reformat-lines)        ; 冲突 quit
+     '("q" . meow-quit)
      '("w" . xah-shrink-whitespaces)
      '("e" . backward-kill-word)
      '("r" . kill-word)

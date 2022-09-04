@@ -9,6 +9,8 @@
   ([remap imenu] . consult-imenu)                  ; key: C-c i
   ([remap project-switch-to-buffer] . consult-project-buffer) ; key: C-c j
   ([remap switch-to-buffer] . consult-buffer) ; key: C-c b
-  ([remap yank-pop] . consult-yank-pop))      ; key: M-y
+  ([remap yank-pop] . consult-yank-pop)       ; key: M-y
+  (:map mode-specific-map
+        ("q" . consult-ripgrep)))
 
 (provide 'init-consult)

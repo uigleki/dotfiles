@@ -15,7 +15,7 @@ keymaps['n'] = {                -- 普通模式
    ['<leader>xc'] = ':q<cr>',
    ['<leader>xs'] = ':w<cr>',
 
-   ['<leader>U'] = ':PackerSync<cr>',
+   ['<leader>P'] = ':PackerSync<cr>',
 }
 
 keymaps['i'] = {                -- 插入模式

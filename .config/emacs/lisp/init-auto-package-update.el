@@ -5,7 +5,7 @@
 (use-package auto-package-update
   :bind
   (:map mode-specific-map
-        ("U" . auto-package-update-now))
+        ("P" . auto-package-update-now))
   :custom
   (auto-package-update-delete-old-versions t))
 
