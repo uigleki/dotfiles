@@ -5,7 +5,7 @@
 (use-package meow
   :config
   (defun meow-setup ()                  ; qwerty 按键绑定
-    (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
+    ;; 移动模式键映射
     (meow-motion-overwrite-define-key
      '("<escape>" . ignore)
      '("i" . meow-prev)
@@ -28,7 +28,7 @@
      '("s" . exchange-point-and-mark)
      '("f" . switch-to-buffer)
      ;; '("g" . kill-line)
-     '("h" . beginning-of-buffer)
+     ;; '("h" . beginning-of-buffer)
      '(";" . save-buffer)
 
      ;; '("x" . xah-cut-all-or-region)
@@ -42,10 +42,7 @@
      '("ig" . xah-copy-file-path)
      '("i;" . write-file)
      '("il" . xah-new-empty-buffer)
-     '("kr" . query-replace-regexp)
-
-     '("/" . meow-keypad-describe-key)
-     '("?" . meow-cheatsheet))
+     '("kr" . query-replace-regexp))
 
     ;; 普通键映射
     (meow-normal-define-key
