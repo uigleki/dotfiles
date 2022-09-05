@@ -12,5 +12,8 @@ keybinding:
     ignoreFile: 'h'
   branches:
     viewGitFlowOptions: 'h'
+  commits:
+    moveDownCommit: '<c-k>' # move commit down one
+    moveUpCommit: '<c-i>' # move commit up one
   submodules:
     init: 'h'
