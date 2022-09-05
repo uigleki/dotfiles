@@ -8,8 +8,9 @@
     ;; 移动模式键映射
     (meow-motion-overwrite-define-key
      '("<escape>" . ignore)
-     '("i" . meow-prev)
-     '("k" . meow-next))
+     '("i" . previous-line)
+     '("k" . next-line)
+     '("," . xah-next-window-or-frame))
 
     ;; 领导键映射，包括 mode-specific-map
     (meow-leader-define-key
