@@ -1,6 +1,7 @@
 local keymaps = {}
 
 keymaps['n'] = {                -- 普通模式
+   ['<home>'] = '<esc>',
    [';'] = ':',
    ['q'] = ':q<cr>',
    ['f'] = 'i',                 -- 插入
@@ -19,12 +20,17 @@ keymaps['n'] = {                -- 普通模式
 }
 
 keymaps['i'] = {                -- 插入模式
+   ['<home>'] = '<esc>',
    ['<c-b>'] = '<left>',
    ['<c-f>'] = '<right>',
    ['<c-a>'] = '<home>',
    ['<c-e>'] = '<end>',
    ['<c-n>'] = '<down>',
    ['<c-p>'] = '<up>',
+}
+
+keymaps['c'] = {                -- 命令模式
+   ['<home>'] = '<esc>',
 }
 
 local function load_keymaps()

@@ -4,6 +4,8 @@
 
 (use-package meow
   :config
+  ;; 我的大写键绑定 home 键，让 home 键等于 esc 键
+  (define-key key-translation-map (kbd "<home>") (kbd "<escape>"))
   (defun meow-setup ()                  ; qwerty 按键绑定
     ;; 移动模式键映射
     (meow-motion-overwrite-define-key
