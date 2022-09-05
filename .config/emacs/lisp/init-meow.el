@@ -39,12 +39,26 @@
      '("n" . end-of-buffer)
      '("M" . dired-jump)                ; 冲突 meow 的 M-
 
+     ;; 文件
      '("ie" . ido-find-file)
      '("ir" . xah-open-last-closed)
      '("if" . xah-open-file-at-cursor)
      '("ig" . xah-copy-file-path)
      '("i;" . write-file)
      '("il" . xah-new-empty-buffer)
+
+     ;; 书签
+     '("ii" . bookmark-bmenu-list)
+     '("io" . bookmark-jump)
+     '("ip" . bookmark-set)
+
+     ;; 括号
+     '("du" . xah-insert-ascii-double-quote)
+     '("di" . xah-insert-ascii-single-quote)
+     '("dj" . xah-insert-brace)
+     '("dk" . xah-insert-paren)
+     '("dl" . xah-insert-square-bracket)
+
      '("kr" . query-replace-regexp))
 
     ;; 普通键映射
