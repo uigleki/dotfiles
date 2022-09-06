@@ -15,6 +15,8 @@
     (lsp-ui-sideline-show-code-actions t) ; 边线显示代码操作
     :commands lsp-ui-mode)
 
-  (use-package dap-mode))
+  (use-package dap-mode
+    :config
+    (require 'dap-python)))
 
 (provide 'init-lsp-mode)
