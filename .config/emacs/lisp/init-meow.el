@@ -26,6 +26,7 @@
      '("t" . xah-show-kill-ring)
      '("y" . xah-search-current-word)
      '("u" . xah-close-current-buffer)
+     '("o" . imeun)
 
      '("a" . mark-whole-buffer)
      '("s" . exchange-point-and-mark)
@@ -38,6 +39,10 @@
      '("C" . xah-copy-all-or-region)    ; 冲突 meow 的 C-c
      '("n" . end-of-buffer)
      '("M" . dired-jump)                ; 冲突 meow 的 M-
+
+     '("," . "M-,")
+     '("." . "M-.")
+     '("/" . "M-?")
 
      ;; 文件
      '("ie" . ido-find-file)
