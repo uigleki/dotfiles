@@ -26,7 +26,7 @@
      '("t" . xah-show-kill-ring)
      '("y" . xah-search-current-word)
      '("u" . xah-close-current-buffer)
-     '("o" . imeun)
+     '("o" . imenu)
 
      '("a" . mark-whole-buffer)
      '("s" . exchange-point-and-mark)
