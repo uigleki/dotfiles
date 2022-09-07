@@ -20,10 +20,11 @@
       "* TODO %^{任务名}\n%u\n%a")
      ("d" "Diary" entry (file+datetree "~/org/diary.org")
       "* %^{heading}\n%?")
-     ("i" "Idea" entry (file "~/org/idea.org")
-      "* %^{heading} %U\n- %?")
+     ("i" "Idea" entry (file+datetree "~/org/idea.org")
+      "* %^{heading}\n%?")
      ("n" "Notes" entry (file "~/org/note.org")
-      "* %^{heading} %t %^g\n%?")))
+      "* %^{heading} %U %^g\n%?"
+      :empty-lines-before 1)))
   :config
   ;; 自动创建日程目录，否则要报错
   (dolist (dir org-agenda-files)
