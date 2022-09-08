@@ -43,8 +43,7 @@
 (require 'init-go-translate)            ; 语言翻译
 (require 'init-flymake)                 ; 语法检查
 (require 'init-quickrun)                ; 执行缓冲区
-(require 'init-lsp-mode)                ; 语言客户端
-;; (require 'init-eglot)                   ; 语言客户端
+(require 'init-eglot)                   ; 语言客户端
 
 ;; 语言包
 (use-package markdown-mode)
