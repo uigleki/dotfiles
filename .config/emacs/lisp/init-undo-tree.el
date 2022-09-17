@@ -1,4 +1,6 @@
 ;;; 撤销树可视化
+;;
+;; 这会导致原本的撤销命令无法用 C-g 来 redo
 
 (use-package undo-tree
   :custom

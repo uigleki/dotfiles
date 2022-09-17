@@ -26,7 +26,6 @@
 (require 'init-saveplace)               ; 记住光标位置
 (require 'init-aggressive-indent)       ; 强制代码缩进
 (require 'init-which-key)               ; 显示按键绑定
-(require 'init-undo-tree)               ; 撤销树
 (require 'init-recentf)                 ; 最近文件
 (require 'init-orderless)               ; 补全候选排序
 (require 'init-corfu)                   ; 编辑缓冲区补全
