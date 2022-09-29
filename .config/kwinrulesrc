@@ -1,15 +1,4 @@
 [1]
-Description=终端最大化
-clientmachine=localhost
-maximizehoriz=true
-maximizehorizrule=3
-maximizevert=true
-maximizevertrule=3
-types=1
-wmclass=alacritty
-wmclassmatch=1
-
-[2]
 Description=emacs 最大化
 clientmachine=localhost
 maximizehoriz=true
@@ -21,5 +10,5 @@ wmclass=emacs
 wmclassmatch=1
 
 [General]
-count=2
-rules=1,2
+count=1
+rules=1

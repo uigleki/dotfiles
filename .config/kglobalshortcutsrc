@@ -1,7 +1,7 @@
 # 应用快捷键
 #
 # win + enter => 打开终端
-# win + e => 打开 emacs
+# win + spacs => 打开 emacs
 # win + x => 打开电子书
 # win + z => 打开浏览器
 #
@@ -16,11 +16,6 @@
 # ctrl + d => 退出终端
 # ctrl + x 接 ctrl + c => 退出 emacs
 
-[Alacritty.desktop]
-New=none,none,New Terminal
-_k_friendly_name=Alacritty
-_launch=Meta+Return,none,Alacritty
-
 [com.github.johnfactotum.Foliate.desktop]
 _k_friendly_name=Foliate
 _launch=Meta+X,none,Foliate
@@ -30,7 +25,7 @@ new-window=none,none,书库
 _k_friendly_name=Emacs (Client)
 _launch=none,none,Emacs (Client)
 new-instance=none,none,New Instance
-new-window=Meta+E,none,New Window
+new-window=Meta+Space,none,New Window
 
 [firefox.desktop]
 _k_friendly_name=Firefox
@@ -38,13 +33,12 @@ _launch=Meta+Z,none,Firefox
 new-private-window=none,none,新建隐私浏览窗口
 new-window=none,none,新建窗口
 
-[org.flameshot.Flameshot.desktop]
-Capture=Print,none,进行截图
-Configure=none,none,配置
-Launcher=none,none,打开启动器
-_k_friendly_name=火焰截图
-_launch=none,none,火焰截图
-
 [kwin]
-Walk Through Windows=Ctrl+Tab,Alt+Tab,Walk Through Windows
-Walk Through Windows (Reverse)=Ctrl+Shift+Tab,Alt+Shift+Backtab,Walk Through Windows (Reverse)
+Walk Through Windows=Ctrl+Tab,Alt+Tab,遍历窗口
+Walk Through Windows (Reverse)=Ctrl+Shift+Tab,Alt+Shift+Backtab,遍历窗口(反向)
+
+[org.kde.konsole.desktop]
+NewTab=none,none,打开新标签
+NewWindow=none,none,打开新窗口
+_k_friendly_name=Konsole 命令行终端
+_launch=Ctrl+Alt+T\tMeta+Return,Ctrl+Alt+T,Konsole 命令行终端
