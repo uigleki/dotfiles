@@ -45,7 +45,8 @@
 (require 'init-eglot)                   ; 语言客户端
 
 ;; 语言包
-(use-package markdown-mode)
 (use-package lua-mode)
+(use-package markdown-mode)
+(use-package yaml-mode)
 
 (provide 'init)
