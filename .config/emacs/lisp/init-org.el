@@ -13,16 +13,16 @@
   (org-log-done 'time)                  ; 记录完成时间
   (org-startup-indented t)              ; 启用缩进排版
   ;; 代办事项
-  (org-agenda-files '("~/Nextcloud/org"))         ; 日程扫描目录
-  (org-default-notes-file "~/Nextcloud/org/todo.org")
+  (org-directory "~/Nextcloud/org")
+  (org-agenda-files `(,org-directory))         ; 日程扫描目录
   (org-capture-templates
-   '(("t" "Todo" entry (file+headline "~/Nextcloud/org/todo.org" "Tasks")
+   `(("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Tasks")
       "* TODO %^{任务名}\n%u\n%a")
-     ("d" "Diary" entry (file+datetree "~/Nextcloud/org/diary.org")
+     ("d" "Diary" entry (file+datetree ,(concat org-directory "/diary.org"))
       "* %^{heading}\n%?")
-     ("i" "Idea" entry (file+datetree "~/Nextcloud/org/idea.org")
+     ("i" "Idea" entry (file+datetree ,(concat org-directory "/idea.org"))
       "* %^{heading}\n%?")
-     ("n" "Notes" entry (file "~/Nextcloud/org/note.org")
+     ("n" "Notes" entry (file ,(concat org-directory "/note.org"))
       "* %^{heading} %U %^g\n%?"
       :empty-lines-before 1)))
   :config
