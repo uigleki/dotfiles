@@ -13,7 +13,7 @@
   (org-log-done 'time)                  ; 记录完成时间
   (org-startup-indented t)              ; 启用缩进排版
   ;; 代办事项
-  (org-directory "~/Nextcloud/org")
+  (org-directory "~/dilnu/org")
   (org-agenda-files `(,org-directory))         ; 日程扫描目录
   (org-capture-templates
    `(("t" "Todo" entry (file+headline ,(concat org-directory "/todo.org") "Tasks")
