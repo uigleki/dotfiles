@@ -1,2 +1,0 @@
-# 自动更新系统
-@weekly fish -c 'systemctl start reflector && pacman -Syu --noconfirm && reboot'
