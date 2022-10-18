@@ -1,12 +1,12 @@
 ## 使用方法
 
 ```shell
-git clone --depth=1 https://gitlab.com/gleki3/dotfiles.git
+git clone --depth=1 https://gitlab.com/uigleki/dotfiles.git
 
-rsync -r dotfiles/.config ~
-rsync -r dotfiles/.local ~
-fish dotfiles/env.fish
+cd dotfiles
+rsync -rt .config .local ~
+fish env.fish
 
-sudo fish dotfiles/env.fish
-sudo rsync -r dotfiles/etc /
+sudo fish env.fish
+sudo rsync -rt etc /
 ```
