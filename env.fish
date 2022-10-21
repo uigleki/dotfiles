@@ -20,9 +20,16 @@ abbr -Ua grh 'git reset --hard'
 abbr -Ua grs 'git reset --soft'
 abbr -Ua gs  'git status'
 
+# 编辑器
+if [ -x (command -v emacs) ]
+   set EDITOR 'emacsclient -c'
+else
+   set EDITOR 'nvim'
+end
+
 # 其他
 abbr -Ua 1   'cd -'
-abbr -Ua f   'emacsclient -c'
+abbr -Ua f   "$EDITOR"
 abbr -Ua fu  'fusermount -u'
 abbr -Ua k   'btm'
 abbr -Ua l   'exa -laF'
