@@ -21,7 +21,7 @@ abbr -Ua grs 'git reset --soft'
 abbr -Ua gs  'git status'
 
 # 编辑器
-if [ -x (command -v emacs) ]
+if [ -x "$(command -v emacs)" ]
    set EDITOR 'emacsclient -c'
 else
    set EDITOR 'nvim'
