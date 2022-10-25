@@ -22,7 +22,6 @@
 (global-display-line-numbers-mode 1)    ; 显示行号
 (setq display-line-numbers-type 'relative) ;显示相对行号
 
-(auto-save-visited-mode 1)              ; 5 秒闲置，自动保存
 (fset 'yes-or-no-p 'y-or-n-p)           ; 在询问是或否时使用简短的回答
 (global-hl-line-mode t)                 ; 突出显示当前行
 (menu-bar-mode -1)                      ; 禁用菜单栏
@@ -41,9 +40,19 @@
  make-backup-files nil                  ; 禁用备份文件
  create-lockfiles nil                   ; 禁用锁定文件
 
+ ;; 备份设置
+ backup-directory-alist `((".*" . ,temporary-file-directory))
+ auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+ backup-by-copying t
+ delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t
+
  column-number-mode t                   ; 显示当前列号
  indent-tabs-mode nil                   ; 使用空格代替制表符
- mouse-yank-at-point t)                 ; 鼠标粘贴在光标处
+ mouse-yank-at-point t                  ; 鼠标粘贴在光标处
+ require-final-newline t)               ; 添加最后的换行符
 
 ;;; 钩子
 
