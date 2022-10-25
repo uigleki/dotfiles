@@ -35,9 +35,6 @@
  initial-scratch-message nil            ; 禁用暂存讯息
  ring-bell-function 'ignore             ; 禁用响铃
  visible-cursor nil                     ; 禁用光标闪烁
-
- auto-save-default nil                  ; 禁用保存访问
- make-backup-files nil                  ; 禁用备份文件
  create-lockfiles nil                   ; 禁用锁定文件
 
  ;; 备份设置
