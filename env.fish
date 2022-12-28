@@ -30,7 +30,7 @@ end
 
 # 其他
 abbr -Ua 1   'cd -'
-abbr -Ua f   "$EDITOR"
+abbr -Ua f   "hx"
 abbr -Ua fu  'fusermount -u'
 abbr -Ua k   'btm'
 abbr -Ua l   'exa -laF'

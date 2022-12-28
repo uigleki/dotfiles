@@ -12,11 +12,4 @@ if [ -n "$DISPLAY" ]; then
 fi
 
 # 编辑器
-if [ -x "$(command -v emacs)" ]; then
-    export COLORTERM=truecolor      # 使用真彩色
-    export ALTERNATE_EDITOR=""      # 必须为空，emacsclient 才会自动启用守护进程
-    export EDITOR="emacsclient -t"
-    export VISUAL="emacsclient -c -a emacs"
-else
-    export EDITOR=nvim
-fi
+export EDITOR=helix

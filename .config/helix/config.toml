@@ -6,3 +6,6 @@ idle-timeout = 0
 
 [editor.cursor-shape]
 insert = "bar"
+
+[keys.insert]
+home = "normal_mode"
