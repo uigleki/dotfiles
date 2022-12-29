@@ -1,6 +1,7 @@
 theme = "gruvbox_light"
 
 [editor]
+cursorline = true
 line-number = "relative"
 idle-timeout = 0
 
