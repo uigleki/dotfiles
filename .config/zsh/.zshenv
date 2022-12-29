@@ -12,4 +12,5 @@ if [ -n "$DISPLAY" ]; then
 fi
 
 # 编辑器
+export COLORTERM=truecolor
 export EDITOR=helix
