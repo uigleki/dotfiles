@@ -2,32 +2,10 @@ local keymaps = {}
 
 keymaps['n'] = {                -- 普通模式
    ['<home>'] = '<esc>',
-   [';'] = ':',
-   ['q'] = ':q<cr>',
-   ['f'] = 'i',                 -- 插入
-   ['h'] = 'f',
-
-   -- 移动
-   ['i'] = 'k',
-   ['j'] = 'h',
-   ['k'] = 'j',
-   ['l'] = 'l',
-
-   -- 其他
-   ['<leader>xc'] = ':q<cr>',
-   ['<leader>xs'] = ':w<cr>',
-
-   ['<leader>P'] = ':PackerSync<cr>',
 }
 
 keymaps['i'] = {                -- 插入模式
    ['<home>'] = '<esc>',
-   ['<c-b>'] = '<left>',
-   ['<c-f>'] = '<right>',
-   ['<c-a>'] = '<home>',
-   ['<c-e>'] = '<end>',
-   ['<c-n>'] = '<down>',
-   ['<c-p>'] = '<up>',
 }
 
 keymaps['c'] = {                -- 命令模式
