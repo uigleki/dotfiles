@@ -1,12 +1,18 @@
 theme = "gruvbox_light"
 
 [editor]
+auto-save = true
 cursorline = true
 line-number = "relative"
 idle-timeout = 0
 
 [editor.cursor-shape]
 insert = "bar"
+
+[editor.indent-guides]
+render = true
+character = "╎"
+skip-levels = 1
 
 [keys.insert]
 home = "normal_mode"
