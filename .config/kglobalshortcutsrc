@@ -1,7 +1,6 @@
 # 应用快捷键
 #
 # win + enter => 打开终端
-# win + spacs => 打开 emacs
 # win + x => 打开电子书
 # win + z => 打开浏览器
 #
@@ -14,18 +13,11 @@
 # 例外快捷键
 #
 # ctrl + d => 退出终端
-# ctrl + x 接 ctrl + c => 退出 emacs
 
 [com.github.johnfactotum.Foliate.desktop]
 _k_friendly_name=Foliate
 _launch=Meta+X,none,Foliate
 new-window=none,none,书库
-
-[emacsclient.desktop]
-_k_friendly_name=Emacs (Client)
-_launch=none,none,Emacs (Client)
-new-instance=none,none,New Instance
-new-window=Meta+Space,none,New Window
 
 [firefox.desktop]
 _k_friendly_name=Firefox
