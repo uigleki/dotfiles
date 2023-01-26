@@ -19,5 +19,6 @@ export EDITOR=helix
 export FZF_DEFAULT_COMMAND='fd --type=file'
 export FZF_DEFAULT_OPTS='--ansi --preview="bat -n --color=always {}"'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-export FZF_CTRL_R_OPTS='--preview "echo {}" --preview-window=hidden'
+export FZF_CTRL_R_OPTS='--preview="echo {}" --preview-window=hidden'
+export FZF_ALT_C_COMMAND='fd --type=directory'
 export FZF_ALT_C_OPTS='--preview="exa -TF {}"'
