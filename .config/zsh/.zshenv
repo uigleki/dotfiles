@@ -15,4 +15,6 @@ fi
 export COLORTERM=truecolor
 export EDITOR=helix
 
-export FZF_DEFAULT_OPTS='--preview "bat --style=numbers --color=always {}"'
+# 模糊搜索
+export FZF_DEFAULT_COMMAND='fd --type=file --color=always'
+export FZF_DEFAULT_OPTS='--ansi --preview="bat --style=numbers --color=always {}"'
