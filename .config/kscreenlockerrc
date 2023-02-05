@@ -2,4 +2,4 @@
 WallpaperPlugin=org.kde.slideshow
 
 [Greeter][Wallpaper][org.kde.slideshow][General]
-SlidePaths=/home/ges/dilnu/jmaji/pixra/bimple
+SlidePaths=/usr/share/wallpapers
