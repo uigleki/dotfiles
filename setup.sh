@@ -18,7 +18,7 @@ sed -i "s/SYSTEM_PLACEHOLDER/$SYSTEM/g; s/USERNAME_PLACEHOLDER/$USER/g" \
 sudo find /etc -type f -name "*shrc.backup-before-nix" -delete
 
 if ! command -v nix >/dev/null 2>&1; then
-    sh <(curl -L https://nixos.org/nix/install) --daemon
+    echo "n\ny\n" | sh <(curl -L https://nixos.org/nix/install) --daemon
 fi
 
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
