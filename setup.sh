@@ -15,7 +15,7 @@ rm -rf "$GIT_NAME"
 sed -i "s/SYSTEM_PLACEHOLDER/$SYSTEM/g; s/USERNAME_PLACEHOLDER/$USER/g" \
     "$CONFIG_DIR/flake.nix" "$CONFIG_DIR/home.nix"
 
-sudo rm -f /etc/bash.bashrc.backup-before-nix /etc/zsh/zshrc.backup-before-nix
+sudo find /etc -type f -name "*shrc.backup-before-nix" -delete
 
 if ! command -v nix >/dev/null 2>&1; then
     sh <(curl -L https://nixos.org/nix/install) --daemon
