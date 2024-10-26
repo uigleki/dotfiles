@@ -12,20 +12,16 @@ git clone --depth=1 "$CONFIG_GIT"
 cp -r "$GIT_NAME/.config" "$HOME"
 rm -rf "$GIT_NAME"
 
+sed -i "s/SYSTEM_PLACEHOLDER/$SYSTEM/g; s/USERNAME_PLACEHOLDER/$USER/g" \
+    "$CONFIG_DIR/flake.nix" "$CONFIG_DIR/home.nix"
+
 if ! command -v nix >/dev/null 2>&1; then
     sh <(curl -L https://nixos.org/nix/install) --daemon
 fi
 
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-elif [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-  source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-fi
-
-sed -i "s/SYSTEM_PLACEHOLDER/$SYSTEM/g; s/USERNAME_PLACEHOLDER/$USER/g" \
-    "$CONFIG_DIR/flake.nix" "$CONFIG_DIR/home.nix"
-
+bash <<'EOF'
 nix run nixpkgs#home-manager -- switch -b backup
 
 command -v zsh | sudo tee -a /etc/shells
 chsh -s $(command -v zsh)
+EOF
