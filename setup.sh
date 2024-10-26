@@ -22,4 +22,4 @@ sed -i -e "s/SYSTEM_PLACEHOLDER/$SYSTEM/g" \
        "$CONFIG_DIR/flake.nix" \
        "$CONFIG_DIR/home.nix"
 
-nix run nixpkgs#home-manager -- switch
+nix run nixpkgs#home-manager -- switch -b backup
