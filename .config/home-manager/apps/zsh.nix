@@ -4,7 +4,7 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = {
-      "a" = "yazi";
+      "d" = "yazi";
       "f" = "hx";
       "g" = "lazygit";
       "j" = "z";
@@ -12,7 +12,6 @@
       "l" = "eza -laF";
       "lt" = "eza -TF";
       "r" = "rsync";
-      "s" = "sudo";
       "t" = "tmux new -A";
       "u" = "nix flake update --flake ~/.config/home-manager && home-manager switch && nix store gc";
     };
