@@ -7,5 +7,6 @@
     defaultOptions = [ "--preview='bat -n --color=always {}'" ];
     fileWidgetCommand = "fd --type f";
     fileWidgetOptions = [ "--preview='bat -n --color=always {}'" ];
+    historyWidgetOptions = [ "--preview='echo {}'" "--preview-window=hidden" ];
   };
 }

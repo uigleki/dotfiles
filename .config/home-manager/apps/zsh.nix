@@ -6,6 +6,7 @@
     shellAliases = {
       "a" = "yazi";
       "f" = "hx";
+      "g" = "lazygit";
       "j" = "z";
       "k" = "btm";
       "l" = "eza -laF";
