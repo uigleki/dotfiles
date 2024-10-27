@@ -3,19 +3,19 @@
   home.homeDirectory = "/home/USERNAME_PLACEHOLDER";
   home.stateVersion = "24.05";
   home.packages = with pkgs; [
-    bat
-    bottom
     delta
     dust
     eza
     fd
-    git
     ripgrep
     rsync
     sd
   ];
 
   imports = [
+    ./apps/bat.nix
+    ./apps/bottom.nix
+    ./apps/git.nix
     ./apps/helix.nix
     ./apps/lazygit.nix
     ./apps/skim.nix

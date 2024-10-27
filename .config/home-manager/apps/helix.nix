@@ -9,18 +9,10 @@
         cursorline = true;
         line-number = "relative";
         idle-timeout = 0;
-        cursor-shape = {
-          insert = "bar";
-        };
-        soft-wrap = {
-          enable = true;
-        };
+        cursor-shape.insert = "bar";
+        soft-wrap.enable = true;
       };
-      keys = {
-        insert = {
-          home = "normal_mode";
-        };
-      };
+      keys.insert.home = "normal_mode";
     };
   };
 }
