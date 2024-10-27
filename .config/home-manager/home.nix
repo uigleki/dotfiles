@@ -3,16 +3,22 @@
   home.homeDirectory = "/home/USERNAME_PLACEHOLDER";
   home.stateVersion = "24.05";
   home.packages = with pkgs; [
+    bat
     bottom
+    delta
+    dust
     eza
+    fd
     git
+    ripgrep
     rsync
+    sd
   ];
 
   imports = [
-    ./apps/fzf.nix
     ./apps/helix.nix
     ./apps/ranger.nix
+    ./apps/skim.nix
     ./apps/starship.nix
     ./apps/tmux.nix
     ./apps/zoxide.nix

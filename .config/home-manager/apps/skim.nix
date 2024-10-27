@@ -1,0 +1,3 @@
+{
+  programs.skim.enable = true;
+}
