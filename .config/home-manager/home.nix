@@ -21,6 +21,7 @@
     ./apps/skim.nix
     ./apps/starship.nix
     ./apps/tmux.nix
+    ./apps/zellij.nix
     ./apps/zoxide.nix
     ./apps/zsh.nix
   ];
