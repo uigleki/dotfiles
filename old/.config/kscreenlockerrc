@@ -1,5 +1,0 @@
-[Greeter]
-WallpaperPlugin=org.kde.slideshow
-
-[Greeter][Wallpaper][org.kde.slideshow][General]
-SlidePaths=/usr/share/wallpapers
