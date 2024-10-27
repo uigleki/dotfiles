@@ -17,6 +17,7 @@
 
   imports = [
     ./apps/helix.nix
+    ./apps/lazygit.nix
     ./apps/skim.nix
     ./apps/starship.nix
     ./apps/tmux.nix
