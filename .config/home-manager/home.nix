@@ -17,11 +17,10 @@
 
   imports = [
     ./apps/helix.nix
-    ./apps/ranger.nix
     ./apps/skim.nix
     ./apps/starship.nix
     ./apps/tmux.nix
-    ./apps/zellij.nix
+    ./apps/yazi.nix
     ./apps/zoxide.nix
     ./apps/zsh.nix
   ];
