@@ -13,7 +13,7 @@
       "ra" = "ranger";
       "s" = "sudo";
       "t" = "tmux new -A";
-      "u" = "nix flake update --flake ~/.config/home-manager && home-manager switch -b backup";
+      "u" = "nix flake update --flake ~/.config/home-manager && home-manager switch -b backup && nix store gc";
     };
   };
 }

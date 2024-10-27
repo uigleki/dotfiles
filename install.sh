@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 ARCH=$(uname -m)
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -7,6 +6,8 @@ SYSTEM="${ARCH}-${OS}"
 GIT_NAME="dotfiles"
 CONFIG_GIT="https://gitlab.com/uigleki/$GIT_NAME.git"
 CONFIG_DIR="$HOME/.config/home-manager"
+
+set -eux
 
 git clone --depth=1 "$CONFIG_GIT"
 cp -r "$GIT_NAME/.config" "$HOME"
@@ -29,5 +30,9 @@ fi
 
 nix run nixpkgs#home-manager -- switch -b backup
 
+sudo passwd -d $USER
+
 command -v zsh | sudo tee -a /etc/shells
 chsh -s $(command -v zsh)
+
+nix store gc
