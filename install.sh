@@ -3,7 +3,7 @@
 set -eux
 
 readonly SYSTEM="$(uname -m)-linux"
-readonly CONFIG_GIT="https://gitlab.com/uigleki/dotfiles.git"
+readonly CONFIG_GIT="https://github.com/uigleki/dotfiles.git"
 readonly CONFIG_DIR="$HOME/.config/home-manager"
 readonly NIX_PATHS=(
     "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"

@@ -1,7 +1,7 @@
 ## 安装
 
 ```shell
-bash <(curl -L gitlab.com/uigleki/dotfiles/raw/main/install.sh)
+bash <(curl -L github.com/uigleki/dotfiles/raw/main/install.sh)
 ```
 
 ## 基本用法
