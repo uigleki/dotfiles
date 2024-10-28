@@ -15,10 +15,10 @@
   imports = [
     ./apps/bat.nix
     ./apps/bottom.nix
+    ./apps/fzf.nix
     ./apps/git.nix
     ./apps/helix.nix
     ./apps/lazygit.nix
-    ./apps/skim.nix
     ./apps/starship.nix
     ./apps/tmux.nix
     ./apps/yazi.nix
