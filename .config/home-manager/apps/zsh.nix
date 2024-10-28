@@ -7,6 +7,7 @@
       "d" = "yazi";
       "f" = "hx";
       "g" = "lazygit";
+      "gcl" = "git clone --depth=1";
       "j" = "z";
       "k" = "btm";
       "l" = "eza -laF";
