@@ -16,5 +16,7 @@
       "t" = "tmux new -A";
       "u" = "nix flake update --flake ~/.config/home-manager && home-manager switch && nix store gc";
     };
+    shellGlobalAliases.G = "| rg";
+    sessionVariables.COLORTERM = "truecolor";
   };
 }
