@@ -27,8 +27,12 @@
         "git.autofetch": true,
 
         "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "nix.formatterPath": ["nix", "fmt", "--", "-"],
         "nix.enableLanguageServer": true,
-        "nix.serverPath": "nil"
+        "nix.serverPath": "nil",
+        "[nix]": {
+          "editor.defaultFormatter": "jnoortheen.nix-ide"
+        }
       },
       "extensions": [
         "esbenp.prettier-vscode",
