@@ -14,17 +14,17 @@ clone_and_setup_config() {
 
     git clone --depth=1 "$CONFIG_GIT" "$tmp_dir"
     cp -r "$tmp_dir/.config" "$HOME"
-
     sed -i "s/SYSTEM_PLACEHOLDER/$SYSTEM/g; s/USERNAME_PLACEHOLDER/$USER/g" \
         "$CONFIG_DIR/flake.nix" "$CONFIG_DIR/home.nix"
 }
 
 install_nix() {
+    local install_cmd="sh <(curl -L https://nixos.org/nix/install)"
     if ps -p 1 -o comm= | grep -q systemd && [ "$(cat /sys/fs/selinux/enforce 2>/dev/null)" != "1" ]; then
-        printf "n\ny\n" | sh <(curl -L https://nixos.org/nix/install) --daemon
+        printf "n\ny\n" | $install_cmd --daemon
         source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
     else
-        sh <(curl -L https://nixos.org/nix/install) --no-daemon
+        $install_cmd --no-daemon
         source "$HOME/.nix-profile/etc/profile.d/nix.sh"
     fi
 }
