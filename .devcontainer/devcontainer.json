@@ -7,8 +7,6 @@
   "hostRequirements": {
     "cpus": 1
   },
-  "onCreateCommand": "",
-  "updateContentCommand": "",
   "customizations": {
     "vscode": {
       "settings": {
@@ -19,6 +17,9 @@
           "source.fixAll": "explicit",
           "source.organizeImports": "explicit"
         },
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "files.trimFinalNewlines": true,
         "notebook.formatOnSave.enabled": true,
         "notebook.codeActionsOnSave": {
           "notebook.source.fixAll": "explicit",
@@ -36,11 +37,15 @@
         },
         "[nix]": {
           "editor.defaultFormatter": "jnoortheen.nix-ide"
+        },
+        "[shellscript]": {
+          "editor.defaultFormatter": "mads-hartmann.bash-ide-vscode"
         }
       },
       "extensions": [
         "esbenp.prettier-vscode",
         "jnoortheen.nix-ide",
+        "mads-hartmann.bash-ide-vscode",
         "supermaven.supermaven"
       ]
     }
