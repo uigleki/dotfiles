@@ -21,22 +21,22 @@ setup_config() {
 
     sed -i "s/SYSTEM_PLACEHOLDER/$SYSTEM/g; s/USERNAME_PLACEHOLDER/$USER/g" \
         "$CONFIG_DIR/flake.nix" "$CONFIG_DIR/home.nix"
-
-    sudo find /etc -type f -name "*shrc.backup-before-nix" -delete
 }
 
 install_nix() {
     if ! command -v nix >/dev/null 2>&1; then
-        printf "n\ny\n" | sh <(curl -L https://nixos.org/nix/install) --daemon
-    fi
+        sudo find /etc -type f -name "*shrc.backup-before-nix" -delete
 
-    for nix_path in "${NIX_PATHS[@]}"; do
-        if [ -e "$nix_path" ]; then
-            # shellcheck source=/dev/null
-            source "$nix_path"
-            break
-        fi
-    done
+        printf "n\ny\n" | sh <(curl -L https://nixos.org/nix/install) --daemon
+
+        for nix_path in "${NIX_PATHS[@]}"; do
+            if [ -e "$nix_path" ]; then
+                # shellcheck source=/dev/null
+                source "$nix_path"
+                break
+            fi
+        done
+    fi
 
     nix run nixpkgs#home-manager -- switch -b backup
     nix store gc
