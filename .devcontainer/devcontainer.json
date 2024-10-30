@@ -1,0 +1,40 @@
+{
+  "name": "Nix",
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "features": {
+    "./local-features/nix": {}
+  },
+  "hostRequirements": {
+    "cpus": 1
+  },
+  "onCreateCommand": "nix profile install nixpkgs#nil",
+  "updateContentCommand": "",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.cursorBlinking": "solid",
+        "files.autoSave": "afterDelay",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "explicit",
+          "source.organizeImports": "explicit"
+        },
+        "notebook.formatOnSave.enabled": true,
+        "notebook.codeActionsOnSave": {
+          "notebook.source.fixAll": "explicit",
+          "notebook.source.organizeImports": "explicit"
+        },
+        "git.autofetch": true,
+
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "nix.enableLanguageServer": true,
+        "nix.serverPath": "nil"
+      },
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "jnoortheen.nix-ide",
+        "supermaven.supermaven"
+      ]
+    }
+  }
+}
