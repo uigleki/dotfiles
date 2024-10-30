@@ -2,7 +2,8 @@
 
 set -eux
 
-readonly SYSTEM="$(uname -m)-linux"
+SYSTEM="$(uname -m)-linux"
+readonly SYSTEM
 readonly CONFIG_GIT="https://github.com/uigleki/dotfiles.git"
 readonly CONFIG_DIR="$HOME/.config/home-manager"
 readonly NIX_PATHS=(
@@ -26,11 +27,12 @@ setup_config() {
 
 install_nix() {
     if ! command -v nix >/dev/null 2>&1; then
-        echo "n\ny\n" | sh <(curl -L https://nixos.org/nix/install) --daemon
+        printf "n\ny\n" | sh <(curl -L https://nixos.org/nix/install) --daemon
     fi
 
     for nix_path in "${NIX_PATHS[@]}"; do
         if [ -e "$nix_path" ]; then
+            # shellcheck source=/dev/null
             source "$nix_path"
             break
         fi
