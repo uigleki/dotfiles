@@ -16,6 +16,7 @@
   imports = [
     ./apps/bat.nix
     ./apps/bottom.nix
+    ./apps/direnv.nix
     ./apps/fzf.nix
     ./apps/git.nix
     ./apps/helix.nix
