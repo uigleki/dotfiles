@@ -28,8 +28,12 @@
 
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "nix.enableLanguageServer": true,
-        "nix.formatterPath": "nixfmt",
         "nix.serverPath": "nil",
+        "nix.serverSettings": {
+          "nil": {
+            "formatting": { "command": ["nixfmt"] }
+          }
+        },
         "[nix]": {
           "editor.defaultFormatter": "jnoortheen.nix-ide"
         }
