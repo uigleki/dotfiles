@@ -7,7 +7,7 @@
   "hostRequirements": {
     "cpus": 1
   },
-  "onCreateCommand": "nix-env -iA nixpkgs.nil",
+  "onCreateCommand": "",
   "updateContentCommand": "",
   "customizations": {
     "vscode": {
