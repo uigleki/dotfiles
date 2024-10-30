@@ -20,6 +20,7 @@ clone_and_setup_config() {
 }
 
 install_nix() {
+    # shellcheck source=/dev/null
     if ps -p 1 -o comm= | grep -q systemd && [ "$(cat /sys/fs/selinux/enforce 2>/dev/null)" != "1" ]; then
         printf "n\ny\n" | sh <(curl -L https://nixos.org/nix/install) --daemon
         source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
