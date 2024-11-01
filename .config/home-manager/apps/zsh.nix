@@ -1,8 +1,13 @@
 {
   programs.zsh = {
     enable = true;
-    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    history.ignoreAllDups = true;
+    historySubstringSearch.enable = true;
+    autosuggestion = {
+      enable = true;
+      strategy = [ "history" "completion" ];
+    };
     shellAliases = {
       "d" = "yazi";
       "f" = "hx";
@@ -18,5 +23,6 @@
     };
     shellGlobalAliases.G = "| rg";
     sessionVariables.COLORTERM = "truecolor";
+    dotDir = ".config/zsh";
   };
 }
