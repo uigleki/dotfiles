@@ -5,18 +5,18 @@ set -eux
 SYSTEM="$(uname -m)-linux"
 readonly SYSTEM
 readonly CONFIG_GIT="https://github.com/uigleki/dotfiles.git"
-readonly CONFIG_DIR="$HOME/.config/home-manager"
+readonly CONFIG_DIR="${HOME}/.config/home-manager"
 
 clone_and_setup_config() {
     local tmp_dir
     tmp_dir=$(mktemp -d)
 
     git clone --depth=1 "$CONFIG_GIT" "$tmp_dir"
-    cp -r "$tmp_dir/.config" "$HOME"
+    cp -r "${tmp_dir}/.config" "$HOME"
     rm -rf "$tmp_dir"
 
-    sed -i "s/SYSTEM_PLACEHOLDER/$SYSTEM/g; s/USERNAME_PLACEHOLDER/$USER/g" \
-        "$CONFIG_DIR/flake.nix" "$CONFIG_DIR/home.nix"
+    sed -i "s/SYSTEM_PLACEHOLDER/${SYSTEM}/g; s/USERNAME_PLACEHOLDER/${USER}/g" \
+        "${CONFIG_DIR}/flake.nix" "${CONFIG_DIR}/home.nix"
 }
 
 install_nix() {
@@ -26,7 +26,7 @@ install_nix() {
         source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
     else
         sh <(curl -L https://nixos.org/nix/install) --no-daemon
-        source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+        source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
     fi
 }
 
