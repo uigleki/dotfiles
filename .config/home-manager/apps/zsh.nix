@@ -2,8 +2,6 @@
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
-    history.ignoreAllDups = true;
-    historySubstringSearch.enable = true;
     autosuggestion = {
       enable = true;
       strategy = [ "history" "completion" ];
@@ -24,5 +22,10 @@
     shellGlobalAliases.G = "| rg";
     sessionVariables.COLORTERM = "truecolor";
     dotDir = ".config/zsh";
+    history = {
+      ignoreAllDups = true;
+      path = "$ZDOTDIR/.zsh_history";
+    };
+    historySubstringSearch.enable = true;
   };
 }
