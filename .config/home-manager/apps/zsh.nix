@@ -26,6 +26,10 @@
       ignoreAllDups = true;
       path = "$ZDOTDIR/.zsh_history";
     };
-    historySubstringSearch.enable = true;
+    initExtra = ''
+      zstyle ':completion:*' menu select
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+      zstyle ':completion:*' list-colors ""
+    '';
   };
 }
