@@ -17,7 +17,8 @@
       "lt" = "eza -TF";
       "r" = "rsync";
       "t" = "tmux new -A";
-      "u" = "nix flake update --flake ~/.config/home-manager && home-manager switch";
+      "u" =
+        "nix flake update --flake ~/.config/home-manager && home-manager switch";
     };
     shellGlobalAliases.G = "| rg";
     sessionVariables.COLORTERM = "truecolor";

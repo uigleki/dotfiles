@@ -1,17 +1,8 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   home.username = "USERNAME_PLACEHOLDER";
   home.homeDirectory = "/home/USERNAME_PLACEHOLDER";
   home.stateVersion = "24.05";
-  home.packages = with pkgs; [
-    delta
-    dust
-    eza
-    fd
-    ripgrep
-    rsync
-    sd
-  ];
+  home.packages = with pkgs; [ delta dust eza fd ripgrep rsync sd ];
 
   imports = [
     ./apps/bat.nix
