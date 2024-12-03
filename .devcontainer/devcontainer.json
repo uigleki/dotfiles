@@ -2,7 +2,10 @@
   "name": "Nix",
   "image": "mcr.microsoft.com/devcontainers/base:debian",
   "features": {
-    "./local-features/nix": {}
+    "ghcr.io/devcontainers/features/nix:1": {
+      "packages": "nixpkgs.nil nixpkgs.nixfmt-rfc-style nixpkgs.shellcheck nixpkgs.shfmt",
+      "extraNixConfig": "experimental-features = nix-command flakes"
+    }
   },
   "hostRequirements": {
     "cpus": 1
@@ -38,11 +41,12 @@
         }
       },
       "extensions": [
-        "esbenp.prettier-vscode",
         "Tyriar.sort-lines",
+        "esbenp.prettier-vscode",
         "jnoortheen.nix-ide",
         "mads-hartmann.bash-ide-vscode",
-        "supermaven.supermaven"
+        "supermaven.supermaven",
+        "yzhang.markdown-all-in-one"
       ]
     }
   }
