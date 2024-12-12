@@ -1,19 +1,28 @@
-# template
+# dotfiles
 
-🌠 Where minds unite, dreams take flight
+⚙️ Personal dotfiles and configurations
 
 ## ✨ Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Effortless setup with home-manager
+- Essential CLI tools curated for productivity
 
-## 🚀 Usage
+## 🚀 Installation
 
 ```bash
-git clone https://github.com/uigleki/template.git
-cd template
+bash <(curl -L github.com/uigleki/dotfiles/raw/main/install.sh)
 ```
+
+## 📝 Nix Cheatsheet
+
+| Command                                      | Description        |
+| -------------------------------------------- | ------------------ |
+| `nix shell nixpkgs#<package_name>`           | Try package        |
+| `nix profile install nixpkgs#<package_name>` | Install package    |
+| `nix profile remove <package_name>`          | Remove package     |
+| `nix profile list`                           | List packages      |
+| `nix store gc`                               | Clean garbage      |
+| `nix-collect-garbage -d`                     | Delete generations |
 
 ## 📄 License
 

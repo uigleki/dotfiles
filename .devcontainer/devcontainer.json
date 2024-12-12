@@ -1,6 +1,12 @@
 {
-  "name": "Debian",
+  "name": "Nix",
   "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "features": {
+    "ghcr.io/devcontainers/features/nix:1": {
+      "packages": "nil,nixfmt,shellcheck,shfmt",
+      "extraNixConfig": "experimental-features = nix-command flakes"
+    }
+  },
   "hostRequirements": {
     "cpus": 1
   },
@@ -19,11 +25,27 @@
         },
         "git.autofetch": true,
 
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "nix.enableLanguageServer": true,
+        "nix.serverPath": "nil",
+        "nix.serverSettings": {
+          "nil": {
+            "formatting": { "command": ["nixfmt"] }
+          }
+        },
+        "[nix]": {
+          "editor.defaultFormatter": "jnoortheen.nix-ide"
+        },
+        "[shellscript]": {
+          "editor.defaultFormatter": "mads-hartmann.bash-ide-vscode"
+        }
       },
       "extensions": [
         "Tyriar.sort-lines",
         "esbenp.prettier-vscode",
+        "jnoortheen.nix-ide",
+        "mads-hartmann.bash-ide-vscode",
+        "supermaven.supermaven",
         "yzhang.markdown-all-in-one"
       ]
     }
