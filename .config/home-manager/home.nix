@@ -1,8 +1,10 @@
 { pkgs, ... }: {
-  home.username = "USERNAME_PLACEHOLDER";
-  home.homeDirectory = "/home/USERNAME_PLACEHOLDER";
-  home.stateVersion = "24.05";
-  home.packages = with pkgs; [ delta dust eza fd ripgrep rsync sd ];
+  home = {
+    username = "USERNAME_PLACEHOLDER";
+    homeDirectory = "/home/USERNAME_PLACEHOLDER";
+    stateVersion = "24.05";
+    packages = with pkgs; [ delta dust eza fd ripgrep rsync sd ];
+  };
 
   imports = [
     ./apps/bat.nix
