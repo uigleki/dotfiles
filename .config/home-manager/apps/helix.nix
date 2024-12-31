@@ -5,12 +5,14 @@
     settings = {
       theme = "gruvbox_light";
       editor = {
-        auto-save = true;
-        cursorline = true;
+        auto-save.after-delay = {
+          enable = true;
+          timeout = 1000;
+        };
         line-number = "relative";
-        idle-timeout = 0;
+        cursorline = true;
+        completion-timeout = 10;
         cursor-shape.insert = "bar";
-        soft-wrap.enable = true;
       };
       keys.insert.home = "normal_mode";
     };
