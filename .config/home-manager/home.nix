@@ -7,9 +7,11 @@
   };
 
   imports = [
+    ./apps/bash.nix
     ./apps/bat.nix
     ./apps/bottom.nix
     ./apps/direnv.nix
+    ./apps/fish.nix
     ./apps/fzf.nix
     ./apps/git.nix
     ./apps/helix.nix
@@ -18,7 +20,6 @@
     ./apps/tmux.nix
     ./apps/yazi.nix
     ./apps/zoxide.nix
-    ./apps/zsh.nix
   ];
 
   programs.home-manager.enable = true;

@@ -37,13 +37,13 @@ setup_nix() {
 }
 
 set_default_shell() {
-    local zsh_path
-    zsh_path=$(command -v zsh)
+    local bash_path
+    bash_path=$(command -v bash)
 
-    if [ "$SHELL" != "$zsh_path" ]; then
-        grep -q "^${zsh_path}$" /etc/shells || echo "$zsh_path" | sudo tee -a /etc/shells
+    if [ "$SHELL" != "$bash_path" ]; then
+        grep -q "^${bash_path}$" /etc/shells || echo "$bash_path" | sudo tee -a /etc/shells
         sudo passwd -d "$USER"
-        chsh -s "$zsh_path"
+        chsh -s "$bash_path"
     fi
 }
 
