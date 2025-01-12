@@ -10,7 +10,7 @@
 ## 🚀 Installation
 
 ```bash
-bash <(curl -L github.com/uigleki/dotfiles/raw/main/install.sh)
+curl -L github.com/uigleki/dotfiles/raw/main/install.sh | bash
 ```
 
 ## 📝 Nix Cheatsheet
