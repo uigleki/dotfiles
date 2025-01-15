@@ -13,6 +13,8 @@
 curl -L github.com/uigleki/dotfiles/raw/main/install.sh | bash
 ```
 
+After installation, update your git information in `~/.config/home-manager/config.toml`, then run `home-manager switch --impure`.
+
 ## 📝 Nix Cheatsheet
 
 | Command                                      | Description        |

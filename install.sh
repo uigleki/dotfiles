@@ -19,8 +19,7 @@ clone_and_setup_config() {
 }
 
 install_nix() {
-    local nix_url
-    nix_url="https://nixos.org/nix/install"
+    local nix_url="https://nixos.org/nix/install"
 
     # shellcheck source=/dev/null
     if ps -p 1 -o comm= | grep -q systemd && [ "$(cat /sys/fs/selinux/enforce 2>/dev/null)" != "1" ]; then
@@ -33,10 +32,18 @@ install_nix() {
 }
 
 setup_nix() {
+    local hm_opts=(switch --impure -b backup)
+
     if ! command -v nix >/dev/null 2>&1; then
         install_nix
     fi
-    nix run nixpkgs#home-manager -- switch --impure -b backup
+
+    if command -v home-manager >/dev/null 2>&1; then
+        home-manager "${hm_opts[@]}"
+    else
+        nix run nixpkgs#home-manager -- "${hm_opts[@]}"
+    fi
+
     nix store gc
 }
 
