@@ -3,4 +3,7 @@ name = ""
 email = ""
 
 [env]
-# hello = "world"
+# Add environment variables here
+# Note: Do NOT store secrets/sensitive data as they will be added to nix store
+# Example:
+# LANG = "en_US.UTF-8"
