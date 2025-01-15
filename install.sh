@@ -7,8 +7,8 @@ readonly CONFIG_DIR="${HOME}/.config/home-manager"
 readonly CONFIG_TOML="${CONFIG_DIR}/config.toml"
 
 clone_and_setup_config() {
-    local tmp_dir
     tmp_dir=$(mktemp -d)
+    trap 'rm -rf "$tmp_dir"' EXIT
 
     git clone --depth=1 "$CONFIG_GIT" "$tmp_dir"
     cp -r "${tmp_dir}/.config" "$HOME"
@@ -16,8 +16,6 @@ clone_and_setup_config() {
     if [ ! -f "$CONFIG_TOML" ]; then
         cp "${tmp_dir}/config.toml" "$CONFIG_TOML"
     fi
-
-    rm -rf "$tmp_dir"
 }
 
 install_nix() {

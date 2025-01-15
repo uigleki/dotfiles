@@ -11,18 +11,20 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      userConfigContent = builtins.readFile ~/.config/home-manager/config.toml;
-      userConfig = builtins.fromTOML userConfigContent;
       system = builtins.currentSystem;
       username = builtins.getEnv "USER";
       pkgs = nixpkgs.legacyPackages.${system};
-      specialArgs = { inherit userConfig; };
+      userConfig = (builtins.fromTOML
+        (builtins.readFile /home/${username}/.config/home-manager/config.toml))
+        // {
+          inherit username;
+        };
     in {
-      homeConfigurations."${username}" =
+      homeConfigurations.${username} =
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./home.nix ];
-          extraSpecialArgs = specialArgs;
+          extraSpecialArgs = { inherit userConfig; };
         };
     };
 }

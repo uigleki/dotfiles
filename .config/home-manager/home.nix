@@ -1,9 +1,9 @@
 { pkgs, userConfig, ... }:
-let username = builtins.getEnv "USER";
+let inherit (userConfig) username;
 in {
   home = {
-    username = username;
-    homeDirectory = "/home/" + username;
+    inherit username;
+    homeDirectory = "/home/${username}";
     stateVersion = "24.05";
     packages = with pkgs; [ delta dust eza fd ripgrep rsync sd ];
   };
@@ -23,7 +23,6 @@ in {
     ./apps/yazi.nix
     ./apps/zoxide.nix
     ./envs.nix
-    (import ./envs.nix { inherit userConfig; })
   ];
 
   programs.home-manager.enable = true;
