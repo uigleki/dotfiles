@@ -1,8 +1,10 @@
-{ userConfig, ... }: {
+{ userConfig, ... }:
+let inherit (userConfig.gitconfig) name email;
+in {
   programs.git = {
     enable = true;
-    userName = userConfig.gitconfig.name;
-    userEmail = userConfig.gitconfig.email;
+    userName = name;
+    userEmail = email;
     extraConfig = {
       core.pager = "delta";
       interactive.diffFilter = "delta --color-only --features=interactive";

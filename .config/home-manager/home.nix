@@ -6,6 +6,7 @@ in {
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
     packages = with pkgs; [ delta dust eza fd ripgrep rsync sd ];
+    sessionVariables = userConfig.env;
   };
 
   imports = [
@@ -22,7 +23,6 @@ in {
     ./apps/tmux.nix
     ./apps/yazi.nix
     ./apps/zoxide.nix
-    ./envs.nix
   ];
 
   programs.home-manager.enable = true;
