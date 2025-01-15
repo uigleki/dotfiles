@@ -47,10 +47,30 @@ set_default_shell() {
     fi
 }
 
+check_git_config() {
+    local git_config
+    git_config="${HOME}/.gitconfig"
+
+    if [ ! -f "$git_config" ]; then
+        echo "Enter git user.name:"
+        read -r name
+        echo "Enter git user.email:"
+        read -r email
+
+        cat <<EOF >"$git_config"
+[user]
+	email = ${email}
+	name = ${name}
+EOF
+        echo "Git config created at ${git_config} (edit there if needed)"
+    fi
+}
+
 main() {
     clone_and_setup_config
     setup_nix
     set_default_shell
+    check_git_config
 }
 
 main
