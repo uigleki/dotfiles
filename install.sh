@@ -52,17 +52,12 @@ check_git_config() {
     git_config="${HOME}/.gitconfig"
 
     if [ ! -f "$git_config" ]; then
-        echo "Enter git user.name:"
-        read -r name
-        echo "Enter git user.email:"
-        read -r email
-
         cat <<EOF >"$git_config"
 [user]
-	email = ${email}
-	name = ${name}
+#	email = xxx@yyy.com
+#	name = zzz
 EOF
-        echo "Git config created at ${git_config} (edit there if needed)"
+        echo "Fill in your Git user information at ${git_config}"
     fi
 }
 
