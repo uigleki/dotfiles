@@ -2,8 +2,6 @@
 
 set -eux
 
-SYSTEM="$(uname -m)-linux"
-readonly SYSTEM
 readonly CONFIG_GIT="https://github.com/uigleki/dotfiles.git"
 readonly CONFIG_DIR="${HOME}/.config/home-manager"
 readonly CONFIG_TOML="${CONFIG_DIR}/config.toml"
@@ -20,9 +18,6 @@ clone_and_setup_config() {
     fi
 
     rm -rf "$tmp_dir"
-
-    sed -i "s/SYSTEM_PLACEHOLDER/${SYSTEM}/g; s/USERNAME_PLACEHOLDER/${USER}/g" \
-        "${CONFIG_DIR}/flake.nix" "${CONFIG_DIR}/home.nix"
 }
 
 install_nix() {
@@ -38,7 +33,7 @@ install_nix() {
 
 setup_nix() {
     command -v nix >/dev/null 2>&1 || install_nix
-    nix run nixpkgs#home-manager -- switch -b backup --impure
+    nix run nixpkgs#home-manager -- switch --impure -b backup
     nix store gc
 }
 

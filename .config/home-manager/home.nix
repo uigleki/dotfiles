@@ -1,7 +1,9 @@
-{ pkgs, userConfig, ... }: {
+{ pkgs, userConfig, ... }:
+let username = builtins.getEnv "USER";
+in {
   home = {
-    username = "USERNAME_PLACEHOLDER";
-    homeDirectory = "/home/USERNAME_PLACEHOLDER";
+    username = username;
+    homeDirectory = "/home/" + username;
     stateVersion = "24.05";
     packages = with pkgs; [ delta dust eza fd ripgrep rsync sd ];
   };
