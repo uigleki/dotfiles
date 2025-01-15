@@ -15,11 +15,13 @@
       userConfig = builtins.fromTOML userConfigContent;
       system = "SYSTEM_PLACEHOLDER";
       pkgs = nixpkgs.legacyPackages.${system};
+      specialArgs = { inherit pkgs userConfig; };
     in {
       homeConfigurations."USERNAME_PLACEHOLDER" =
         home-manager.lib.homeManagerConfiguration {
-          inherit pkgs userConfig;
+          inherit pkgs;
           modules = [ ./home.nix ];
+          extraSpecialArgs = specialArgs;
         };
     };
 }

@@ -13,7 +13,7 @@
       r = "rsync";
       t = "tmux new -A";
       u =
-        "nix flake update --flake ~/.config/home-manager && home-manager switch";
+        "nix flake update --flake ~/.config/home-manager && home-manager switch --impure";
       G = {
         position = "anywhere";
         expansion = "| rg";

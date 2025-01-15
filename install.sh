@@ -38,7 +38,7 @@ install_nix() {
 
 setup_nix() {
     command -v nix >/dev/null 2>&1 || install_nix
-    nix run nixpkgs#home-manager -- switch -b backup
+    nix run nixpkgs#home-manager -- switch -b backup --impure
     nix store gc
 }
 
