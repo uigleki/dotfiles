@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, userConfig, ... }: {
   home = {
     username = "USERNAME_PLACEHOLDER";
     homeDirectory = "/home/USERNAME_PLACEHOLDER";
@@ -7,13 +7,14 @@
   };
 
   imports = [
+    (import ./apps/git.nix { inherit userConfig; })
+    (import ./envs.nix { inherit userConfig; })
     ./apps/bash.nix
     ./apps/bat.nix
     ./apps/bottom.nix
     ./apps/direnv.nix
     ./apps/fish.nix
     ./apps/fzf.nix
-    ./apps/git.nix
     ./apps/helix.nix
     ./apps/lazygit.nix
     ./apps/starship.nix

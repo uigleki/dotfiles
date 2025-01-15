@@ -1,0 +1,6 @@
+[gitconfig]
+name = ""
+email = ""
+
+[env]
+# hello = "world"

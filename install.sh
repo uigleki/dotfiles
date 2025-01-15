@@ -6,6 +6,7 @@ SYSTEM="$(uname -m)-linux"
 readonly SYSTEM
 readonly CONFIG_GIT="https://github.com/uigleki/dotfiles.git"
 readonly CONFIG_DIR="${HOME}/.config/home-manager"
+readonly CONFIG_TOML="${CONFIG_DIR}/config.toml"
 
 clone_and_setup_config() {
     local tmp_dir
@@ -13,6 +14,11 @@ clone_and_setup_config() {
 
     git clone --depth=1 "$CONFIG_GIT" "$tmp_dir"
     cp -r "${tmp_dir}/.config" "$HOME"
+
+    if [ ! -f "$CONFIG_TOML" ]; then
+        cp "${tmp_dir}/config.toml" "$CONFIG_TOML"
+    fi
+
     rm -rf "$tmp_dir"
 
     sed -i "s/SYSTEM_PLACEHOLDER/${SYSTEM}/g; s/USERNAME_PLACEHOLDER/${USER}/g" \
@@ -47,25 +53,10 @@ set_default_shell() {
     fi
 }
 
-check_git_config() {
-    local git_config
-    git_config="${HOME}/.gitconfig"
-
-    if [ ! -f "$git_config" ]; then
-        cat <<EOF >"$git_config"
-[user]
-#	email = xxx@yyy.com
-#	name = zzz
-EOF
-        echo "Fill in your Git user information at ${git_config}"
-    fi
-}
-
 main() {
     clone_and_setup_config
     setup_nix
     set_default_shell
-    check_git_config
 }
 
 main

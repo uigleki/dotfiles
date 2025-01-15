@@ -11,12 +11,14 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
+      userConfigContent = builtins.readFile ~/.config/home-manager/config.toml;
+      userConfig = builtins.fromTOML userConfigContent;
       system = "SYSTEM_PLACEHOLDER";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       homeConfigurations."USERNAME_PLACEHOLDER" =
         home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          inherit pkgs userConfig;
           modules = [ ./home.nix ];
         };
     };
