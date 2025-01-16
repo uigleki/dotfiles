@@ -1,5 +1,8 @@
 { userConfig, ... }:
-let inherit (userConfig.gitconfig) name email;
+let
+  gitconfig = userConfig.gitconfig or { };
+  name = gitconfig.name or "";
+  email = gitconfig.email or "";
 in {
   programs.git = {
     enable = true;
