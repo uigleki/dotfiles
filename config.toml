@@ -1,9 +1,17 @@
+[const]
+# WARNING: DO NOT MODIFY VALUES IN THIS SECTION
+# These values will be automatically replaced during setup
+username = "__USER__"
+system = "__ARCH__"
+
 [gitconfig]
+# Git user configuration
+# Required: Set your name and email for commits
 name = ""
 email = ""
 
 [env]
-# Add environment variables here
-# Note: Do NOT store secrets/sensitive data as they will be added to nix store
+# Environment variables configuration
+# NOTE: Do not store sensitive data here - values will be exposed in nix store
 # Example:
 # LANG = "en_US.UTF-8"

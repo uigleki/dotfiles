@@ -1,5 +1,5 @@
 { pkgs, userConfig, ... }:
-let inherit (userConfig) username;
+let inherit (userConfig.const) username;
 in {
   home = {
     inherit username;

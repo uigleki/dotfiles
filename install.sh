@@ -15,6 +15,7 @@ clone_and_setup_config() {
 
     if [ ! -f "$CONFIG_TOML" ]; then
         cp "${tmp_dir}/config.toml" "$CONFIG_TOML"
+        sed -i "s/__USER__/${USER}/; s/__ARCH__/$(uname -m)-linux/" "$CONFIG_TOML"
     fi
 }
 
@@ -32,7 +33,7 @@ install_nix() {
 }
 
 setup_nix() {
-    local hm_opts=(switch --impure -b backup)
+    local hm_opts=(switch -b backup)
 
     if ! command -v nix >/dev/null 2>&1; then
         install_nix
