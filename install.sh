@@ -15,7 +15,7 @@ clone_and_setup_config() {
 
     if [ ! -f "$CONFIG_TOML" ]; then
         cp "${tmp_dir}/config.toml" "$CONFIG_TOML"
-        sed -i "s/__USER__/${USER}/; s/__ARCH__/$(uname -m)-linux/" "$CONFIG_TOML"
+        sed -i "s/__ARCH__/$(uname -m)-linux/; s/__USER__/${USER}/" "$CONFIG_TOML"
     fi
 }
 

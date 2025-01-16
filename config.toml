@@ -1,8 +1,11 @@
-[const]
+# Home Manager Configuration File
+# This file contains core settings and user preferences
+
+[core]
 # WARNING: DO NOT MODIFY VALUES IN THIS SECTION
 # These values will be automatically replaced during setup
-username = "__USER__"
 system = "__ARCH__"
+username = "__USER__"
 
 [gitconfig]
 # Git user configuration
