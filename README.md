@@ -13,7 +13,10 @@
 curl -L github.com/uigleki/dotfiles/raw/main/install.sh | bash
 ```
 
-After installation, update your git information in `~/.config/home-manager/config.toml`, then run `home-manager switch`.
+After installation:
+
+1. Set your git information in `~/.config/home-manager/config.toml`
+2. Run `home-manager switch`
 
 ## 📝 Nix Cheatsheet
 
