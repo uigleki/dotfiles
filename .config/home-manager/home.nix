@@ -1,13 +1,14 @@
 { pkgs, userConfig, ... }:
-let inherit (userConfig.core) username;
+let
+  inherit (userConfig.core) username;
+  extraPackages = map (name: pkgs.${name}) (userConfig.extra.packages or [ ]);
 in {
   home = {
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
     packages = with pkgs;
-      [ delta dust eza fd ripgrep rsync sd ]
-      ++ (userConfig.extra.packages or [ ]);
+      [ delta dust eza fd ripgrep rsync sd ] ++ extraPackages;
     sessionVariables = userConfig.env or { };
   };
 
