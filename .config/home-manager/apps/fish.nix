@@ -12,7 +12,8 @@
       lt = "eza -TF";
       r = "rsync";
       t = "tmux new -A";
-      u =
+      u = "home-manager switch";
+      uu =
         "nix flake update --flake ~/.config/home-manager && home-manager switch";
       G = {
         position = "anywhere";

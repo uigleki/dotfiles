@@ -5,7 +5,9 @@ in {
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
-    packages = with pkgs; [ delta dust eza fd ripgrep rsync sd ];
+    packages = with pkgs;
+      [ delta dust eza fd ripgrep rsync sd ]
+      ++ (userConfig.extra.packages or [ ]);
     sessionVariables = userConfig.env or { };
   };
 

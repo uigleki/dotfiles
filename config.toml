@@ -18,3 +18,10 @@ email = ""
 # NOTE: Do not store sensitive data here - values will be exposed in nix store
 # Example:
 # LANG = "en_US.UTF-8"
+
+[extra]
+# Additional configurations
+# NOTE: Package names must match nixpkgs
+# Example:
+# packages = ["neofetch", "htop"]
+packages = []
