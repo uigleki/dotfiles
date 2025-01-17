@@ -1,8 +1,7 @@
 { userConfig, ... }:
 let
-  gitconfig = userConfig.gitconfig or { };
-  name = gitconfig.name or "";
-  email = gitconfig.email or "";
+  name = userConfig.gitconfig.name or "";
+  email = userConfig.gitconfig.email or "";
 in {
   programs.git = {
     enable = true;
