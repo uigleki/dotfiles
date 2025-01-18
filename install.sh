@@ -13,9 +13,15 @@ clone_and_setup_config() {
     git clone --depth=1 "$CONFIG_GIT" "$tmp_dir"
     cp -r "${tmp_dir}/.config" "$HOME"
 
+    cat >"${CONFIG_DIR}/.local" <<EOF
+{
+  system = "$(uname -m)-linux";
+  username = "$USER";
+}
+EOF
+
     if [ ! -f "$CONFIG_TOML" ]; then
         cp "${tmp_dir}/config.toml" "$CONFIG_TOML"
-        sed -i "s/__ARCH__/$(uname -m)-linux/; s/__USER__/${USER}/" "$CONFIG_TOML"
     fi
 }
 

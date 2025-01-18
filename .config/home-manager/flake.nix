@@ -11,8 +11,10 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      userConfig = builtins.fromTOML (builtins.readFile ./config.toml);
-      inherit (userConfig.core) system username;
+      inherit (import ./.local) system username;
+      userConfig = (builtins.fromTOML (builtins.readFile ./config.toml)) // {
+        inherit username;
+      };
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       homeConfigurations.${username} =

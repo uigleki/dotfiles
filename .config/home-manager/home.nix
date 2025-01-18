@@ -1,6 +1,6 @@
 { pkgs, userConfig, ... }:
 let
-  inherit (userConfig.core) username;
+  inherit (userConfig) username;
   extraPackages = map (name: pkgs.${name}) (userConfig.extra.packages or [ ]);
 in {
   home = {
