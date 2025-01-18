@@ -27,6 +27,7 @@ in {
     ./apps/tmux.nix
     ./apps/yazi.nix
     ./apps/zoxide.nix
+    ./system/nix-cleanup.nix
   ];
 
   programs.home-manager.enable = true;
