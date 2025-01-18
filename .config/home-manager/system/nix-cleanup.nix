@@ -18,7 +18,7 @@
         AccuracySec = "1h";
         Persistent = true;
       };
-      Install.WantedBy = "timers.target";
+      Install.WantedBy = [ "timers.target" ];
     };
   };
 }
