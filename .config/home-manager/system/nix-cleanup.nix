@@ -1,7 +1,7 @@
 { pkgs, ... }: {
-  programs.systemd.user = {
+  systemd.user = {
     services.nix-cleanup = {
-      Unit = { Description = "Clean up old Nix store paths"; };
+      Unit.Description = "Clean up old Nix store paths";
       Service = {
         Type = "oneshot";
         ExecStart =
@@ -10,12 +10,12 @@
     };
 
     timers.nix-cleanup = {
-      Unit = { Description = "Monthly Nix store cleanup"; };
-      timerConfig = {
+      Unit.Description = "Monthly Nix store cleanup";
+      Timer = {
         OnCalendar = "monthly";
         Persistent = true;
       };
-      Install = { WantedBy = [ "timers.target" ]; };
+      Install.WantedBy = [ "timers.target" ];
     };
   };
 }

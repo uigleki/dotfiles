@@ -44,8 +44,6 @@ setup_nix() {
     else
         nix run nixpkgs#home-manager -- "${hm_opts[@]}"
     fi
-
-    nix store gc
 }
 
 set_default_shell() {
