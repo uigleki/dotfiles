@@ -23,6 +23,7 @@ in {
     ./apps/helix.nix
     ./apps/lazygit.nix
     ./apps/starship.nix
+    ./apps/tealdeer.nix
     ./apps/tmux.nix
     ./apps/yazi.nix
     ./apps/zoxide.nix

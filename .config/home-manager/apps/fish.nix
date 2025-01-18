@@ -1,4 +1,4 @@
-{
+{ userConfig, ... }: {
   programs.fish = {
     enable = true;
     shellAbbrs = {
@@ -19,7 +19,7 @@
         position = "anywhere";
         expansion = "| rg";
       };
-    };
+    } // (userConfig.abbr or { });
     interactiveShellInit = ''
       set fish_greeting
       set -gx COLORTERM truecolor
