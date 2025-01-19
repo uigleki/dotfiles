@@ -1,7 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  name = "nix-cleanup";
+  description = "Monthly Nix store cleanup";
+in {
   systemd.user = {
-    services.nix-cleanup = {
-      Unit.Description = "Monthly Nix store cleanup";
+    services.${name} = {
+      Unit.Description = description;
       Service = {
         Type = "oneshot";
         ExecStart =
@@ -9,8 +13,8 @@
       };
     };
 
-    timers.nix-cleanup = {
-      Unit.Description = "Monthly Nix store cleanup";
+    timers.${name} = {
+      Unit.Description = description;
       Timer = {
         OnCalendar = "monthly";
         Persistent = true;
