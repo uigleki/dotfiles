@@ -13,6 +13,7 @@ in {
   };
 
   imports = [
+    ./apps/aria2.nix
     ./apps/bash.nix
     ./apps/bat.nix
     ./apps/bottom.nix
