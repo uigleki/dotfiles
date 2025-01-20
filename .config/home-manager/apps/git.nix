@@ -7,10 +7,11 @@ in {
     enable = true;
     userName = name;
     userEmail = email;
+    delta = {
+      enable = true;
+      options = { syntax-theme = "gruvbox-light"; };
+    };
     extraConfig = {
-      core.pager = "delta";
-      interactive.diffFilter = "delta --color-only --features=interactive";
-      delta.syntax-theme = "gruvbox-light";
       credential.helper = "store";
       pull.rebase = false;
     };
