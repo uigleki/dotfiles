@@ -22,7 +22,6 @@
     interactiveShellInit = ''
       set fish_greeting
       set -gx COLORTERM truecolor
-      set -gx LS_COLORS (vivid generate gruvbox-light)
     '';
   };
 }

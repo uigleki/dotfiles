@@ -7,7 +7,7 @@ in {
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
-    packages = with pkgs; [ delta dust eza fd rsync sd vivid ] ++ extraPackages;
+    packages = with pkgs; [ delta dust eza fd rsync sd ] ++ extraPackages;
     sessionVariables = userConfig.env or { };
   };
 
