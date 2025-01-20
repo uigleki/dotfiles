@@ -7,6 +7,7 @@
     fileWidgetCommand = "fd --type file";
     historyWidgetOptions = [ "--preview=''" ];
     changeDirWidgetCommand = "fd --type dir";
-    changeDirWidgetOptions = [ "--preview='exa -TF --color=always {}'" ];
+    changeDirWidgetOptions =
+      [ "--preview='eza -TF --level=2 --color=always {}'" ];
   };
 }
