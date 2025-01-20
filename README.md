@@ -45,12 +45,12 @@ After installation:
 | ----------- | ---------- | ------------------------------------ |
 | `man`       | `tealdeer` | Practical command examples           |
 | `cat`       | `bat`      | File viewer with syntax highlighting |
-| `ls`        | `eza`      | Directory listing with git status    |
+| `ls`        | `eza`      | Modern file & directory listing      |
 | `find`      | `fd`       | Faster file search                   |
-| `grep`      | `ripgrep`  | Pattern search with git integration  |
+| `grep`      | `ripgrep`  | Fast recursive pattern search        |
 | `sed`       | `sd`       | Intuitive find & replace             |
 | `cd`        | `zoxide`   | Smart directory navigation           |
-| `diff`      | `delta`    | Side-by-side diff viewer             |
+| `diff`      | `delta`    | Syntax-highlighting diff viewer      |
 | `du`        | `dust`     | Tree-based disk usage                |
 
 ### Command Shortcuts
