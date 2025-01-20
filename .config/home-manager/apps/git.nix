@@ -9,7 +9,10 @@ in {
     userEmail = email;
     delta = {
       enable = true;
-      options = { syntax-theme = "gruvbox-light"; };
+      options = {
+        navigate = true;
+        syntax-theme = "gruvbox-light";
+      };
     };
     extraConfig = {
       credential.helper = "store";

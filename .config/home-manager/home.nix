@@ -7,8 +7,7 @@ in {
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
-    packages = with pkgs;
-      [ delta dust eza fd ripgrep rsync sd ] ++ extraPackages;
+    packages = with pkgs; [ delta dust eza fd rsync sd vivid ] ++ extraPackages;
     sessionVariables = userConfig.env or { };
   };
 
@@ -23,6 +22,7 @@ in {
     ./apps/git.nix
     ./apps/helix.nix
     ./apps/lazygit.nix
+    ./apps/ripgrep.nix
     ./apps/starship.nix
     ./apps/tealdeer.nix
     ./apps/tmux.nix

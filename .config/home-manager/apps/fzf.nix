@@ -1,11 +1,14 @@
 {
   programs.fzf = {
     enable = true;
-    defaultCommand = "fd --type f";
-    defaultOptions = [ "--preview='bat -n --color=always {}'" ];
-    fileWidgetCommand = "fd --type f";
+    defaultCommand = "fd --type file --color=always";
+    defaultOptions = [
+      "--ansi"
+      "--preview='bat --color=always --style=numbers --line-range=:500 {}'"
+    ];
+    fileWidgetCommand = "fd --type file --color=always";
     historyWidgetOptions = [ "--preview=''" ];
-    changeDirWidgetCommand = "fd --type d";
+    changeDirWidgetCommand = "fd --type dir";
     changeDirWidgetOptions = [ "--preview='exa -TF --color=always {}'" ];
   };
 }

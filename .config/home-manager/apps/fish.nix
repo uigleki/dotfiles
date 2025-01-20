@@ -6,7 +6,6 @@
       f = "hx";
       g = "lazygit";
       gcl = "git clone --depth=1";
-      j = "z";
       k = "btm";
       l = "eza -laF";
       lt = "eza -TF";
@@ -23,6 +22,7 @@
     interactiveShellInit = ''
       set fish_greeting
       set -gx COLORTERM truecolor
+      set -gx LS_COLORS (vivid generate gruvbox-light)
     '';
   };
 }
