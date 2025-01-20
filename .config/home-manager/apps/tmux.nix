@@ -1,11 +1,10 @@
 {
   programs.tmux = {
     enable = true;
-    terminal = "screen-256color";
     escapeTime = 0;
     mouse = true;
     extraConfig = ''
-      # Enable true color
+      set -g default-terminal "$TERM"
       set -ga terminal-overrides ",$TERM:Tc"
 
       bind -n M-j next-window
