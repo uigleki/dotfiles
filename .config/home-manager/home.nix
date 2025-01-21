@@ -3,9 +3,6 @@ let
   inherit (userConfig) username;
   extraPackages = map (name: pkgs.${name}) (userConfig.extra.packages or [ ]);
 in {
-  news.display = "silent";
-  programs.home-manager.enable = true;
-
   home = {
     inherit username;
     homeDirectory = "/home/${username}";
@@ -40,4 +37,7 @@ in {
     ./apps/yazi.nix
     ./apps/zoxide.nix
   ];
+
+  news.display = "silent";
+  programs.home-manager.enable = true;
 }

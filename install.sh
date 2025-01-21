@@ -27,19 +27,9 @@ EOF
     fi
 }
 
-nix_installer() {
-    curl -fsSL https://install.determinate.systems/nix | sh -s -- install --no-confirm "$@"
-}
-
 install_nix() {
-    if ps -p 1 -o comm= | grep -q systemd; then
-        nix_installer
-        . "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-    else
-        nix_installer linux --init none
-        # shellcheck disable=SC1091
-        . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-    fi
+    curl -fsSL https://install.determinate.systems/nix | sh -s -- install --no-confirm
+    . "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 }
 
 setup_nix() {
@@ -60,7 +50,6 @@ set_default_shell() {
 
     if ! grep -q "^${bash_path}$" /etc/shells; then
         echo "$bash_path" | sudo tee -a /etc/shells
-        sudo passwd -d "$USER"
         chsh -s "$bash_path"
     fi
 }
