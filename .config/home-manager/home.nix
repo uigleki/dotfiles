@@ -3,12 +3,23 @@ let
   inherit (userConfig) username;
   extraPackages = map (name: pkgs.${name}) (userConfig.extra.packages or [ ]);
 in {
+  news.display = "silent";
+  programs.home-manager.enable = true;
+
   home = {
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "24.05";
     packages = with pkgs; [ delta dust eza fd rsync sd ] ++ extraPackages;
     sessionVariables = userConfig.env or { };
+  };
+
+  nix.gc = {
+    automatic = true;
+    frequency = "weekly";
+    options = "--delete-older-than 30d";
+    persistent = true;
+    randomizedDelaySec = "1min";
   };
 
   imports = [
@@ -28,8 +39,5 @@ in {
     ./apps/tmux.nix
     ./apps/yazi.nix
     ./apps/zoxide.nix
-    ./system/nix-cleanup.nix
   ];
-
-  programs.home-manager.enable = true;
 }
