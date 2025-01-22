@@ -17,7 +17,7 @@
 ## 🚀 Installation
 
 ```bash
-curl -L github.com/uigleki/dotfiles/raw/main/install.sh | bash
+curl -fsSL https://github.com/uigleki/dotfiles/raw/main/install.sh | bash
 ```
 
 After installation:
