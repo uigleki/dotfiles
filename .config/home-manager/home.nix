@@ -11,12 +11,11 @@ in {
     sessionVariables = userConfig.env or { };
   };
 
-  nix.gc = {
-    automatic = true;
-    frequency = "weekly";
-    options = "--delete-older-than 30d";
-    persistent = true;
-    randomizedDelaySec = "1min";
+  programs = {
+    home-manager.enable = true;
+    nix-your-shell.enable = true;
+    starship.enable = true;
+    yazi.enable = true;
   };
 
   imports = [
@@ -31,13 +30,18 @@ in {
     ./apps/helix.nix
     ./apps/lazygit.nix
     ./apps/ripgrep.nix
-    ./apps/starship.nix
     ./apps/tealdeer.nix
     ./apps/tmux.nix
-    ./apps/yazi.nix
     ./apps/zoxide.nix
   ];
 
+  nix.gc = {
+    automatic = true;
+    frequency = "weekly";
+    options = "--delete-older-than 30d";
+    persistent = true;
+    randomizedDelaySec = "1min";
+  };
+
   news.display = "silent";
-  programs.home-manager.enable = true;
 }
