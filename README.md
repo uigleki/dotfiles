@@ -8,6 +8,12 @@
 - Curated collection of modern CLI tools
 - Consistent environment across systems
 
+## 📋 Requirements
+
+- A Linux system with systemd
+- `curl` and `git` installed
+- `sudo` access
+
 ## 🚀 Installation
 
 ```bash

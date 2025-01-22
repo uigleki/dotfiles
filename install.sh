@@ -3,8 +3,8 @@
 set -euo pipefail
 
 readonly CONFIG_GIT="https://github.com/uigleki/dotfiles.git"
-readonly CONFIG_DIR="${HOME}/.config/home-manager"
-readonly CONFIG_TOML="${CONFIG_DIR}/config.toml"
+readonly CONFIG_DIR="$HOME/.config/home-manager"
+readonly CONFIG_TOML="$CONFIG_DIR/config.toml"
 readonly HM_OPTS=(switch -b backup)
 
 TMP_DIR=$(mktemp -d)
@@ -13,9 +13,9 @@ trap 'rm -rf "$TMP_DIR"' EXIT
 
 clone_and_setup_config() {
     git clone --depth=1 "$CONFIG_GIT" "$TMP_DIR"
-    cp -r "${TMP_DIR}/.config" "$HOME"
+    cp -r "$TMP_DIR/.config" "$HOME"
 
-    cat >"${CONFIG_DIR}/.local" <<EOF
+    cat >"$CONFIG_DIR/.local" <<EOF
 {
   system = "$(uname -m)-linux";
   username = "$USER";
@@ -23,7 +23,7 @@ clone_and_setup_config() {
 EOF
 
     if [ ! -f "$CONFIG_TOML" ]; then
-        cp "${TMP_DIR}/config.toml" "$CONFIG_TOML"
+        cp "$TMP_DIR/config.toml" "$CONFIG_TOML"
     fi
 }
 
@@ -32,12 +32,16 @@ install_nix() {
     . "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 }
 
+command_exists() {
+    command -v "$@" >/dev/null 2>&1
+}
+
 setup_nix() {
-    if ! command -v nix >/dev/null 2>&1; then
+    if ! command_exists nix; then
         install_nix
     fi
 
-    if command -v home-manager >/dev/null 2>&1; then
+    if command_exists home-manager; then
         home-manager "${HM_OPTS[@]}"
     else
         nix run nixpkgs#home-manager -- "${HM_OPTS[@]}"
@@ -48,7 +52,7 @@ set_default_shell() {
     local bash_path
     bash_path=$(command -v bash)
 
-    if ! grep -q "^${bash_path}$" /etc/shells; then
+    if ! grep -qx "$bash_path" /etc/shells; then
         echo "$bash_path" | sudo tee -a /etc/shells
         chsh -s "$bash_path"
     fi
