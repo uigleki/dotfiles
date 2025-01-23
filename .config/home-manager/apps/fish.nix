@@ -22,6 +22,11 @@
     interactiveShellInit = ''
       set fish_greeting
       set -gx COLORTERM truecolor
+
+      set secret "$HOME/.secrets/env"
+      if test -f "$secret"
+        source "$secret"
+      end
     '';
   };
 }
