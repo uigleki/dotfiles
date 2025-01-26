@@ -61,21 +61,24 @@ After installation:
 
 ### Command Shortcuts
 
-| Abbr  | Command                 | Description                  |
-| ----- | ----------------------- | ---------------------------- |
-| `d`   | `yazi`                  | File manager                 |
-| `f`   | `hx`                    | Open in Helix editor         |
-| `g`   | `lazygit`               | Git TUI                      |
-| `gcl` | `git clone --depth=1`   | Shallow clone repository     |
-| `j`   | `z`                     | Jump to frecent directory    |
-| `k`   | `btm`                   | System monitor               |
-| `l`   | `eza -laF`              | List all files with metadata |
-| `lt`  | `eza -TF`               | Display directory tree       |
-| `r`   | `rsync`                 | Efficient file transfer      |
-| `t`   | `tmux new -A`           | Create/attach tmux session   |
-| `u`   | `home-manager switch`   | Apply system changes         |
-| `uu`  | `nix flake update && u` | Update flake and rebuild     |
-| `G`   | `\| rg`                 | Pipe to ripgrep (anywhere)   |
+| Abbr  | Command                   | Description                  |
+| ----- | ------------------------- | ---------------------------- |
+| `bt`  | `aria2c --bt-tracker=...` | BT download with trackers    |
+| `d`   | `yazi`                    | File manager                 |
+| `dl`  | `aria2c`                  | Download files with aria2c   |
+| `f`   | `hx`                      | Open in Helix editor         |
+| `g`   | `lazygit`                 | Git TUI                      |
+| `gcl` | `git clone --depth=1`     | Shallow clone repository     |
+| `gp`  | `git pull`                | Pull git repository          |
+| `j`   | `z`                       | Jump to frecent directory    |
+| `k`   | `btm`                     | System monitor               |
+| `l`   | `eza -laF`                | List all files with metadata |
+| `lt`  | `eza -TF`                 | Display directory tree       |
+| `r`   | `rsync -rthP`             | Efficient file transfer      |
+| `t`   | `tmux new -A`             | Create/attach tmux session   |
+| `u`   | `home-manager switch`     | Apply system changes         |
+| `uu`  | `nix flake update && u`   | Update flake and rebuild     |
+| `G`   | `\| rg`                   | Pipe to ripgrep (anywhere)   |
 
 ### Navigation
 

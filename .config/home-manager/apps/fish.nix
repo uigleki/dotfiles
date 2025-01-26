@@ -2,14 +2,17 @@
   programs.fish = {
     enable = true;
     shellAbbrs = {
+      bt = "aria2c --bt-tracker=(curl -fsSL https://trackerslist.com/all_aria2.txt)";
       d = "yazi";
+      dl = "aria2c";
       f = "hx";
       g = "lazygit";
       gcl = "git clone --depth=1";
+      gp = "git pull";
       k = "btm";
       l = "eza -laF";
       lt = "eza -TF";
-      r = "rsync";
+      r = "rsync -rthP";
       t = "tmux new -A";
       u = "home-manager switch";
       uu =
