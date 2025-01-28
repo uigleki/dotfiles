@@ -29,19 +29,12 @@ in {
     ./apps/git.nix
     ./apps/helix.nix
     ./apps/lazygit.nix
+    ./apps/nix.nix
     ./apps/ripgrep.nix
     ./apps/tealdeer.nix
     ./apps/tmux.nix
     ./apps/zoxide.nix
   ];
-
-  nix.gc = {
-    automatic = true;
-    frequency = "weekly";
-    options = "--delete-older-than 30d";
-    persistent = true;
-    randomizedDelaySec = "1min";
-  };
 
   news.display = "silent";
 }
