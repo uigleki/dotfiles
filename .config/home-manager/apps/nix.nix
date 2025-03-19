@@ -4,6 +4,6 @@
     frequency = "weekly";
     options = "--delete-older-than 30d";
     persistent = true;
-    randomizedDelaySec = "1min";
+    randomizedDelaySec = "1s";
   };
 }
