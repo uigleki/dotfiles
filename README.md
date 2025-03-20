@@ -90,14 +90,10 @@ FZF shortcuts:
 
 Terminal shortcuts:
 
-- `Ctrl-a` - Move cursor to line start
-- `Ctrl-e` - Move cursor to line end
-- `Alt-f` - Move cursor forward one word
-- `Alt-b` - Move cursor back one word
-- `Ctrl-u` - Clear line before cursor
-- `Ctrl-k` - Clear line after cursor
-- `Ctrl-w` - Delete word before cursor
-- `Alt-d` - Delete word after cursor
+- `Ctrl-a` / `Ctrl-e` - Move cursor to line start/end
+- `Alt-f` / `Alt-b` - Move cursor forward/backward one word
+- `Ctrl-u` / `Ctrl-k` - Clear line before/after cursor
+- `Ctrl-w` / `Alt-d` - Delete word before/after cursor
 - `Ctrl-l` - Clear screen
 - `Ctrl-c` - Cancel command
 - `Ctrl-d` - Exit shell (when line is empty)
