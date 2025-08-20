@@ -12,10 +12,13 @@
   outputs = { nixpkgs, home-manager, ... }:
     let
       inherit (import ./.local) system username;
-      userConfig = (builtins.fromTOML (builtins.readFile ./config.toml)) // {
-        inherit username;
-      };
       pkgs = nixpkgs.legacyPackages.${system};
+
+      optionalTOML = path:
+        nixpkgs.lib.optionalAttrs (builtins.pathExists path)
+        (builtins.fromTOML (builtins.readFile path));
+
+      userConfig = { inherit username; } // optionalTOML ./config.toml;
     in {
       homeConfigurations.${username} =
         home-manager.lib.homeManagerConfiguration {
