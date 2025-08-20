@@ -1,7 +1,8 @@
-{ pkgs, userConfig, ... }:
+{ nixpkgs, pkgs, userConfig, ... }:
 let
   inherit (userConfig) username;
   extraPackages = map (name: pkgs.${name}) (userConfig.extra.packages or [ ]);
+  optionalFile = path: nixpkgs.lib.optional (builtins.pathExists path) path;
 in {
   home = {
     inherit username;
@@ -34,7 +35,7 @@ in {
     ./apps/tealdeer.nix
     ./apps/tmux.nix
     ./apps/zoxide.nix
-  ];
+  ] ++ optionalFile ./extra.nix;
 
   news.display = "silent";
 }
