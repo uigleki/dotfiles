@@ -1,8 +1,8 @@
-{ nixpkgs, pkgs, userConfig, ... }:
+{ lib, pkgs, userConfig, ... }:
 let
   inherit (userConfig) username;
   extraPackages = map (name: pkgs.${name}) (userConfig.extra.packages or [ ]);
-  optionalFile = path: nixpkgs.lib.optional (builtins.pathExists path) path;
+  optionalFile = path: lib.optional (builtins.pathExists path) path;
 in {
   home = {
     inherit username;
