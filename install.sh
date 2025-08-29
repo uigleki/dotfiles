@@ -13,7 +13,8 @@ trap 'rm -rf "$TMP_DIR"' EXIT
 
 clone_and_setup_config() {
     git clone --depth=1 "$CONFIG_GIT" "$TMP_DIR"
-    cp -r "$TMP_DIR" "$HOME"
+    mkdir -p "$CONFIG_DIR"
+    cp -r "$TMP_DIR"/* "$CONFIG_DIR"
 
     cat >"$CONFIG_DIR/.local" <<EOF
 {
