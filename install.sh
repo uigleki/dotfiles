@@ -13,7 +13,7 @@ trap 'rm -rf "$TMP_DIR"' EXIT
 
 clone_and_setup_config() {
     git clone --depth=1 "$CONFIG_GIT" "$TMP_DIR"
-    cp -r "$TMP_DIR/.config" "$HOME"
+    cp -r "$TMP_DIR" "$HOME"
 
     cat >"$CONFIG_DIR/.local" <<EOF
 {
@@ -23,7 +23,7 @@ clone_and_setup_config() {
 EOF
 
     if [ ! -f "$CONFIG_TOML" ]; then
-        cp "$TMP_DIR/config.toml" "$CONFIG_TOML"
+        cp "$TMP_DIR/templates/config.toml" "$CONFIG_TOML"
     fi
 }
 
@@ -59,9 +59,11 @@ set_default_shell() {
 }
 
 main() {
-    clone_and_setup_config
-    setup_nix
-    set_default_shell
+    if [[ -f /proc/version ]] && grep -q "Microsoft\|WSL" /proc/version; then
+        clone_and_setup_config
+        setup_nix
+        set_default_shell
+    fi
 }
 
 main
