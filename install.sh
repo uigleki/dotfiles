@@ -59,11 +59,10 @@ set_default_shell() {
 }
 
 main() {
-    if [[ -f /proc/version ]] && grep -q "Microsoft\|WSL" /proc/version; then
-        clone_and_setup_config
-        setup_nix
-        set_default_shell
-    fi
+    # if [[ -f /proc/version ]] && grep -q "Microsoft\|WSL" /proc/version; then
+    clone_and_setup_config
+    setup_nix
+    set_default_shell
 }
 
 main
