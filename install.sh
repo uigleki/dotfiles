@@ -4,28 +4,10 @@ set -euo pipefail
 
 readonly CONFIG_GIT="https://github.com/uigleki/dotfiles.git"
 readonly CONFIG_DIR="$HOME/.config/home-manager"
-readonly CONFIG_TOML="$CONFIG_DIR/config.toml"
 readonly HM_OPTS=(switch -b backup)
 
-TMP_DIR=$(mktemp -d)
-readonly TMP_DIR
-trap 'rm -rf "$TMP_DIR"' EXIT
-
 clone_and_setup_config() {
-    git clone --depth=1 "$CONFIG_GIT" "$TMP_DIR"
-    mkdir -p "$CONFIG_DIR"
-    cp -r "$TMP_DIR"/* "$CONFIG_DIR"
-
-    cat >"$CONFIG_DIR/.local" <<EOF
-{
-  system = "$(uname -m)-linux";
-  username = "$USER";
-}
-EOF
-
-    if [ ! -f "$CONFIG_TOML" ]; then
-        cp "$TMP_DIR/templates/config.toml" "$CONFIG_TOML"
-    fi
+    git clone --depth=1 "$CONFIG_GIT" "$CONFIG_DIR"
 }
 
 install_nix() {

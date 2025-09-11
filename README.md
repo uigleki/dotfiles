@@ -2,6 +2,8 @@
 
 ⚙️ Personal dotfiles and configurations
 
+> **Note**: This is my personal configuration repository. If you want to use it, please fork it and modify the personal information in `hosts/default.nix` (username, email, SSH keys, etc.) to match your own setup.
+
 ## ✨ Features
 
 - Zero-touch setup with home-manager
@@ -23,8 +25,7 @@ curl -fsSL https://github.com/uigleki/dotfiles/raw/main/install.sh | bash
 After installation:
 
 1. Start a new shell session
-2. Set your git information in `~/.config/home-manager/config.toml`
-3. Run `home-manager switch`
+2. Run `home-manager switch`
 
 ## 📝 Cheatsheet
 
