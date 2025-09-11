@@ -20,53 +20,60 @@ let
   ];
 in
 {
-  homeConfigurations = {
-    "win" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = coreModules ++ [
-        ./hm-amd/home.nix
-        {
-          home = {
-            username = wslUser.name;
-            homeDirectory = "/home/${wslUser.name}";
-          };
-          nixpkgs.config.allowUnfree = true;
-        }
-      ];
-      extraSpecialArgs = {
-        user = wslUser;
-        hostname = "win";
-        isNixOS = false;
+  homeConfigurations =
+    let
+      hostname = "win";
+    in
+    {
+      "${hostname}" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = coreModules ++ [
+          ./hm-amd/home.nix
+          {
+            home = {
+              username = wslUser.name;
+              homeDirectory = "/home/${wslUser.name}";
+            };
+            nixpkgs.config.allowUnfree = true;
+          }
+        ];
+        extraSpecialArgs = {
+          user = wslUser;
+          inherit hostname;
+          isNixOS = false;
+        };
       };
     };
-  };
 
-  nixosConfigurations = {
-    vm = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      modules = [
-        disko.nixosModules.disko
-        ./vm-arm/disk-config.nix
-        ./vm-arm/configuration.nix
-        ./hardware-configuration.nix
+  nixosConfigurations =
+    let
+      hostname = "vm-arm";
+    in
+    {
+      vm = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./vm-arm/disk-config.nix
+          ./vm-arm/configuration.nix
 
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.${user.name} = {
-              imports = coreModules;
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.${user.name} = {
+                imports = coreModules;
+              };
+              extraSpecialArgs = {
+                inherit user hostname;
+                isNixOS = true;
+              };
             };
-            extraSpecialArgs = {
-              inherit user;
-              hostname = "vm-arm";
-              isNixOS = true;
-            };
-          };
-        }
-      ];
-      specialArgs = { inherit inputs user; };
+          }
+        ]
+        ++ nixpkgs.lib.optional (builtins.pathExists ./hardware-configuration.nix) ./hardware-configuration.nix;
+        specialArgs = { inherit inputs user hostname; };
+      };
     };
-  };
 }
