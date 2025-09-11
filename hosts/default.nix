@@ -64,8 +64,7 @@ in
             };
           };
         }
-      ]
-      ++ nixpkgs.lib.optional (builtins.pathExists ./hardware-configuration.nix) ./hardware-configuration.nix;
+      ];
       specialArgs = { inherit inputs user; };
     };
   };
