@@ -1,6 +1,5 @@
 {
   pkgs,
-  hostname,
   user,
   ...
 }:
@@ -38,7 +37,7 @@
     "flakes"
   ];
 
-  networking.hostName = hostname;
+  networking.hostName = user.hostName;
   networking.useDHCP = true;
 
   security.sudo.wheelNeedsPassword = false;

@@ -1,6 +1,6 @@
 {
   pkgs,
-  hostname,
+  user,
   isNixOS,
   ...
 }:
@@ -35,14 +35,14 @@
 
         u =
           if isNixOS then
-            "sudo nixos-rebuild switch --flake ~/.config/home-manager#${hostname}"
+            "sudo nixos-rebuild switch --flake ~/.config/home-manager#${user.hostName}"
           else
-            "home-manager switch --flake ~/.config/home-manager#${hostname}";
+            "home-manager switch --flake ~/.config/home-manager#${user.hostName}";
         uu =
           if isNixOS then
-            "nix flake update --flake ~/.config/home-manager && sudo nixos-rebuild switch --flake ~/.config/home-manager#${hostname}"
+            "nix flake update --flake ~/.config/home-manager && sudo nixos-rebuild switch --flake ~/.config/home-manager#${user.hostName}"
           else
-            "nix flake update --flake ~/.config/home-manager && home-manager switch --flake ~/.config/home-manager#${hostname}";
+            "nix flake update --flake ~/.config/home-manager && home-manager switch --flake ~/.config/home-manager#${user.hostName}";
 
         G = {
           position = "anywhere";
