@@ -60,7 +60,7 @@ in
             };
             extraSpecialArgs = {
               inherit user;
-              hostname = "vm";
+              hostname = "vm-arm";
               isNixOS = true;
             };
           };

@@ -1,9 +1,5 @@
 {
   pkgs,
-  lib,
-  user,
-  hostname,
-  isNixOS,
   ...
 }:
 {

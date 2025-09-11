@@ -1,5 +1,6 @@
 {
   pkgs,
+  hostname,
   user,
   ...
 }:
@@ -37,7 +38,7 @@
     "flakes"
   ];
 
-  networking.hostName = "vm";
+  networking.hostName = hostname;
   networking.useDHCP = true;
 
   security.sudo.wheelNeedsPassword = false;
