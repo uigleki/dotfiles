@@ -1,9 +1,11 @@
 {
-  description = "Personal dotfiles with multi-host support";
-
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,12 +13,12 @@
   };
 
   outputs =
-    {
+    inputs@{
+      self,
       nixpkgs,
       flake-utils,
-      home-manager,
       ...
-    }@inputs:
+    }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
@@ -26,37 +28,13 @@
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             nil
-            nixfmt
+            nixfmt-rfc-style
             shellcheck
             shfmt
           ];
-          shellHook = ''echo "🚀 Development environment activated"'';
+          shellHook = ''echo "🚀 Development environment activated."'';
         };
       }
     )
-    // {
-      homeConfigurations =
-        let
-          inherit (import ./.local) system username;
-          pkgs = nixpkgs.legacyPackages.${system};
-
-          optionalTOML =
-            path:
-            nixpkgs.lib.optionalAttrs (builtins.pathExists path) (builtins.fromTOML (builtins.readFile path));
-          userConfig = {
-            inherit username;
-          }
-          // optionalTOML ./config.toml;
-        in
-        {
-          ${username} = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [
-              ./profiles/cli.nix
-              ./hosts/wsl/home.nix
-            ];
-            extraSpecialArgs = { inherit userConfig; };
-          };
-        };
-    };
+    // import ./hosts { inherit inputs; };
 }
