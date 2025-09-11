@@ -48,6 +48,7 @@ in
         disko.nixosModules.disko
         ./vm-arm/disk-config.nix
         ./vm-arm/configuration.nix
+        ./hardware-configuration.nix
 
         home-manager.nixosModules.home-manager
         {
