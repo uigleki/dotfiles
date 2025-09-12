@@ -63,7 +63,5 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   news.display = "silent";
 }
