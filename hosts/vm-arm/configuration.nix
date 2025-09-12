@@ -15,7 +15,6 @@
       PermitRootLogin = "no";
       PasswordAuthentication = false;
     };
-    openFirewall = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -37,10 +36,14 @@
     "flakes"
   ];
 
-  networking.hostName = user.hostName;
-  networking.useDHCP = true;
+  nix.settings.auto-optimise-store = true;
 
-  security.sudo.wheelNeedsPassword = false;
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 30d";
+  };
+
+  networking.hostName = user.hostName;
 
   system.stateVersion = "24.05";
 }

@@ -32,7 +32,6 @@ in
             username = wslUser.name;
             homeDirectory = "/home/${wslUser.name}";
           };
-          nixpkgs.config.allowUnfree = true;
         }
       ];
       extraSpecialArgs = {
