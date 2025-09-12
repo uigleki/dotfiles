@@ -4,6 +4,10 @@
   ...
 }:
 {
+  imports = [
+    ../shared.nix
+  ];
+
   boot.loader.grub = {
     efiSupport = true;
     efiInstallAsRemovable = true;
@@ -30,18 +34,7 @@
     openssh.authorizedKeys.keys = user.sshKeys;
   };
 
-  nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   nix.settings.auto-optimise-store = true;
-
-  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than 30d";
-  };
 
   networking.hostName = user.hostName;
 
