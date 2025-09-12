@@ -46,7 +46,6 @@ in
       system = "aarch64-linux";
       modules = [
         disko.nixosModules.disko
-        ./vm-arm/disk-config.nix
         ./vm-arm/configuration.nix
 
         home-manager.nixosModules.home-manager
