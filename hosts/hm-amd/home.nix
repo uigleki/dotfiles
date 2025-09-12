@@ -10,6 +10,7 @@
     options = "--delete-older-than 30d";
   };
 
+  nix.package = pkgs.nix;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
