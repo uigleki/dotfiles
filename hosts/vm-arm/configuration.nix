@@ -47,6 +47,8 @@
     openssh.authorizedKeys.keys = user.sshKeys;
   };
 
+  security.sudo.wheelNeedsPassword = false;
+
   nix.settings.auto-optimise-store = true;
 
   networking = {
