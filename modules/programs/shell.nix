@@ -4,6 +4,13 @@
   isNixOS,
   ...
 }:
+let
+  rebuildCmd =
+    if isNixOS then
+      "sudo nixos-rebuild switch --flake ~/.config/home-manager#${user.hostName}"
+    else
+      "home-manager switch --flake ~/.config/home-manager#${user.hostName}";
+in
 {
   programs = {
     bash = {
@@ -22,7 +29,7 @@
         bt = "aria2c --bt-tracker=(curl -fsSL https://trackerslist.com/all_aria2.txt)";
         d = "yazi";
         dl = "aria2c";
-        f = "hx";
+        f = "$EDITOR";
         g = "lazygit";
         gcl = "git clone --depth=1";
         gp = "git pull";
@@ -32,17 +39,8 @@
         lt = "eza -TF";
         r = "rsync -rthP";
         t = "tmux new -A";
-
-        u =
-          if isNixOS then
-            "sudo nixos-rebuild switch --flake ~/.config/home-manager#${user.hostName}"
-          else
-            "home-manager switch --flake ~/.config/home-manager#${user.hostName}";
-        uu =
-          if isNixOS then
-            "nix flake update --flake ~/.config/home-manager && sudo nixos-rebuild switch --flake ~/.config/home-manager#${user.hostName}"
-          else
-            "nix flake update --flake ~/.config/home-manager && home-manager switch --flake ~/.config/home-manager#${user.hostName}";
+        u = rebuildCmd;
+        uu = "nix flake update --flake ~/.config/home-manager && ${rebuildCmd}";
 
         G = {
           position = "anywhere";
