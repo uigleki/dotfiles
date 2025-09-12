@@ -42,7 +42,7 @@ in
   };
 
   nixosConfigurations = {
-    vm = nixpkgs.lib.nixosSystem {
+    "${user.hostName}" = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       modules = [
         disko.nixosModules.disko
