@@ -3,8 +3,8 @@
   programs = {
     git = {
       enable = true;
-      userName = user.fullName;
-      userEmail = user.email;
+      userName = user.userName;
+      userEmail = user.userEmail;
       delta = {
         enable = true;
         options = {
