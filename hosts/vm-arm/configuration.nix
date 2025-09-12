@@ -39,6 +39,7 @@
     curl
     git
     vim
+    podman-compose
   ];
 
   users.users.${user.name} = {
