@@ -17,11 +17,21 @@
     efiInstallAsRemovable = true;
   };
 
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
+  services = {
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+      };
+    };
+
+    dnscrypt-proxy2 = {
+      enable = true;
+      settings = {
+        require_dnssec = true;
+        require_nolog = true;
+      };
     };
   };
 
@@ -40,7 +50,30 @@
 
   nix.settings.auto-optimise-store = true;
 
-  networking.hostName = user.hostName;
+  networking = {
+    hostName = user.hostName;
+
+    nameservers = [
+      "127.0.0.1"
+      "::1"
+    ];
+    dhcpcd.extraConfig = "nohook resolv.conf";
+    networkmanager.dns = "none";
+
+    firewall.allowedTCPPorts = [
+      80
+      443
+    ];
+  };
+
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
 
   system.stateVersion = "24.05";
 }
