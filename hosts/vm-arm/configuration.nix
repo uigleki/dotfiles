@@ -28,10 +28,7 @@
 
     dnscrypt-proxy2 = {
       enable = true;
-      settings = {
-        require_dnssec = true;
-        require_nolog = true;
-      };
+      settings.require_dnssec = true;
     };
   };
 
