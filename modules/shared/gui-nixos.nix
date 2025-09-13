@@ -29,6 +29,7 @@
   ];
 
   hardware = {
+    enableRedistributableFirmware = true;
     bluetooth.enable = true;
     sane.enable = true;
     opentabletdriver.enable = true;
