@@ -1,9 +1,15 @@
 { modulesPath, ... }:
 {
   imports = [
-    (modulesPath + "/virtualisation/oci-common.nix")
+    (modulesPath + "/profiles/qemu-guest.nix")
     ./disk-config.nix
   ];
 
-  boot.loader.timeout = 0;
+  boot.loader = {
+    grub = {
+      efiSupport = true;
+      efiInstallAsRemovable = true;
+    };
+    timeout = 0;
+  };
 }
