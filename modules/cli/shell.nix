@@ -5,11 +5,13 @@
   ...
 }:
 let
+  flakePath = "~/.config/home-manager";
+
   rebuildCmd =
     if isNixOS then
-      "sudo nixos-rebuild switch --flake ~/.config/home-manager"
+      "sudo nixos-rebuild switch --flake ${flakePath}"
     else
-      "home-manager switch --flake ~/.config/home-manager#${user.hostName}";
+      "home-manager switch --flake ${flakePath}#${user.hostName}";
 in
 {
   programs = {
@@ -40,7 +42,7 @@ in
         r = "rsync -rthP";
         t = "tmux new -A";
         u = rebuildCmd;
-        uu = "nix flake update --flake ~/.config/home-manager && ${rebuildCmd}";
+        uu = "nix flake update --flake ${flakePath} && ${rebuildCmd}";
 
         G = {
           position = "anywhere";
