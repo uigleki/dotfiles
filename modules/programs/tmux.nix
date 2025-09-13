@@ -1,11 +1,16 @@
+{ pkgs, ... }:
 {
   programs.tmux = {
     enable = true;
-    escapeTime = 0;
     mouse = true;
+
+    plugins = with pkgs.tmuxPlugins; [
+      sensible
+      yank
+    ];
+
     extraConfig = ''
-      set -g default-terminal "$TERM"
-      set -ga terminal-overrides ",$TERM:Tc"
+      set -ga terminal-overrides ",*:Tc"
 
       bind -n M-j next-window
       bind -n M-k previous-window
