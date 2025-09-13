@@ -20,6 +20,7 @@
       dust
       eza
       fd
+      p7zip
       rsync
       sd
     ];

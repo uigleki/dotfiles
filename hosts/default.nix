@@ -52,6 +52,7 @@ let
       system,
       user,
       extraModules ? [ ],
+      extraHomeModules ? [ ],
     }:
     nixpkgs.lib.nixosSystem {
       inherit system;
@@ -64,7 +65,7 @@ let
             useGlobalPkgs = true;
             useUserPackages = true;
             users.${user.name} = {
-              imports = coreModules;
+              imports = coreModules ++ extraHomeModules;
             };
             extraSpecialArgs = {
               inherit user;
