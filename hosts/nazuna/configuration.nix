@@ -12,4 +12,6 @@
     };
     timeout = 0;
   };
+
+  networking.useDHCP = true;
 }
