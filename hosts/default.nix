@@ -33,6 +33,7 @@ let
         coreModules
         ++ extraModules
         ++ [
+          ../modules/shared/home.nix
           {
             home = {
               username = user.name;
@@ -57,6 +58,7 @@ let
       modules = [
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
+        ../modules/shared/nixos.nix
         {
           home-manager = {
             useGlobalPkgs = true;

@@ -4,12 +4,12 @@
 }:
 {
   imports = [
-    ./programs/aria2.nix
-    ./programs/fzf.nix
-    ./programs/git.nix
-    ./programs/helix.nix
-    ./programs/shell.nix
-    ./programs/tmux.nix
+    ./cli/aria2.nix
+    ./cli/fzf.nix
+    ./cli/git.nix
+    ./cli/helix.nix
+    ./cli/shell.nix
+    ./cli/tmux.nix
   ];
 
   home = {
