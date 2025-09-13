@@ -49,8 +49,6 @@
       enable = true;
       settings.require_dnssec = true;
     };
-
-    udisks2.enable = true;
   };
 
   virtualisation = {

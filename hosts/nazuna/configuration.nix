@@ -1,16 +1,9 @@
 { modulesPath, ... }:
 {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    (modulesPath + "/profiles/qemu-guest.nix")
+    (modulesPath + "/virtualisation/oci-common.nix")
     ./disk-config.nix
   ];
 
-  boot.loader = {
-    grub = {
-      efiSupport = true;
-      efiInstallAsRemovable = true;
-    };
-    timeout = 0;
-  };
+  boot.loader.timeout = 0;
 }

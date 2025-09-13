@@ -63,7 +63,7 @@
       nssmdns = true;
     };
 
-    thermald.enable = true;
+    udisks2.enable = true;
     tlp.enable = true;
     fprintd.enable = true;
   };
