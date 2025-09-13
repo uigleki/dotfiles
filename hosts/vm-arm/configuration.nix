@@ -12,6 +12,8 @@
     ../shared.nix
   ];
 
+  system.stateVersion = "24.05";
+
   boot.loader = {
     grub = {
       efiSupport = true;
@@ -63,10 +65,7 @@
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
 
-    firewall.allowedTCPPorts = [
-      80
-      443
-    ];
+    firewall.allowedTCPPorts = [ 443 ];
   };
 
   virtualisation = {
@@ -77,6 +76,4 @@
       defaultNetwork.settings.dns_enabled = true;
     };
   };
-
-  system.stateVersion = "24.05";
 }

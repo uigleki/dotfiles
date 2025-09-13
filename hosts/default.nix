@@ -20,33 +20,42 @@ let
   coreModules = [
     ../modules/core.nix
   ];
-in
-{
-  homeConfigurations = {
-    "${wslUser.hostName}" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = coreModules ++ [
-        ./hm-amd/home.nix
-        {
-          home = {
-            username = wslUser.name;
-            homeDirectory = "/home/${wslUser.name}";
-          };
-        }
-      ];
+
+  mkHomeConfig =
+    {
+      system,
+      user,
+      extraModules ? [ ],
+    }:
+    home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.${system};
+      modules =
+        coreModules
+        ++ extraModules
+        ++ [
+          {
+            home = {
+              username = user.name;
+              homeDirectory = "/home/${user.name}";
+            };
+          }
+        ];
       extraSpecialArgs = {
-        user = wslUser;
+        inherit user;
         isNixOS = false;
       };
     };
-  };
 
-  nixosConfigurations = {
-    "${user.hostName}" = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
+  mkNixOSConfig =
+    {
+      system,
+      user,
+      extraModules ? [ ],
+    }:
+    nixpkgs.lib.nixosSystem {
+      inherit system;
       modules = [
         disko.nixosModules.disko
-        ./vm-arm/configuration.nix
 
         home-manager.nixosModules.home-manager
         {
@@ -62,8 +71,25 @@ in
             };
           };
         }
-      ];
+      ]
+      ++ extraModules;
       specialArgs = { inherit inputs user; };
+    };
+in
+{
+  homeConfigurations = {
+    "${wslUser.hostName}" = mkHomeConfig {
+      system = "x86_64-linux";
+      user = wslUser;
+      extraModules = [ ./hm-amd/home.nix ];
+    };
+  };
+
+  nixosConfigurations = {
+    "${user.hostName}" = mkNixOSConfig {
+      system = "aarch64-linux";
+      user = user;
+      extraModules = [ ./vm-arm/configuration.nix ];
     };
   };
 }
