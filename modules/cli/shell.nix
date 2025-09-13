@@ -7,7 +7,7 @@
 let
   rebuildCmd =
     if isNixOS then
-      "sudo nixos-rebuild switch --flake ~/.config/home-manager#${user.hostName}"
+      "sudo nixos-rebuild switch --flake ~/.config/home-manager"
     else
       "home-manager switch --flake ~/.config/home-manager#${user.hostName}";
 in

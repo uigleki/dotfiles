@@ -4,7 +4,7 @@ let
 
   user = {
     name = "u";
-    hostName = "vm-arm";
+    hostName = "nazuna";
     userName = "Ray";
     userEmail = "rraayy246@gmail.com";
     sshKeys = [
@@ -12,9 +12,9 @@ let
     ];
   };
 
-  wslUser = user // {
+  akira = user // {
     name = "win";
-    hostName = "win";
+    hostName = "akira";
   };
 
   coreModules = [
@@ -79,19 +79,19 @@ let
     };
 in
 {
-  homeConfigurations = {
-    "${wslUser.hostName}" = mkHomeConfig {
-      system = "x86_64-linux";
-      user = wslUser;
-      extraModules = [ ./hm-amd/home.nix ];
-    };
-  };
-
   nixosConfigurations = {
     "${user.hostName}" = mkNixOSConfig {
       system = "aarch64-linux";
       user = user;
-      extraModules = [ ./vm-arm/configuration.nix ];
+      extraModules = [ ./nazuna/configuration.nix ];
+    };
+  };
+
+  homeConfigurations = {
+    "${akira.hostName}" = mkHomeConfig {
+      system = "x86_64-linux";
+      user = akira;
+      extraModules = [ ./akira/home.nix ];
     };
   };
 }
