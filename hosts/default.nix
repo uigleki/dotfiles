@@ -102,8 +102,8 @@ in
       extraModules = [
         nixos-wsl.nixosModules.default
         { wsl.enable = true; }
-        ./akira
       ];
+      extraHomeModules = [ ./akira ];
     };
   };
 
