@@ -19,6 +19,8 @@
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.rmem_max" = 2500000;
     };
+
+    binfmt.emulatedSystems = [ "x86_64-linux" ];
   };
 
   networking = {
