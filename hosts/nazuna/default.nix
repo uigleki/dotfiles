@@ -7,10 +7,8 @@
 
   boot = {
     loader = {
-      grub = {
-        efiSupport = true;
-        efiInstallAsRemovable = true;
-      };
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
       timeout = 0;
     };
 
