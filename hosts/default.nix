@@ -102,6 +102,7 @@ in
       extraModules = [
         nixos-wsl.nixosModules.default
         { wsl.enable = true; }
+        ./akira
       ];
     };
   };
@@ -110,6 +111,7 @@ in
     "${kurisu.hostName}" = mkHomeConfig {
       system = "x86_64-linux";
       user = kurisu;
+      extraModules = [ ./kurisu ];
     };
   };
 }
