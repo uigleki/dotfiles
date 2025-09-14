@@ -44,7 +44,7 @@
       };
     };
 
-    dnscrypt-proxy2 = {
+    dnscrypt-proxy = {
       enable = true;
       settings.require_dnssec = true;
     };

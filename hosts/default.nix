@@ -28,7 +28,7 @@ let
   };
 
   coreModules = [
-    ../modules/core.nix
+    ../home/core.nix
   ];
 
   mkHomeConfig =
@@ -43,7 +43,7 @@ let
         coreModules
         ++ extraModules
         ++ [
-          ../modules/shared/home.nix
+          ../home
           {
             home = {
               username = user.name;
@@ -69,7 +69,7 @@ let
       modules = [
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
-        ../modules/shared/nixos.nix
+        ../nixos
         {
           home-manager = {
             useGlobalPkgs = true;
@@ -93,7 +93,7 @@ in
     "${user.hostName}" = mkNixOSConfig {
       system = "aarch64-linux";
       user = user;
-      extraModules = [ ./nazuna/configuration.nix ];
+      extraModules = [ ./nazuna ];
     };
 
     "${akira.hostName}" = mkNixOSConfig {
@@ -110,7 +110,6 @@ in
     "${kurisu.hostName}" = mkHomeConfig {
       system = "x86_64-linux";
       user = kurisu;
-      extraModules = [ ./kurisu/home.nix ];
     };
   };
 }
