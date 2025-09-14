@@ -1,6 +1,11 @@
 { inputs }:
 let
-  inherit (inputs) nixpkgs home-manager disko;
+  inherit (inputs)
+    nixpkgs
+    home-manager
+    disko
+    nixos-wsl
+    ;
 
   user = {
     name = "u";
@@ -13,8 +18,13 @@ let
   };
 
   akira = user // {
+    name = "nixos";
+    hostName = "win";
+  };
+
+  kurisu = user // {
     name = "win";
-    hostName = "akira";
+    hostName = "kurisu";
   };
 
   coreModules = [
@@ -85,13 +95,22 @@ in
       user = user;
       extraModules = [ ./nazuna/configuration.nix ];
     };
+
+    "${akira.hostName}" = mkNixOSConfig {
+      system = "x86_64-linux";
+      user = akira;
+      extraModules = [
+        nixos-wsl.nixosModules.default
+        { wsl.enable = true; }
+      ];
+    };
   };
 
   homeConfigurations = {
-    "${akira.hostName}" = mkHomeConfig {
+    "${kurisu.hostName}" = mkHomeConfig {
       system = "x86_64-linux";
-      user = akira;
-      extraModules = [ ./akira/home.nix ];
+      user = kurisu;
+      extraModules = [ disko.nixosModules.disko ./kurisu/home.nix ];
     };
   };
 }
