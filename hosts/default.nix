@@ -19,7 +19,7 @@ let
 
   akira = user // {
     name = "nixos";
-    hostName = "win";
+    hostName = "nixos";
   };
 
   kurisu = user // {
@@ -110,7 +110,7 @@ in
     "${kurisu.hostName}" = mkHomeConfig {
       system = "x86_64-linux";
       user = kurisu;
-      extraModules = [ disko.nixosModules.disko ./kurisu/home.nix ];
+      extraModules = [ ./kurisu/home.nix ];
     };
   };
 }
