@@ -101,7 +101,10 @@ in
       user = akira;
       extraModules = [
         nixos-wsl.nixosModules.default
-        { wsl.enable = true; }
+        {
+          wsl.enable = true;
+          programs.nix-ld.enable = true;
+        }
       ];
       extraHomeModules = [ ./akira ];
     };
