@@ -36,6 +36,8 @@
   };
 
   services = {
+    btrfs.autoScrub.enable = true;
+
     openssh = {
       enable = true;
       settings = {
