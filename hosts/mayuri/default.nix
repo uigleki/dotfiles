@@ -1,10 +1,14 @@
-{ modulesPath, ... }:
+{ modulesPath, user, ... }:
 {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     ../../nixos/disk-config.nix
     ../../nixos/gui.nix
   ];
+
+  home-manager.users.${user.name} = {
+    imports = [ ../../home/gui.nix ];
+  };
 
   boot = {
     loader = {

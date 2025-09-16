@@ -1,7 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 {
-  home.packages = with pkgs; [
-    claude-code
-    ffmpeg
-  ];
+  home-manager.users.${user.name} = {
+    home.packages = with pkgs; [
+      claude-code
+      ffmpeg
+    ];
+  };
 }

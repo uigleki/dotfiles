@@ -66,7 +66,6 @@ let
       system,
       user,
       extraModules ? [ ],
-      extraHomeModules ? [ ],
     }:
     nixpkgs.lib.nixosSystem {
       inherit system;
@@ -79,7 +78,7 @@ let
             useGlobalPkgs = true;
             useUserPackages = true;
             users.${user.name} = {
-              imports = coreModules ++ extraHomeModules;
+              imports = coreModules;
             };
             extraSpecialArgs = {
               inherit user;
@@ -109,15 +108,14 @@ in
           wsl.enable = true;
           programs.nix-ld.enable = true;
         }
+        ./akira
       ];
-      extraHomeModules = [ ./akira ];
     };
 
     "${mayuri.hostName}" = mkNixOSConfig {
       system = "x86_64-linux";
       user = mayuri;
       extraModules = [ ./mayuri ];
-      extraHomeModules = [ ../home/gui.nix ];
     };
   };
 
