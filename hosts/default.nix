@@ -27,6 +27,10 @@ let
     hostName = "kurisu";
   };
 
+  mayuri = user // {
+    hostName = "mayuri";
+  };
+
   coreModules = [
     ../home/core.nix
   ];
@@ -107,6 +111,13 @@ in
         }
       ];
       extraHomeModules = [ ./akira ];
+    };
+
+    "${mayuri.hostName}" = mkNixOSConfig {
+      system = "x86_64-linux";
+      user = mayuri;
+      extraModules = [ ./mayuri ];
+      extraHomeModules = [ ../home/gui.nix ];
     };
   };
 
