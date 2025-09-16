@@ -64,7 +64,7 @@
     };
 
     udisks2.enable = true;
-    tlp.enable = true;
+    # tlp.enable = true;
     fprintd.enable = true;
   };
 
@@ -88,7 +88,7 @@
     wl-clipboard
     kdePackages.dolphin
     firefox
-    konsole
+    kdePackages.konsole
     qbittorrent-enhanced
   ];
 

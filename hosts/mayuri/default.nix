@@ -2,6 +2,7 @@
 {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
+    ../nazuna/disk-config.nix
     ../../nixos/gui.nix
   ];
 
