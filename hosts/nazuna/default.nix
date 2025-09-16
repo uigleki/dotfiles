@@ -2,7 +2,7 @@
 {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
-    ./disk-config.nix
+    ../../nixos/disk-config.nix
   ];
 
   boot = {

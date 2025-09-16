@@ -6,6 +6,8 @@
 
   nix.settings.auto-optimise-store = true;
 
+  services.btrfs.autoScrub.enable = true;
+
   networking.hostName = user.hostName;
 
   users.users.${user.name} = {

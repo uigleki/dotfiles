@@ -1,7 +1,16 @@
 { lib, ... }:
+let
+  subvol = mountpoint: {
+    mountOptions = [
+      "compress=zstd"
+      "noatime"
+    ];
+    inherit mountpoint;
+  };
+in
 {
   disko.devices = {
-    disk.disk1 = {
+    disk.main = {
       device = lib.mkDefault "/dev/sda";
       type = "disk";
       content = {
@@ -20,26 +29,13 @@
           root = {
             size = "100%";
             content = {
-              type = "lvm_pv";
-              vg = "pool";
-            };
-          };
-        };
-      };
-    };
-    lvm_vg = {
-      pool = {
-        type = "lvm_vg";
-        lvs = {
-          root = {
-            size = "100%FREE";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-              mountOptions = [
-                "defaults"
-              ];
+              type = "btrfs";
+              extraArgs = [ "-f" ];
+              subvolumes = {
+                "root" = subvol "/";
+                "home" = subvol "/home";
+                "nix" = subvol "/nix";
+              };
             };
           };
         };
