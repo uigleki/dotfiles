@@ -2,7 +2,6 @@
 {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
-    ./disk-config.nix
     ../../nixos/gui.nix
   ];
 
