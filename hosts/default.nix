@@ -1,11 +1,6 @@
 { inputs }:
 let
-  inherit (inputs)
-    nixpkgs
-    home-manager
-    disko
-    nixos-wsl
-    ;
+  inherit (inputs) nixpkgs home-manager;
 
   user = {
     name = "u";
