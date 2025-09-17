@@ -38,18 +38,7 @@ let
     }:
     home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
-      modules =
-        coreModules
-        ++ extraModules
-        ++ [
-          ../home
-          {
-            home = {
-              username = user.name;
-              homeDirectory = "/home/${user.name}";
-            };
-          }
-        ];
+      modules = [ ../home ] ++ coreModules ++ extraModules;
       extraSpecialArgs = {
         inherit user;
         isNixOS = false;
