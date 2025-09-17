@@ -70,7 +70,6 @@ let
     nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        disko.nixosModules.disko
         home-manager.nixosModules.home-manager
         ../nixos
         {
@@ -102,14 +101,7 @@ in
     "${akira.hostName}" = mkNixOSConfig {
       system = "x86_64-linux";
       user = akira;
-      extraModules = [
-        nixos-wsl.nixosModules.default
-        {
-          wsl.enable = true;
-          programs.nix-ld.enable = true;
-        }
-        ./akira
-      ];
+      extraModules = [ ./akira ];
     };
 
     "${mayuri.hostName}" = mkNixOSConfig {

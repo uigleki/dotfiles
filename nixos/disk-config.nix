@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, inputs, ... }:
 let
   subvol = mountpoint: {
     mountOptions = [
@@ -9,6 +9,10 @@ let
   };
 in
 {
+  imports = [ inputs.disko.nixosModules.disko ];
+
+  services.btrfs.autoScrub.enable = true;
+
   disko.devices = {
     disk.main = {
       device = lib.mkDefault "/dev/sda";
