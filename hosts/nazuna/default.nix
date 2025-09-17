@@ -1,7 +1,6 @@
-{ modulesPath, ... }:
 {
   imports = [
-    (modulesPath + "/profiles/qemu-guest.nix")
+    ./hardware-configuration.nix
     ../../nixos/disk-config.nix
     ../../nixos/network.nix
   ];
