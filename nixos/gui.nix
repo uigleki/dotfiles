@@ -14,10 +14,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.${user.name} = {
-      myModules.gui.enable = true;
-    };
-
     time.timeZone = "Asia/Shanghai";
     i18n = {
       defaultLocale = "en_US.UTF-8";
