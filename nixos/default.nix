@@ -15,18 +15,6 @@
   ];
 
   system.stateVersion = "24.05";
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.${user.name} = {
-      imports = [ ../home ];
-    };
-    extraSpecialArgs = {
-      inherit user;
-    };
-  };
-
   nix.settings.auto-optimise-store = true;
 
   networking.hostName = user.hostName;
@@ -39,6 +27,13 @@
   };
 
   security.sudo.wheelNeedsPassword = false;
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.${user.name}.imports = [ ../home ];
+    extraSpecialArgs = { inherit user; };
+  };
 
   virtualisation = {
     containers.enable = true;

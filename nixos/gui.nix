@@ -9,12 +9,11 @@ let
   cfg = config.myModules.gui;
 in
 {
-  options.myModules.gui = {
-    enable = lib.mkEnableOption "Enable GUI configuration.";
-  };
+  options.myModules.gui.enable = lib.mkEnableOption "GUI configuration";
 
   config = lib.mkIf cfg.enable {
     time.timeZone = "Asia/Shanghai";
+
     i18n = {
       defaultLocale = "en_US.UTF-8";
       extraLocaleSettings = {
@@ -33,13 +32,7 @@ in
     };
 
     networking.networkmanager.enable = true;
-
-    users.users.${user.name}.extraGroups = [
-      "networkmanager"
-      "libvirtd"
-      "scanner"
-      "lp"
-    ];
+    security.rtkit.enable = true;
 
     hardware = {
       enableRedistributableFirmware = true;
@@ -52,18 +45,23 @@ in
       };
     };
 
-    security.rtkit.enable = true;
+    users.users.${user.name}.extraGroups = [
+      "networkmanager"
+      "libvirtd"
+      "scanner"
+      "lp"
+    ];
 
     services = {
+      desktopManager.plasma6.enable = true;
+      displayManager.sddm.enable = true;
+
       pipewire = {
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
         jack.enable = true;
       };
-
-      desktopManager.plasma6.enable = true;
-      displayManager.sddm.enable = true;
 
       printing.enable = true;
       avahi = {
@@ -89,22 +87,20 @@ in
       };
     };
 
+    fonts = {
+      enableDefaultPackages = true;
+      packages = with pkgs; [ ubuntu_font_family ];
+      fontconfig.defaultFonts = {
+        sansSerif = [ "Ubuntu" ];
+        monospace = [ "Ubuntu Mono" ];
+      };
+    };
+
     environment.systemPackages = with pkgs; [
       firefox
       qbittorrent-enhanced
       wayland-utils
       wl-clipboard
     ];
-
-    fonts = {
-      enableDefaultPackages = true;
-      packages = with pkgs; [
-        ubuntu_font_family
-      ];
-      fontconfig.defaultFonts = {
-        sansSerif = [ "Ubuntu" ];
-        monospace = [ "Ubuntu Mono" ];
-      };
-    };
   };
 }
