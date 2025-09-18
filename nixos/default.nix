@@ -1,6 +1,12 @@
 { pkgs, user, ... }:
 {
-  imports = [ ../home/nix.nix ];
+  imports = [
+    ../home/nix.nix
+    ./boot.nix
+    ./disk-config.nix
+    ./gui.nix
+    ./network.nix
+  ];
 
   system.stateVersion = "24.05";
 

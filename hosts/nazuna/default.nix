@@ -1,17 +1,7 @@
 {
-  imports = [
-    ./hardware-configuration.nix
-    ../../nixos/disk-config.nix
-    ../../nixos/network.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      timeout = 0;
-    };
+  boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
 
-    binfmt.emulatedSystems = [ "x86_64-linux" ];
-  };
+  myModules.boot.timeout = 0;
 }

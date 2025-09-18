@@ -8,4 +8,10 @@
       ffmpeg
     ];
   };
+
+  myModules = {
+    boot.enable = false;
+    diskConfig.enable = false;
+    network.enable = false;
+  };
 }
