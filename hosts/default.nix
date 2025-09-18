@@ -35,9 +35,7 @@ let
     home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
       modules = [ ../home ] ++ extraModules;
-      extraSpecialArgs = {
-        inherit user;
-      };
+      extraSpecialArgs = { inherit user; };
     };
 
   mkNixOSConfig =
@@ -48,23 +46,7 @@ let
     }:
     nixpkgs.lib.nixosSystem {
       inherit system;
-      modules = [
-        home-manager.nixosModules.home-manager
-        ../nixos
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.${user.name} = {
-              imports = [ ../home ];
-            };
-            extraSpecialArgs = {
-              inherit user;
-            };
-          };
-        }
-      ]
-      ++ extraModules;
+      modules = [ ../nixos ] ++ extraModules;
       specialArgs = { inherit inputs user; };
     };
 in

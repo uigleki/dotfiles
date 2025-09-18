@@ -1,6 +1,12 @@
-{ pkgs, user, ... }:
+{
+  inputs,
+  pkgs,
+  user,
+  ...
+}:
 {
   imports = [
+    inputs.home-manager.nixosModules.home-manager
     ../home/nix.nix
     ./boot.nix
     ./disk-config.nix
@@ -9,6 +15,17 @@
   ];
 
   system.stateVersion = "24.05";
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.${user.name} = {
+      imports = [ ../home ];
+    };
+    extraSpecialArgs = {
+      inherit user;
+    };
+  };
 
   nix.settings.auto-optimise-store = true;
 
