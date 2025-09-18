@@ -1,16 +1,23 @@
 {
+  config,
   lib,
   user,
-  isNixOS,
   ...
 }:
+let
+  cfg = config.myModules.isNixOS;
+in
 {
+  options.myModules.isNixOS = lib.mkEnableOption "NixOS system" // {
+    default = true;
+  };
+
   imports = [
     ./core.nix
     ./dev.nix
     ./gui.nix
   ]
-  ++ lib.optionals (!isNixOS) [ ./nix.nix ];
+  ++ lib.optionals (!cfg) [ ./nix.nix ];
 
   home = {
     username = user.name;

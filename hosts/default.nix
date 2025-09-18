@@ -37,7 +37,6 @@ let
       modules = [ ../home ] ++ extraModules;
       extraSpecialArgs = {
         inherit user;
-        isNixOS = false;
       };
     };
 
@@ -61,7 +60,6 @@ let
             };
             extraSpecialArgs = {
               inherit user;
-              isNixOS = true;
             };
           };
         }

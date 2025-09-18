@@ -1,14 +1,14 @@
 {
+  config,
   pkgs,
   user,
-  isNixOS,
   ...
 }:
 let
   flakePath = "~/.config/home-manager";
 
   rebuildCmd =
-    if isNixOS then
+    if config.myModules.isNixOS then
       "sudo nixos-rebuild switch --flake ${flakePath}"
     else
       "home-manager switch --flake ${flakePath}#${user.hostName}";
