@@ -1,6 +1,3 @@
 {
-  myModules = {
-    isNixOS = false;
-    dev.enable = true;
-  };
+  myModules.dev.enable = true;
 }

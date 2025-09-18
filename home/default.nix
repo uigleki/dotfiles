@@ -1,25 +1,21 @@
 {
-  config,
+  osConfig ? null,
   lib,
   user,
   ...
 }:
 let
-  cfg = config.myModules.isNixOS;
+  notNixOS = osConfig == null;
 in
 {
-  options.myModules.isNixOS = lib.mkEnableOption "NixOS system" // {
-    default = true;
-  };
-
   imports = [
     ./core.nix
     ./dev.nix
     ./gui.nix
   ]
-  ++ lib.optionals (!cfg) [ ./nix.nix ];
+  ++ lib.optionals notNixOS [ ./nix.nix ];
 
-  config = lib.mkIf (!cfg) {
+  config = lib.mkIf notNixOS {
     home = {
       username = user.name;
       homeDirectory = "/home/${user.name}";

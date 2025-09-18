@@ -1,17 +1,13 @@
 {
-  config,
+  osConfig ? null,
   lib,
   pkgs,
   ...
 }:
 let
-  cfg = config.myModules.gui;
+  cfg = osConfig.myModules.gui or { enable = false; };
 in
 {
-  options.myModules.gui = {
-    enable = lib.mkEnableOption "Enable GUI configuration.";
-  };
-
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       firefox
