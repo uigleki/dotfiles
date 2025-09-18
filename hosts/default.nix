@@ -26,10 +26,6 @@ let
     hostName = "mayuri";
   };
 
-  coreModules = [
-    ../home/core.nix
-  ];
-
   mkHomeConfig =
     {
       system,
@@ -38,7 +34,7 @@ let
     }:
     home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
-      modules = [ ../home ] ++ coreModules ++ extraModules;
+      modules = [ ../home ] ++ extraModules;
       extraSpecialArgs = {
         inherit user;
         isNixOS = false;
@@ -61,7 +57,7 @@ let
             useGlobalPkgs = true;
             useUserPackages = true;
             users.${user.name} = {
-              imports = coreModules;
+              imports = [ ../home ];
             };
             extraSpecialArgs = {
               inherit user;

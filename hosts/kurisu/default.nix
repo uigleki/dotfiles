@@ -1,7 +1,3 @@
-{ pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    claude-code
-    ffmpeg
-  ];
+  myModules.dev.enable = true;
 }
