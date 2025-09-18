@@ -1,31 +1,30 @@
-# dotfiles
+# Personal Nix Configuration
 
-⚙️ Personal dotfiles and configurations
+🌸 My personal NixOS and Home Manager configuration flake
 
-> **Note**: This is my personal configuration repository. If you want to use it, please fork it and modify the personal information in `hosts/default.nix` (username, email, SSH keys, etc.) to match your own setup.
+**⚠️ Warning**: This is my personal configuration repository. If you want to use it, please fork it and modify the personal information in `hosts/default.nix` (username, email, SSH keys, etc.) to match your own setup.
 
 ## ✨ Features
 
-- Zero-touch setup with home-manager
-- Curated collection of modern CLI tools
-- Consistent environment across systems
+- Declarative system and user configuration with Nix flakes
+- Home Manager for dotfiles and user environment
+- Modern CLI tools and development environment
+- Consistent setup across different machines
 
-## 📋 Requirements
+## 🚀 Usage
 
-- A Linux system with systemd
-- `curl` and `git` installed
-- `sudo` access
-
-## 🚀 Installation
+### For server:
 
 ```bash
-curl -fsSL https://github.com/uigleki/dotfiles/raw/main/install.sh | bash
+nix run github:nix-community/nixos-anywhere -- --flake ~/.config/home-manager#nazuna --target-host <user>@<host>
 ```
 
-After installation:
+### For WSL:
 
-1. Start a new shell session
-2. Run `home-manager switch`
+```bash
+git clone --depth=1 https://github.com/uigleki/dotfiles.git ~/.config/home-manager
+sudo nixos-rebuild switch --experimental-features 'nix-command flakes' --flake ~/.config/home-manager#nixos
+```
 
 ## 📝 Cheatsheet
 
