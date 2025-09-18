@@ -19,8 +19,10 @@ in
   ]
   ++ lib.optionals (!cfg) [ ./nix.nix ];
 
-  home = {
-    username = user.name;
-    homeDirectory = "/home/${user.name}";
+  config = lib.mkIf (!cfg) {
+    home = {
+      username = user.name;
+      homeDirectory = "/home/${user.name}";
+    };
   };
 }
