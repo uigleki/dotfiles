@@ -32,7 +32,7 @@ sudo nixos-rebuild switch --experimental-features 'nix-command flakes' --flake ~
 
 | Command                  | Description        |
 | ------------------------ | ------------------ |
-| `, <package_name>`       | Try package        |
+| `, <command>`            | Try command        |
 | `nix store gc`           | Clean garbage      |
 | `nix-collect-garbage -d` | Delete generations |
 

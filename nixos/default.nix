@@ -14,7 +14,7 @@
     ./network.nix
   ];
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.11";
   nix.settings.auto-optimise-store = true;
 
   networking.hostName = user.hostName;

@@ -15,7 +15,7 @@
   ];
 
   home = {
-    stateVersion = "24.11";
+    stateVersion = "25.11";
 
     packages = with pkgs; [
       delta
@@ -32,7 +32,6 @@
     home-manager.enable = true;
     nix-index-database.comma.enable = true;
     nix-index.enable = true;
-    nix-your-shell.enable = true;
     starship.enable = true;
     yazi.enable = true;
 
