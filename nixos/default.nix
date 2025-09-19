@@ -14,7 +14,7 @@
     ./network.nix
   ];
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
   nix.settings.auto-optimise-store = true;
 
   networking.hostName = user.hostName;
@@ -32,7 +32,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     users.${user.name}.imports = [ ../home ];
-    extraSpecialArgs = { inherit user; };
+    extraSpecialArgs = { inherit inputs user; };
   };
 
   virtualisation = {

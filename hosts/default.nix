@@ -35,7 +35,7 @@ let
     home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
       modules = [ ../home ] ++ extraModules;
-      extraSpecialArgs = { inherit user; };
+      extraSpecialArgs = { inherit inputs user; };
     };
 
   mkNixOSConfig =

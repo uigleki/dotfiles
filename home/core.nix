@@ -1,9 +1,11 @@
 {
+  inputs,
   pkgs,
   ...
 }:
 {
   imports = [
+    inputs.nix-index-database.homeModules.nix-index
     ./cli/aria2.nix
     ./cli/fzf.nix
     ./cli/git.nix
@@ -13,7 +15,7 @@
   ];
 
   home = {
-    stateVersion = "24.05";
+    stateVersion = "24.11";
 
     packages = with pkgs; [
       delta
@@ -28,6 +30,8 @@
 
   programs = {
     home-manager.enable = true;
+    nix-index-database.comma.enable = true;
+    nix-index.enable = true;
     nix-your-shell.enable = true;
     starship.enable = true;
     yazi.enable = true;
