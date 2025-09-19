@@ -30,11 +30,11 @@ sudo nixos-rebuild switch --experimental-features 'nix-command flakes' --flake ~
 
 ### Nix Commands
 
-| Command                            | Description        |
-| ---------------------------------- | ------------------ |
-| `nix shell nixpkgs#<package_name>` | Try package        |
-| `nix store gc`                     | Clean garbage      |
-| `nix-collect-garbage -d`           | Delete generations |
+| Command                  | Description        |
+| ------------------------ | ------------------ |
+| `, <package_name>`       | Try package        |
+| `nix store gc`           | Clean garbage      |
+| `nix-collect-garbage -d` | Delete generations |
 
 ### Core Tools
 
@@ -76,7 +76,7 @@ sudo nixos-rebuild switch --experimental-features 'nix-command flakes' --flake ~
 | `lt`  | `eza -TF`                 | Display directory tree       |
 | `r`   | `rsync -rthP`             | Efficient file transfer      |
 | `t`   | `tmux new -A`             | Create/attach tmux session   |
-| `u`   | `home-manager switch`     | Apply system changes         |
+| `u`   | `nh home switch`          | Apply system changes         |
 | `uu`  | `nix flake update && u`   | Update flake and rebuild     |
 | `G`   | `\| rg`                   | Pipe to ripgrep (anywhere)   |
 
