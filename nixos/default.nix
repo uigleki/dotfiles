@@ -19,11 +19,14 @@
 
   networking.hostName = user.hostName;
 
-  users.users.${user.name} = {
-    isNormalUser = true;
-    initialPassword = user.name;
-    extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keys = user.sshKeys;
+  users = {
+    mutableUsers = false;
+    users.${user.name} = {
+      isNormalUser = true;
+      initialPassword = user.name;
+      extraGroups = [ "wheel" ];
+      openssh.authorizedKeys.keys = user.sshKeys;
+    };
   };
 
   security.sudo.wheelNeedsPassword = false;
