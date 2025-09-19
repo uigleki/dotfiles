@@ -10,6 +10,7 @@ let
     sshKeys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDm+4u9INuS/Cm3sqqAaJknGGVIpjA8bVNVdLarmUbjD"
     ];
+    stateVersion = "25.11";
   };
 
   akira = user // {

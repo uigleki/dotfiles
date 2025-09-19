@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  user,
   ...
 }:
 {
@@ -15,7 +16,7 @@
   ];
 
   home = {
-    stateVersion = "25.11";
+    stateVersion = user.stateVersion;
 
     packages = with pkgs; [
       delta
