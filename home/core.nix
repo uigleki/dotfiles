@@ -52,6 +52,11 @@
       silent = true;
     };
 
+    nh = {
+      enable = true;
+      flake = "$HOME/.config/home-manager";
+    };
+
     ripgrep = {
       enable = true;
       arguments = [ "--smart-case" ];

@@ -1,17 +1,11 @@
 {
   osConfig ? null,
   pkgs,
-  user,
   ...
 }:
 let
   flakePath = "~/.config/home-manager";
-
-  rebuildCmd =
-    if osConfig == null then
-      "home-manager switch --flake ${flakePath}#${user.hostName}"
-    else
-      "sudo nixos-rebuild switch --flake ${flakePath}";
+  rebuildCmd = if osConfig == null then "nh home switch" else "nh os switch";
 in
 {
   programs = {
