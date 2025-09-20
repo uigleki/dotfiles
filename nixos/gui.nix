@@ -33,6 +33,7 @@ in
 
     hardware = {
       enableRedistributableFirmware = true;
+      graphics.enable = true;
       bluetooth.enable = true;
       sane.enable = true;
       opentabletdriver.enable = true;
@@ -54,6 +55,7 @@ in
       displayManager.sddm.enable = true;
 
       pipewire = {
+        enable = true;
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;

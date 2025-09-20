@@ -15,7 +15,10 @@
   ];
 
   system.stateVersion = user.stateVersion;
-  nix.settings.auto-optimise-store = true;
+  nix = {
+    channel.enable = false;
+    settings.auto-optimise-store = true;
+  };
 
   networking.hostName = user.hostName;
 
