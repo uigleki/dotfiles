@@ -30,21 +30,13 @@
   };
 
   programs = {
+    bat.enable = true;
+    bottom.enable = true;
     home-manager.enable = true;
     nix-index-database.comma.enable = true;
     nix-index.enable = true;
     starship.enable = true;
     yazi.enable = true;
-
-    bat = {
-      enable = true;
-      config.theme = "gruvbox-light";
-    };
-
-    bottom = {
-      enable = true;
-      settings.flags.color = "gruvbox-light";
-    };
 
     direnv = {
       enable = true;

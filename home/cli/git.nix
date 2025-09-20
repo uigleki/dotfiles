@@ -7,10 +7,7 @@
       userEmail = user.gitEmail;
       delta = {
         enable = true;
-        options = {
-          navigate = true;
-          syntax-theme = "gruvbox-light";
-        };
+        options.navigate = true;
       };
       extraConfig = {
         init.defaultBranch = "main";

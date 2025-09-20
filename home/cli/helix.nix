@@ -3,7 +3,6 @@
     enable = true;
     defaultEditor = true;
     settings = {
-      theme = "gruvbox_light";
       editor = {
         auto-save.after-delay = {
           enable = true;
