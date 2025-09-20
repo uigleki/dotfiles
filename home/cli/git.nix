@@ -10,9 +10,11 @@
         options.navigate = true;
       };
       extraConfig = {
-        init.defaultBranch = "main";
         credential.helper = "store";
-        pull.rebase = false;
+        init.defaultBranch = "main";
+        log.date = "iso";
+        pull.rebase = true;
+        push.autoSetupRemote = true;
       };
     };
 
