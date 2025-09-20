@@ -23,6 +23,7 @@
       dust
       eza
       fd
+      just
       p7zip
       rsync
       sd
