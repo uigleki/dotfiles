@@ -24,7 +24,7 @@
       eza
       fd
       just
-      p7zip
+      ouch
       rsync
       sd
     ];
