@@ -28,7 +28,7 @@ in
         f = "$EDITOR";
         g = "lazygit";
         gcl = "git clone --depth=1";
-        gp = "git pull";
+        gl = "git pull";
         j = "z";
         k = "btm";
         l = "eza -laF";
