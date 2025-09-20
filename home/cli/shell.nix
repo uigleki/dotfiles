@@ -1,10 +1,10 @@
 {
   osConfig ? null,
   pkgs,
+  user,
   ...
 }:
 let
-  flakePath = "~/.config/home-manager";
   rebuildCmd = if osConfig == null then "nh home switch" else "nh os switch";
 in
 {
@@ -36,7 +36,7 @@ in
         r = "rsync -rthP";
         t = "tmux new -A";
         u = rebuildCmd;
-        uu = "nix flake update --flake ${flakePath} && ${rebuildCmd}";
+        uu = "nix flake update --flake ${user.flake} && ${rebuildCmd}";
 
         G = {
           position = "anywhere";

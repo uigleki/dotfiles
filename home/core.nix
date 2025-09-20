@@ -54,7 +54,7 @@
 
     nh = {
       enable = true;
-      flake = "$HOME/.config/home-manager";
+      flake = user.flake;
     };
 
     ripgrep = {
