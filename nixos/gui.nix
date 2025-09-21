@@ -9,7 +9,7 @@ let
   cfg = config.myModules.gui;
 in
 {
-  options.myModules.gui.enable = lib.mkEnableOption "GUI configuration";
+  options.myModules.gui.enable = lib.mkEnableOption "Enable GUI configuration";
 
   config = lib.mkIf cfg.enable {
     time.timeZone = "Asia/Shanghai";
