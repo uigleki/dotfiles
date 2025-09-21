@@ -45,6 +45,8 @@ in
         enable = true;
         settings.require_dnssec = true;
       };
+
+      tailscale.enable = true;
     };
   };
 }
