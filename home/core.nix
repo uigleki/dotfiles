@@ -21,7 +21,6 @@
     packages = with pkgs; [
       delta
       dust
-      eza
       fd
       just
       ouch
@@ -44,6 +43,14 @@
       enable = true;
       nix-direnv.enable = true;
       silent = true;
+    };
+
+    eza = {
+      enable = true;
+      extraOptions = [
+        "--group-directories-first"
+        "--time-style=iso"
+      ];
     };
 
     nh = {

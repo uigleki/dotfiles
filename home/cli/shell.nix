@@ -31,8 +31,8 @@ in
         gl = "git pull";
         j = "z";
         k = "btm";
-        l = "eza -laF";
-        lt = "eza -TF";
+        l = "eza -la";
+        lt = "eza -T";
         r = "rsync -rthP";
         t = "tmux new -A";
         u = rebuildCmd;
