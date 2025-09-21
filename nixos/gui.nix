@@ -88,7 +88,15 @@ in
 
     fonts = {
       enableDefaultPackages = true;
-      packages = with pkgs; [ ubuntu_font_family ];
+      packages = with pkgs; [
+        noto-fonts-cjk-sans
+        (nerdfonts.override {
+          fonts = [
+            "Ubuntu"
+            "UbuntuMono"
+          ];
+        })
+      ];
       fontconfig.defaultFonts = {
         sansSerif = [ "Ubuntu" ];
         monospace = [ "Ubuntu Mono" ];
