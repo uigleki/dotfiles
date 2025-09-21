@@ -50,6 +50,13 @@ in
         enable = true;
         useRoutingFeatures = "both";
       };
+
+      dbus.apparmor = "enabled";
+    };
+
+    security.apparmor = {
+      enable = true;
+      killUnconfinedConfinables = true;
     };
   };
 }
