@@ -25,5 +25,16 @@
         pager = "delta --paging=never";
       };
     };
+
+    jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          name = user.gitName;
+          email = user.gitEmail;
+        };
+        ui.default-command = "log";
+      };
+    };
   };
 }

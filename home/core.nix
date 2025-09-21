@@ -33,7 +33,6 @@
     bat.enable = true;
     bottom.enable = true;
     home-manager.enable = true;
-    jujutsu.enable = true;
     nix-index-database.comma.enable = true;
     nix-index.enable = true;
     starship.enable = true;
