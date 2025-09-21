@@ -11,6 +11,7 @@
     ./boot.nix
     ./disk-config.nix
     ./gui.nix
+    ./hardened.nix
     ./network.nix
   ];
 
