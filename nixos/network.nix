@@ -46,7 +46,10 @@ in
         settings.require_dnssec = true;
       };
 
-      tailscale.enable = true;
+      tailscale = {
+        enable = true;
+        useRoutingFeatures = "both";
+      };
     };
   };
 }
