@@ -2,7 +2,6 @@
   "recommendations": [
     "Tyriar.sort-lines",
     "esbenp.prettier-vscode",
-    "jjk.jjk",
     "jnoortheen.nix-ide",
     "mads-hartmann.bash-ide-vscode",
     "mkhl.direnv",
