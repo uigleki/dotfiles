@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.myModules.network;
 in
@@ -57,6 +62,10 @@ in
     security.apparmor = {
       enable = true;
       killUnconfinedConfinables = true;
+      packages = with pkgs; [
+        apparmor-utils
+        apparmor-profiles
+      ];
     };
   };
 }
