@@ -21,7 +21,10 @@ in
     };
 
     networking = {
-      firewall.allowedTCPPorts = [ 443 ];
+      firewall = {
+        enable = true;
+        allowedTCPPorts = [ 443 ];
+      };
 
       nameservers = [
         "127.0.0.1"
@@ -38,12 +41,17 @@ in
         settings = {
           PermitRootLogin = "no";
           PasswordAuthentication = false;
+          PubkeyAuthentication = true;
         };
       };
 
       dnscrypt-proxy = {
         enable = true;
-        settings.require_dnssec = true;
+        settings = {
+          require_dnssec = true;
+          require_nolog = true;
+          require_nofilter = true;
+        };
       };
 
       tailscale = {
