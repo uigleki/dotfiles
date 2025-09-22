@@ -1,23 +1,38 @@
 # Personal Nix Dotfiles
 
-🌸 Declarative cross-platform development environment using Nix flakes.
+🌸 Maximum efficiency, minimum complexity development environment using Nix flakes.
 
 **⚠️ Fork First**: This is my personal configuration. Fork it and modify `hosts/default.nix` before using.
 
-## ✨ Why Nix?
+## The Problem
+
+Most development setups are chaotic: scattered config files, broken dependencies, "works on my machine" issues, hours spent on environment setup instead of actual work.
+
+## Why Nix
 
 **Reproducible** • **Declarative** • **Reliable**
 
-Simple configuration that works the same everywhere - from WSL to cloud servers.
+One configuration that creates identical environments everywhere - from WSL to cloud servers to bare metal.
 
-## 🎯 Philosophy
+## Why This Configuration
 
-- **Minimal by design**: Only install what you need, try tools with `,` (comma)
-- **Container-first**: Services run in containers, keep the system clean
-- **Modern toolchain**: `fd`, `rg`, `bat` instead of traditional tools
-- **Project isolation**: Use direnv + flakes for project dependencies
+Not just minimal - **strategically minimal**. Every choice maximizes productivity while eliminating complexity:
 
-## 🚀 Usage
+**Complete Control**: Everything defined in code. No hidden system state, no scattered dotfiles, no mysterious breakages.
+
+**Zero Setup Friction**: Clone once, works everywhere. Same keybindings, same tools, same workflow across all machines.
+
+**Modern Toolchain**: Each tool chosen for proven superiority - `fd` over `find`, `rg` over `grep`, `eza` over `ls`. Not trendy, just better.
+
+**Smart Isolation**: Services in containers, projects in flakes. No conflicts, no pollution, no "dependency hell."
+
+**Try Anything**: `,` command lets you test tools instantly without installing. Explore freely, commit nothing.
+
+**Bulletproof Updates**: Atomic changes with instant rollbacks. System updates cannot break your workflow.
+
+**Intelligent Defaults**: Works immediately out of box, yet infinitely customizable when needed.
+
+## Usage
 
 ### For server:
 
@@ -32,46 +47,32 @@ git clone --depth=1 https://github.com/uigleki/dotfiles.git ~/.config/home-manag
 sudo nixos-rebuild switch --experimental-features 'nix-command flakes' --flake ~/.config/home-manager#nixos
 ```
 
-## 📝 Cheatsheet
+## Essential Workflow
 
 ### System Management
 
-| Command                  | Description                    |
-| ------------------------ | ------------------------------ |
-| `, <command>`            | Try command without installing |
-| `nix-collect-garbage -d` | Delete old generations         |
+- `, <command>` — Try any tool without installing
+- `u` — Update system
+- `uu` — Update flake + rebuild
+- `nix-collect-garbage -d` — Clean old generations
 
 ### Core Tools
 
-| Traditional | Modern           | Description                   |
-| ----------- | ---------------- | ----------------------------- |
-| `ls`        | `l` (`eza -laF`) | List files with metadata      |
-| `cd`        | `j` (`zoxide`)   | Smart directory jump          |
-| `find`      | `fd`             | Fast file search              |
-| `grep`      | `rg` / `G`       | Fast text search              |
-| `cat`       | `bat`            | File viewer with highlighting |
-| `man`       | `tldr`           | Practical examples            |
-| `top`       | `k` (`bottom`)   | System monitor                |
-| `du`        | `dust`           | Disk usage tree               |
-
-### Quick Actions
-
-| Key  | Command       | Description          |
-| ---- | ------------- | -------------------- |
-| `f`  | `helix`       | Open editor          |
-| `d`  | `yazi`        | File manager         |
-| `g`  | `lazygit`     | Git interface        |
-| `t`  | `tmux new -A` | Terminal multiplexer |
-| `dl` | `aria2c`      | Download files       |
-| `r`  | `rsync -rthP` | Sync files           |
+- `l` — List files with metadata (`eza`)
+- `j <dir>` — Smart directory jump (`zoxide`)
+- `fd` — Fast file search
+- `rg` / `G` — Fast text search
+- `f` — Editor (`helix`)
+- `d` — File manager (`yazi`)
+- `g` — Git interface (`lazygit`)
+- `t` — Terminal multiplexer (`tmux`)
 
 ### Navigation Shortcuts
 
-- **Ctrl-t** — File/folder picker
-- **Ctrl-r** — Command history search
-- **Alt-c** — Change directory fuzzy finder
-- **Ctrl-l** — Clear screen
+- **Ctrl-t** — File picker
+- **Ctrl-r** — Command history
+- **Alt-c** — Directory finder
 
-## 📄 License
+## License
 
 [AGPL-3.0](LICENSE)
