@@ -24,5 +24,6 @@
   },
   "[shellscript]": {
     "editor.defaultFormatter": "mads-hartmann.bash-ide-vscode"
-  }
+  },
+  "git.enabled": false
 }
