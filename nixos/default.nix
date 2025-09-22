@@ -29,6 +29,7 @@
       initialPassword = user.name;
       extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keys = user.sshKeys;
+      linger = true;
     };
   };
 
