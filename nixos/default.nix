@@ -50,8 +50,8 @@
       autoPrune = {
         enable = true;
         flags = [
-          "all"
-          "--filter until=7d"
+          "--all"
+          "--filter=until=168h"
         ];
       };
     };
