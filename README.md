@@ -1,6 +1,6 @@
 # Personal Nix Dotfiles
 
-🌸 Maximum efficiency, minimum complexity development environment using Nix flakes.
+Maximum efficiency, minimum complexity development environment using Nix flakes.
 
 **⚠️ Fork First**: This is my personal configuration. Fork it and modify `hosts/default.nix` before using.
 
