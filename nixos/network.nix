@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.myModules.network;
 in
@@ -55,17 +50,6 @@ in
         enable = true;
         useRoutingFeatures = "both";
       };
-
-      dbus.apparmor = "enabled";
-    };
-
-    security.apparmor = {
-      enable = true;
-      killUnconfinedConfinables = true;
-      packages = with pkgs; [
-        apparmor-utils
-        apparmor-profiles
-      ];
     };
   };
 }
