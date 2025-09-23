@@ -100,8 +100,6 @@ in
     };
 
     environment.systemPackages = with pkgs; [
-      firefox
-      qbittorrent-enhanced
       wayland-utils
       wl-clipboard
     ];
