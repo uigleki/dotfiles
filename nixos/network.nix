@@ -54,6 +54,11 @@ in
         };
       };
 
+      chrony = {
+        enable = true;
+        enableNTS = true;
+      };
+
       tailscale = {
         enable = true;
         useRoutingFeatures = "both";
