@@ -10,8 +10,12 @@ in
 {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      bottles
       firefox
+      heroic
+      libreoffice-qt
       qbittorrent-enhanced
+      vscode
     ];
 
     programs.mpv = {
