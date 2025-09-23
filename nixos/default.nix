@@ -27,7 +27,10 @@
     users.${user.name} = {
       isNormalUser = true;
       initialPassword = user.name;
-      extraGroups = [ "wheel" ];
+      extraGroups = [
+        "wheel"
+        "podman"
+      ];
       openssh.authorizedKeys.keys = user.sshKeys;
       linger = true;
     };
@@ -48,6 +51,7 @@
       enable = true;
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
+      dockerSocket.enable = true;
       autoPrune = {
         enable = true;
         flags = [
