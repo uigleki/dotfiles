@@ -22,14 +22,11 @@ in
     fish = {
       enable = true;
       shellAbbrs = {
-        bt = "aria2c --bt-tracker=(curl -fsSL https://trackerslist.com/all_aria2.txt)";
         d = "yazi";
-        dl = "aria2c";
         f = "$EDITOR";
         g = "lazygit";
         gcl = "git clone --depth=1";
         gl = "git pull";
-        j = "z";
         k = "btm";
         l = "eza -la";
         lt = "eza -T";
