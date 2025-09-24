@@ -47,6 +47,7 @@ in
           PubkeyAuthentication = true;
         };
       };
+      fail2ban.enable = true;
 
       dnscrypt-proxy = {
         enable = true;
