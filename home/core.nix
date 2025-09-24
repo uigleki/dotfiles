@@ -7,7 +7,6 @@
 {
   imports = [
     inputs.nix-index-database.homeModules.nix-index
-    ./cli/aria2.nix
     ./cli/fzf.nix
     ./cli/git.nix
     ./cli/helix.nix
@@ -20,12 +19,8 @@
 
     packages = with pkgs; [
       delta
-      dust
       fd
-      just
-      ouch
       rsync
-      sd
     ];
   };
 
@@ -60,11 +55,6 @@
     ripgrep = {
       enable = true;
       arguments = [ "--smart-case" ];
-    };
-
-    tealdeer = {
-      enable = true;
-      settings.updates.auto_update = true;
     };
 
     zoxide = {
