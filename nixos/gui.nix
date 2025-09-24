@@ -34,10 +34,6 @@ in
     hardware = {
       enableRedistributableFirmware = true;
       bluetooth.enable = true;
-      cpu = {
-        intel.updateMicrocode = true;
-        amd.updateMicrocode = true;
-      };
     };
 
     users.users.${user.name}.extraGroups = [

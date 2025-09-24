@@ -3,7 +3,7 @@
     enable = true;
     defaultCommand = "fd --type file";
     defaultOptions = [
-      "--preview='bat --color=always --style=numbers --line-range=:500 {}'"
+      "--preview='bat --color=always --style=numbers --line-range=:100 {}'"
     ];
     fileWidgetCommand = "fd --type file";
     historyWidgetOptions = [ "--preview=''" ];

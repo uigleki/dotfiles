@@ -16,7 +16,10 @@ in
         "net.ipv4.ip_unprivileged_port_start" = 443;
         "net.core.default_qdisc" = "fq";
         "net.ipv4.tcp_congestion_control" = "bbr";
-        "net.core.rmem_max" = 2500000;
+        "net.core.rmem_max" = 67108864;
+        "net.core.wmem_max" = 67108864;
+        "net.ipv4.tcp_max_syn_backlog" = 8192;
+        "vm.swappiness" = 10;
       };
     };
 
