@@ -34,8 +34,6 @@ in
     hardware = {
       enableRedistributableFirmware = true;
       bluetooth.enable = true;
-      sane.enable = true;
-      opentabletdriver.enable = true;
       cpu = {
         intel.updateMicrocode = true;
         amd.updateMicrocode = true;
@@ -45,8 +43,6 @@ in
     users.users.${user.name}.extraGroups = [
       "networkmanager"
       "libvirtd"
-      "scanner"
-      "lp"
     ];
 
     services = {
@@ -59,14 +55,6 @@ in
         pulse.enable = true;
         jack.enable = true;
       };
-
-      printing.enable = true;
-      avahi = {
-        enable = true;
-        nssmdns4 = true;
-      };
-
-      fprintd.enable = true;
     };
 
     virtualisation = {
