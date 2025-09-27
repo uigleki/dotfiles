@@ -22,22 +22,17 @@
 
   networking.hostName = user.hostName;
 
-  users = {
-    mutableUsers = false;
-    users.${user.name} = {
-      isNormalUser = true;
-      uid = 1000;
-      initialPassword = user.name;
-      extraGroups = [
-        "wheel"
-        "podman"
-      ];
-      openssh.authorizedKeys.keys = user.sshKeys;
-      linger = true;
-    };
+  users.users.${user.name} = {
+    isNormalUser = true;
+    uid = 1000;
+    initialPassword = user.name;
+    extraGroups = [
+      "wheel"
+      "podman"
+    ];
+    openssh.authorizedKeys.keys = user.sshKeys;
+    linger = true;
   };
-
-  security.sudo.wheelNeedsPassword = false;
 
   home-manager = {
     useGlobalPkgs = true;
