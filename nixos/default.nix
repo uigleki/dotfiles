@@ -26,6 +26,7 @@
     mutableUsers = false;
     users.${user.name} = {
       isNormalUser = true;
+      uid = 1000;
       initialPassword = user.name;
       extraGroups = [
         "wheel"
