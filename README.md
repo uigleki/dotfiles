@@ -43,8 +43,7 @@ nix run github:nix-community/nixos-anywhere -- --flake ~/.config/home-manager#na
 ### For WSL:
 
 ```bash
-git clone --depth=1 https://github.com/uigleki/dotfiles.git ~/.config/home-manager
-sudo nixos-rebuild switch --experimental-features 'nix-command flakes' --flake ~/.config/home-manager#nixos
+sudo nixos-rebuild switch --flake github:uigleki/dotfiles
 ```
 
 ## Essential Workflow
