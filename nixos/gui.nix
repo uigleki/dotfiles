@@ -16,7 +16,6 @@ in
 
     i18n = {
       defaultLocale = "en_US.UTF-8";
-      extraLocaleSettings.LC_TIME = "zh_CN.UTF-8";
       inputMethod = {
         enable = true;
         type = "fcitx5";
@@ -24,6 +23,8 @@ in
           fcitx5-rime
           fcitx5-chinese-addons
           fcitx5-gtk
+          fcitx5-pinyin-zhwiki
+          fcitx5-pinyin-moegirl
         ];
       };
     };
