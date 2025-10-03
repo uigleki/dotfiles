@@ -13,7 +13,6 @@ in
     boot = {
       kernelModules = [ "tcp_bbr" ];
       kernel.sysctl = {
-        "net.ipv4.ip_unprivileged_port_start" = 443;
         "net.core.default_qdisc" = "fq";
         "net.ipv4.tcp_congestion_control" = "bbr";
         "net.core.rmem_max" = 16777216;
@@ -23,10 +22,7 @@ in
     };
 
     networking = {
-      firewall = {
-        enable = true;
-        allowedTCPPorts = [ 443 ];
-      };
+      firewall.enable = true;
 
       nameservers = [
         "127.0.0.1"
