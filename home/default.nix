@@ -13,6 +13,7 @@ in
     ./core.nix
     ./dev.nix
     ./gui.nix
+    ./network.nix
     ./theme.nix
   ]
   ++ lib.optionals notNixOS [ ./nix.nix ];
