@@ -26,10 +26,7 @@
     isNormalUser = true;
     uid = 1000;
     initialPassword = user.name;
-    extraGroups = [
-      "wheel"
-      "podman"
-    ];
+    extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = user.sshKeys;
     linger = true;
   };

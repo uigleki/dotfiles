@@ -6,7 +6,7 @@
   ...
 }:
 let
-  notNixOS = osConfig == null;
+  isStandalone = osConfig == null;
 in
 {
   imports = [
@@ -16,9 +16,9 @@ in
     ./network.nix
     ./theme.nix
   ]
-  ++ lib.optionals notNixOS [ ./nix.nix ];
+  ++ lib.optionals isStandalone [ ./nix.nix ];
 
-  config = lib.mkIf notNixOS {
+  config = lib.mkIf isStandalone {
     home = {
       username = user.name;
       homeDirectory = "/home/${user.name}";
