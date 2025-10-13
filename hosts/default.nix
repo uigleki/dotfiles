@@ -2,9 +2,9 @@
 let
   inherit (inputs) nixpkgs home-manager;
 
-  user = {
+  baseUser = {
     name = "u";
-    hostName = "nazuna";
+    system = "x86_64-linux";
     gitName = "Ray";
     gitEmail = "rraayy246@gmail.com";
     sshKeys = [
@@ -14,60 +14,59 @@ let
     stateVersion = "25.11";
   };
 
-  akira = user // {
+  nazuna = baseUser // {
+    hostName = "nazuna";
+    system = "aarch64-linux";
+  };
+
+  akira = baseUser // {
     name = "nixos";
     hostName = "nixos";
   };
 
-  kurisu = user // {
-    name = "win";
+  kurisu = baseUser // {
     hostName = "kurisu";
   };
 
-  mayuri = user // {
+  mayuri = baseUser // {
     hostName = "mayuri";
   };
 
   mkHomeConfig =
     {
-      system,
       user,
       extraModules ? [ ],
     }:
     home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages.${user.system};
       modules = [ ../home ] ++ extraModules;
       extraSpecialArgs = { inherit inputs user; };
     };
 
   mkNixOSConfig =
     {
-      system,
       user,
       extraModules ? [ ],
     }:
     nixpkgs.lib.nixosSystem {
-      inherit system;
+      inherit (user) system;
       modules = [ ../nixos ] ++ extraModules;
       specialArgs = { inherit inputs user; };
     };
 in
 {
   nixosConfigurations = {
-    "${user.hostName}" = mkNixOSConfig {
-      system = "aarch64-linux";
-      user = user;
+    "${nazuna.hostName}" = mkNixOSConfig {
+      user = nazuna;
       extraModules = [ ./nazuna ];
     };
 
     "${akira.hostName}" = mkNixOSConfig {
-      system = "x86_64-linux";
       user = akira;
       extraModules = [ ./akira ];
     };
 
     "${mayuri.hostName}" = mkNixOSConfig {
-      system = "x86_64-linux";
       user = mayuri;
       extraModules = [ ./mayuri ];
     };
@@ -75,7 +74,6 @@ in
 
   homeConfigurations = {
     "${kurisu.hostName}" = mkHomeConfig {
-      system = "x86_64-linux";
       user = kurisu;
       extraModules = [ ./kurisu ];
     };
