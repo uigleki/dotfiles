@@ -18,7 +18,6 @@
     stateVersion = user.stateVersion;
 
     packages = with pkgs; [
-      delta
       fd
       rsync
     ];

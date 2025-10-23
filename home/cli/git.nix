@@ -3,13 +3,11 @@
   programs = {
     git = {
       enable = true;
-      userName = user.gitName;
-      userEmail = user.gitEmail;
-      delta = {
-        enable = true;
-        options.navigate = true;
-      };
-      extraConfig = {
+      settings = {
+        user = {
+          name = user.gitName;
+          email = user.gitEmail;
+        };
         credential.helper = "store";
         init.defaultBranch = "main";
         log.date = "iso";
@@ -24,6 +22,12 @@
         colorArg = "always";
         pager = "delta --paging=never";
       };
+    };
+
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options.navigate = true;
     };
   };
 }
