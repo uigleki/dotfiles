@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [ inputs.nixos-wsl.nixosModules.default ];
 
@@ -10,4 +10,8 @@
     diskConfig.enable = false;
     network.enable = false;
   };
+
+  environment.systemPackages = with pkgs; [
+    wget
+  ];
 }

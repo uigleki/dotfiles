@@ -1,4 +1,4 @@
-{ inputs }:
+{ inputs, ... }:
 let
   inherit (inputs) nixpkgs home-manager;
 
