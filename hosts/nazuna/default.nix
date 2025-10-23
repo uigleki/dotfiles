@@ -13,4 +13,6 @@
   networking.firewall.allowedTCPPorts = [ 443 ];
 
   home-manager.users.${user.name}.services.syncthing.guiAddress = "0.0.0.0:8384";
+
+  myModules.autoUpdate.enable = true;
 }

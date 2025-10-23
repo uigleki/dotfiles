@@ -16,7 +16,7 @@ in
     ./network.nix
     ./theme.nix
   ]
-  ++ lib.optionals isStandalone [ ./nix.nix ];
+  ++ lib.optionals isStandalone [ ../nixos/nix.nix ];
 
   config = lib.mkIf isStandalone {
     home = {

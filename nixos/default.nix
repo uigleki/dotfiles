@@ -7,11 +7,12 @@
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    ../home/nix.nix
     ./boot.nix
     ./disk-config.nix
     ./gui.nix
     ./network.nix
+    ./nix.nix
+    ./upgrade.nix
   ];
 
   system.stateVersion = user.stateVersion;
