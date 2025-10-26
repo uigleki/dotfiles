@@ -23,7 +23,6 @@ in
 
     networking = {
       firewall.enable = true;
-
       nameservers = [
         "127.0.0.1"
         "::1"
@@ -33,17 +32,6 @@ in
     };
 
     services = {
-      openssh = {
-        enable = true;
-        openFirewall = true;
-        settings = {
-          PermitRootLogin = "no";
-          PasswordAuthentication = false;
-          PubkeyAuthentication = true;
-        };
-      };
-      fail2ban.enable = true;
-
       dnscrypt-proxy = {
         enable = true;
         settings = {

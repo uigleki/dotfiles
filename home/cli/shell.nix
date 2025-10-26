@@ -34,7 +34,6 @@ in
         t = "tmux new -A";
         u = rebuildCmd;
         uu = "nix flake update --flake ${user.flake} && ${rebuildCmd}";
-
         G = {
           position = "anywhere";
           expansion = "| rg";

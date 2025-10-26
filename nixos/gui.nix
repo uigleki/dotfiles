@@ -45,7 +45,6 @@ in
     services = {
       desktopManager.plasma6.enable = true;
       displayManager.sddm.enable = true;
-
       pipewire = {
         enable = true;
         alsa.enable = true;

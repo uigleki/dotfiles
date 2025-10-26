@@ -12,10 +12,12 @@
     ./gui.nix
     ./network.nix
     ./nix.nix
+    ./server.nix
     ./upgrade.nix
   ];
 
   system.stateVersion = user.stateVersion;
+
   nix = {
     channel.enable = false;
     settings.auto-optimise-store = true;

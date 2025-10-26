@@ -3,9 +3,7 @@
   programs.tmux = {
     enable = true;
     mouse = true;
-
     plugins = with pkgs.tmuxPlugins; [ sensible ];
-
     extraConfig = ''
       set -ga terminal-overrides ",*:Tc"
 

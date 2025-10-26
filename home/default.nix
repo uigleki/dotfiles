@@ -23,6 +23,7 @@ in
       username = user.name;
       homeDirectory = "/home/${user.name}";
     };
+
     nix.package = pkgs.nix;
   };
 }

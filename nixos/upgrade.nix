@@ -17,7 +17,6 @@ in
       flags = [
         "--recreate-lock-file"
         "--no-write-lock-file"
-        "-L"
       ];
     };
   };
