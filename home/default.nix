@@ -24,6 +24,9 @@ in
       homeDirectory = "/home/${user.name}";
     };
 
-    nix.package = pkgs.nix;
+    nix = {
+      package = pkgs.nix;
+      gc.dates = "03:15";
+    };
   };
 }
