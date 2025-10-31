@@ -3,22 +3,14 @@ let
   cfg = config.myModules.network;
 in
 {
-  options.myModules.network = {
-    enable = lib.mkEnableOption "Enable network configuration." // {
-      default = true;
-    };
+  options.myModules.network.enable = lib.mkEnableOption "Enable network configuration." // {
+    default = true;
   };
 
   config = lib.mkIf cfg.enable {
-    boot = {
-      kernelModules = [ "tcp_bbr" ];
-      kernel.sysctl = {
-        "net.core.default_qdisc" = "fq";
-        "net.ipv4.tcp_congestion_control" = "bbr";
-        "net.core.rmem_max" = 16777216;
-        "net.core.wmem_max" = 16777216;
-        "vm.swappiness" = 10;
-      };
+    boot.kernel.sysctl = {
+      "net.core.rmem_max" = 16777216;
+      "net.core.wmem_max" = 16777216;
     };
 
     networking = {
