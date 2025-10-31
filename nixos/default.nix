@@ -35,6 +35,8 @@
     linger = true;
   };
 
+  security.sudo.wheelNeedsPassword = false;
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
