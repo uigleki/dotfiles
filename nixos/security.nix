@@ -8,12 +8,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
-    security = {
-      protectKernelImage = true;
-      forcePageTableIsolation = true;
-    };
-
+    security.protectKernelImage = true;
     systemd.coredump.enable = false;
 
     boot = {
@@ -40,9 +35,6 @@ in
         "kernel.randomize_va_space" = 2;
         "kernel.warn_limit" = 100;
         "kernel.yama.ptrace_scope" = 3;
-        "net.core.default_qdisc" = "cake";
-        "net.ipv4.tcp_congestion_control" = "bbr";
-        "net.ipv4.tcp_fastopen" = 3;
         "vm.unprivileged_userfaultfd" = 0;
       };
 
