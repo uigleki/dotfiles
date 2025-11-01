@@ -20,9 +20,7 @@ in
       kernelParams = [
         "slab_nomerge"
         "page_alloc.shuffle=1"
-        "pti=on"
         "randomize_kstack_offset=on"
-        "vsyscall=none"
         "debugfs=off"
         "oops=panic"
       ];
