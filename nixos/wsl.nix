@@ -9,6 +9,7 @@
     boot.enable = false;
     diskConfig.enable = false;
     network.enable = false;
+    security.enable = false;
   };
 
   environment.systemPackages = with pkgs; [
