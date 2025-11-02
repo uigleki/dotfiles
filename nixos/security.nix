@@ -15,8 +15,6 @@ in
       kernelParams = [
         "bdev_allow_write_mounted=0"
         "debugfs=off"
-        "page_alloc.shuffle=1"
-        "slab_nomerge"
       ];
 
       kernel.sysctl = {
@@ -31,10 +29,8 @@ in
         "kernel.kexec_load_disabled" = 1;
         "kernel.kptr_restrict" = 2;
         "kernel.oops_limit" = 100;
-        "kernel.perf_event_paranoid" = 3;
         "kernel.randomize_va_space" = 2;
         "kernel.warn_limit" = 100;
-        "kernel.yama.ptrace_scope" = 3;
         "vm.unprivileged_userfaultfd" = 0;
       };
 
