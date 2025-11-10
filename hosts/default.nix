@@ -6,7 +6,7 @@ let
     name = "u";
     system = "x86_64-linux";
     gitName = "Ray";
-    gitEmail = "rraayy246@gmail.com";
+    gitEmail = "git.lesser278@aleeas.com";
     sshKeys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDm+4u9INuS/Cm3sqqAaJknGGVIpjA8bVNVdLarmUbjD"
     ];
