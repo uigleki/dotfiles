@@ -12,6 +12,7 @@
     ./gui.nix
     ./network.nix
     ./nix.nix
+    ./overlay.nix
     ./security.nix
     ./server.nix
     ./upgrade.nix
