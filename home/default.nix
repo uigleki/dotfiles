@@ -29,7 +29,7 @@ in
 
     nix = {
       package = pkgs.nix;
-      gc.dates = "03:15";
+      gc.frequency = "03:15";
     };
   };
 }
