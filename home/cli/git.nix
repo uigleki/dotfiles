@@ -3,7 +3,11 @@
   programs = {
     git = {
       enable = true;
-      settings = {
+      delta = {
+        enable = true;
+        options.navigate = true;
+      };
+      extraConfig = {
         user = {
           name = user.gitName;
           email = user.gitEmail;
@@ -22,12 +26,6 @@
         colorArg = "always";
         pager = "delta --paging=never";
       };
-    };
-
-    delta = {
-      enable = true;
-      enableGitIntegration = true;
-      options.navigate = true;
     };
   };
 }
