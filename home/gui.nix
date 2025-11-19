@@ -11,10 +11,10 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       bottles
+      firefox
       heroic
       qbittorrent-enhanced
-      unstable.firefox
-      unstable.vscode
+      vscode
     ];
 
     programs = {
