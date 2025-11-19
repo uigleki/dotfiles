@@ -21,6 +21,10 @@
       fd
       rsync
     ];
+
+    sessionVariables = {
+      COLORTERM = "truecolor";
+    };
   };
 
   programs = {

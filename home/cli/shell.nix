@@ -41,8 +41,6 @@ in
       };
       interactiveShellInit = ''
         set fish_greeting
-        set -gx COLORTERM truecolor
-        set -gx COMMA_NIXPKGS_FLAKE "github:nixos/nixpkgs/nixpkgs-unstable"
       '';
     };
   };
