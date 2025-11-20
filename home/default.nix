@@ -31,5 +31,7 @@ in
       package = pkgs.nix;
       gc.frequency = "03:15";
     };
+
+    news.display = "silent";
   };
 }

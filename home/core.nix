@@ -65,6 +65,4 @@
       options = [ "--cmd j" ];
     };
   };
-
-  news.display = "silent";
 }
