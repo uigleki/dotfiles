@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "Tyriar.sort-lines",
+    "esbenp.prettier-vscode",
+    "jnoortheen.nix-ide",
+    "mads-hartmann.bash-ide-vscode",
+    "mkhl.direnv",
+    "yzhang.markdown-all-in-one"
+  ]
+}
