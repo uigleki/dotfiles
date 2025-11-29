@@ -1,10 +1,11 @@
 {
   "recommendations": [
-    "Tyriar.sort-lines",
     "esbenp.prettier-vscode",
     "jnoortheen.nix-ide",
     "mads-hartmann.bash-ide-vscode",
     "mkhl.direnv",
+    "tyriar.sort-lines",
+    "usernamehw.errorlens",
     "yzhang.markdown-all-in-one"
   ]
 }
