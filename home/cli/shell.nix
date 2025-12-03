@@ -30,7 +30,7 @@ in
         k = "btm";
         l = "eza -la";
         lt = "eza -T";
-        r = "rsync -rthP";
+        r = "rsync -rlptPh";
         t = "tmux new -A";
         u = rebuildCmd;
         uu = "nix flake update --flake ${user.flake} && ${rebuildCmd}";
