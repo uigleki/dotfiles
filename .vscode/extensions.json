@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "jnoortheen.nix-ide",
+    "mkhl.direnv",
+    "tyriar.sort-lines",
+    "yzhang.markdown-all-in-one"
+  ]
+}
