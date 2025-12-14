@@ -1,7 +1,7 @@
 {
   "editor.cursorBlinking": "solid",
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "prettier.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
@@ -14,6 +14,9 @@
   "files.trimFinalNewlines": true,
 
   "git.autofetch": true,
+
+  "markdown.validate.enabled": true,
+  "markdown.updateLinksOnFileMove.enabled": "always",
 
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nil",

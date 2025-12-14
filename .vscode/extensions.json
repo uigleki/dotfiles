@@ -1,9 +1,11 @@
 {
   "recommendations": [
-    "esbenp.prettier-vscode",
+    "DavidAnson.vscode-markdownlint",
+    "Tyriar.sort-lines",
     "jnoortheen.nix-ide",
     "mkhl.direnv",
-    "tyriar.sort-lines",
+    "prettier.prettier-vscode",
+    "usernamehw.errorlens",
     "yzhang.markdown-all-in-one"
   ]
 }
