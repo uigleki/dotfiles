@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.myModules.dev;
+  pnpmHome = "$HOME/.local/share/pnpm";
 in
 {
   options.myModules.dev = {
@@ -13,10 +14,16 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      nodejs_24
-      pnpm
-      unstable.claude-code
-    ];
+    home = {
+      sessionVariables = {
+        PNPM_HOME = pnpmHome;
+      };
+
+      sessionPath = [ pnpmHome ];
+
+      packages = with pkgs; [
+        pnpm
+      ];
+    };
   };
 }
