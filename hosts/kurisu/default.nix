@@ -1,0 +1,3 @@
+{
+  myModules.dev.enable = true;
+}
