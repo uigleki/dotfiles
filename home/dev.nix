@@ -15,15 +15,19 @@ in
 
   config = lib.mkIf cfg.enable {
     home = {
+      packages = with pkgs; [
+        pnpm
+        uv
+      ];
+
+      sessionPath = [
+        "$HOME/.local/bin"
+        pnpmHome
+      ];
+
       sessionVariables = {
         PNPM_HOME = pnpmHome;
       };
-
-      sessionPath = [ pnpmHome ];
-
-      packages = with pkgs; [
-        pnpm
-      ];
     };
   };
 }
