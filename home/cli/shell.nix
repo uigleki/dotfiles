@@ -27,7 +27,7 @@ in
         d = "yazi";
         f = "$EDITOR";
         g = "lazygit";
-        gcl = "git clone --depth=1";
+        gc = "git clone";
         gl = "git pull";
         k = "btm";
         l = "eza -la";

@@ -48,16 +48,18 @@
             actionlint.enable = true;
             convco.enable = true;
             deadnix.enable = true;
-            markdownlint = {
-              enable = true;
-              settings.configuration.MD013 = false;
-            };
             nil.enable = true;
             nixfmt-rfc-style.enable = true;
             prettier.enable = true;
             statix.enable = true;
             typos.enable = true;
+
+            markdownlint = {
+              enable = true;
+              settings.configuration.MD013 = false;
+            };
           };
+          package = (pkgsFor system).prek;
         };
       });
 
