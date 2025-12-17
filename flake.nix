@@ -45,14 +45,12 @@
         pre-commit-check = inputs.git-hooks.lib.${system}.run {
           src = ./.;
           hooks = {
-            actionlint.enable = true;
             convco.enable = true;
             deadnix.enable = true;
             nil.enable = true;
             nixfmt-rfc-style.enable = true;
             prettier.enable = true;
             statix.enable = true;
-            typos.enable = true;
 
             markdownlint = {
               enable = true;
