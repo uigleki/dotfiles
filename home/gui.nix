@@ -12,6 +12,7 @@ in
     home.packages = with pkgs; [
       bottles
       firefox
+      google-chrome
       heroic
       qbittorrent-enhanced
       vscode

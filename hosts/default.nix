@@ -40,6 +40,8 @@ let
     hostName = "mayuri";
   };
 
+  # Future host names: inori, miyabi
+
   mkHomeConfig =
     {
       user,
