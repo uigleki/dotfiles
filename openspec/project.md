@@ -54,5 +54,5 @@ Higher layers import from lower layers. Host configs are the top layer.
 
 ## Testing
 
-- Pre-commit hooks: deadnix, nil, nixfmt-rfc-style, statix, prettier, markdownlint
+- Pre-commit hooks: convco, deadnix, nil, nixfmt-rfc-style, statix
 - Build validation: `nix flake check`
