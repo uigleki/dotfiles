@@ -4,7 +4,6 @@ let
 
   baseUser = {
     name = "u";
-    hostName = "nixos";
     system = "x86_64-linux";
 
     gitName = "Ray";
@@ -29,18 +28,19 @@ let
   };
 
   akira = baseUser // {
-    name = "nixos";
+    hostName = "akira";
   };
 
   kurisu = baseUser // {
     hostName = "kurisu";
   };
 
-  mayuri = baseUser // {
-    hostName = "mayuri";
+  inori = baseUser // {
+    name = "nixos";
+    hostName = "nixos";
   };
 
-  # Future host names: inori, miyabi
+  # Future host names: miyabi
 
   mkHomeConfig =
     {
@@ -76,9 +76,9 @@ in
       extraModules = [ ./akira ];
     };
 
-    "${mayuri.hostName}" = mkNixOSConfig {
-      user = mayuri;
-      extraModules = [ ./mayuri ];
+    "${inori.hostName}" = mkNixOSConfig {
+      user = inori;
+      extraModules = [ ./inori ];
     };
   };
 

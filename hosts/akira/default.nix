@@ -1,6 +1,5 @@
-{ user, ... }:
 {
-  imports = [ ../../nixos/wsl.nix ];
+  imports = [ ../../nixos/secure-boot.nix ];
 
-  home-manager.users.${user.name}.myModules.dev.enable = true;
+  myModules.gui.enable = true;
 }

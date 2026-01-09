@@ -8,13 +8,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL/main";
+    disko = {
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    disko = {
-      url = "github:nix-community/disko";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -25,6 +25,11 @@
 
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
