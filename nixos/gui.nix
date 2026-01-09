@@ -12,6 +12,8 @@ in
   options.myModules.gui.enable = lib.mkEnableOption "Enable GUI configuration";
 
   config = lib.mkIf cfg.enable {
+    boot.supportedFilesystems = [ "ntfs" ];
+
     time.timeZone = "Asia/Shanghai";
 
     i18n = {

@@ -10,15 +10,22 @@ in
 {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      anytype
       bottles
-      firefox
+      cryptomator
+      freefilesync
       google-chrome
       heroic
+      motrix
       qbittorrent-enhanced
-      vscode
+      unstable.antigravity
     ];
 
     programs = {
+      firefox.enable = true;
+      onlyoffice.enable = true;
+      vscode.enable = true;
+
       mpv = {
         enable = true;
         config = {
@@ -32,8 +39,8 @@ in
           save-position-on-quit = "yes";
         };
       };
-
-      onlyoffice.enable = true;
     };
+
+    services.megasync.enable = true;
   };
 }

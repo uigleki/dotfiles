@@ -17,10 +17,7 @@
   home = {
     inherit (user) stateVersion;
 
-    packages = with pkgs; [
-      fd
-      rsync
-    ];
+    packages = with pkgs; [ rsync ];
 
     sessionVariables = {
       COLORTERM = "truecolor";
@@ -30,6 +27,7 @@
   programs = {
     bat.enable = true;
     bottom.enable = true;
+    fd.enable = true;
     nix-index-database.comma.enable = true;
     nix-index.enable = true;
     starship.enable = true;
