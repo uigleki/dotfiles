@@ -52,9 +52,11 @@
     };
   };
 
-  # Docker compatibility symlink for rootless podman
   systemd.tmpfiles.rules = [
+    # Docker compatibility symlink for rootless podman
     "L /var/run/docker.sock - - - - /run/user/${toString user.uid}/podman/podman.sock"
+    # Remove legacy channel profiles (flakes-only configuration)
+    "R /nix/var/nix/profiles/per-user/root/channels - - - -"
   ];
 
   zramSwap = {

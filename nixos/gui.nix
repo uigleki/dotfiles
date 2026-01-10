@@ -21,23 +21,33 @@ in
       inputMethod = {
         enable = true;
         type = "fcitx5";
-        fcitx5.addons = with pkgs; [
-          fcitx5-rime
-          qt6Packages.fcitx5-chinese-addons
-          fcitx5-gtk
-          fcitx5-pinyin-zhwiki
-          fcitx5-pinyin-moegirl
-        ];
+        fcitx5 = {
+          addons = with pkgs; [
+            qt6Packages.fcitx5-chinese-addons
+            fcitx5-gtk
+            fcitx5-pinyin-zhwiki
+            fcitx5-pinyin-moegirl
+          ];
+          settings = {
+            inputMethod = {
+              "Groups/0" = {
+                Name = "Default";
+                "Default Layout" = "us";
+              };
+              "Groups/0/Items/0".Name = "keyboard-us";
+              "Groups/0/Items/1".Name = "shuangpin";
+            };
+            addons.pinyin.globalSection = {
+              ShuangpinProfile = "Xiaohe";
+            };
+          };
+        };
       };
     };
 
     networking.networkmanager.enable = true;
     security.rtkit.enable = true; # real-time scheduling for PipeWire
-
-    hardware = {
-      enableRedistributableFirmware = true;
-      bluetooth.enable = true;
-    };
+    hardware.bluetooth.enable = true;
 
     users.users.${user.name}.extraGroups = [
       "networkmanager"
@@ -81,8 +91,14 @@ in
         nerd-fonts.ubuntu-mono
       ];
       fontconfig.defaultFonts = {
-        sansSerif = [ "Ubuntu" ];
-        monospace = [ "Ubuntu Mono" ];
+        sansSerif = [
+          "Ubuntu Nerd Font"
+          "Noto Sans CJK SC"
+        ];
+        monospace = [
+          "UbuntuMono Nerd Font"
+          "Noto Sans Mono CJK SC"
+        ];
       };
     };
 

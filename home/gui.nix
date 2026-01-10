@@ -9,8 +9,9 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
+    myModules.dev.enable = true;
+
     home.packages = with pkgs; [
-      anytype
       bottles
       cryptomator
       freefilesync
@@ -40,7 +41,5 @@ in
         };
       };
     };
-
-    services.megasync.enable = true;
   };
 }
