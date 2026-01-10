@@ -40,6 +40,25 @@ Not just minimal - **strategically minimal**. Every choice maximizes productivit
 nix run github:nix-community/nixos-anywhere -- --flake ~/.config/dotfiles#nazuna --target-host <user>@<host>
 ```
 
+### For desktop (Secure Boot + TPM)
+
+```bash
+# Connect to WiFi (skip if using ethernet)
+nmtui
+
+# Partition disk (will prompt for LUKS encryption password)
+nix-shell -p disko --run "sudo disko --mode disko --flake github:uigleki/dotfiles#akira"
+
+# Install system
+sudo nixos-install --no-root-passwd --flake github:uigleki/dotfiles#akira
+
+# Reboot, enter BIOS, set Secure Boot to "Setup Mode", then boot
+# Lanzaboote will auto-enroll Secure Boot keys and reboot
+
+# After reboot, enroll TPM for automatic LUKS unlock
+sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 /dev/disk/by-partlabel/disk-main-luks
+```
+
 ### For WSL
 
 ```bash

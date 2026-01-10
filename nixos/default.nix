@@ -25,6 +25,8 @@
     settings.auto-optimise-store = true;
   };
 
+  programs.nix-ld.enable = true;
+
   users.users.${user.name} = {
     inherit (user) uid;
     isNormalUser = true;

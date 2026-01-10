@@ -1,11 +1,14 @@
 # Secure Boot + TPM2 Full Disk Encryption
 #
-# First-time setup:
-# 1. Enter BIOS, set Secure Boot to "Setup Mode"
-# 2. Install system (disko-install)
-# 3. First boot: lanzaboote auto-generates and enrolls Secure Boot keys
-# 4. After reboot, enroll TPM:
-#    sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 /dev/disk/by-partlabel/disk-main-luks
+# This module provides:
+# - Lanzaboote for Secure Boot with automatic key enrollment
+# - LUKS-encrypted btrfs root with TPM2 auto-unlock support
+# - Replaces standard boot and disk-config modules
+#
+# Post-install setup:
+# 1. Enter BIOS, set Secure Boot to "Setup Mode", boot system
+# 2. Lanzaboote auto-enrolls keys and reboots
+# 3. Enroll TPM: sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 /dev/disk/by-partlabel/disk-main-luks
 
 {
   lib,

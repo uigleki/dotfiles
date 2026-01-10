@@ -6,6 +6,8 @@
 
   myModules.gui.enable = true;
 
+  boot.loader.timeout = 1;
+
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     powerManagement.enable = true;
