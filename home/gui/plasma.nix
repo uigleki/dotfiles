@@ -69,7 +69,6 @@ in
                 launchers = [
                   "preferred://filemanager"
                   "preferred://browser"
-                  "applications:org.kde.konsole.desktop"
                   "applications:org.kde.elisa.desktop"
                 ];
               };
@@ -91,12 +90,13 @@ in
           krunner_appstreamEnabled = false;
           krunner_dictionaryEnabled = false;
           krunner_katesessionsEnabled = false;
+          krunner_keysEnabled = false;
           krunner_konsoleprofilesEnabled = false;
-          krunner_placesrunnerEnabled = false;
+          krunner_kwinEnabled = false;
+          krunner_plasma-desktopEnabled = false;
           krunner_recentdocumentsEnabled = false;
           krunner_shellEnabled = false;
           krunner_spellcheckEnabled = false;
-          locationsEnabled = false;
         };
       };
     };

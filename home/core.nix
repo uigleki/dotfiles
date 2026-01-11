@@ -6,6 +6,7 @@
 }:
 {
   imports = with inputs; [
+    catppuccin.homeModules.catppuccin
     nix-index-database.homeModules.nix-index
     plasma-manager.homeModules.plasma-manager
     ./cli/fzf.nix
