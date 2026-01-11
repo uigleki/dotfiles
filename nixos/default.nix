@@ -6,7 +6,6 @@
 }:
 {
   imports = with inputs; [
-    catppuccin.nixosModules.catppuccin
     disko.nixosModules.disko
     home-manager.nixosModules.home-manager
     lanzaboote.nixosModules.lanzaboote

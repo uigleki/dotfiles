@@ -22,7 +22,7 @@ in
       };
 
       shortcuts = {
-        "org.kde.konsole.desktop"._launch = "Meta+Return";
+        "kitty.desktop"._launch = "Meta+Return";
         ksmserver."Log Out" = "Meta+Shift+E";
         kwin."Window Close" = "Meta+Q";
       };

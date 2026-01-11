@@ -31,6 +31,11 @@ in
       firefox.enable = true;
       onlyoffice.enable = true;
       vscode.enable = true;
+
+      kitty = {
+        enable = true;
+        settings.cursor_blink_interval = 0;
+      };
     };
 
     services = {

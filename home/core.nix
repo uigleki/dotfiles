@@ -26,6 +26,12 @@
     };
   };
 
+  catppuccin = {
+    enable = true;
+    flavor = "latte";
+    cache.enable = true;
+  };
+
   programs = {
     bat.enable = true;
     bottom.enable = true;
