@@ -1,10 +1,10 @@
 {
-  imports = [
-    ../../nixos/secure-boot.nix
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
-  myModules.gui.enable = true;
+  myModules = {
+    gui.enable = true;
+    secureBoot.enable = true;
+  };
 
   boot.loader.timeout = 1;
 

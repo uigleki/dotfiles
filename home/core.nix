@@ -5,8 +5,9 @@
   ...
 }:
 {
-  imports = [
-    inputs.nix-index-database.homeModules.nix-index
+  imports = with inputs; [
+    nix-index-database.homeModules.nix-index
+    plasma-manager.homeModules.plasma-manager
     ./cli/fzf.nix
     ./cli/git.nix
     ./cli/helix.nix

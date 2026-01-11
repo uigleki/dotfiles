@@ -1,17 +1,25 @@
-{ inputs, pkgs, ... }:
 {
-  imports = [ inputs.nixos-wsl.nixosModules.default ];
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.myModules.wsl;
+in
+{
+  options.myModules.wsl.enable = lib.mkEnableOption "Enable WSL configuration.";
 
-  wsl.enable = true;
+  config = lib.mkIf cfg.enable {
+    wsl.enable = true;
 
-  myModules = {
-    boot.enable = false;
-    diskConfig.enable = false;
-    network.enable = false;
-    security.enable = false;
+    myModules = {
+      boot.enable = false;
+      diskConfig.enable = false;
+      network.enable = false;
+      security.enable = false;
+    };
+
+    environment.systemPackages = with pkgs; [ wget ];
   };
-
-  environment.systemPackages = with pkgs; [
-    wget
-  ];
 }

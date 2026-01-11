@@ -11,12 +11,14 @@
 # 3. Enroll TPM: sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 /dev/disk/by-partlabel/disk-main-luks
 
 {
+  config,
   lib,
-  inputs,
   pkgs,
   ...
 }:
 let
+  cfg = config.myModules.secureBoot;
+
   subvol = mountpoint: {
     inherit mountpoint;
     mountOptions = [
@@ -26,69 +28,68 @@ let
   };
 in
 {
-  imports = with inputs; [
-    disko.nixosModules.disko
-    lanzaboote.nixosModules.lanzaboote
-  ];
+  options.myModules.secureBoot.enable = lib.mkEnableOption "Enable Secure Boot + TPM2 FDE.";
 
-  myModules = {
-    boot.enable = false;
-    diskConfig.enable = false;
-  };
-
-  boot = {
-    loader.systemd-boot.enable = lib.mkForce false;
-
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/var/lib/sbctl";
-      autoGenerateKeys.enable = true;
-      autoEnrollKeys = {
-        enable = true;
-        autoReboot = true;
-      };
+  config = lib.mkIf cfg.enable {
+    myModules = {
+      boot.enable = false;
+      diskConfig.enable = false;
     };
 
-    # required for systemd-cryptenroll TPM unlock
-    initrd.systemd.enable = true;
-  };
+    boot = {
+      loader.systemd-boot.enable = lib.mkForce false;
 
-  environment.systemPackages = [ pkgs.sbctl ];
-  services.btrfs.autoScrub.enable = true;
-
-  disko.devices.disk.main = {
-    device = "/dev/nvme0n1";
-    type = "disk";
-    content = {
-      type = "gpt";
-      partitions = {
-        ESP = {
-          size = "500M";
-          type = "EF00";
-          content = {
-            type = "filesystem";
-            format = "vfat";
-            mountpoint = "/boot";
-            mountOptions = [ "umask=0077" ];
-          };
+      lanzaboote = {
+        enable = true;
+        pkiBundle = "/var/lib/sbctl";
+        autoGenerateKeys.enable = true;
+        autoEnrollKeys = {
+          enable = true;
+          autoReboot = true;
         };
-        luks = {
-          size = "100%";
-          content = {
-            type = "luks";
-            name = "crypted";
-            settings = {
-              allowDiscards = true;
-              bypassWorkqueues = true;
-              crypttabExtraOpts = [ "tpm2-device=auto" ];
-            };
+      };
+
+      # required for systemd-cryptenroll TPM unlock
+      initrd.systemd.enable = true;
+    };
+
+    environment.systemPackages = [ pkgs.sbctl ];
+    services.btrfs.autoScrub.enable = true;
+
+    disko.devices.disk.main = {
+      device = "/dev/nvme0n1";
+      type = "disk";
+      content = {
+        type = "gpt";
+        partitions = {
+          ESP = {
+            size = "500M";
+            type = "EF00";
             content = {
-              type = "btrfs";
-              extraArgs = [ "-f" ];
-              subvolumes = {
-                "root" = subvol "/";
-                "home" = subvol "/home";
-                "nix" = subvol "/nix";
+              type = "filesystem";
+              format = "vfat";
+              mountpoint = "/boot";
+              mountOptions = [ "umask=0077" ];
+            };
+          };
+          luks = {
+            size = "100%";
+            content = {
+              type = "luks";
+              name = "crypted";
+              settings = {
+                allowDiscards = true;
+                bypassWorkqueues = true;
+                crypttabExtraOpts = [ "tpm2-device=auto" ];
+              };
+              content = {
+                type = "btrfs";
+                extraArgs = [ "-f" ];
+                subvolumes = {
+                  "root" = subvol "/";
+                  "home" = subvol "/home";
+                  "nix" = subvol "/nix";
+                };
               };
             };
           };

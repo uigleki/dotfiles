@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  inputs,
-  ...
-}:
+{ config, lib, ... }:
 let
   cfg = config.myModules.diskConfig;
 
@@ -16,8 +11,6 @@ let
   };
 in
 {
-  imports = [ inputs.disko.nixosModules.disko ];
-
   options.myModules.diskConfig = {
     enable = lib.mkEnableOption "Enable disk configuration." // {
       default = true;

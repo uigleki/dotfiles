@@ -62,6 +62,19 @@ in
         pulse.enable = true;
         jack.enable = true;
       };
+
+      # Remap Caps Lock to Home key using keyd
+      keyd = {
+        enable = true;
+        keyboards.default = {
+          ids = [ "*" ];
+          settings = {
+            main = {
+              capslock = "home";
+            };
+          };
+        };
+      };
     };
 
     virtualisation = {

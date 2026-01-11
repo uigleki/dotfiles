@@ -8,6 +8,11 @@ let
   cfg = osConfig.myModules.gui or { enable = false; };
 in
 {
+  imports = lib.optionals cfg.enable [
+    ./gui/mpv.nix
+    ./gui/plasma.nix
+  ];
+
   config = lib.mkIf cfg.enable {
     myModules.dev.enable = true;
 
@@ -26,20 +31,8 @@ in
       firefox.enable = true;
       onlyoffice.enable = true;
       vscode.enable = true;
-
-      mpv = {
-        enable = true;
-        config = {
-          vo = "gpu-next";
-          hwdec = "auto-safe";
-          slang = "chs,sc,zh";
-          alang = "jpn,ja,jp";
-          sub-auto = "fuzzy";
-          fullscreen = "yes";
-          idle = "once";
-          save-position-on-quit = "yes";
-        };
-      };
     };
+
+    services.syncthing.tray.enable = true;
   };
 }
