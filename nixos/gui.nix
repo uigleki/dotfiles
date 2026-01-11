@@ -39,6 +39,7 @@ in
             addons.pinyin.globalSection = {
               ShuangpinProfile = "Xiaohe";
             };
+            globalOptions."Hotkey/TriggerKeys"."0" = "Super+space";
           };
         };
       };

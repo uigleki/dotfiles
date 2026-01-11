@@ -6,7 +6,7 @@ let
     pointSize = 10;
   };
   wallpapers = {
-    path = syncDir + "images/wallpapers";
+    path = syncDir + "images/wallpapers/desktop";
     interval = 3600;
   };
 in
@@ -14,6 +14,23 @@ in
   programs = {
     plasma = {
       enable = true;
+      overrideConfig = true;
+
+      powerdevil = {
+        AC.autoSuspend.action = "nothing";
+        battery.autoSuspend.action = "nothing";
+      };
+
+      shortcuts = {
+        "org.kde.konsole.desktop"._launch = "Meta+Return";
+        ksmserver."Log Out" = "Meta+Shift+E";
+        kwin."Window Close" = "Meta+Q";
+      };
+
+      krunner = {
+        position = "center";
+        shortcuts.launch = "Meta";
+      };
 
       fonts = {
         general = ubuntuFont;
@@ -28,15 +45,13 @@ in
         windowTitle = ubuntuFont;
       };
 
-      powerdevil = {
-        AC.autoSuspend.action = "nothing";
-        battery.autoSuspend.action = "nothing";
-      };
-
-      hotkeys.commands."launch-konsole" = {
-        name = "Launch Konsole";
-        key = "Meta+Return";
-        command = "konsole";
+      kwin.nightLight = {
+        enable = true;
+        mode = "times";
+        time = {
+          evening = "18:00";
+          morning = "06:00";
+        };
       };
 
       workspace.wallpaperSlideShow = wallpapers;
@@ -52,7 +67,6 @@ in
               iconTasks = {
                 iconsOnly = false;
                 launchers = [
-                  "applications:systemsettings.desktop"
                   "preferred://filemanager"
                   "preferred://browser"
                   "applications:org.kde.konsole.desktop"
@@ -67,6 +81,24 @@ in
           ];
         }
       ];
+
+      configFile = {
+        baloofilerc."Basic Settings".Indexing-Enabled = false;
+        krunnerrc.Plugins = {
+          baloosearchEnabled = false;
+          browserhistoryEnabled = false;
+          helprunnerEnabled = false;
+          krunner_appstreamEnabled = false;
+          krunner_dictionaryEnabled = false;
+          krunner_katesessionsEnabled = false;
+          krunner_konsoleprofilesEnabled = false;
+          krunner_placesrunnerEnabled = false;
+          krunner_recentdocumentsEnabled = false;
+          krunner_shellEnabled = false;
+          krunner_spellcheckEnabled = false;
+          locationsEnabled = false;
+        };
+      };
     };
 
     elisa = {

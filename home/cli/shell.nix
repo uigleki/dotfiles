@@ -5,15 +5,19 @@
   ...
 }:
 let
+  secretsFile = "$HOME/.config/secrets.sh";
   rebuildCmd = if osConfig == null then "nh home switch" else "nh os switch";
 in
 {
   programs = {
     bash = {
       enable = true;
-      # Launch fish from bash to preserve login shell profile sourcing.
-      # Setting users.users.*.shell = fish directly would skip /etc/profile.
       initExtra = ''
+        # Load local secrets if exists
+        [ -f "${secretsFile}" ] && source "${secretsFile}"
+
+        # Launch fish from bash to preserve login shell profile sourcing.
+        # Setting users.users.*.shell = fish directly would skip /etc/profile.
         if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]; then
           shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
           exec ${pkgs.fish}/bin/fish $LOGIN_OPTION

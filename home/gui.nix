@@ -33,6 +33,9 @@ in
       vscode.enable = true;
     };
 
-    services.syncthing.tray.enable = true;
+    services = {
+      syncthing.tray.enable = true;
+      tailscale-systray.enable = true;
+    };
   };
 }
