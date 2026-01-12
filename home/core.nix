@@ -19,7 +19,10 @@
   home = {
     inherit (user) stateVersion;
 
-    packages = with pkgs; [ rsync ];
+    packages = with pkgs; [
+      ouch
+      rsync
+    ];
 
     sessionVariables = {
       COLORTERM = "truecolor";

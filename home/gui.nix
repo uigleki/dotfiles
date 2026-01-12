@@ -1,17 +1,22 @@
 {
+  config,
   osConfig ? null,
   lib,
   pkgs,
   ...
 }:
 let
-  cfg = osConfig.myModules.gui or { enable = false; };
+  cfg = config.myModules.gui;
 in
 {
-  imports = lib.optionals cfg.enable [
+  imports = [
     ./gui/mpv.nix
     ./gui/plasma.nix
   ];
+
+  options.myModules.gui.enable = lib.mkEnableOption "Enable GUI configuration." // {
+    default = osConfig.myModules.gui.enable or false;
+  };
 
   config = lib.mkIf cfg.enable {
     myModules.dev.enable = true;
@@ -37,6 +42,7 @@ in
     };
 
     services = {
+      kdeconnect.enable = true;
       syncthing.tray.enable = true;
       tailscale-systray.enable = true;
     };
