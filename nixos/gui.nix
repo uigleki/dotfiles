@@ -66,6 +66,10 @@ in
         pulse.enable = true;
         jack.enable = true;
       };
+      udisks2 = {
+        enable = true;
+        settings."mount_options.conf".defaults.btrfs_defaults = "compress=zstd,noatime";
+      };
       flatpak.enable = true;
 
       # Remap Caps Lock to Home key using keyd
