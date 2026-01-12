@@ -29,6 +29,7 @@
   catppuccin = {
     enable = true;
     flavor = "latte";
+    cache.enable = true;
   };
 
   programs = {
