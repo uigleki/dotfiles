@@ -59,6 +59,8 @@ sudo nixos-install --no-root-passwd --flake github:uigleki/dotfiles#akira
 sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 /dev/disk/by-partlabel/disk-main-luks
 ```
 
+See [post-installation setup](docs/post-install.md) for additional configuration.
+
 ### For WSL
 
 ```bash
