@@ -66,6 +66,7 @@ in
         pulse.enable = true;
         jack.enable = true;
       };
+      flatpak.enable = true;
 
       # Remap Caps Lock to Home key using keyd
       keyd = {
@@ -118,9 +119,21 @@ in
       };
     };
 
-    environment.systemPackages = with pkgs; [
-      wayland-utils
-      wl-clipboard
-    ];
+    environment = {
+      systemPackages = with pkgs; [
+        kitty
+        wayland-utils
+        wl-clipboard
+      ];
+
+      plasma6.excludePackages = with pkgs.kdePackages; [
+        baloo-widgets
+        khelpcenter
+        konsole
+        krdp
+        plasma-browser-integration
+        plasma-workspace-wallpapers
+      ];
+    };
   };
 }

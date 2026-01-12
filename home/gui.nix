@@ -17,11 +17,9 @@ in
     myModules.dev.enable = true;
 
     home.packages = with pkgs; [
-      bottles
       cryptomator
       freefilesync
       google-chrome
-      heroic
       motrix
       qbittorrent-enhanced
       unstable.antigravity

@@ -30,6 +30,7 @@ in
       krunner = {
         position = "center";
         shortcuts.launch = "Meta";
+        historyBehavior = "disabled";
       };
 
       fonts = {
@@ -83,20 +84,36 @@ in
 
       configFile = {
         baloofilerc."Basic Settings".Indexing-Enabled = false;
+        kwinrc.Wayland.InputMethod = "org.fcitx.Fcitx5.desktop";
         krunnerrc.Plugins = {
+          "org.kde.activities2Enabled" = false;
+          "org.kde.datetimeEnabled" = false;
           baloosearchEnabled = false;
           browserhistoryEnabled = false;
+          calculatorEnabled = false;
           helprunnerEnabled = false;
           krunner_appstreamEnabled = false;
+          krunner_bookmarksrunnerEnabled = false;
+          krunner_charrunnerEnabled = false;
+          krunner_colorsEnabled = false;
           krunner_dictionaryEnabled = false;
           krunner_katesessionsEnabled = false;
           krunner_keysEnabled = false;
+          krunner_killEnabled = false;
           krunner_konsoleprofilesEnabled = false;
           krunner_kwinEnabled = false;
+          krunner_placesrunnerEnabled = false;
           krunner_plasma-desktopEnabled = false;
+          krunner_powerdevilEnabled = false;
           krunner_recentdocumentsEnabled = false;
+          krunner_sessionsEnabled = false;
           krunner_shellEnabled = false;
           krunner_spellcheckEnabled = false;
+          krunner_systemsettingsEnabled = false;
+          krunner_webshortcutsEnabled = false;
+          locationsEnabled = false;
+          unitconverterEnabled = false;
+          windowsEnabled = false;
         };
       };
     };
