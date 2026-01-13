@@ -24,16 +24,24 @@ in
     home.packages = with pkgs; [
       cryptomator
       freefilesync
-      google-chrome
       motrix
       qbittorrent-enhanced
       unstable.antigravity
     ];
 
     programs = {
-      firefox.enable = true;
       onlyoffice.enable = true;
       vscode.enable = true;
+
+      chromium = {
+        enable = true;
+        package = pkgs.google-chrome;
+      };
+
+      firefox = {
+        enable = true;
+        profiles.default = { }; # pin profile name
+      };
 
       kitty = {
         enable = true;

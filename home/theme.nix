@@ -40,9 +40,9 @@ in
       fish.interactiveShellInit = ''fish_config theme choose "Catppuccin Latte"'';
 
       bottom.settings = lib.importTOML (
-        pkgs.fetchurl {
+        builtins.fetchurl {
           url = "https://raw.githubusercontent.com/catppuccin/bottom/eadd75a/themes/latte.toml";
-          sha256 = "sha256-+0ULoVjuidvaFNXAz0aXjZzOXEkNTBALOe27Qcfb2z8=";
+          sha256 = "0gyvvg3l3fzd745i0k0d95fcx74djx3czh6m2kddp2gfb2hhnigv";
         }
       );
 
@@ -50,9 +50,9 @@ in
         palette = "catppuccin_latte";
       }
       // lib.importTOML (
-        pkgs.fetchurl {
+        builtins.fetchurl {
           url = "https://raw.githubusercontent.com/catppuccin/starship/0cf9141/themes/latte.toml";
-          sha256 = "sha256-98uKwatdCE/7Gs/pzERABetpnd9e7jc7uo/1U0UTU5w=";
+          sha256 = "172k2d2m7xcgp8xkgvjyvyfnksq5812crsfg3bxly22xmg0qmjzp";
         }
       );
 
