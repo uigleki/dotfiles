@@ -76,6 +76,31 @@ in
                   ];
                 };
               }
+              {
+                name = "org.kde.plasma.systemmonitor";
+                config = {
+                  Appearance = {
+                    chartFace = "org.kde.ksysguard.textonly";
+                    title = "Net Speed";
+                  };
+                  Sensors = {
+                    highPrioritySensorIds = ''["network/all/upload","network/all/download"]'';
+                    lowPrioritySensorIds = ''["cpu/all/usage","memory/physical/usedPercent"]'';
+                  };
+                  SensorLabels = {
+                    "network/all/upload" = "△";
+                    "network/all/download" = "▽";
+                    "cpu/all/usage" = "CPU";
+                    "memory/physical/usedPercent" = "RAM";
+                  };
+                  SensorColors = {
+                    "network/all/upload" = "239,240,241";
+                    "network/all/download" = "239,240,241";
+                    "cpu/all/usage" = "239,240,241";
+                    "memory/physical/usedPercent" = "239,240,241";
+                  };
+                };
+              }
               "org.kde.plasma.marginsseparator"
               "org.kde.plasma.systemtray"
               { digitalClock.time.format = "24h"; }

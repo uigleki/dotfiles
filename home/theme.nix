@@ -106,9 +106,15 @@ in
             plot_bg_color = "efe9e6";
             plot_color = "ef3988";
           };
-          uosc = {
-            color = "foreground=8839ef,foreground_text=ccd0da,background=eff1f5,background_text=4c4f69,curtain=e6e9ef,success=40a02b,error=d20f39";
-          };
+          uosc.color = lib.concatStringsSep "," [
+            "foreground=8839ef"
+            "foreground_text=ccd0da"
+            "background=eff1f5"
+            "background_text=4c4f69"
+            "curtain=e6e9ef"
+            "success=40a02b"
+            "error=d20f39"
+          ];
         };
       };
     };
