@@ -34,10 +34,9 @@ in
     programs = {
       bat.config.theme = theme; # bat --list-themes
       delta.options.syntax-theme = theme; # same as bat
+      fish.interactiveShellInit = ''fish_config theme choose "Catppuccin Latte"'';
       helix.settings.theme = "catppuccin_latte"; # :theme
       kitty.themeFile = "Catppuccin-Latte"; # https://github.com/kovidgoyal/kitty-themes/tree/master/themes
-
-      fish.interactiveShellInit = ''fish_config theme choose "Catppuccin Latte"'';
 
       bottom.settings = lib.importTOML (
         builtins.fetchurl {
@@ -45,21 +44,6 @@ in
           sha256 = "0gyvvg3l3fzd745i0k0d95fcx74djx3czh6m2kddp2gfb2hhnigv";
         }
       );
-
-      starship.settings = {
-        palette = "catppuccin_latte";
-      }
-      // lib.importTOML (
-        builtins.fetchurl {
-          url = "https://raw.githubusercontent.com/catppuccin/starship/0cf9141/themes/latte.toml";
-          sha256 = "172k2d2m7xcgp8xkgvjyvyfnksq5812crsfg3bxly22xmg0qmjzp";
-        }
-      );
-
-      tmux = {
-        plugins = [ pkgs.tmuxPlugins.catppuccin ];
-        extraConfig = ''set -g @catppuccin_flavor "latte"'';
-      };
 
       fzf.defaultOptions = [
         # https://github.com/catppuccin/fzf/blob/main/themes/catppuccin-fzf-latte.sh
@@ -116,6 +100,21 @@ in
             "error=d20f39"
           ];
         };
+      };
+
+      starship.settings = {
+        palette = "catppuccin_latte";
+      }
+      // lib.importTOML (
+        builtins.fetchurl {
+          url = "https://raw.githubusercontent.com/catppuccin/starship/0cf9141/themes/latte.toml";
+          sha256 = "172k2d2m7xcgp8xkgvjyvyfnksq5812crsfg3bxly22xmg0qmjzp";
+        }
+      );
+
+      tmux = {
+        plugins = [ pkgs.tmuxPlugins.catppuccin ];
+        extraConfig = ''set -g @catppuccin_flavor "latte"'';
       };
     };
   };

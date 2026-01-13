@@ -32,19 +32,19 @@ in
     };
 
     services = {
-      dnscrypt-proxy = {
-        enable = true;
-        settings = {
-          require_dnssec = true;
-          require_nolog = true;
-          require_nofilter = true;
-        };
-      };
-
       chrony = {
         enable = true;
         enableNTS = true;
         servers = [ "time.cloudflare.com" ];
+      };
+
+      dnscrypt-proxy = {
+        enable = true;
+        settings = {
+          require_dnssec = true;
+          require_nofilter = true;
+          require_nolog = true;
+        };
       };
 
       tailscale = {

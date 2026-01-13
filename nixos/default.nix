@@ -25,12 +25,7 @@
   system.stateVersion = user.stateVersion;
   networking.hostName = user.hostName;
 
-  nix = {
-    channel.enable = false;
-    settings.auto-optimise-store = true;
-  };
-
-  programs.nix-ld.enable = true;
+  security.sudo.wheelNeedsPassword = false;
 
   users.users.${user.name} = {
     inherit (user) uid;
@@ -41,14 +36,19 @@
     linger = true; # allow user services to run without login session
   };
 
-  security.sudo.wheelNeedsPassword = false;
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.${user.name}.imports = [ ../home ];
-    extraSpecialArgs = { inherit inputs user; };
+  nix = {
+    channel.enable = false;
+    settings.auto-optimise-store = true;
   };
+
+  programs.nix-ld.enable = true;
+
+  systemd.tmpfiles.rules = [
+    # Docker compatibility symlink for rootless podman
+    "L /var/run/docker.sock - - - - /run/user/${toString user.uid}/podman/podman.sock"
+    # Remove legacy channel profiles (flakes-only configuration)
+    "R /nix/var/nix/profiles/per-user/root/channels - - - -"
+  ];
 
   virtualisation = {
     containers.enable = true;
@@ -59,22 +59,22 @@
     };
   };
 
-  systemd.tmpfiles.rules = [
-    # Docker compatibility symlink for rootless podman
-    "L /var/run/docker.sock - - - - /run/user/${toString user.uid}/podman/podman.sock"
-    # Remove legacy channel profiles (flakes-only configuration)
-    "R /nix/var/nix/profiles/per-user/root/channels - - - -"
+  environment.systemPackages = with pkgs; [
+    curl
+    git
+    podman-compose
+    vim
   ];
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.${user.name}.imports = [ ../home ];
+    extraSpecialArgs = { inherit inputs user; };
+  };
 
   zramSwap = {
     enable = true;
     algorithm = "lz4";
   };
-
-  environment.systemPackages = with pkgs; [
-    curl
-    git
-    vim
-    podman-compose
-  ];
 }

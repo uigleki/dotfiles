@@ -37,7 +37,7 @@ in
     };
 
     boot = {
-      loader.systemd-boot.enable = lib.mkForce false;
+      initrd.systemd.enable = true; # required for systemd-cryptenroll TPM unlock
 
       lanzaboote = {
         enable = true;
@@ -49,12 +49,12 @@ in
         };
       };
 
-      # required for systemd-cryptenroll TPM unlock
-      initrd.systemd.enable = true;
+      loader.systemd-boot.enable = lib.mkForce false;
     };
 
-    environment.systemPackages = [ pkgs.sbctl ];
     services.btrfs.autoScrub.enable = true;
+
+    environment.systemPackages = [ pkgs.sbctl ];
 
     disko.devices.disk.main = {
       device = "/dev/nvme0n1";

@@ -9,10 +9,9 @@
 
   boot.loader.timeout = 1;
 
-  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
-    powerManagement.enable = true;
     open = true;
+    powerManagement.enable = true;
     prime = {
       sync.enable = true;
       amdgpuBusId = "PCI:5:0:0";
@@ -20,9 +19,9 @@
     };
   };
 
-  home-manager.users.${user.name} = {
-    programs.plasma.configFile = {
-      kcminputrc."Libinput/1267/12474/ELAN1200:00 04F3:30BA Touchpad".DisableEventsOnExternalMouse = true;
-    };
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  home-manager.users.${user.name}.programs.plasma.configFile = {
+    kcminputrc."Libinput/1267/12474/ELAN1200:00 04F3:30BA Touchpad".DisableEventsOnExternalMouse = true;
   };
 }

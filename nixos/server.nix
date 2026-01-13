@@ -7,6 +7,8 @@ in
 
   config = lib.mkIf cfg.enable {
     services = {
+      fail2ban.enable = true;
+
       openssh = {
         enable = true;
         openFirewall = true;
@@ -16,8 +18,6 @@ in
           PubkeyAuthentication = true;
         };
       };
-
-      fail2ban.enable = true;
     };
   };
 }

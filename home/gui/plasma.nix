@@ -8,17 +8,23 @@ let
   };
   wallpapers = {
     path = syncDir + "images/wallpapers/desktop";
-    interval = 3600;
+    interval = 3600; # 1 hour
   };
 in
 {
   config = lib.mkIf cfg.enable {
     programs = {
+      elisa = {
+        enable = true;
+        indexer.paths = [ (syncDir + "music") ];
+      };
+
       plasma = {
         enable = true;
         overrideConfig = true;
 
         powerdevil = {
+          # disable auto-suspend to prevent interruptions
           AC.autoSuspend.action = "nothing";
           battery.autoSuspend.action = "nothing";
         };
@@ -110,8 +116,9 @@ in
         ];
 
         configFile = {
-          baloofilerc."Basic Settings".Indexing-Enabled = false;
+          baloofilerc."Basic Settings".Indexing-Enabled = false; # disable file indexing
           kwinrc.Wayland.InputMethod = "org.fcitx.Fcitx5.desktop";
+          # only keep app launcher, disable all other plugins
           krunnerrc.Plugins = {
             "org.kde.activities2Enabled" = false;
             "org.kde.datetimeEnabled" = false;
@@ -143,11 +150,6 @@ in
             windowsEnabled = false;
           };
         };
-      };
-
-      elisa = {
-        enable = true;
-        indexer.paths = [ (syncDir + "music") ];
       };
     };
   };

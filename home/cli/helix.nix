@@ -6,14 +6,14 @@
       editor = {
         line-number = "relative";
         cursorline = true;
-        completion-timeout = 5;
+        completion-timeout = 5; # instant completion (docs recommend 5 for instant)
         bufferline = "multiple";
         trim-final-newlines = true;
         trim-trailing-whitespace = true;
         cursor-shape.insert = "bar";
         auto-save.after-delay = {
           enable = true;
-          timeout = 1000;
+          timeout = 1000; # 1 second
         };
       };
       keys.insert = {
