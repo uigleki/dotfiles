@@ -42,7 +42,6 @@ in
     };
 
     services = {
-      kdeconnect.enable = true;
       syncthing.tray.enable = true;
       tailscale-systray.enable = true;
     };

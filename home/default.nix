@@ -14,6 +14,7 @@ in
     ./dev.nix
     ./gui.nix
     ./network.nix
+    ./theme.nix
   ]
   ++ lib.optionals isStandalone [ ../nixos/nix.nix ];
 

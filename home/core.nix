@@ -6,7 +6,6 @@
 }:
 {
   imports = with inputs; [
-    catppuccin.homeModules.catppuccin
     nix-index-database.homeModules.nix-index
     plasma-manager.homeModules.plasma-manager
     ./cli/fzf.nix
@@ -27,12 +26,6 @@
     sessionVariables = {
       COLORTERM = "truecolor";
     };
-  };
-
-  catppuccin = {
-    enable = true;
-    flavor = "latte";
-    cache.enable = true;
   };
 
   programs = {
