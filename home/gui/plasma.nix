@@ -2,21 +2,95 @@
 let
   cfg = config.myModules.gui;
   syncDir = "${config.home.homeDirectory}/sync/a/";
-  ubuntuFont = {
+  musicDir = "${syncDir}music";
+
+  font = {
     family = "Ubuntu";
     pointSize = 10;
   };
   wallpapers = {
-    path = syncDir + "images/wallpapers/desktop";
+    path = "${syncDir}images/wallpapers/desktop";
     interval = 3600; # 1 hour
   };
+
+  sysMonitorWidget =
+    let
+      up = "network/all/upload";
+      down = "network/all/download";
+      cpu = "cpu/all/usage";
+      ram = "memory/physical/usedPercent";
+      color = "239,240,241";
+      sensors = [
+        up
+        down
+        cpu
+        ram
+      ];
+    in
+    {
+      name = "org.kde.plasma.systemmonitor";
+      config = {
+        Appearance = {
+          chartFace = "org.kde.ksysguard.textonly";
+          title = "Net Speed";
+        };
+        Sensors = {
+          highPrioritySensorIds = builtins.toJSON [
+            up
+            down
+          ];
+          lowPrioritySensorIds = builtins.toJSON [
+            cpu
+            ram
+          ];
+        };
+        SensorLabels = {
+          ${up} = "△";
+          ${down} = "▽";
+          ${cpu} = "CPU";
+          ${ram} = "RAM";
+        };
+        SensorColors = lib.genAttrs sensors (_: color);
+      };
+    };
+
+  disabledKRunnerPlugins = [
+    "org.kde.activities2Enabled"
+    "org.kde.datetimeEnabled"
+    "baloosearchEnabled"
+    "browserhistoryEnabled"
+    "calculatorEnabled"
+    "helprunnerEnabled"
+    "krunner_appstreamEnabled"
+    "krunner_bookmarksrunnerEnabled"
+    "krunner_charrunnerEnabled"
+    "krunner_colorsEnabled"
+    "krunner_dictionaryEnabled"
+    "krunner_katesessionsEnabled"
+    "krunner_keysEnabled"
+    "krunner_killEnabled"
+    "krunner_konsoleprofilesEnabled"
+    "krunner_kwinEnabled"
+    "krunner_placesrunnerEnabled"
+    "krunner_plasma-desktopEnabled"
+    "krunner_powerdevilEnabled"
+    "krunner_recentdocumentsEnabled"
+    "krunner_sessionsEnabled"
+    "krunner_shellEnabled"
+    "krunner_spellcheckEnabled"
+    "krunner_systemsettingsEnabled"
+    "krunner_webshortcutsEnabled"
+    "locationsEnabled"
+    "unitconverterEnabled"
+    "windowsEnabled"
+  ];
 in
 {
   config = lib.mkIf cfg.enable {
     programs = {
       elisa = {
         enable = true;
-        indexer.paths = [ (syncDir + "music") ];
+        indexer.paths = [ musicDir ];
       };
 
       plasma = {
@@ -42,16 +116,16 @@ in
         };
 
         fonts = {
-          general = ubuntuFont;
-          fixedWidth = ubuntuFont // {
+          general = font;
+          fixedWidth = font // {
             family = "Ubuntu Mono";
           };
-          small = ubuntuFont // {
+          small = font // {
             pointSize = 8;
           };
-          toolbar = ubuntuFont;
-          menu = ubuntuFont;
-          windowTitle = ubuntuFont;
+          toolbar = font;
+          menu = font;
+          windowTitle = font;
         };
 
         kwin.nightLight = {
@@ -82,31 +156,7 @@ in
                   ];
                 };
               }
-              {
-                name = "org.kde.plasma.systemmonitor";
-                config = {
-                  Appearance = {
-                    chartFace = "org.kde.ksysguard.textonly";
-                    title = "Net Speed";
-                  };
-                  Sensors = {
-                    highPrioritySensorIds = ''["network/all/upload","network/all/download"]'';
-                    lowPrioritySensorIds = ''["cpu/all/usage","memory/physical/usedPercent"]'';
-                  };
-                  SensorLabels = {
-                    "network/all/upload" = "△";
-                    "network/all/download" = "▽";
-                    "cpu/all/usage" = "CPU";
-                    "memory/physical/usedPercent" = "RAM";
-                  };
-                  SensorColors = {
-                    "network/all/upload" = "239,240,241";
-                    "network/all/download" = "239,240,241";
-                    "cpu/all/usage" = "239,240,241";
-                    "memory/physical/usedPercent" = "239,240,241";
-                  };
-                };
-              }
+              sysMonitorWidget
               "org.kde.plasma.marginsseparator"
               "org.kde.plasma.systemtray"
               { digitalClock.time.format = "24h"; }
@@ -116,39 +166,9 @@ in
         ];
 
         configFile = {
-          baloofilerc."Basic Settings".Indexing-Enabled = false; # disable file indexing
+          baloofilerc."Basic Settings".Indexing-Enabled = false;
+          krunnerrc.Plugins = lib.genAttrs disabledKRunnerPlugins (_: false);
           kwinrc.Wayland.InputMethod = "org.fcitx.Fcitx5.desktop";
-          # only keep app launcher, disable all other plugins
-          krunnerrc.Plugins = {
-            "org.kde.activities2Enabled" = false;
-            "org.kde.datetimeEnabled" = false;
-            baloosearchEnabled = false;
-            browserhistoryEnabled = false;
-            calculatorEnabled = false;
-            helprunnerEnabled = false;
-            krunner_appstreamEnabled = false;
-            krunner_bookmarksrunnerEnabled = false;
-            krunner_charrunnerEnabled = false;
-            krunner_colorsEnabled = false;
-            krunner_dictionaryEnabled = false;
-            krunner_katesessionsEnabled = false;
-            krunner_keysEnabled = false;
-            krunner_killEnabled = false;
-            krunner_konsoleprofilesEnabled = false;
-            krunner_kwinEnabled = false;
-            krunner_placesrunnerEnabled = false;
-            krunner_plasma-desktopEnabled = false;
-            krunner_powerdevilEnabled = false;
-            krunner_recentdocumentsEnabled = false;
-            krunner_sessionsEnabled = false;
-            krunner_shellEnabled = false;
-            krunner_spellcheckEnabled = false;
-            krunner_systemsettingsEnabled = false;
-            krunner_webshortcutsEnabled = false;
-            locationsEnabled = false;
-            unitconverterEnabled = false;
-            windowsEnabled = false;
-          };
         };
       };
     };
