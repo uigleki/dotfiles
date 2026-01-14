@@ -27,6 +27,8 @@ in
 
     fish = {
       enable = true;
+      interactiveShellInit = "set fish_greeting";
+
       shellAbbrs = {
         d = "yazi";
         f = "$EDITOR";
@@ -40,14 +42,12 @@ in
         t = "tmux new -A";
         u = rebuildCmd;
         uu = "nix flake update --flake ${user.flake} && ${rebuildCmd}";
+
         G = {
           position = "anywhere";
           expansion = "| rg";
         };
       };
-      interactiveShellInit = ''
-        set fish_greeting
-      '';
     };
   };
 }

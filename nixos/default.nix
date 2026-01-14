@@ -5,11 +5,7 @@
   ...
 }:
 {
-  imports = with inputs; [
-    disko.nixosModules.disko
-    home-manager.nixosModules.home-manager
-    lanzaboote.nixosModules.lanzaboote
-    nixos-wsl.nixosModules.default
+  imports = [
     ./boot.nix
     ./disk-config.nix
     ./gui.nix
@@ -20,6 +16,7 @@
     ./server.nix
     ./upgrade.nix
     ./wsl.nix
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   system.stateVersion = user.stateVersion;

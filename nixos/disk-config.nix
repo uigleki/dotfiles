@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 let
   cfg = config.myModules.diskConfig;
 
@@ -11,8 +16,10 @@ let
   };
 in
 {
+  imports = [ inputs.disko.nixosModules.disko ];
+
   options.myModules.diskConfig = {
-    enable = lib.mkEnableOption "Enable disk configuration." // {
+    enable = lib.mkEnableOption "disk partitioning" // {
       default = true;
     };
 
@@ -20,7 +27,7 @@ in
       type = lib.types.str;
       default = "/dev/sda";
       example = "/dev/nvme0n1";
-      description = "Device to use for disk configuration.";
+      description = "Primary disk device.";
     };
   };
 

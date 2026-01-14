@@ -1,7 +1,7 @@
 {
   config,
-  osConfig ? null,
   lib,
+  osConfig ? null,
   pkgs,
   ...
 }:
@@ -14,13 +14,11 @@ in
     ./gui/plasma.nix
   ];
 
-  options.myModules.gui.enable = lib.mkEnableOption "Enable GUI configuration." // {
+  options.myModules.gui.enable = lib.mkEnableOption "GUI applications" // {
     default = osConfig.myModules.gui.enable or false;
   };
 
   config = lib.mkIf cfg.enable {
-    myModules.dev.enable = true;
-
     home.packages = with pkgs; [
       cryptomator
       freefilesync

@@ -1,14 +1,14 @@
 {
   config,
-  lib,
   inputs,
+  lib,
   ...
 }:
 let
   cfg = config.myModules.autoUpdate;
 in
 {
-  options.myModules.autoUpdate.enable = lib.mkEnableOption "Enable auto upgrade.";
+  options.myModules.autoUpdate.enable = lib.mkEnableOption "automatic upgrades";
 
   config = lib.mkIf cfg.enable {
     system.autoUpgrade = {

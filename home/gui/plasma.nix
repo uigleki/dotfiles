@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 let
   cfg = config.myModules.gui;
   syncDir = "${config.home.homeDirectory}/sync/a/";
@@ -78,6 +83,8 @@ let
   ];
 in
 {
+  imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
+
   config = lib.mkIf cfg.enable {
     programs = {
       elisa = {
@@ -146,8 +153,8 @@ in
         };
 
         input.keyboard = {
-          repeatDelay = 200;
-          repeatRate = 50;
+          repeatDelay = 250;
+          repeatRate = 30;
         };
 
         shortcuts = {

@@ -3,7 +3,7 @@ let
   cfg = config.myModules.server;
 in
 {
-  options.myModules.server.enable = lib.mkEnableOption "Enable server configuration.";
+  options.myModules.server.enable = lib.mkEnableOption "server mode";
 
   config = lib.mkIf cfg.enable {
     services = {

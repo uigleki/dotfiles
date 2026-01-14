@@ -1,3 +1,1 @@
-{
-  myModules.dev.enable = true;
-}
+{ }

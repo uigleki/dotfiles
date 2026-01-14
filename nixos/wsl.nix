@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -8,7 +9,9 @@ let
   cfg = config.myModules.wsl;
 in
 {
-  options.myModules.wsl.enable = lib.mkEnableOption "Enable WSL configuration.";
+  imports = [ inputs.nixos-wsl.nixosModules.default ];
+
+  options.myModules.wsl.enable = lib.mkEnableOption "WSL support";
 
   config = lib.mkIf cfg.enable {
     wsl.enable = true;

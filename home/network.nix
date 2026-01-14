@@ -1,14 +1,14 @@
 {
   config,
-  osConfig ? null,
   lib,
+  osConfig ? null,
   ...
 }:
 let
   cfg = config.myModules.network;
 in
 {
-  options.myModules.network.enable = lib.mkEnableOption "Enable network configuration." // {
+  options.myModules.network.enable = lib.mkEnableOption "network services" // {
     default = osConfig.myModules.network.enable or false;
   };
 

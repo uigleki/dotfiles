@@ -1,6 +1,6 @@
 {
-  osConfig ? null,
   lib,
+  osConfig ? null,
   pkgs,
   user,
   ...

@@ -12,6 +12,7 @@
 
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -28,7 +29,9 @@ let
   };
 in
 {
-  options.myModules.secureBoot.enable = lib.mkEnableOption "Enable Secure Boot + TPM2 FDE.";
+  imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
+
+  options.myModules.secureBoot.enable = lib.mkEnableOption "Secure Boot with TPM2 FDE";
 
   config = lib.mkIf cfg.enable {
     myModules = {

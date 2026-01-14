@@ -9,7 +9,7 @@ let
   cfg = config.myModules.gui;
 in
 {
-  options.myModules.gui.enable = lib.mkEnableOption "Enable GUI configuration.";
+  options.myModules.gui.enable = lib.mkEnableOption "GUI environment";
 
   config = lib.mkIf cfg.enable {
     boot.supportedFilesystems = [ "ntfs" ];
