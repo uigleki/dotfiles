@@ -66,24 +66,24 @@ let
 in
 {
   nixosConfigurations = {
-    "${nazuna.hostName}" = mkNixOSConfig {
+    ${nazuna.hostName} = mkNixOSConfig {
       user = nazuna;
       extraModules = [ ./nazuna ];
     };
 
-    "${akira.hostName}" = mkNixOSConfig {
+    ${akira.hostName} = mkNixOSConfig {
       user = akira;
       extraModules = [ ./akira ];
     };
 
-    "${inori.hostName}" = mkNixOSConfig {
+    ${inori.hostName} = mkNixOSConfig {
       user = inori;
       extraModules = [ ./inori ];
     };
   };
 
   homeConfigurations = {
-    "${kurisu.hostName}" = mkHomeConfig {
+    ${kurisu.hostName} = mkHomeConfig {
       user = kurisu;
       extraModules = [ ./kurisu ];
     };

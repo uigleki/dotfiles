@@ -50,9 +50,9 @@ in
                 type = "btrfs";
                 extraArgs = [ "-f" ];
                 subvolumes = {
-                  "root" = subvol "/";
-                  "home" = subvol "/home";
-                  "nix" = subvol "/nix";
+                  root = subvol "/";
+                  home = subvol "/home";
+                  nix = subvol "/nix";
                 };
               };
             };

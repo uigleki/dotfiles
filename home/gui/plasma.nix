@@ -8,6 +8,7 @@ let
     family = "Ubuntu";
     pointSize = 10;
   };
+
   wallpapers = {
     path = "${syncDir}images/wallpapers/desktop";
     interval = 3600; # 1 hour
@@ -18,14 +19,8 @@ let
       up = "network/all/upload";
       down = "network/all/download";
       cpu = "cpu/all/usage";
-      ram = "memory/physical/usedPercent";
+      mem = "memory/physical/usedPercent";
       color = "239,240,241";
-      sensors = [
-        up
-        down
-        cpu
-        ram
-      ];
     in
     {
       name = "org.kde.plasma.systemmonitor";
@@ -41,16 +36,16 @@ let
           ];
           lowPrioritySensorIds = builtins.toJSON [
             cpu
-            ram
+            mem
           ];
         };
         SensorLabels = {
           ${up} = "△";
           ${down} = "▽";
           ${cpu} = "CPU";
-          ${ram} = "RAM";
+          ${mem} = "MEM";
         };
-        SensorColors = lib.genAttrs sensors (_: color);
+        SensorColors = lib.genAttrs [ up down cpu mem ] (_: color);
       };
     };
 
@@ -59,7 +54,6 @@ let
     "org.kde.datetimeEnabled"
     "baloosearchEnabled"
     "browserhistoryEnabled"
-    "calculatorEnabled"
     "helprunnerEnabled"
     "krunner_appstreamEnabled"
     "krunner_bookmarksrunnerEnabled"
@@ -77,11 +71,9 @@ let
     "krunner_recentdocumentsEnabled"
     "krunner_sessionsEnabled"
     "krunner_shellEnabled"
-    "krunner_spellcheckEnabled"
     "krunner_systemsettingsEnabled"
     "krunner_webshortcutsEnabled"
     "locationsEnabled"
-    "unitconverterEnabled"
     "windowsEnabled"
   ];
 in
@@ -97,24 +89,6 @@ in
         enable = true;
         overrideConfig = true;
 
-        powerdevil = {
-          # disable auto-suspend to prevent interruptions
-          AC.autoSuspend.action = "nothing";
-          battery.autoSuspend.action = "nothing";
-        };
-
-        shortcuts = {
-          "kitty.desktop"._launch = "Meta+Return";
-          ksmserver."Log Out" = "Meta+Shift+E";
-          kwin."Window Close" = "Meta+Q";
-        };
-
-        krunner = {
-          position = "center";
-          shortcuts.launch = "Meta";
-          historyBehavior = "disabled";
-        };
-
         fonts = {
           general = font;
           fixedWidth = font // {
@@ -128,6 +102,9 @@ in
           windowTitle = font;
         };
 
+        kscreenlocker.appearance.wallpaperSlideShow = wallpapers;
+        workspace.wallpaperSlideShow = wallpapers;
+
         kwin.nightLight = {
           enable = true;
           mode = "times";
@@ -137,14 +114,11 @@ in
           };
         };
 
-        workspace.wallpaperSlideShow = wallpapers;
-        kscreenlocker.appearance.wallpaperSlideShow = wallpapers;
-
         panels = [
           {
             location = "bottom";
             widgets = [
-              "org.kde.plasma.kickoff"
+              { kickoff.settings.General.highlightNewlyInstalledApps = false; }
               "org.kde.plasma.pager"
               {
                 iconTasks = {
@@ -164,6 +138,25 @@ in
             ];
           }
         ];
+
+        powerdevil = {
+          # disable auto-suspend to prevent interruptions
+          AC.autoSuspend.action = "nothing";
+          battery.autoSuspend.action = "nothing";
+        };
+
+        input.keyboard = {
+          repeatDelay = 200;
+          repeatRate = 50;
+        };
+
+        shortcuts = {
+          "kitty.desktop"._launch = "Meta+Return";
+          ksmserver."Log Out" = "Meta+Shift+E";
+          kwin."Window Close" = "Meta+Q";
+        };
+
+        krunner.historyBehavior = "disabled";
 
         configFile = {
           baloofilerc."Basic Settings".Indexing-Enabled = false;
