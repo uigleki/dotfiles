@@ -31,7 +31,7 @@ in
       };
     };
 
-    programs.fish.functions.src = ''
+    programs.fish.functions.src = lib.mkIf config.myModules.gui.enable ''
       argparse 'e/exclude=+' -- $argv
       or return
 
