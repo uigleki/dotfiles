@@ -49,19 +49,15 @@ let
     };
 
   disabledKRunnerPlugins = [
-    "org.kde.activities2Enabled"
-    "org.kde.datetimeEnabled"
     "baloosearchEnabled"
     "browserhistoryEnabled"
     "helprunnerEnabled"
     "krunner_appstreamEnabled"
     "krunner_bookmarksrunnerEnabled"
     "krunner_charrunnerEnabled"
-    "krunner_colorsEnabled"
     "krunner_dictionaryEnabled"
     "krunner_katesessionsEnabled"
     "krunner_keysEnabled"
-    "krunner_killEnabled"
     "krunner_konsoleprofilesEnabled"
     "krunner_kwinEnabled"
     "krunner_placesrunnerEnabled"
@@ -70,9 +66,12 @@ let
     "krunner_recentdocumentsEnabled"
     "krunner_sessionsEnabled"
     "krunner_shellEnabled"
+    "krunner_spellcheckEnabled"
     "krunner_systemsettingsEnabled"
     "krunner_webshortcutsEnabled"
     "locationsEnabled"
+    "org.kde.activities2Enabled"
+    "org.kde.datetimeEnabled"
     "windowsEnabled"
   ];
 in
@@ -140,11 +139,7 @@ in
           }
         ];
 
-        powerdevil = {
-          # disable auto-suspend to prevent interruptions
-          AC.autoSuspend.action = "nothing";
-          battery.autoSuspend.action = "nothing";
-        };
+        powerdevil.AC.autoSuspend.action = "nothing";
 
         input.keyboard = {
           repeatDelay = 250;

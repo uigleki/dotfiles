@@ -31,7 +31,7 @@ Modular layered architecture:
 
 - `home/` – user-level configs (core.nix → dev.nix/gui.nix)
 - `nixos/` – system-level configs
-- `hosts/` – per-machine configurations (kurisu, mayuri, nazuna, akira)
+- `hosts/` – per-machine configurations
 
 Higher layers import from lower layers. Host configs are the top layer.
 
