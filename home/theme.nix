@@ -14,20 +14,28 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.sessionVariables.LG_CONFIG_FILE = lib.concatStringsSep "," [
+      "${config.xdg.configHome}/lazygit/config.yml"
+      (builtins.fetchurl {
+        url = "https://raw.githubusercontent.com/catppuccin/lazygit/21a25af/themes-mergable/latte/mauve.yml";
+        sha256 = "0yjqn59l9kmhzklkbkqy5l4g5pbwyrilpcrmmvha8bgvks4vsxbz";
+      })
+    ];
+
     xdg.configFile = {
       "eza/theme.yml".source = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/eza-community/eza-themes/562fb6d/themes/catppuccin-latte.yml";
-        sha256 = "sha256-sSf7wrJTwnt/zO+dsOF13KDsoIOtKAHyF/g3I5OcRCw=";
+        sha256 = "sSf7wrJTwnt/zO+dsOF13KDsoIOtKAHyF/g3I5OcRCw=";
       };
 
       "fish/themes/Catppuccin Latte.theme".source = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/catppuccin/fish/af622a6/themes/Catppuccin%20Latte.theme";
-        sha256 = "sha256-GHxIQkF2Co4vZpkPzz54PGnsrfYvzzl8MF+ak3lUpzA=";
+        sha256 = "GHxIQkF2Co4vZpkPzz54PGnsrfYvzzl8MF+ak3lUpzA=";
       };
 
       "yazi/theme.toml".source = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/yazi-rs/flavors/ffe6e3a/catppuccin-latte.yazi/flavor.toml";
-        sha256 = "sha256-JLZpOm0WEQ1xbEhmJYe4SBFNaPx0Jp5l6Wy/3rGk40c=";
+        sha256 = "JLZpOm0WEQ1xbEhmJYe4SBFNaPx0Jp5l6Wy/3rGk40c=";
       };
     };
 
@@ -54,52 +62,9 @@ in
         "--color=border:#9CA0B0,label:#4C4F69"
       ];
 
-      lazygit.settings.gui = {
-        # https://github.com/catppuccin/lazygit/blob/main/themes/latte/mauve.yml
-        theme = {
-          activeBorderColor = [
-            "#8839ef"
-            "bold"
-          ];
-          inactiveBorderColor = [ "#6c6f85" ];
-          optionsTextColor = [ "#1e66f5" ];
-          selectedLineBgColor = [ "#ccd0da" ];
-          cherryPickedCommitBgColor = [ "#bcc0cc" ];
-          cherryPickedCommitFgColor = [ "#8839ef" ];
-          unstagedChangesColor = [ "#d20f39" ];
-          defaultFgColor = [ "#4c4f69" ];
-          searchingActiveBorderColor = [ "#df8e1d" ];
-        };
-        authorColors."*" = "#7287fd";
-      };
-
-      mpv = {
-        # https://github.com/catppuccin/mpv/blob/main/themes/latte/mauve.conf
-        config = {
-          background-color = "#eff1f5";
-          osd-back-color = "#dce0e8";
-          osd-border-color = "#dce0e8";
-          osd-color = "#4c4f69";
-          osd-shadow-color = "#eff1f5";
-        };
-        scriptOpts = {
-          stats = {
-            border_color = "efe9e6";
-            font_color = "694f4c";
-            plot_bg_border_color = "ef3988";
-            plot_bg_color = "efe9e6";
-            plot_color = "ef3988";
-          };
-          uosc.color = lib.concatStringsSep "," [
-            "foreground=8839ef"
-            "foreground_text=ccd0da"
-            "background=eff1f5"
-            "background_text=4c4f69"
-            "curtain=e6e9ef"
-            "success=40a02b"
-            "error=d20f39"
-          ];
-        };
+      mpv.config.include = builtins.fetchurl {
+        url = "https://raw.githubusercontent.com/catppuccin/mpv/7cb9402/themes/latte/mauve.conf";
+        sha256 = "0bjy7phjxn53qz4f3s47798nlvagrbgfy5c075lldy7439sqwiyn";
       };
 
       starship.settings = {

@@ -35,14 +35,8 @@ let
           title = "Net Speed";
         };
         Sensors = {
-          highPrioritySensorIds = builtins.toJSON [
-            up
-            down
-          ];
-          lowPrioritySensorIds = builtins.toJSON [
-            cpu
-            mem
-          ];
+          highPrioritySensorIds = ''["${up}","${down}"]'';
+          lowPrioritySensorIds = ''["${cpu}","${mem}"]'';
         };
         SensorLabels = {
           ${up} = "△";
