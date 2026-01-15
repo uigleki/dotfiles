@@ -6,10 +6,10 @@
   ...
 }:
 let
-  cfg = config.myModules.gui;
+  cfg = config.myModules.desktop;
 in
 {
-  options.myModules.gui.enable = lib.mkEnableOption "GUI environment";
+  options.myModules.desktop.enable = lib.mkEnableOption "desktop environment";
 
   config = lib.mkIf cfg.enable {
     boot.supportedFilesystems = [ "ntfs" ];
@@ -99,6 +99,12 @@ in
         alsa.enable = true;
         jack.enable = true;
         pulse.enable = true;
+      };
+
+      sunshine = {
+        enable = true;
+        capSysAdmin = true;
+        openFirewall = true;
       };
 
       udisks2 = {

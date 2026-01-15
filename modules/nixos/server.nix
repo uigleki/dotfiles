@@ -3,7 +3,7 @@ let
   cfg = config.myModules.server;
 in
 {
-  options.myModules.server.enable = lib.mkEnableOption "server mode";
+  options.myModules.server.enable = lib.mkEnableOption "headless server";
 
   config = lib.mkIf cfg.enable {
     services = {

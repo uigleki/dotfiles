@@ -1,22 +1,20 @@
 {
-  inputs,
   pkgs,
   user,
   ...
 }:
 {
   imports = [
+    ../shared/nix.nix
     ./boot.nix
-    ./disk-config.nix
-    ./gui.nix
+    ./desktop.nix
+    ./disk.nix
     ./network.nix
-    ./nix.nix
     ./secure-boot.nix
     ./security.nix
     ./server.nix
     ./upgrade.nix
     ./wsl.nix
-    inputs.home-manager.nixosModules.home-manager
   ];
 
   system.stateVersion = user.stateVersion;
@@ -62,13 +60,6 @@
     podman-compose
     vim
   ];
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.${user.name}.imports = [ ../home ];
-    extraSpecialArgs = { inherit inputs user; };
-  };
 
   zramSwap = {
     enable = true;

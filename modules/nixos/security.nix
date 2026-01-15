@@ -1,9 +1,10 @@
+# Hardening options based on kernel-hardening-checker recommendations.
+# Excludes settings that impact normal usage or performance.
+
 { config, lib, ... }:
 let
   cfg = config.myModules.security;
 in
-# Hardening options based on kernel-hardening-checker recommendations.
-# Excludes settings that impact normal usage or performance.
 {
   options.myModules.security.enable = lib.mkEnableOption "security hardening" // {
     default = true;

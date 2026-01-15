@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.myModules.gui;
+  cfg = config.myModules.desktop;
   syncDir = "${config.home.homeDirectory}/sync/a/";
   musicDir = "${syncDir}music";
 

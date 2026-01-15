@@ -11,12 +11,12 @@ in
 {
   imports = [
     ./core.nix
+    ./desktop.nix
     ./dev.nix
-    ./gui.nix
     ./network.nix
     ./theme.nix
   ]
-  ++ lib.optionals isStandalone [ ../nixos/nix.nix ];
+  ++ lib.optionals isStandalone [ ../shared/nix.nix ];
 
   config = lib.mkIf isStandalone {
     home = {

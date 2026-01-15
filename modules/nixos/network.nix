@@ -4,7 +4,7 @@ let
   bufferSize = 16 * 1024 * 1024; # 16MB in bytes
 in
 {
-  options.myModules.network.enable = lib.mkEnableOption "network configuration" // {
+  options.myModules.network.enable = lib.mkEnableOption "network optimization and services" // {
     default = true;
   };
 

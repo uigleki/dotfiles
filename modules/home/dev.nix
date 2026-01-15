@@ -9,7 +9,7 @@ let
   pnpmHome = "$HOME/.local/share/pnpm";
 in
 {
-  options.myModules.dev.enable = lib.mkEnableOption "development tools" // {
+  options.myModules.dev.enable = lib.mkEnableOption "development environment" // {
     default = true;
   };
 
@@ -31,7 +31,7 @@ in
       };
     };
 
-    programs.fish.functions.src = lib.mkIf config.myModules.gui.enable ''
+    programs.fish.functions.src = lib.mkIf config.myModules.desktop.enable ''
       argparse 'e/exclude=+' -- $argv
       or return
 

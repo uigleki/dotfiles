@@ -9,7 +9,7 @@ let
   theme = "Catppuccin Latte";
 in
 {
-  options.myModules.theme.enable = lib.mkEnableOption "theming" // {
+  options.myModules.theme.enable = lib.mkEnableOption "color theme" // {
     default = true;
   };
 

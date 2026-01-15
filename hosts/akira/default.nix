@@ -3,7 +3,7 @@
   imports = [ ./hardware-configuration.nix ];
 
   myModules = {
-    gui.enable = true;
+    desktop.enable = true;
     secureBoot.enable = true;
   };
 

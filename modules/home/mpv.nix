@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  cfg = config.myModules.gui;
+  cfg = config.myModules.desktop;
 in
 {
   config = lib.mkIf cfg.enable {

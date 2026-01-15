@@ -6,16 +6,16 @@
   ...
 }:
 let
-  cfg = config.myModules.gui;
+  cfg = config.myModules.desktop;
 in
 {
   imports = [
-    ./gui/mpv.nix
-    ./gui/plasma.nix
+    ./mpv.nix
+    ./plasma.nix
   ];
 
-  options.myModules.gui.enable = lib.mkEnableOption "GUI applications" // {
-    default = osConfig.myModules.gui.enable or false;
+  options.myModules.desktop.enable = lib.mkEnableOption "desktop applications" // {
+    default = osConfig.myModules.desktop.enable or false;
   };
 
   config = lib.mkIf cfg.enable {

@@ -11,7 +11,7 @@ in
 {
   imports = [ inputs.nixos-wsl.nixosModules.default ];
 
-  options.myModules.wsl.enable = lib.mkEnableOption "WSL support";
+  options.myModules.wsl.enable = lib.mkEnableOption "WSL mode";
 
   config = lib.mkIf cfg.enable {
     wsl.enable = true;

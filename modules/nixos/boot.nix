@@ -3,7 +3,7 @@ let
   cfg = config.myModules.boot;
 in
 {
-  options.myModules.boot.enable = lib.mkEnableOption "boot configuration" // {
+  options.myModules.boot.enable = lib.mkEnableOption "bootloader" // {
     default = true;
   };
 

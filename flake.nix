@@ -40,42 +40,5 @@
     };
   };
 
-  outputs =
-    { self, nixpkgs, ... }@inputs:
-    let
-      eachSystem = nixpkgs.lib.genAttrs [
-        "aarch64-linux"
-        "x86_64-linux"
-      ];
-      pkgsFor = system: nixpkgs.legacyPackages.${system};
-    in
-    {
-      formatter = eachSystem (system: (pkgsFor system).nixfmt-rfc-style);
-
-      checks = eachSystem (system: {
-        pre-commit-check = inputs.git-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            convco.enable = true;
-            deadnix.enable = true;
-            nil.enable = true;
-            nixfmt-rfc-style.enable = true;
-            statix.enable = true;
-          };
-          package = (pkgsFor system).prek;
-        };
-      });
-
-      devShells = eachSystem (system: {
-        default =
-          let
-            check = self.checks.${system}.pre-commit-check;
-          in
-          (pkgsFor system).mkShellNoCC {
-            inherit (check) shellHook;
-            packages = check.enabledPackages;
-          };
-      });
-    }
-    // import ./hosts { inherit inputs; };
+  outputs = inputs: import ./outputs inputs;
 }

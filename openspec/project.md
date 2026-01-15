@@ -29,8 +29,8 @@ Personal NixOS dotfiles for reproducible, declarative development environments. 
 
 Modular layered architecture:
 
-- `home/` – user-level configs (core.nix → dev.nix/gui.nix)
-- `nixos/` – system-level configs
+- `modules/home/` – user-level configs (core.nix → dev.nix/desktop.nix)
+- `modules/nixos/` – system-level configs
 - `hosts/` – per-machine configurations
 
 Higher layers import from lower layers. Host configs are the top layer.
