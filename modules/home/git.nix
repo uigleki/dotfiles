@@ -5,9 +5,9 @@
   ...
 }:
 let
-  isGui = config.myModules.desktop.enable;
-  package = if isGui then pkgs.gitFull else pkgs.git;
-  helper = if isGui then "libsecret" else "store";
+  isDesktop = config.myModules.desktop.enable;
+  package = if isDesktop then pkgs.gitFull else pkgs.git;
+  helper = if isDesktop then "libsecret" else "store";
 in
 {
   programs = {

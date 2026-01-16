@@ -121,7 +121,6 @@ in
     environment = {
       systemPackages = with pkgs; [
         kitty
-        wayland-utils
         wl-clipboard
       ];
 

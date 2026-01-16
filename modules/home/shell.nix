@@ -1,7 +1,7 @@
 {
-  osConfig ? null,
   pkgs,
   user,
+  osConfig ? null,
   ...
 }:
 let

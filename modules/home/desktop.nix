@@ -1,8 +1,8 @@
 {
   config,
   lib,
-  osConfig ? null,
   pkgs,
+  osConfig ? null,
   ...
 }:
 let
@@ -24,12 +24,10 @@ in
       freefilesync
       motrix
       qbittorrent-enhanced
-      unstable.antigravity
     ];
 
     programs = {
       onlyoffice.enable = true;
-      vscode.enable = true;
 
       chromium = {
         enable = true;
