@@ -6,7 +6,7 @@
 }:
 let
   cfg = config.myModules.dev;
-  pnpmHome = "$HOME/.local/share/pnpm";
+  pnpmHome = "${config.xdg.dataHome}/pnpm";
 in
 {
   options.myModules.dev.enable = lib.mkEnableOption "development environment" // {

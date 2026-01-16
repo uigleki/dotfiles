@@ -18,7 +18,7 @@ in
 
     myModules = {
       boot.enable = false;
-      diskConfig.enable = false;
+      disk.enable = false;
       network.enable = false;
       security.enable = false;
     };
