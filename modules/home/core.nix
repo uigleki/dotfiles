@@ -28,7 +28,7 @@
     bat.enable = true;
     bottom.enable = true;
     fd.enable = true;
-    nix-index-database.comma.enable = true;
+    nix-index-database.comma.enable = true; # run uninstalled commands: , <cmd>
     nix-index.enable = true;
     starship.enable = true;
     yazi.enable = true;
@@ -59,7 +59,7 @@
 
     zoxide = {
       enable = true;
-      options = [ "--cmd j" ];
+      options = [ "--cmd j" ]; # use j instead of default z
     };
   };
 }

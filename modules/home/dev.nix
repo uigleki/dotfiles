@@ -34,7 +34,7 @@ in
       };
     })
     (lib.mkIf (cfg.enable && isDesktop) {
-      home.packages = with pkgs; [ unstable.antigravity ];
+      home.packages = with pkgs; [ unstable.antigravity ]; # Google's VSCode fork
 
       programs = {
         vscode.enable = true;

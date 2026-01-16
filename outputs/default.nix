@@ -61,7 +61,7 @@ in
         nixfmt-rfc-style.enable = true;
         statix.enable = true;
       };
-      package = (pkgsFor system).prek;
+      package = (pkgsFor system).prek; # rust pre-commit alternative
       src = ../.;
     };
   });

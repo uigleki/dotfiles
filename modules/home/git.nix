@@ -7,7 +7,7 @@
 let
   isDesktop = config.myModules.desktop.enable;
   package = if isDesktop then pkgs.gitFull else pkgs.git;
-  helper = if isDesktop then "libsecret" else "store";
+  helper = if isDesktop then "libsecret" else "store"; # desktop: keyring, server: plaintext
 in
 {
   programs = {

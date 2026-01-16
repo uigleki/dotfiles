@@ -46,6 +46,7 @@ Higher layers import from lower layers. Host configs are the top layer.
 - Each logical component (git, tmux, helix) in separate .nix file
 - Inline comments for non-obvious configuration choices
 - Conventional Commits: `type(scope): description`
+- Ordering: semantic > single-line first > alphabetical
 
 ## Domain Context
 
