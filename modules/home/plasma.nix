@@ -157,6 +157,7 @@ in
         configFile = {
           baloofilerc."Basic Settings".Indexing-Enabled = false;
           krunnerrc.Plugins = lib.genAttrs disabledKRunnerPlugins (_: false);
+          # prevent fcitx5 warning about missing virtual keyboard
           kwinrc.Wayland.InputMethod = "org.fcitx.Fcitx5.desktop";
         };
       };

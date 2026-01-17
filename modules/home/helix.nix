@@ -16,6 +16,7 @@
           timeout = 1000; # 1 second
         };
       };
+
       keys.insert = {
         # Caps Lock remapped to Home externally; use it to exit insert mode
         home = "normal_mode";

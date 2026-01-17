@@ -21,28 +21,23 @@ in
     i18n = {
       defaultLocale = "en_US.UTF-8";
       extraLocales = [
-        "ja_JP.UTF-8/UTF-8"
         "zh_CN.UTF-8/UTF-8"
         "zh_TW.UTF-8/UTF-8"
+        "ja_JP.UTF-8/UTF-8"
       ];
+
       inputMethod = {
         enable = true;
         type = "fcitx5";
         fcitx5 = {
           addons = with pkgs; [
-            fcitx5-mozc
-            fcitx5-pinyin-moegirl
-            fcitx5-pinyin-zhwiki
             qt6Packages.fcitx5-chinese-addons
+            fcitx5-pinyin-zhwiki
+            fcitx5-pinyin-moegirl
+            fcitx5-mozc
           ];
+
           settings = {
-            addons.pinyin.globalSection = {
-              ShuangpinProfile = "Xiaohe";
-            };
-            globalOptions = {
-              "Hotkey/TriggerKeys"."0" = "Super+space";
-              Behavior.ShareInputState = "All";
-            };
             inputMethod = {
               "Groups/0" = {
                 Name = "Default";
@@ -50,6 +45,13 @@ in
               };
               "Groups/0/Items/0".Name = "keyboard-us";
               "Groups/0/Items/1".Name = "shuangpin";
+            };
+
+            addons.pinyin.globalSection.ShuangpinProfile = "Xiaohe";
+
+            globalOptions = {
+              "Hotkey/TriggerKeys"."0" = "Super+space";
+              Behavior.ShareInputState = "All";
             };
           };
         };
@@ -141,6 +143,7 @@ in
         nerd-fonts.ubuntu-mono
         noto-fonts-cjk-sans
       ];
+
       fontconfig.defaultFonts = {
         monospace = [
           "UbuntuMono Nerd Font"

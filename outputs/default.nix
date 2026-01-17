@@ -31,6 +31,11 @@ let
     stateVersion = "25.05";
   };
 
+  nazuna = baseUser // {
+    hostName = "nazuna";
+    system = "aarch64-linux";
+  };
+
   akira = baseUser // {
     hostName = "akira";
   };
@@ -44,12 +49,7 @@ let
     hostName = "kurisu";
   };
 
-  nazuna = baseUser // {
-    hostName = "nazuna";
-    system = "aarch64-linux";
-  };
-
-  # Future host names: miyabi
+  # Future host names: miyabi, hitagi
 in
 {
   checks = eachSystem (system: {
@@ -80,6 +80,11 @@ in
   formatter = eachSystem (system: (pkgsFor system).nixfmt-rfc-style);
 
   nixosConfigurations = {
+    ${nazuna.hostName} = mkSystem {
+      extraModules = [ ../hosts/nazuna ];
+      user = nazuna;
+    };
+
     ${akira.hostName} = mkSystem {
       extraModules = [ ../hosts/akira ];
       user = akira;
@@ -89,16 +94,10 @@ in
       extraModules = [ ../hosts/inori ];
       user = inori;
     };
-
-    ${nazuna.hostName} = mkSystem {
-      extraModules = [ ../hosts/nazuna ];
-      user = nazuna;
-    };
   };
 
   homeConfigurations = {
     ${kurisu.hostName} = mkHome {
-      extraModules = [ ../hosts/kurisu ];
       user = kurisu;
     };
   };
