@@ -8,8 +8,7 @@ let
   ];
   pkgsFor = system: nixpkgs.legacyPackages.${system};
 
-  lib = import ../lib { inherit inputs; };
-  inherit (lib) mkHome mkSystem;
+  inherit (import ../lib { inherit inputs; }) mkHome mkSystem;
 
   baseUser = {
     name = "u";
@@ -18,6 +17,7 @@ let
     gitName = "Ray";
     gitEmail = "30580339+uigleki@users.noreply.github.com";
     flake = "$HOME/.config/dotfiles";
+    syncDir = "$HOME/sync/a";
 
     sshKeys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDm+4u9INuS/Cm3sqqAaJknGGVIpjA8bVNVdLarmUbjD"

@@ -10,6 +10,7 @@ Run these commands after first login:
 sudo tailscale up --operator=$USER
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak config --set languages "zh;ja;en"
 flatpak install -y flathub com.heroicgameslauncher.hgl com.usebottles.bottles
 
 sudo virsh net-autostart default

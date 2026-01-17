@@ -2,12 +2,12 @@
   config,
   inputs,
   lib,
+  user,
   ...
 }:
 let
   cfg = config.myModules.desktop;
-  syncDir = "${config.home.homeDirectory}/sync/a/";
-  musicDir = "${syncDir}music";
+  musicDir = "${user.syncDir}/music";
 
   font = {
     family = "Ubuntu";
@@ -15,7 +15,7 @@ let
   };
 
   wallpapers = {
-    path = "${syncDir}images/wallpapers/desktop";
+    path = "${user.syncDir}/images/wallpapers/desktop";
     interval = 3600; # 1 hour
   };
 
