@@ -1,14 +1,13 @@
 inputs:
 let
   inherit (inputs) nixpkgs self;
+  inherit (import ../lib { inherit inputs; }) mkHome mkSystem;
 
   eachSystem = nixpkgs.lib.genAttrs [
     "aarch64-linux"
     "x86_64-linux"
   ];
   pkgsFor = system: nixpkgs.legacyPackages.${system};
-
-  inherit (import ../lib { inherit inputs; }) mkHome mkSystem;
 
   baseUser = {
     name = "u";
