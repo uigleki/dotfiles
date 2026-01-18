@@ -17,10 +17,37 @@
     ./wsl.nix
   ];
 
-  system.stateVersion = user.stateVersion;
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 180; # Aggressively use ZRAM
+    "vm.watermark_boost_factor" = 0; # Prevent latency spikes
+    "vm.watermark_scale_factor" = 125; # Reclaim memory earlier
+    "vm.page-cluster" = 0; # Disable read-ahead
+  };
+
+  environment.systemPackages = with pkgs; [
+    curl
+    git
+    podman-compose
+    vim
+  ];
+
   networking.hostName = user.hostName;
 
+  nix = {
+    channel.enable = false;
+    settings.auto-optimise-store = true;
+  };
+
+  programs.nix-ld.enable = true;
+
   security.sudo.wheelNeedsPassword = false;
+
+  systemd.tmpfiles.rules = [
+    # Docker compatibility symlink for rootless podman
+    "L /var/run/docker.sock - - - - /run/user/${toString user.uid}/podman/podman.sock"
+    # Remove legacy channel profiles (flakes-only configuration)
+    "R /nix/var/nix/profiles/per-user/root/channels - - - -"
+  ];
 
   users.users.${user.name} = {
     inherit (user) uid;
@@ -31,20 +58,6 @@
     linger = true; # allow user services to run without login session
   };
 
-  nix = {
-    channel.enable = false;
-    settings.auto-optimise-store = true;
-  };
-
-  programs.nix-ld.enable = true;
-
-  systemd.tmpfiles.rules = [
-    # Docker compatibility symlink for rootless podman
-    "L /var/run/docker.sock - - - - /run/user/${toString user.uid}/podman/podman.sock"
-    # Remove legacy channel profiles (flakes-only configuration)
-    "R /nix/var/nix/profiles/per-user/root/channels - - - -"
-  ];
-
   virtualisation = {
     containers.enable = true;
     podman = {
@@ -54,15 +67,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    curl
-    git
-    podman-compose
-    vim
-  ];
+  zramSwap.enable = true;
 
-  zramSwap = {
-    enable = true;
-    algorithm = "lz4";
-  };
+  system.stateVersion = user.stateVersion;
 }

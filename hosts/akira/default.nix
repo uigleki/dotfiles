@@ -30,6 +30,13 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024; # 16GB
+    }
+  ];
+
   home-manager.users.${user.name}.programs.plasma.configFile = {
     kcminputrc."Libinput/1267/12474/ELAN1200:00 04F3:30BA Touchpad".DisableEventsOnExternalMouse = true;
   };

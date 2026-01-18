@@ -14,9 +14,43 @@ in
   config = lib.mkIf cfg.enable {
     boot.supportedFilesystems = [ "ntfs" ];
 
-    hardware.bluetooth.enable = true;
+    environment = {
+      systemPackages = with pkgs; [
+        kitty
+        wl-clipboard
+      ];
 
-    time.timeZone = "Asia/Shanghai";
+      plasma6.excludePackages = with pkgs.kdePackages; [
+        baloo-widgets
+        khelpcenter
+        konsole
+        krdp
+        plasma-browser-integration
+        plasma-workspace-wallpapers
+      ];
+    };
+
+    fonts = {
+      enableDefaultPackages = true;
+      packages = with pkgs; [
+        nerd-fonts.ubuntu
+        nerd-fonts.ubuntu-mono
+        noto-fonts-cjk-sans
+      ];
+
+      fontconfig.defaultFonts = {
+        monospace = [
+          "UbuntuMono Nerd Font"
+          "Noto Sans Mono CJK SC"
+        ];
+        sansSerif = [
+          "Ubuntu Nerd Font"
+          "Noto Sans CJK SC"
+        ];
+      };
+    };
+
+    hardware.bluetooth.enable = true;
 
     i18n = {
       defaultLocale = "en_US.UTF-8";
@@ -60,13 +94,6 @@ in
 
     networking.networkmanager.enable = true;
 
-    security.rtkit.enable = true; # real-time scheduling for PipeWire
-
-    users.users.${user.name}.extraGroups = [
-      "libvirtd"
-      "networkmanager"
-    ];
-
     programs = {
       gamemode.enable = true;
       kdeconnect.enable = true;
@@ -81,6 +108,8 @@ in
         fontPackages = with pkgs; [ wqy_zenhei ];
       };
     };
+
+    security.rtkit.enable = true; # real-time scheduling for PipeWire
 
     services = {
       desktopManager.plasma6.enable = true;
@@ -115,45 +144,16 @@ in
       };
     };
 
+    time.timeZone = "Asia/Shanghai";
+
+    users.users.${user.name}.extraGroups = [
+      "libvirtd"
+      "networkmanager"
+    ];
+
     virtualisation = {
       libvirtd.enable = true;
       spiceUSBRedirection.enable = true;
-    };
-
-    environment = {
-      systemPackages = with pkgs; [
-        kitty
-        wl-clipboard
-      ];
-
-      plasma6.excludePackages = with pkgs.kdePackages; [
-        baloo-widgets
-        khelpcenter
-        konsole
-        krdp
-        plasma-browser-integration
-        plasma-workspace-wallpapers
-      ];
-    };
-
-    fonts = {
-      enableDefaultPackages = true;
-      packages = with pkgs; [
-        nerd-fonts.ubuntu
-        nerd-fonts.ubuntu-mono
-        noto-fonts-cjk-sans
-      ];
-
-      fontconfig.defaultFonts = {
-        monospace = [
-          "UbuntuMono Nerd Font"
-          "Noto Sans Mono CJK SC"
-        ];
-        sansSerif = [
-          "Ubuntu Nerd Font"
-          "Noto Sans CJK SC"
-        ];
-      };
     };
   };
 }

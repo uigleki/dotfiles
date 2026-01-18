@@ -22,23 +22,6 @@ in
       })
     ];
 
-    xdg.configFile = {
-      "eza/theme.yml".source = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/eza-community/eza-themes/562fb6d/themes/catppuccin-latte.yml";
-        sha256 = "sSf7wrJTwnt/zO+dsOF13KDsoIOtKAHyF/g3I5OcRCw=";
-      };
-
-      "fish/themes/Catppuccin Latte.theme".source = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/catppuccin/fish/af622a6/themes/Catppuccin%20Latte.theme";
-        sha256 = "GHxIQkF2Co4vZpkPzz54PGnsrfYvzzl8MF+ak3lUpzA=";
-      };
-
-      "yazi/theme.toml".source = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/yazi-rs/flavors/ffe6e3a/catppuccin-latte.yazi/flavor.toml";
-        sha256 = "JLZpOm0WEQ1xbEhmJYe4SBFNaPx0Jp5l6Wy/3rGk40c=";
-      };
-    };
-
     programs = {
       bat.config.theme = theme; # bat --list-themes
       delta.options.syntax-theme = theme; # same as bat
@@ -80,6 +63,23 @@ in
       tmux = {
         plugins = [ pkgs.tmuxPlugins.catppuccin ];
         extraConfig = ''set -g @catppuccin_flavor "latte"'';
+      };
+    };
+
+    xdg.configFile = {
+      "eza/theme.yml".source = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/eza-community/eza-themes/562fb6d/themes/catppuccin-latte.yml";
+        sha256 = "sSf7wrJTwnt/zO+dsOF13KDsoIOtKAHyF/g3I5OcRCw=";
+      };
+
+      "fish/themes/Catppuccin Latte.theme".source = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/catppuccin/fish/af622a6/themes/Catppuccin%20Latte.theme";
+        sha256 = "GHxIQkF2Co4vZpkPzz54PGnsrfYvzzl8MF+ak3lUpzA=";
+      };
+
+      "yazi/theme.toml".source = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/yazi-rs/flavors/ffe6e3a/catppuccin-latte.yazi/flavor.toml";
+        sha256 = "JLZpOm0WEQ1xbEhmJYe4SBFNaPx0Jp5l6Wy/3rGk40c=";
       };
     };
   };

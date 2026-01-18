@@ -78,6 +78,12 @@ in
 
   formatter = eachSystem (system: (pkgsFor system).nixfmt-rfc-style);
 
+  homeConfigurations = {
+    ${kurisu.hostName} = mkHome {
+      user = kurisu;
+    };
+  };
+
   nixosConfigurations = {
     ${nazuna.hostName} = mkSystem {
       extraModules = [ ../hosts/nazuna ];
@@ -92,12 +98,6 @@ in
     ${inori.hostName} = mkSystem {
       extraModules = [ ../hosts/inori ];
       user = inori;
-    };
-  };
-
-  homeConfigurations = {
-    ${kurisu.hostName} = mkHome {
-      user = kurisu;
     };
   };
 }
