@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.myModules.desktop;
 in
@@ -16,6 +21,12 @@ in
         idle = "once";
         save-position-on-quit = "yes";
       };
+
+      scripts = with pkgs.mpvScripts; [
+        mpris
+        thumbfast
+        uosc
+      ];
     };
   };
 }

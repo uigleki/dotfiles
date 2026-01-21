@@ -140,7 +140,10 @@ in
           }
         ];
 
-        powerdevil.AC.autoSuspend.action = "nothing";
+        powerdevil.AC = {
+          autoSuspend.action = "nothing";
+          dimDisplay.idleTimeout = 270;
+        };
 
         input.keyboard = {
           repeatDelay = 250;
