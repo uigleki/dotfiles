@@ -34,10 +34,7 @@ in
         "x25"
       ];
 
-      kernelParams = [
-        "bdev_allow_write_mounted=0"
-        "debugfs=off"
-      ];
+      kernelParams = [ "bdev_allow_write_mounted=0" ];
 
       kernel.sysctl = {
         "dev.tty.ldisc_autoload" = 0;
@@ -64,8 +61,6 @@ in
         "net.ipv4.conf.default.send_redirects" = 0;
         "net.ipv6.conf.all.accept_redirects" = 0;
         "net.ipv6.conf.default.accept_redirects" = 0;
-
-        "vm.unprivileged_userfaultfd" = 0;
       };
     };
 

@@ -12,7 +12,10 @@ in
   options.myModules.desktop.enable = lib.mkEnableOption "desktop environment";
 
   config = lib.mkIf cfg.enable {
-    boot.supportedFilesystems = [ "ntfs" ];
+    boot = {
+      kernelPackages = pkgs.linuxPackages_zen;
+      supportedFilesystems = [ "ntfs" ];
+    };
 
     environment = {
       systemPackages = with pkgs; [
@@ -130,6 +133,11 @@ in
         alsa.enable = true;
         jack.enable = true;
         pulse.enable = true;
+      };
+
+      scx = {
+        enable = true;
+        scheduler = "scx_lavd";
       };
 
       sunshine = {
