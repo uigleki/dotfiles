@@ -15,7 +15,7 @@ Personal NixOS dotfiles for reproducible, declarative development environments. 
 
 ### Core CLI Tools
 
-- Zsh with Starship prompt, zoxide for smart jumping
+- Fish shell with Starship prompt, zoxide for smart jumping
 - Helix editor, Yazi file manager, lazygit, tmux
 - fd, ripgrep, fzf, eza, bat, bottom
 
