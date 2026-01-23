@@ -22,10 +22,9 @@ let
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDm+4u9INuS/Cm3sqqAaJknGGVIpjA8bVNVdLarmUbjD"
     ];
 
-    # System constants
-    # User ID - changing this would break ownership of all existing files
+    # user ID - changing this would break ownership of all existing files
     uid = 1000;
-    # Do not change on upgrade
+    # do not change on upgrade
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "25.05";
   };
@@ -48,7 +47,7 @@ let
     hostName = "kurisu";
   };
 
-  # Future host names: miyabi, hitagi
+  # future host names: miyabi, hitagi
 in
 {
   checks = eachSystem (system: {

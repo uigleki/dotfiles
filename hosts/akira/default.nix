@@ -9,8 +9,11 @@
 
   boot = {
     loader.timeout = 1;
-    # Disable AMD PSR & Panel Replay to fix periodic black screen flickering
-    kernelParams = [ "amdgpu.dcdebugmask=0x410" ];
+
+    kernelParams = [
+      "amdgpu.dcdebugmask=0x410" # disable PSR & Panel Replay to fix visual stuttering
+      "amdgpu.sg_display=0" # disable Scatter/Gather to fix white screen flashing
+    ];
   };
 
   hardware.nvidia = {

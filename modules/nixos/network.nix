@@ -22,7 +22,7 @@ in
 
     networking = {
       firewall.enable = true;
-      # use dnscrypt-proxy as local DNS resolver
+      # required by dnscrypt-proxy
       nameservers = [
         "127.0.0.1"
         "::1"

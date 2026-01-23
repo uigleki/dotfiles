@@ -18,10 +18,11 @@
   ];
 
   boot.kernel.sysctl = {
-    "vm.swappiness" = 180; # Aggressively use ZRAM
-    "vm.watermark_boost_factor" = 0; # Prevent latency spikes
-    "vm.watermark_scale_factor" = 125; # Reclaim memory earlier
-    "vm.page-cluster" = 0; # Disable read-ahead
+    # recommended for zramSwap
+    "vm.swappiness" = 180;
+    "vm.watermark_boost_factor" = 0;
+    "vm.watermark_scale_factor" = 125;
+    "vm.page-cluster" = 0;
   };
 
   environment.systemPackages = with pkgs; [
@@ -43,9 +44,9 @@
   security.sudo.wheelNeedsPassword = false;
 
   systemd.tmpfiles.rules = [
-    # Docker compatibility symlink for rootless podman
+    # docker compatibility symlink for rootless podman
     "L /var/run/docker.sock - - - - /run/user/${toString user.uid}/podman/podman.sock"
-    # Remove legacy channel profiles (flakes-only configuration)
+    # remove legacy channel profiles (flakes-only configuration)
     "R /nix/var/nix/profiles/per-user/root/channels - - - -"
   ];
 

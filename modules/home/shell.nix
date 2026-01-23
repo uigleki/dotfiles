@@ -13,7 +13,7 @@ in
     bash = {
       enable = true;
       initExtra = ''
-        # Load local secrets if exists
+        # load local secrets if exists
         [ -f "${secretsFile}" ] && source "${secretsFile}"
 
         # Launch fish from bash to preserve login shell profile sourcing.

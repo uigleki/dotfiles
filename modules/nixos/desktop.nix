@@ -15,6 +15,9 @@ in
     boot = {
       kernelPackages = pkgs.linuxPackages_zen;
       supportedFilesystems = [ "ntfs" ];
+      kernel.sysctl = {
+        "vm.compaction_proactiveness" = 0; # reduce latency spikes in gaming
+      };
     };
 
     environment = {
@@ -113,14 +116,15 @@ in
       };
     };
 
-    security.rtkit.enable = true; # real-time scheduling for PipeWire
+    # real-time scheduling for PipeWire
+    security.rtkit.enable = true;
 
     services = {
       desktopManager.plasma6.enable = true;
       displayManager.sddm.enable = true;
       flatpak.enable = true;
 
-      # Remap Caps Lock to Home key using keyd
+      # remap Caps Lock to Home key using keyd
       keyd = {
         enable = true;
         keyboards.default = {
