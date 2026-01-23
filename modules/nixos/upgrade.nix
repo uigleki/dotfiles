@@ -14,8 +14,8 @@ in
     system.autoUpgrade = {
       enable = true;
       flake = inputs.self.outPath;
-      # update flake inputs without modifying the repo's lock file
       flags = [
+        # update flake inputs without modifying the repo's lock file
         "--recreate-lock-file"
         "--no-write-lock-file"
       ];

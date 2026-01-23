@@ -7,7 +7,11 @@
     secureBoot.enable = true;
   };
 
-  boot.loader.timeout = 1;
+  boot = {
+    loader.timeout = 1;
+    # Disable AMD PSR & Panel Replay to fix periodic black screen flickering
+    kernelParams = [ "amdgpu.dcdebugmask=0x410" ];
+  };
 
   hardware.nvidia = {
     open = true;

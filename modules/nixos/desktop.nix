@@ -25,6 +25,7 @@ in
 
       plasma6.excludePackages = with pkgs.kdePackages; [
         baloo-widgets
+        discover
         khelpcenter
         konsole
         krdp
