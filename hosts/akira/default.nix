@@ -7,29 +7,17 @@
     secureBoot.enable = true;
   };
 
-  boot = {
-    loader.timeout = 1;
-
-    kernelParams = [
-      "amdgpu.dcdebugmask=0x410" # disable PSR & Panel Replay to fix visual stuttering
-      "amdgpu.sg_display=0" # disable Scatter/Gather to fix white screen flashing
-    ];
-  };
+  boot.loader.timeout = 1;
 
   hardware.nvidia = {
-    open = true;
-
-    powerManagement = {
-      enable = true;
-      finegrained = true;
-    };
-
+    open = true; # only set to false if older than RTX 20 series
+    powerManagement.enable = true; # preserve VRAM on suspend
     prime = {
       amdgpuBusId = "PCI:5:0:0";
       nvidiaBusId = "PCI:1:0:0";
 
       offload = {
-        enable = true;
+        enable = true; # most games auto-use dGPU
         enableOffloadCmd = true;
       };
     };
@@ -40,7 +28,7 @@
   swapDevices = [
     {
       device = "/var/lib/swapfile";
-      size = 16 * 1024; # 16GB
+      size = 8 * 1024; # 8GB
     }
   ];
 
