@@ -34,6 +34,7 @@ let
         Appearance = {
           chartFace = "org.kde.ksysguard.textonly";
           title = "Net Speed";
+          updateRateLimit = 1000; # 1 second
         };
         Sensors = {
           highPrioritySensorIds = ''["${up}","${down}"]'';
@@ -88,8 +89,6 @@ in
 
       plasma = {
         enable = true;
-        overrideConfig = true;
-
         fonts = {
           general = font;
           fixedWidth = font // {

@@ -11,7 +11,7 @@ in
   config = lib.mkIf cfg.enable {
     boot.kernel.sysctl = {
       # TCP/BBR optimization for high-throughput, low-latency networking
-      "net.ipv4.tcp_fastopen" = 3; # enabled for both client and server
+      "net.ipv4.tcp_fastopen" = 3;
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.default_qdisc" = "cake";
 
