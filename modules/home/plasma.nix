@@ -89,6 +89,8 @@ in
 
       plasma = {
         enable = true;
+        # overrideConfig = true;
+
         fonts = {
           general = font;
           fixedWidth = font // {
@@ -102,8 +104,18 @@ in
           windowTitle = font;
         };
 
-        kscreenlocker.appearance.wallpaperSlideShow = wallpapers;
+        input.keyboard = {
+          repeatDelay = 250;
+          repeatRate = 30;
+        };
+
+        krunner.historyBehavior = "disabled";
+
         workspace.wallpaperSlideShow = wallpapers;
+        kscreenlocker = {
+          appearance.wallpaperSlideShow = wallpapers;
+          passwordRequiredDelay = 0;
+        };
 
         kwin.nightLight = {
           enable = true;
@@ -139,14 +151,14 @@ in
           }
         ];
 
-        powerdevil.AC = {
-          autoSuspend.action = "nothing";
-          dimDisplay.idleTimeout = 270;
-        };
-
-        input.keyboard = {
-          repeatDelay = 250;
-          repeatRate = 30;
+        powerdevil = {
+          AC = {
+            autoSuspend.action = "nothing";
+            dimDisplay.idleTimeout = 270;
+            turnOffDisplay.idleTimeout = 300;
+          };
+          battery.turnOffDisplay.idleTimeout = 150;
+          lowBattery.turnOffDisplay.idleTimeout = 90;
         };
 
         shortcuts = {
@@ -155,13 +167,14 @@ in
           kwin."Window Close" = "Meta+Q";
         };
 
-        krunner.historyBehavior = "disabled";
-
         configFile = {
           baloofilerc."Basic Settings".Indexing-Enabled = false;
           krunnerrc.Plugins = lib.genAttrs disabledKRunnerPlugins (_: false);
-          # prevent fcitx5 warning about missing virtual keyboard
-          kwinrc.Wayland.InputMethod = "org.fcitx.Fcitx5.desktop";
+          kwinrc = {
+            Effect-overview.BorderActivate = 9; # disable top-left overview trigger
+            # prevent fcitx5 warning about missing virtual keyboard
+            Wayland.InputMethod = "org.fcitx.Fcitx5.desktop";
+          };
         };
       };
     };
