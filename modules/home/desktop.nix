@@ -56,5 +56,16 @@ in
       syncthing.tray.enable = true;
       tailscale-systray.enable = true;
     };
+
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "application/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop";
+        "x-scheme-handler/magnet" = "org.qbittorrent.qBittorrent.desktop";
+
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+      };
+    };
   };
 }

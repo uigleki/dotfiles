@@ -11,7 +11,7 @@ let
   musicDir = "${syncDir}/music";
 
   font = {
-    family = "Ubuntu";
+    family = "Sans Serif";
     pointSize = 10;
   };
 
@@ -94,7 +94,7 @@ in
         fonts = {
           general = font;
           fixedWidth = font // {
-            family = "Ubuntu Mono";
+            family = "Monospace";
           };
           small = font // {
             pointSize = 8;
