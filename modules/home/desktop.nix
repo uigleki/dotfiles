@@ -10,6 +10,7 @@ let
 in
 {
   imports = [
+    ./kitty.nix
     ./mpv.nix
     ./plasma.nix
   ];
@@ -37,18 +38,6 @@ in
       firefox = {
         enable = true;
         profiles.default = { }; # pin profile name
-      };
-
-      kitty = {
-        enable = true;
-        keybindings = {
-          "ctrl+c" = "copy_or_interrupt";
-          "ctrl+v" = "paste_from_clipboard";
-        };
-        settings = {
-          copy_on_select = "yes";
-          cursor_blink_interval = 0;
-        };
       };
     };
 
