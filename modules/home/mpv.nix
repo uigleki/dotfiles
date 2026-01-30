@@ -8,6 +8,7 @@ let
   cfg = config.myModules.desktop;
   shaders = "${pkgs.mpv-shim-default-shaders}/share/mpv-shim-default-shaders/shaders";
 
+  # for anime
   anime4k = builtins.concatStringsSep ":" [
     "${shaders}/Anime4K_Clamp_Highlights.glsl" # anti-ringing
     "${shaders}/Anime4K_Restore_CNN_M.glsl" # denoise & restore
@@ -15,6 +16,7 @@ let
     "${shaders}/Anime4K_AutoDownscalePre_x2.glsl" # downscale if larger than screen
   ];
 
+  # for live-action
   fsrcnnx = builtins.concatStringsSep ":" [
     "${shaders}/FSRCNNX_x2_8-0-4-1.glsl" # luma upscale (detail)
     "${shaders}/KrigBilateral.glsl" # chroma upscale (color)
@@ -26,11 +28,14 @@ in
     programs.mpv = {
       enable = true;
       config = {
+        profile = "high-quality";
         vo = "gpu-next";
         hwdec = "auto-safe";
-        slang = "chs,sc,zh";
+
+        slang = "chs,sc,zh,chi,zho";
         alang = "jpn,ja,jp";
         sub-auto = "fuzzy";
+
         fullscreen = "yes";
         idle = "once"; # keep open if no file, quit after playback
         save-position-on-quit = "yes";
