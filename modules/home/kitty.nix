@@ -1,15 +1,21 @@
+{ config, lib, ... }:
+let
+  cfg = config.myModules.desktop;
+in
 {
-  programs.kitty = {
-    enable = true;
-    settings = {
-      copy_on_select = "yes";
-      cursor_blink_interval = 0;
-      window_padding_width = 4;
-    };
+  config = lib.mkIf cfg.enable {
+    programs.kitty = {
+      enable = true;
+      settings = {
+        copy_on_select = "yes";
+        cursor_blink_interval = 0;
+        window_padding_width = 4;
+      };
 
-    keybindings = {
-      "ctrl+c" = "copy_or_interrupt";
-      "ctrl+v" = "paste_from_clipboard";
+      keybindings = {
+        "ctrl+c" = "copy_or_interrupt";
+        "ctrl+v" = "paste_from_clipboard";
+      };
     };
   };
 }
