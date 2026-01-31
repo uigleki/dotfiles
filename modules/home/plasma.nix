@@ -91,17 +91,13 @@ in
         enable = true;
         # overrideConfig = true;
 
-        fonts = {
-          general = font;
+        fonts = lib.genAttrs [ "general" "toolbar" "menu" "windowTitle" ] (_: font) // {
           fixedWidth = font // {
             family = "Monospace";
           };
           small = font // {
             pointSize = 8;
           };
-          toolbar = font;
-          menu = font;
-          windowTitle = font;
         };
 
         input.keyboard = {

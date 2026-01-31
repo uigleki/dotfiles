@@ -135,10 +135,10 @@ in
 
       pipewire = {
         enable = true;
-        alsa.enable = true;
-        jack.enable = true;
-        pulse.enable = true;
-      };
+      }
+      // lib.genAttrs [ "alsa" "jack" "pulse" ] (_: {
+        enable = true;
+      });
 
       scx = {
         enable = true;

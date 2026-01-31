@@ -7,8 +7,6 @@
 }:
 let
   cfg = config.myModules.desktop;
-  browser = "firefox.desktop";
-  torrent = "org.qbittorrent.qBittorrent.desktop";
 in
 {
   imports = [
@@ -50,14 +48,16 @@ in
 
     xdg.mimeApps = {
       enable = true;
-      defaultApplications = {
-        "text/html" = browser;
-        "x-scheme-handler/http" = browser;
-        "x-scheme-handler/https" = browser;
-
-        "application/x-bittorrent" = torrent;
-        "x-scheme-handler/magnet" = torrent;
-      };
+      defaultApplications =
+        lib.genAttrs [
+          "text/html"
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+        ] (_: "firefox.desktop")
+        // lib.genAttrs [
+          "application/x-bittorrent"
+          "x-scheme-handler/magnet"
+        ] (_: "org.qbittorrent.qBittorrent.desktop");
     };
   };
 }

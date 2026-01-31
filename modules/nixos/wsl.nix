@@ -16,12 +16,9 @@ in
   config = lib.mkIf cfg.enable {
     wsl.enable = true;
 
-    myModules = {
-      boot.enable = false;
-      disk.enable = false;
-      network.enable = false;
-      security.enable = false;
-    };
+    myModules = lib.genAttrs [ "boot" "disk" "network" "security" ] (_: {
+      enable = false;
+    });
 
     environment.systemPackages = with pkgs; [ wget ];
   };
