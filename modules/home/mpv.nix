@@ -6,21 +6,19 @@
 }:
 let
   cfg = config.myModules.desktop;
-  shaders = "${pkgs.mpv-shim-default-shaders}/share/mpv-shim-default-shaders/shaders";
+  shaderDir = "${pkgs.mpv-shim-default-shaders}/share/mpv-shim-default-shaders/shaders";
 
-  # for anime
-  anime4k = builtins.concatStringsSep ":" [
-    "${shaders}/Anime4K_Clamp_Highlights.glsl" # anti-ringing
-    "${shaders}/Anime4K_Restore_CNN_M.glsl" # denoise & restore
-    "${shaders}/Anime4K_Upscale_CNN_x2_M.glsl" # 2x upscale
-    "${shaders}/Anime4K_AutoDownscalePre_x2.glsl" # downscale if larger than screen
+  anime = lib.concatStringsSep ":" [
+    "${shaderDir}/Anime4K_Clamp_Highlights.glsl" # prevent overshoot
+    "${shaderDir}/Anime4K_Restore_CNN_M.glsl" # denoise & restore
+    "${shaderDir}/Anime4K_Upscale_CNN_x2_M.glsl" # 2x upscale
+    "${shaderDir}/Anime4K_AutoDownscalePre_x2.glsl" # downscale if larger than screen
   ];
 
-  # for live-action
-  fsrcnnx = builtins.concatStringsSep ":" [
-    "${shaders}/FSRCNNX_x2_8-0-4-1.glsl" # luma upscale (detail)
-    "${shaders}/KrigBilateral.glsl" # chroma upscale (color)
-    "${shaders}/SSimDownscaler.glsl" # perceptual downscaler
+  film = lib.concatStringsSep ":" [
+    "${shaderDir}/FSRCNNX_x2_8-0-4-1.glsl" # luma upscale
+    "${shaderDir}/KrigBilateral.glsl" # chroma upscale
+    "${shaderDir}/SSimDownscaler.glsl" # perceptual downscaler
   ];
 in
 {
@@ -69,8 +67,8 @@ in
         "<" = "script-binding uosc/prev; script-message-to uosc flash-elements top_bar,timeline";
 
         "ctrl+`" = ''no-osd change-list glsl-shaders clr ""; show-text "Shaders: Off"'';
-        "ctrl+1" = ''no-osd change-list glsl-shaders set "${anime4k}"; show-text "Shaders: Anime4K"'';
-        "ctrl+2" = ''no-osd change-list glsl-shaders set "${fsrcnnx}"; show-text "Shaders: FSRCNNX"'';
+        "ctrl+1" = ''no-osd change-list glsl-shaders set "${anime}"; show-text "Shaders: Anime"'';
+        "ctrl+2" = ''no-osd change-list glsl-shaders set "${film}"; show-text "Shaders: Film"'';
       };
     };
   };
