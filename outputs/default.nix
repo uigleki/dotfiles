@@ -1,10 +1,9 @@
 inputs:
 let
   inherit (inputs) nixpkgs self;
-  inherit (nixpkgs) lib;
   inherit (import ../lib { inherit inputs; }) mkHome mkSystem;
 
-  eachSystem = lib.genAttrs [
+  eachSystem = nixpkgs.lib.genAttrs [
     "aarch64-linux"
     "x86_64-linux"
   ];
@@ -53,7 +52,7 @@ in
 {
   checks = eachSystem (system: {
     pre-commit-check = inputs.git-hooks.lib.${system}.run {
-      hooks = lib.genAttrs [ "convco" "deadnix" "nil" "nixfmt-rfc-style" "statix" ] (_: {
+      hooks = nixpkgs.lib.genAttrs [ "convco" "deadnix" "nil" "nixfmt-rfc-style" "statix" ] (_: {
         enable = true;
       });
       package = (pkgsFor system).prek; # rust pre-commit alternative

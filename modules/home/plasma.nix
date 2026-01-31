@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.myModules.desktop;
-  syncDir = builtins.replaceStrings [ "$HOME" ] [ config.home.homeDirectory ] user.syncDir;
+  syncDir = lib.replaceStrings [ "$HOME" ] [ config.home.homeDirectory ] user.syncDir;
   musicDir = "${syncDir}/music";
 
   font = {

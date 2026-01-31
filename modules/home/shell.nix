@@ -14,6 +14,7 @@ in
       enable = true;
       initExtra = ''
         # load local secrets if exists
+        # not using sops-nix etc: builds should succeed without keys
         [ -f "${secretsFile}" ] && source "${secretsFile}"
 
         # Launch fish from bash to preserve login shell profile sourcing.

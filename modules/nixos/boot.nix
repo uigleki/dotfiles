@@ -9,11 +9,8 @@ in
 
   config = lib.mkIf cfg.enable {
     boot.loader = {
+      systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 10;
-      };
     };
   };
 }
