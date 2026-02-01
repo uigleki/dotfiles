@@ -111,7 +111,6 @@ in
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
-        gamescopeSession.enable = true;
         fontPackages = with pkgs; [ wqy_zenhei ];
       };
     };
