@@ -21,7 +21,7 @@ Personal NixOS dotfiles for reproducible, declarative development environments. 
 
 ### Development
 
-- Node.js 24 with pnpm
+- Node.js with pnpm
 - Python via uv
 - direnv with nix-direnv for per-project environments
 
@@ -37,7 +37,6 @@ Higher layers import from lower layers. Host configs are the top layer.
 
 ## Best Practices
 
-- Use nixfmt-rfc-style (the new standard formatter, not nixfmt or alejandra)
 - All flake inputs should follow nixpkgs to avoid duplication
 - Prefer home-manager programs options over raw config files when available
 
@@ -55,5 +54,5 @@ Higher layers import from lower layers. Host configs are the top layer.
 
 ## Testing
 
-- Pre-commit hooks: convco, deadnix, nil, nixfmt-rfc-style, statix
+- Pre-commit hooks: convco, deadnix, nil, nixfmt, statix
 - Build validation: `nix flake check`

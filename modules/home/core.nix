@@ -6,12 +6,12 @@
 }:
 {
   imports = [
+    inputs.nix-index-database.homeModules.nix-index
     ./fzf.nix
     ./git.nix
     ./helix.nix
     ./shell.nix
     ./tmux.nix
-    inputs.nix-index-database.homeModules.nix-index
   ];
 
   home = {

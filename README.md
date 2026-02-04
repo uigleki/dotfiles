@@ -2,7 +2,7 @@
 
 Maximum efficiency, minimum complexity development environment using Nix flakes.
 
-**⚠️ Fork First**: This is my personal configuration. Fork it and modify `outputs/default.nix` before using.
+**⚠️ Fork First**: This is my personal configuration. Fork it and modify `outputs/hosts.nix` before using.
 
 ## The Problem
 
