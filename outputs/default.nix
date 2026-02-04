@@ -1,9 +1,10 @@
 inputs:
 let
   inherit (inputs) nixpkgs self;
+  inherit (nixpkgs) lib;
   inherit (import ../lib { inherit inputs; }) mkHome mkSystem;
 
-  eachSystem = nixpkgs.lib.genAttrs [
+  eachSystem = lib.genAttrs [
     "aarch64-linux"
     "x86_64-linux"
   ];
@@ -29,30 +30,28 @@ let
     stateVersion = "25.05";
   };
 
-  nazuna = baseUser // {
-    hostName = "nazuna";
-    system = "aarch64-linux";
+  homeHosts = {
+    kurisu = { };
   };
 
-  akira = baseUser // {
-    hostName = "akira";
-  };
+  nixosHosts = {
+    nazuna = {
+      system = "aarch64-linux";
+    };
 
-  inori = baseUser // {
-    hostName = "nixos";
-    name = "nixos";
-  };
+    akira = { };
 
-  kurisu = baseUser // {
-    hostName = "kurisu";
-  };
+    inori = {
+      name = "nixos"; # keep WSL default to avoid home directory migration
+    };
 
-  # future host names: miyabi, hitagi
+    # future host names: miyabi, hitagi
+  };
 in
 {
   checks = eachSystem (system: {
     pre-commit-check = inputs.git-hooks.lib.${system}.run {
-      hooks = nixpkgs.lib.genAttrs [ "convco" "deadnix" "nil" "nixfmt-rfc-style" "statix" ] (_: {
+      hooks = lib.genAttrs [ "convco" "deadnix" "nil" "nixfmt-rfc-style" "statix" ] (_: {
         enable = true;
       });
       package = (pkgsFor system).prek; # rust pre-commit alternative
@@ -73,26 +72,18 @@ in
 
   formatter = eachSystem (system: (pkgsFor system).nixfmt-rfc-style);
 
-  homeConfigurations = {
-    ${kurisu.hostName} = mkHome {
-      user = kurisu;
-    };
-  };
+  homeConfigurations = lib.mapAttrs (
+    hostName: extra:
+    mkHome {
+      user = baseUser // { inherit hostName; } // extra;
+    }
+  ) homeHosts;
 
-  nixosConfigurations = {
-    ${nazuna.hostName} = mkSystem {
-      extraModules = [ ../hosts/nazuna ];
-      user = nazuna;
-    };
-
-    ${akira.hostName} = mkSystem {
-      extraModules = [ ../hosts/akira ];
-      user = akira;
-    };
-
-    ${inori.hostName} = mkSystem {
-      extraModules = [ ../hosts/inori ];
-      user = inori;
-    };
-  };
+  nixosConfigurations = lib.mapAttrs (
+    hostName: extra:
+    mkSystem {
+      user = baseUser // { inherit hostName; } // extra;
+      extraModules = [ ../hosts/${hostName} ];
+    }
+  ) nixosHosts;
 }

@@ -7,17 +7,16 @@
     secureBoot.enable = true;
   };
 
-  boot = {
-    loader.timeout = 1;
-    kernelParams = [ "amdgpu.dcdebugmask=0x410" ]; # disable PSR/PSR-SU to fix eDP flicker
-  };
+  boot.loader.timeout = 1;
 
   hardware.nvidia = {
     open = true; # only set to false if older than RTX 20 series
+
     powerManagement = {
       enable = true; # preserve VRAM on suspend
       finegrained = true; # power off dGPU when idle
     };
+
     prime = {
       offload = {
         enable = true; # most games auto-use dGPU
