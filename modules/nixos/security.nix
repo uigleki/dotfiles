@@ -64,7 +64,21 @@ in
       };
     };
 
-    security.protectKernelImage = true;
+    security = {
+      pam.loginLimits = [
+        # prevent core dump files
+        {
+          domain = "*";
+          type = "-";
+          item = "core";
+          value = "0";
+        }
+      ];
+
+      protectKernelImage = true;
+    };
+
+    services.dbus.implementation = "broker";
 
     systemd.coredump.enable = false;
   };

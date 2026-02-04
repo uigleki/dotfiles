@@ -64,7 +64,7 @@ See [post-installation setup](docs/post-install.md) for additional configuration
 ### For WSL
 
 ```bash
-sudo nixos-rebuild switch --flake github:uigleki/dotfiles
+sudo nixos-rebuild switch --flake github:uigleki/dotfiles#inori
 ```
 
 ## Essential Workflow
