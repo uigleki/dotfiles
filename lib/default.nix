@@ -11,7 +11,7 @@ in
     home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${user.system};
       extraSpecialArgs = { inherit inputs user; };
-      modules = extraModules ++ [ ../modules/home ];
+      modules = [ ../modules/home ] ++ extraModules;
     };
 
   mkSystem =
@@ -22,7 +22,7 @@ in
     nixpkgs.lib.nixosSystem {
       inherit (user) system;
       specialArgs = { inherit inputs user; };
-      modules = extraModules ++ [
+      modules = [
         ../modules/nixos
         home-manager.nixosModules.home-manager
         {
@@ -33,6 +33,7 @@ in
             extraSpecialArgs = { inherit inputs user; };
           };
         }
-      ];
+      ]
+      ++ extraModules;
     };
 }
