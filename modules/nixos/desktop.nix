@@ -99,7 +99,17 @@ in
       };
     };
 
-    networking.networkmanager.enable = true;
+    networking = {
+      networkmanager.enable = true;
+      firewall = {
+        # required by WiFi hotspot
+        allowedTCPPorts = [ 53 ];
+        allowedUDPPorts = [
+          53
+          67
+        ];
+      };
+    };
 
     programs = {
       gamemode.enable = true;
