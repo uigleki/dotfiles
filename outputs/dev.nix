@@ -10,7 +10,10 @@
       ...
     }:
     {
-      devShells.default = config.pre-commit.devShell;
+      devShells.default = pkgs.mkShell {
+        inputsFrom = [ config.pre-commit.devShell ];
+        packages = [ pkgs.nixd ];
+      };
 
       formatter = pkgs.nixfmt;
 

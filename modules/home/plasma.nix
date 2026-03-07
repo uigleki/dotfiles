@@ -135,6 +135,7 @@ in
                     "preferred://filemanager"
                     "preferred://browser"
                     "applications:org.kde.elisa.desktop"
+                    "applications:dev.zed.Zed.desktop"
                   ];
                 };
               }

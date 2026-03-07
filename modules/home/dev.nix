@@ -10,6 +10,8 @@ let
   pnpmHome = "${config.xdg.dataHome}/pnpm";
 in
 {
+  imports = [ ./zed.nix ];
+
   options.myModules.dev.enable = lib.mkEnableOption "development environment" // {
     default = true;
   };
@@ -34,37 +36,31 @@ in
       };
     })
     (lib.mkIf (cfg.enable && isDesktop) {
-      home.packages = with pkgs; [ unstable.antigravity ]; # Google's VSCode fork
+      programs.fish.functions.src = ''
+        argparse 'e/exclude=+' -- $argv
+        or return
 
-      programs = {
-        vscode.enable = true;
+        set -l dirs $argv
+        test -z "$dirs" && set dirs .
 
-        fish.functions.src = ''
-          argparse 'e/exclude=+' -- $argv
-          or return
+        set -l exclude '^LICENSE|\.lock$|\.sum$|package-lock|pnpm-lock'
+        for e in $_flag_exclude
+          set exclude "$exclude|$e"
+        end
 
-          set -l dirs $argv
-          test -z "$dirs" && set dirs .
-
-          set -l exclude '^LICENSE|\.lock$|\.sum$|package-lock|pnpm-lock'
-          for e in $_flag_exclude
-            set exclude "$exclude|$e"
-          end
-
-          begin
-            for dir in $dirs
-              set -l name (basename (realpath $dir))
-              echo "<project name=\"$name\">"
-              for f in (git -C $dir ls-files | rg -v $exclude)
-                echo "<file path=\"$f\">"
-                bat -pp "$dir/$f"
-                echo "</file>"
-              end
-              echo "</project>"
+        begin
+          for dir in $dirs
+            set -l name (basename (realpath $dir))
+            echo "<project name=\"$name\">"
+            for f in (git -C $dir ls-files | rg -v $exclude)
+              echo "<file path=\"$f\">"
+              bat -pp "$dir/$f"
+              echo "</file>"
             end
-          end | wl-copy
-        '';
-      };
+            echo "</project>"
+          end
+        end | wl-copy
+      '';
     })
   ];
 }
