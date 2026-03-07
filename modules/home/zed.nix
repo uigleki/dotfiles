@@ -15,12 +15,28 @@ in
       package = pkgs.unstable.zed-editor;
 
       extensions = [
+        "basher"
+        "biome"
         "catppuccin"
         "catppuccin-icons"
         "dart"
+        "docker-compose"
+        "dockerfile"
+        "emmet"
+        "env"
+        "git-firefly"
         "html"
+        "ini"
+        "justfile"
+        "lua"
         "markdownlint"
+        "nix"
+        "rainbow-csv"
+        "ruff"
+        "sql"
         "toml"
+        "typos"
+        "zig"
       ];
 
       userKeymaps = [
@@ -48,7 +64,7 @@ in
           dark = "Catppuccin Macchiato";
         };
 
-        autosave.after_delay.milliseconds = 1000;
+        autosave = "on_focus_change";
         cursor_blink = false;
         helix_mode = true;
         relative_line_numbers = "enabled";
@@ -63,7 +79,7 @@ in
         git_panel.tree_view = true;
         inlay_hints.enabled = true;
         lsp.markdownlint.settings.MD013 = false;
-        minimap.show = "auto";
+        tabs.git_status = true;
         terminal.copy_on_select = true;
 
         auto_update = false;
