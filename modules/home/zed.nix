@@ -13,6 +13,8 @@ in
     programs.zed-editor = {
       enable = true;
       package = pkgs.unstable.zed-editor;
+      mutableUserSettings = false;
+      mutableUserKeymaps = false;
 
       extensions = [
         "basher"
@@ -39,21 +41,6 @@ in
         "zig"
       ];
 
-      userKeymaps = [
-        { bindings."ctrl-v" = "editor::Paste"; }
-        {
-          context = "!Terminal";
-          bindings.home = [
-            "workspace::SendKeystrokes"
-            "escape"
-          ];
-        }
-        {
-          context = "Editor";
-          bindings.f6 = "editor::SortLinesCaseSensitive";
-        }
-      ];
-
       userSettings = {
         theme = {
           light = "Catppuccin Latte";
@@ -74,7 +61,6 @@ in
           120
         ];
 
-        agent.play_sound_when_agent_done = true;
         diagnostics.inline.enabled = true;
         git_panel.tree_view = true;
         inlay_hints.enabled = true;
@@ -88,6 +74,21 @@ in
           metrics = false;
         };
       };
+
+      userKeymaps = [
+        { bindings."ctrl-v" = "editor::Paste"; }
+        {
+          context = "!Terminal";
+          bindings.home = [
+            "workspace::SendKeystrokes"
+            "escape"
+          ];
+        }
+        {
+          context = "Editor";
+          bindings.f6 = "editor::SortLinesCaseSensitive";
+        }
+      ];
     };
   };
 }
