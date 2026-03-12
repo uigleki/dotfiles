@@ -52,6 +52,11 @@
       enable = true;
     };
 
+    opencode = {
+      enable = true;
+      package = pkgs.unstable.opencode;
+    };
+
     ripgrep = {
       enable = true;
       arguments = [ "--smart-case" ];

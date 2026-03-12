@@ -5,15 +5,13 @@
   ...
 }:
 let
-  cfg = config.myModules.dev;
-  isDesktop = config.myModules.desktop.enable;
+  cfg = config.myModules.desktop;
 in
 {
-  config = lib.mkIf (cfg.enable && isDesktop) {
+  config = lib.mkIf cfg.enable {
     programs.zed-editor = {
       enable = true;
       package = pkgs.unstable.zed-editor;
-      mutableUserSettings = false;
       mutableUserKeymaps = false;
 
       extensions = [
@@ -33,6 +31,7 @@ in
         "lua"
         "markdownlint"
         "nix"
+        "opencode"
         "rainbow-csv"
         "ruff"
         "sql"

@@ -12,7 +12,6 @@ in
   imports = [
     ./core.nix
     ./desktop.nix
-    ./dev.nix
     ./network.nix
     ./theme.nix
   ]

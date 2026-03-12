@@ -13,6 +13,7 @@ in
     ./kitty.nix
     ./mpv.nix
     ./plasma.nix
+    ./zed.nix
   ];
 
   options.myModules.desktop.enable = lib.mkEnableOption "desktop applications" // {
