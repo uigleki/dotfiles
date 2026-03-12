@@ -31,6 +31,7 @@ in
       interactiveShellInit = "set fish_greeting";
 
       shellAbbrs = {
+        a = "opencode";
         d = "yazi";
         f = "$EDITOR";
         g = "lazygit";

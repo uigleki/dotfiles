@@ -166,6 +166,7 @@ in
 
         configFile = {
           baloofilerc."Basic Settings".Indexing-Enabled = false;
+          kdeglobals.KDE.CursorBlinkRate = 0;
           krunnerrc.Plugins = lib.genAttrs disabledKRunnerPlugins (_: false);
           kwinrc = {
             Effect-overview.BorderActivate = 9; # disable top-left overview trigger
