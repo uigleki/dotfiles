@@ -13,7 +13,6 @@ in
 
   config = lib.mkIf cfg.enable {
     boot = {
-      kernelPackages = pkgs.linuxPackages_zen;
       supportedFilesystems = [ "ntfs" ];
       kernel.sysctl = {
         "vm.compaction_proactiveness" = 0; # reduce latency spikes in gaming
