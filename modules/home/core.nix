@@ -17,7 +17,10 @@
   home = {
     inherit (user) stateVersion;
 
-    packages = with pkgs; [ rsync ];
+    packages = with pkgs; [
+      rsync
+      unstable.openspec
+    ];
 
     sessionVariables = {
       COLORTERM = "truecolor";

@@ -1,0 +1,5 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Nix Flakes, Home Manager, Disko, Comma
+  We use conventional commits
