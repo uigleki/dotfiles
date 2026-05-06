@@ -17,14 +17,11 @@
 
       formatter = pkgs.nixfmt;
 
-      pre-commit = {
-        check.enable = true;
-        settings = {
-          hooks = lib.genAttrs [ "convco" "deadnix" "nil" "nixfmt" "statix" ] (_: {
-            enable = true;
-          });
-          package = pkgs.prek; # rust pre-commit alternative
-        };
+      pre-commit.settings = {
+        hooks = lib.genAttrs [ "convco" "deadnix" "nil" "nixfmt" "statix" ] (_: {
+          enable = true;
+        });
+        package = pkgs.prek; # rust pre-commit alternative
       };
     };
 }

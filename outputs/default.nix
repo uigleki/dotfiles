@@ -1,9 +1,6 @@
-inputs@{ flake-parts, ... }:
+inputs@{ flake-parts, systems, ... }:
 flake-parts.lib.mkFlake { inherit inputs; } {
-  systems = [
-    "aarch64-linux"
-    "x86_64-linux"
-  ];
+  systems = import systems;
 
   imports = [
     ./dev.nix
