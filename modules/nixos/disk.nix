@@ -18,6 +18,7 @@ let
   btrfs = {
     type = "btrfs";
     extraArgs = [ "-f" ];
+
     subvolumes = {
       root = subvol "/";
       home = subvol "/home";
@@ -47,12 +48,14 @@ in
     disko.devices.disk.main = {
       inherit (cfg) device;
       type = "disk";
+
       content = {
         type = "gpt";
         partitions = {
           ESP = {
             size = "500M";
             type = "EF00";
+
             content = {
               type = "filesystem";
               format = "vfat";
@@ -68,11 +71,13 @@ in
                 {
                   type = "luks";
                   name = "crypted";
+
                   settings = {
                     allowDiscards = true;
                     bypassWorkqueues = true;
                     crypttabExtraOpts = [ "tpm2-device=auto" ];
                   };
+
                   content = btrfs;
                 }
               else

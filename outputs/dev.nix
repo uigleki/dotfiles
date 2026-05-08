@@ -3,12 +3,7 @@
   imports = [ inputs.git-hooks.flakeModule ];
 
   perSystem =
-    {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
+    { config, pkgs, ... }:
     {
       devShells.default = pkgs.mkShell {
         inputsFrom = [ config.pre-commit.devShell ];
@@ -18,9 +13,14 @@
       formatter = pkgs.nixfmt;
 
       pre-commit.settings = {
-        hooks = lib.genAttrs [ "convco" "deadnix" "nil" "nixfmt" "statix" ] (_: {
-          enable = true;
-        });
+        hooks = {
+          convco.enable = true;
+          deadnix.enable = true;
+          nil.enable = true;
+          nixfmt.enable = true;
+          statix.enable = true;
+        };
+
         package = pkgs.prek; # rust pre-commit alternative
       };
     };

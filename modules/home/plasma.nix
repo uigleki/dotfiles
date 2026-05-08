@@ -36,16 +36,19 @@ let
           title = "Net Speed";
           updateRateLimit = 1000; # 1 second
         };
+
         Sensors = {
           highPrioritySensorIds = ''["${up}","${down}"]'';
           lowPrioritySensorIds = ''["${cpu}","${mem}"]'';
         };
+
         SensorLabels = {
           ${up} = "△";
           ${down} = "▽";
           ${cpu} = "CPU";
           ${mem} = "MEM";
         };
+
         SensorColors = lib.genAttrs [ up down cpu mem ] (_: color);
       };
     };
@@ -108,6 +111,7 @@ in
         krunner.historyBehavior = "disabled";
 
         workspace.wallpaperSlideShow = wallpapers;
+
         kscreenlocker = {
           appearance.wallpaperSlideShow = wallpapers;
           passwordRequiredDelay = 0;
@@ -154,6 +158,7 @@ in
             dimDisplay.idleTimeout = 270;
             turnOffDisplay.idleTimeout = 300;
           };
+
           battery.turnOffDisplay.idleTimeout = 150;
           lowBattery.turnOffDisplay.idleTimeout = 90;
         };
@@ -168,6 +173,7 @@ in
           baloofilerc."Basic Settings".Indexing-Enabled = false;
           kdeglobals.KDE.CursorBlinkRate = 0;
           krunnerrc.Plugins = lib.genAttrs disabledKRunnerPlugins (_: false);
+
           kwinrc = {
             Effect-overview.BorderActivate = 9; # disable top-left overview trigger
             # prevent fcitx5 warning about missing virtual keyboard

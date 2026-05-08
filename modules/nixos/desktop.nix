@@ -49,6 +49,7 @@ in
           "UbuntuMono Nerd Font"
           "Noto Sans Mono CJK SC"
         ];
+
         sansSerif = [
           "Ubuntu Nerd Font"
           "Noto Sans CJK SC"
@@ -69,6 +70,7 @@ in
       inputMethod = {
         enable = true;
         type = "fcitx5";
+
         fcitx5 = {
           addons = with pkgs; [
             qt6Packages.fcitx5-chinese-addons
@@ -83,6 +85,7 @@ in
                 Name = "Default";
                 "Default Layout" = "us";
               };
+
               "Groups/0/Items/0".Name = "keyboard-us";
               "Groups/0/Items/1".Name = "shuangpin";
             };

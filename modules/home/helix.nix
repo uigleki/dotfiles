@@ -2,6 +2,7 @@
   programs.helix = {
     enable = true;
     defaultEditor = true;
+
     settings = {
       editor = {
         line-number = "relative";
@@ -11,6 +12,7 @@
         trim-final-newlines = true;
         trim-trailing-whitespace = true;
         cursor-shape.insert = "bar";
+
         auto-save.after-delay = {
           enable = true;
           timeout = 1000; # 1 second

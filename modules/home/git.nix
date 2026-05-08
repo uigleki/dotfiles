@@ -14,11 +14,13 @@ in
     git = {
       inherit package;
       enable = true;
+
       settings = {
         user = {
           name = user.gitName;
           email = user.gitEmail;
         };
+
         credential.helper = helper;
         init.defaultBranch = "main";
         log.date = "iso";

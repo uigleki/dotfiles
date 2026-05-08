@@ -45,29 +45,30 @@ in
           light = "Catppuccin Latte";
           dark = "Catppuccin Macchiato";
         };
+
         icon_theme = {
           light = "Catppuccin Latte";
           dark = "Catppuccin Macchiato";
         };
 
+        auto_update = false;
         autosave = "on_focus_change";
         cursor_blink = false;
+        diagnostics.inline.enabled = true;
+        git_panel.tree_view = true;
         helix_mode = true;
+        inlay_hints.enabled = true;
+        lsp.markdownlint.settings.MD013 = false;
         relative_line_numbers = "enabled";
+        tabs.git_status = true;
+        terminal.copy_on_select = true;
         use_smartcase_search = true;
+
         wrap_guides = [
           80
           120
         ];
 
-        diagnostics.inline.enabled = true;
-        git_panel.tree_view = true;
-        inlay_hints.enabled = true;
-        lsp.markdownlint.settings.MD013 = false;
-        tabs.git_status = true;
-        terminal.copy_on_select = true;
-
-        auto_update = false;
         telemetry = {
           diagnostics = false;
           metrics = false;

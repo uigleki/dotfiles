@@ -22,6 +22,7 @@ in
     nixpkgs.lib.nixosSystem {
       inherit (user) system;
       specialArgs = { inherit inputs user; };
+
       modules = [
         ../modules/nixos
         home-manager.nixosModules.home-manager
