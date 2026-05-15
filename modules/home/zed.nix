@@ -37,6 +37,7 @@ in
         "sql"
         "toml"
         "typos"
+        "xml"
         "zig"
       ];
 
@@ -57,7 +58,6 @@ in
         diagnostics.inline.enabled = true;
         git_panel.tree_view = true;
         helix_mode = true;
-        inlay_hints.enabled = true;
         lsp.markdownlint.settings.MD013 = false;
         relative_line_numbers = "enabled";
         tabs.git_status = true;
