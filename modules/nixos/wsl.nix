@@ -15,9 +15,9 @@ in
 
   config = lib.mkIf cfg.enable {
     wsl.enable = true;
+    boot.loader.systemd-boot.enable = lib.mkForce false;
 
     myModules = {
-      boot.enable = false;
       disk.enable = false;
       network.enable = false;
       security.enable = false;

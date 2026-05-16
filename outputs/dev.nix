@@ -7,7 +7,7 @@
     {
       devShells.default = pkgs.mkShell {
         inputsFrom = [ config.pre-commit.devShell ];
-        packages = [ pkgs.nixd ];
+        packages = with pkgs; [ nixd ];
       };
 
       formatter = pkgs.nixfmt;

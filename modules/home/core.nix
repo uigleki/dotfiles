@@ -10,6 +10,7 @@
     ./fzf.nix
     ./git.nix
     ./helix.nix
+    ./opencode.nix
     ./shell.nix
     ./tmux.nix
   ];
@@ -53,11 +54,6 @@
     nh = {
       inherit (user) flake;
       enable = true;
-    };
-
-    opencode = {
-      enable = true;
-      package = pkgs.unstable.opencode;
     };
 
     ripgrep = {

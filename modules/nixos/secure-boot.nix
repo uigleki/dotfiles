@@ -26,10 +26,7 @@ in
   options.myModules.secureBoot.enable = lib.mkEnableOption "Secure Boot with TPM2 FDE";
 
   config = lib.mkIf cfg.enable {
-    myModules = {
-      boot.enable = false;
-      disk.encrypted = true;
-    };
+    myModules.disk.encrypted = true;
 
     boot = {
       initrd.systemd.enable = true; # required for systemd-cryptenroll TPM unlock

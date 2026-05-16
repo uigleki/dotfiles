@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   user,
   ...
@@ -6,7 +7,6 @@
 {
   imports = [
     ../shared/nix.nix
-    ./boot.nix
     ./desktop.nix
     ./disk.nix
     ./network.nix
@@ -17,12 +17,22 @@
     ./wsl.nix
   ];
 
-  boot.kernel.sysctl = {
-    # recommended for zramSwap
-    "vm.swappiness" = 180;
-    "vm.watermark_boost_factor" = 0;
-    "vm.watermark_scale_factor" = 125;
-    "vm.page-cluster" = 0;
+  boot = {
+    kernel.sysctl = {
+      # recommended for zramSwap
+      "vm.swappiness" = 180;
+      "vm.watermark_boost_factor" = 0;
+      "vm.watermark_scale_factor" = 125;
+      "vm.page-cluster" = 0;
+    };
+
+    loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot = {
+        enable = lib.mkDefault true;
+        configurationLimit = 5;
+      };
+    };
   };
 
   environment.systemPackages = with pkgs; [

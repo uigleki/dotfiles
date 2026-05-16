@@ -22,6 +22,7 @@ in
     environment = {
       systemPackages = with pkgs; [
         kitty
+        libnotify
         wl-clipboard
       ];
 
