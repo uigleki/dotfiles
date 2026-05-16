@@ -30,7 +30,7 @@
       efi.canTouchEfiVariables = true;
       systemd-boot = {
         enable = lib.mkDefault true;
-        configurationLimit = 5;
+        configurationLimit = 5; # prevent boot partition running out of space
       };
     };
   };
