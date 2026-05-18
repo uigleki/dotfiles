@@ -53,20 +53,21 @@
         "rsync *"
         "nc *"
 
-        # publishing
-        "npm publish *"
-
         # git destructive
-        "git push --force *"
-        "git push -f *"
-        "git reset --hard *"
         "git rebase *"
         "git checkout -- *"
         "git clean *"
         "git restore *"
         "git branch -D *"
+
+        "git push --force*"
+        "git push -f*"
+        "git reset --hard*"
         "git stash drop*"
         "git stash clear*"
+
+        # publishing
+        "npm publish*"
       ] (_: "ask");
     };
   };
