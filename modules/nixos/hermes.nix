@@ -18,7 +18,43 @@ in
 {
   imports = [ inputs.hermes-agent.nixosModules.default ];
 
-  options.myModules.hermes.enable = lib.mkEnableOption "Hermes AI agent";
+  options.myModules.hermes = {
+    enable = lib.mkEnableOption "Hermes AI agent";
+
+    fallbackModel = lib.mkOption {
+      type = lib.types.listOf lib.types.attrs;
+      default = [ ];
+      example = [
+        {
+          provider = "opencode-zen";
+          model = "v4-flash-free";
+        }
+      ];
+      description = "Fallback model chain (fallback_model in config.yaml)";
+    };
+
+    model = lib.mkOption {
+      type = lib.types.attrs;
+      example = {
+        provider = "openrouter";
+        default = "deepseek/deepseek-v4-flash:free";
+      };
+      description = "Primary model config";
+    };
+
+    providers = lib.mkOption {
+      type = lib.types.attrs;
+      default = { };
+      example = {
+        opencode-zen = {
+          name = "OpenCode Zen";
+          api = "https://opencode.ai/zen/v1";
+          key_env = "OPENCODE_API_KEY";
+        };
+      };
+      description = "Custom providers (providers key in config.yaml)";
+    };
+  };
 
   config = lib.mkIf cfg.enable {
     services.hermes-agent = {
@@ -27,46 +63,14 @@ in
       extraDependencyGroups = [ "messaging" ];
 
       settings = {
+        inherit (cfg) providers model;
+        fallback_model = cfg.fallbackModel;
         telegram.reactions = true;
 
         display = {
           streaming = true;
           runtime_footer.enabled = true;
         };
-
-        providers = lib.mkDefault {
-          opencode-zen = {
-            name = "OpenCode Zen";
-            api = "https://opencode.ai/zen/v1";
-            key_env = "OPENCODE_API_KEY";
-          };
-
-          opencode-go = {
-            name = "OpenCode Go";
-            api = "https://opencode.ai/zen/go/v1";
-            key_env = "OPENCODE_API_KEY";
-          };
-        };
-
-        model = lib.mkDefault {
-          default = "deepseek/deepseek-v4-flash:free";
-          provider = "openrouter";
-        };
-
-        fallback_model = lib.mkDefault [
-          {
-            provider = "opencode-zen";
-            model = "v4-flash-free";
-          }
-          {
-            provider = "opencode-go";
-            model = "deepseek-v4-flash";
-          }
-          {
-            provider = "openrouter";
-            model = "deepseek/deepseek-v4-flash";
-          }
-        ];
       };
     };
   };
