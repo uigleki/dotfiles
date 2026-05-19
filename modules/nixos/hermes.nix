@@ -24,27 +24,31 @@ in
     fallbackModel = lib.mkOption {
       type = lib.types.listOf lib.types.attrs;
       default = [ ];
+      description = "Fallback model chain (fallback_model in config.yaml)";
+
       example = [
         {
           provider = "opencode-zen";
           model = "v4-flash-free";
         }
       ];
-      description = "Fallback model chain (fallback_model in config.yaml)";
     };
 
     model = lib.mkOption {
       type = lib.types.attrs;
+      description = "Primary model config";
+
       example = {
         provider = "openrouter";
         default = "deepseek/deepseek-v4-flash:free";
       };
-      description = "Primary model config";
     };
 
     providers = lib.mkOption {
       type = lib.types.attrs;
       default = { };
+      description = "Custom providers (providers key in config.yaml)";
+
       example = {
         opencode-zen = {
           name = "OpenCode Zen";
@@ -52,7 +56,6 @@ in
           key_env = "OPENCODE_API_KEY";
         };
       };
-      description = "Custom providers (providers key in config.yaml)";
     };
   };
 
@@ -63,15 +66,10 @@ in
       extraDependencyGroups = [ "messaging" ];
 
       settings = {
-        inherit (cfg) providers model;
-        fallback_model = cfg.fallbackModel;
-        telegram.reactions = true;
-
-        display = {
-          streaming = true;
-          runtime_footer.enabled = true;
-        };
-      };
+        inherit (cfg) model;
+      }
+      // lib.optionalAttrs (cfg.fallbackModel != [ ]) { fallback_model = cfg.fallbackModel; }
+      // lib.optionalAttrs (cfg.providers != { }) { inherit (cfg) providers; };
     };
   };
 }
