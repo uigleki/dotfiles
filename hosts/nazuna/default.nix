@@ -1,6 +1,9 @@
-{ user, ... }:
+{ inputs, user, ... }:
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    inputs.hermes-agent.nixosModules.default
+    ./hardware-configuration.nix
+  ];
 
   myModules = {
     autoUpdate.enable = true;
@@ -14,4 +17,9 @@
 
   # expose syncthing GUI for remote access
   home-manager.users.${user.name}.services.syncthing.guiAddress = "0.0.0.0:8384";
+
+  services.hermes-agent = {
+    enable = true;
+    addToSystemPackages = true;
+  };
 }
