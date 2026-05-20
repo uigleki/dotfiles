@@ -1,16 +1,15 @@
 # required secrets – replace values and run:
-#   sudo -u hermes tee /var/lib/hermes/.hermes/.env >/dev/null <<'EOF'
-#   TELEGRAM_ALLOWED_USERS=123456789
-#   TELEGRAM_BOT_TOKEN=1234567890:ABCdefGHIjklmNOPqrstUVwxyz
-#   OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-#   OPENCODE_ZEN_API_KEY=ocz_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-#   OPENCODE_GO_API_KEY=ocz_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-#   EOF
+#  printf '%s\n' \
+#  'TELEGRAM_ALLOWED_USERS=123456789' \
+#  'TELEGRAM_BOT_TOKEN=1234567890:ABCdefGHIjklmNOPqrstUVwxyz' \
+#  'OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx' \
+#  | sudo -u hermes tee /var/lib/hermes/.hermes/.env >/dev/null
 
 {
   config,
   inputs,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -38,9 +37,21 @@ in
       addToSystemPackages = true;
       extraDependencyGroups = [ "messaging" ];
 
+      extraPackages = with pkgs; [
+        bun
+        jq
+        uv
+      ];
+
       settings = {
         inherit (cfg) model;
-        telegram.reactions = true;
+        approvals.mode = "smart";
+        compression.protect_first_n = 0;
+        display.cleanup_progress = true;
+        security.allow_lazy_installs = false;
+        sessions.auto_prune = true;
+        streaming.enabled = true;
+        tool_loop_guardrails.hard_stop_enabled = true;
       };
     };
   };
