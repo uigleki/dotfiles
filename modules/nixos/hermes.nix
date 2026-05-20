@@ -9,7 +9,7 @@
   config,
   inputs,
   lib,
-  pkgs,
+  user,
   ...
 }:
 let
@@ -37,21 +37,24 @@ in
       addToSystemPackages = true;
       extraDependencyGroups = [ "messaging" ];
 
-      extraPackages = with pkgs; [
-        bun
-        jq
-        uv
-      ];
+      container = {
+        enable = true;
+        backend = "podman";
+        hostUsers = [ user.name ];
+      };
 
       settings = {
         inherit (cfg) model;
         approvals.mode = "smart";
         compression.protect_first_n = 0;
-        display.cleanup_progress = true;
-        security.allow_lazy_installs = false;
         sessions.auto_prune = true;
         streaming.enabled = true;
         tool_loop_guardrails.hard_stop_enabled = true;
+
+        display = {
+          cleanup_progress = true;
+          ephemeral_system_ttl = 10;
+        };
       };
     };
   };
