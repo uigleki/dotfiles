@@ -46,16 +46,45 @@ in
       settings = {
         inherit (cfg) model;
         approvals.mode = "smart";
+        checkpoints.enabled = true;
         compression.protect_first_n = 0;
-        sessions.auto_prune = true;
         streaming.enabled = true;
         tool_loop_guardrails.hard_stop_enabled = true;
+
+        agent = {
+          gateway_notify_interval = 0;
+          max_turns = 200;
+        };
+
+        delegation = {
+          child_timeout_seconds = 3600;
+          max_concurrent_children = 5;
+          max_iterations = 100;
+          max_spawn_depth = 2;
+        };
 
         display = {
           cleanup_progress = true;
           ephemeral_system_ttl = 10;
         };
+
+        sessions = {
+          auto_prune = true;
+          retention_days = 60;
+        };
       };
     };
+
+    security.sudo.extraRules = [
+      {
+        users = [ user.name ];
+        commands = [
+          {
+            command = "/run/current-system/sw/bin/podman";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
   };
 }
