@@ -3,13 +3,13 @@
 #  'TELEGRAM_ALLOWED_USERS=123456789' \
 #  'TELEGRAM_BOT_TOKEN=1234567890:ABCdefGHIjklmNOPqrstUVwxyz' \
 #  'OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx' \
-#  | sudo -u hermes tee /var/lib/hermes/.hermes/.env >/dev/null
+#  | sudo install -o hermes -m 0600 /dev/stdin /var/lib/hermes/.hermes/.env
 
 {
   config,
   inputs,
   lib,
-  user,
+  pkgs,
   ...
 }:
 let
@@ -37,23 +37,30 @@ in
       addToSystemPackages = true;
       extraDependencyGroups = [ "messaging" ];
 
-      container = {
-        enable = true;
-        backend = "podman";
-        hostUsers = [ user.name ];
-      };
+      extraPackages = with pkgs; [
+        bun
+        chromium
+        jq
+        unstable.agent-browser
+        uv
+      ];
 
       settings = {
         inherit (cfg) model;
-        approvals.mode = "smart";
         checkpoints.enabled = true;
         compression.protect_first_n = 0;
         streaming.enabled = true;
+        telegram.reactions = true;
         tool_loop_guardrails.hard_stop_enabled = true;
 
         agent = {
           gateway_notify_interval = 0;
           max_turns = 200;
+        };
+
+        approvals = {
+          gateway_timeout = 60;
+          mode = "smart";
         };
 
         delegation = {
@@ -75,16 +82,7 @@ in
       };
     };
 
-    security.sudo.extraRules = [
-      {
-        users = [ user.name ];
-        commands = [
-          {
-            command = "/run/current-system/sw/bin/podman";
-            options = [ "NOPASSWD" ];
-          }
-        ];
-      }
-    ];
+    systemd.services.hermes-agent.environment.AGENT_BROWSER_EXECUTABLE_PATH =
+      "${pkgs.chromium}/bin/chromium";
   };
 }
