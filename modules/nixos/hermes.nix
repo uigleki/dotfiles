@@ -24,7 +24,7 @@ let
       drv = pkgs.runCommand "hermes-profiles" { preferLocalBuild = true; } (
         lib.concatStringsSep "\n" (
           lib.mapAttrsToList (name: p: ''
-            mkdir -p $out/${name}
+            mkdir -p $out/${name}/{cron,sessions,logs,memories}
             cp ${
               yamlFormat.generate "${name}-config.yaml" (
                 {
@@ -52,6 +52,7 @@ let
       mkdir -p ${hc.stateDir}/.hermes/profiles
       cp -r ${drv}/* ${hc.stateDir}/.hermes/profiles/
       chown -R ${hc.user}:${hc.group} ${hc.stateDir}/.hermes/profiles/
+      chmod 2770 ${hc.stateDir}/.hermes/profiles/*{,/cron,/sessions,/logs,/memories}
     '';
 in
 {
@@ -141,8 +142,11 @@ in
           orchestrator = {
             description = "Routes work, aggregates results, never writes code.";
             toolsets = [
+              "clarify"
+              "file"
               "kanban"
               "memory"
+              "skills"
             ];
             soul = ''
               You are the orchestrator. Decompose user requests into kanban tasks
@@ -154,9 +158,9 @@ in
           planner = {
             description = "Analyzes requirements, researches codebase, produces plans.";
             toolsets = [
-              "kanban"
+              "browser"
               "file"
-              "web"
+              "kanban"
               "memory"
               "skills"
             ];
@@ -169,6 +173,7 @@ in
 
           coder = {
             description = "Implements features, writes tests, debugs, manages PRs.";
+            toolsets = [ "hermes-cli" ];
             soul = ''
               You are a senior software engineer. Take implementation plans and
               execute them: read code, write code, run tests, debug issues, and
@@ -179,9 +184,11 @@ in
           reviewer = {
             description = "Reviews diffs, enforces quality gates, approves or blocks.";
             toolsets = [
-              "kanban"
+              "browser"
               "file"
-              "web"
+              "kanban"
+              "memory"
+              "skills"
             ];
             soul = ''
               You are a code reviewer. Read diffs and check for bugs, style issues,
@@ -193,10 +200,11 @@ in
           researcher = {
             description = "Searches web, reads docs, analyzes dependencies.";
             toolsets = [
-              "kanban"
-              "web"
               "browser"
+              "file"
+              "kanban"
               "memory"
+              "skills"
             ];
             soul = ''
               You are a research specialist. Search the web, read documentation,
@@ -208,11 +216,11 @@ in
           architect = {
             description = "Read-only consultant. Reviews designs, suggests solutions, never writes code.";
             toolsets = [
-              "kanban"
+              "browser"
               "file"
-              "web"
-              "skills"
+              "kanban"
               "memory"
+              "skills"
             ];
             soul = ''
               You are a software architecture consultant. Analyze designs, evaluate
