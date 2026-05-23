@@ -16,6 +16,43 @@
 let
   cfg = config.myModules.hermes;
   yamlFormat = pkgs.formats.yaml { };
+
+  mkprofiles =
+    profiles:
+    let
+      hc = config.services.hermes-agent;
+      drv = pkgs.runCommand "hermes-profiles" { preferLocalBuild = true; } (
+        lib.concatStringsSep "\n" (
+          lib.mapAttrsToList (name: p: ''
+            mkdir -p $out/${name}
+            cp ${
+              yamlFormat.generate "${name}-config.yaml" (
+                {
+                  model = p.model or cfg.model;
+                }
+                // lib.optionalAttrs (p ? toolsets) {
+                  inherit (p) toolsets;
+                }
+              )
+            } $out/${name}/config.yaml
+            cp ${
+              yamlFormat.generate "${name}-profile.yaml" {
+                inherit (p) description;
+                description_auto = false;
+              }
+            } $out/${name}/profile.yaml
+            ${lib.optionalString (p ? soul) ''
+              cp ${pkgs.writeText "${name}-SOUL.md" p.soul} $out/${name}/SOUL.md
+            ''}
+          '') profiles
+        )
+      );
+    in
+    ''
+      mkdir -p ${hc.stateDir}/.hermes/profiles
+      cp -r ${drv}/* ${hc.stateDir}/.hermes/profiles/
+      chown -R ${hc.user}:${hc.group} ${hc.stateDir}/.hermes/profiles/
+    '';
 in
 {
   imports = [ inputs.hermes-agent.nixosModules.default ];
@@ -43,14 +80,14 @@ in
 
       extraPackages = with pkgs; [
         bun
-        ffmpeg
+        ffmpeg-headless
         jq
         pandoc
         unstable.agent-browser
         uv
       ];
 
-      configFile = yamlFormat.generate "hermes-config" {
+      configFile = yamlFormat.generate "hermes-config.yaml" {
         inherit (cfg) model;
         agent.gateway_notify_interval = 0;
         checkpoints.enabled = true;
@@ -97,5 +134,91 @@ in
         ];
       }
     ];
+
+    system.activationScripts."hermes-agent-profiles" =
+      lib.stringAfter [ "hermes-agent-setup" ]
+        (mkprofiles {
+          orchestrator = {
+            description = "Routes work, aggregates results, never writes code.";
+            toolsets = [
+              "kanban"
+              "memory"
+            ];
+            soul = ''
+              You are the orchestrator. Decompose user requests into kanban tasks
+              and route them to worker profiles. You NEVER write code or modify
+              the codebase. Your job is coordination and routing only.
+            '';
+          };
+
+          planner = {
+            description = "Analyzes requirements, researches codebase, produces plans.";
+            toolsets = [
+              "kanban"
+              "file"
+              "web"
+              "memory"
+              "skills"
+            ];
+            soul = ''
+              You are a technical planner. Analyze the codebase, research approaches,
+              and produce detailed implementation plans. You NEVER write code or
+              make changes. Your output is a plan for the coder to execute.
+            '';
+          };
+
+          coder = {
+            description = "Implements features, writes tests, debugs, manages PRs.";
+            soul = ''
+              You are a senior software engineer. Take implementation plans and
+              execute them: read code, write code, run tests, debug issues, and
+              create PRs. Work within the scope assigned by the orchestrator.
+            '';
+          };
+
+          reviewer = {
+            description = "Reviews diffs, enforces quality gates, approves or blocks.";
+            toolsets = [
+              "kanban"
+              "file"
+              "web"
+            ];
+            soul = ''
+              You are a code reviewer. Read diffs and check for bugs, style issues,
+              test coverage, and plan adherence. Approve or reject with specific
+              feedback. You NEVER write code — only review.
+            '';
+          };
+
+          researcher = {
+            description = "Searches web, reads docs, analyzes dependencies.";
+            toolsets = [
+              "kanban"
+              "web"
+              "browser"
+              "memory"
+            ];
+            soul = ''
+              You are a research specialist. Search the web, read documentation,
+              analyze dependencies, and produce concise findings reports.
+              You NEVER write code.
+            '';
+          };
+
+          architect = {
+            description = "Read-only consultant. Reviews designs, suggests solutions, never writes code.";
+            toolsets = [
+              "kanban"
+              "file"
+              "web"
+              "skills"
+              "memory"
+            ];
+            soul = ''
+              You are a software architecture consultant. Analyze designs, evaluate
+              tradeoffs, and suggest solutions. You NEVER write code — purely advisory.
+            '';
+          };
+        });
   };
 }
