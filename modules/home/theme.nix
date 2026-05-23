@@ -14,6 +14,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # use builtins.fetchurl because pkgs.fetchurl returns a derivation whose output is not available until build time
     home.sessionVariables.LG_CONFIG_FILE = lib.concatStringsSep "," [
       "${config.xdg.configHome}/lazygit/config.yml"
       (builtins.fetchurl {

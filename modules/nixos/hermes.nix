@@ -10,16 +10,20 @@
   inputs,
   lib,
   pkgs,
+  user,
   ...
 }:
 let
   cfg = config.myModules.hermes;
+  yamlFormat = pkgs.formats.yaml { };
 in
 {
   imports = [ inputs.hermes-agent.nixosModules.default ];
 
   options.myModules.hermes = {
     enable = lib.mkEnableOption "Hermes AI agent";
+    container.enable = lib.mkEnableOption "rootful podman container mode";
+
     model = lib.mkOption {
       type = lib.types.attrs;
       description = "Primary model config";
@@ -39,35 +43,26 @@ in
 
       extraPackages = with pkgs; [
         bun
-        chromium
+        ffmpeg
         jq
+        pandoc
         unstable.agent-browser
         uv
       ];
 
-      settings = {
+      configFile = yamlFormat.generate "hermes-config" {
         inherit (cfg) model;
+        agent.gateway_notify_interval = 0;
         checkpoints.enabled = true;
         compression.protect_first_n = 0;
+        kanban.orchestrator_profile = "orchestrator";
         streaming.enabled = true;
         telegram.reactions = true;
         tool_loop_guardrails.hard_stop_enabled = true;
 
-        agent = {
-          gateway_notify_interval = 0;
-          max_turns = 200;
-        };
-
         approvals = {
           gateway_timeout = 60;
           mode = "smart";
-        };
-
-        delegation = {
-          child_timeout_seconds = 3600;
-          max_concurrent_children = 5;
-          max_iterations = 100;
-          max_spawn_depth = 2;
         };
 
         display = {
@@ -84,5 +79,23 @@ in
 
     systemd.services.hermes-agent.environment.AGENT_BROWSER_EXECUTABLE_PATH =
       "${pkgs.chromium}/bin/chromium";
+
+    services.hermes-agent.settings.container = lib.mkIf cfg.container.enable {
+      enable = true;
+      backend = "podman";
+      hostUsers = [ user.name ];
+    };
+
+    security.sudo.extraRules = lib.mkIf cfg.container.enable [
+      {
+        users = [ user.name ];
+        commands = [
+          {
+            command = "/run/current-system/sw/bin/podman";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
   };
 }

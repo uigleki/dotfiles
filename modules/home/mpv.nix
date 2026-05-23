@@ -6,19 +6,18 @@
 }:
 let
   cfg = config.myModules.desktop;
-  shaderDir = "${pkgs.mpv-shim-default-shaders}/share/mpv-shim-default-shaders/shaders";
 
   anime = lib.concatStringsSep ":" [
-    "${shaderDir}/Anime4K_Clamp_Highlights.glsl" # prevent overshoot
-    "${shaderDir}/Anime4K_Restore_CNN_M.glsl" # denoise & restore
-    "${shaderDir}/Anime4K_Upscale_CNN_x2_M.glsl" # 2x upscale
-    "${shaderDir}/Anime4K_AutoDownscalePre_x2.glsl" # downscale if larger than screen
+    "~~/shaders/Anime4K_Clamp_Highlights.glsl" # prevent overshoot
+    "~~/shaders/Anime4K_Restore_CNN_M.glsl" # denoise & restore
+    "~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl" # 2x upscale
+    "~~/shaders/Anime4K_AutoDownscalePre_x2.glsl" # downscale if larger than screen
   ];
 
   film = lib.concatStringsSep ":" [
-    "${shaderDir}/FSRCNNX_x2_8-0-4-1.glsl" # luma upscale
-    "${shaderDir}/KrigBilateral.glsl" # chroma upscale
-    "${shaderDir}/SSimDownscaler.glsl" # perceptual downscaler
+    "~~/shaders/FSRCNNX_x2_8-0-4-1.glsl" # luma upscale
+    "~~/shaders/KrigBilateral.glsl" # chroma upscale
+    "~~/shaders/SSimDownscaler.glsl" # perceptual downscaler
   ];
 in
 {
@@ -71,5 +70,8 @@ in
         "ctrl+2" = ''no-osd change-list glsl-shaders set "${film}"; show-text "Shaders: Film"'';
       };
     };
+
+    xdg.configFile."mpv/shaders".source =
+      "${pkgs.mpv-shim-default-shaders}/share/mpv-shim-default-shaders/shaders";
   };
 }
