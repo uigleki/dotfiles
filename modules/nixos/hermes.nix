@@ -90,7 +90,7 @@ in
 
       configFile = yamlFormat.generate "hermes-config.yaml" {
         inherit (cfg) model;
-        agent.gateway_notify_interval = 0;
+        approvals.mode = "off";
         checkpoints.enabled = true;
         compression.protect_first_n = 0;
         kanban.orchestrator_profile = "orchestrator";
@@ -98,9 +98,9 @@ in
         telegram.reactions = true;
         tool_loop_guardrails.hard_stop_enabled = true;
 
-        approvals = {
-          gateway_timeout = 60;
-          mode = "smart";
+        agent = {
+          gateway_notify_interval = 0;
+          restart_drain_timeout = 60;
         };
 
         display = {
@@ -118,7 +118,7 @@ in
     systemd.services.hermes-agent.environment.AGENT_BROWSER_EXECUTABLE_PATH =
       "${pkgs.chromium}/bin/chromium";
 
-    services.hermes-agent.settings.container = lib.mkIf cfg.container.enable {
+    services.hermes-agent.container = lib.mkIf cfg.container.enable {
       enable = true;
       backend = "podman";
       hostUsers = [ user.name ];
