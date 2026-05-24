@@ -46,9 +46,7 @@ let
                 description_auto = false;
               }
             } $out/${name}/profile.yaml
-            ${lib.optionalString (builtins.pathExists "${soulsDir}/${name}.md") ''
-              cp ${pkgs.writeText "${name}-SOUL.md" (builtins.readFile "${soulsDir}/${name}.md")} $out/${name}/SOUL.md
-            ''}
+            cp ${soulsDir}/${name}.md $out/${name}/SOUL.md
           '') profiles
         )
       );
