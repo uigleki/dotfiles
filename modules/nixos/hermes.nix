@@ -105,7 +105,6 @@ in
         checkpoints.enabled = true;
         compression.protect_first_n = 0;
         kanban.orchestrator_profile = "orchestrator";
-        streaming.enabled = true;
         telegram.reactions = true;
         tool_loop_guardrails.hard_stop_enabled = true;
 
