@@ -142,29 +142,58 @@ in
       lib.stringAfter [ "hermes-agent-setup" ]
         (mkprofiles {
           orchestrator = {
-            description = "Entry point: classify requests, decompose into subtasks, route to workers, verify results.";
+            description = "Routes tasks to the right agent by capability. Never executes — pure coordination. Decides who handles what and in what order.";
             toolsets = [ "clarify" ];
           };
 
           planner = {
-            description = "Research options, design approach, produce detailed implementation plans.";
+            description = "Decomposes goals into executable step sequences with explicit dependencies. Requires research input before planning. Does not gather information or execute.";
+            toolsets = [ ];
+          };
+
+          researcher = {
+            description = "Gathers facts, sources, and situational context. Outputs structured knowledge. Makes no decisions or recommendations — pure information gathering.";
             toolsets = [
               "browser"
+              "file"
+              "terminal"
+              "web"
+            ];
+          };
+
+          coder = {
+            description = "Implements logic and makes software run. Writes code, debugs, runs tests. Does not design test strategy or perform security review.";
+            toolsets = [
               "file"
               "terminal"
             ];
           };
 
-          coder = {
-            description = "Implement features per plan, write tests, verify correctness.";
-            toolsets = [ "hermes-cli" ];
+          writer = {
+            description = "Produces written content: documents, reports, articles, copy. Crafts language for clarity, structure, and impact. Does not code or design.";
+            toolsets = [ "file" ];
           };
 
-          reviewer = {
-            description = "Validate code against plan, quality gates, and security standards.";
+          critic = {
+            description = "Finds problems, questions assumptions, identifies flaws. Never suggests solutions — pure qualitative criticism. Separated from binary pass/fail verification.";
+            toolsets = [ "file" ];
+          };
+
+          verifier = {
+            description = "Binary pass/fail verification against defined criteria. Checks if output meets acceptance standards. Makes no qualitative assessment or suggestions.";
             toolsets = [
               "file"
               "terminal"
+            ];
+          };
+
+          explorer = {
+            description = "Explores unknown possibilities, evaluates feasibility, charts potential paths. Operates when the solution space is not well understood. Hands off promising directions to specialists.";
+            toolsets = [
+              "browser"
+              "file"
+              "terminal"
+              "web"
             ];
           };
         });
