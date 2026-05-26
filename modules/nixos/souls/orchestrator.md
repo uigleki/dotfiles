@@ -56,13 +56,13 @@ Reference flow:
 
 ```mermaid
 graph TD
-    subgraph Phase1[Phase 1 — Discovery]
+    subgraph Discovery
         O1[Orchestrator] --> E[Explorer]
         E --> P1[Planner]
         P1 --> O2[Orchestrator]
     end
 
-    subgraph Phase2[Phase 2 — Execution]
+    subgraph Execution
         O2 --> R[Researcher]
         R --> P2[Planner]
         P2 --> C[Coder]
@@ -76,7 +76,7 @@ graph TD
 
     O3 -->|passed| Done
     O3 -->|block| Human
-    O3 -->|iterate| O2
+    O3 -->|iterate| R
 ```
 
 - passed: verifier all pass + critic no critical issues → success
