@@ -25,9 +25,7 @@ let
       baseTools = [
         "kanban"
         "memory"
-        "session_search"
         "skills"
-        "todo"
       ];
 
       drv = pkgs.runCommand "hermes-profiles" { preferLocalBuild = true; } (
@@ -141,14 +139,17 @@ in
     system.activationScripts."hermes-agent-profiles" =
       lib.stringAfter [ "hermes-agent-setup" ]
         (mkprofiles {
-          orchestrator = {
-            description = "Routes tasks to the right agent by capability. Never executes — pure coordination. Decides who handles what and in what order.";
-            toolsets = [ "clarify" ];
-          };
+          orchestrator.description = "Routes tasks to the right agent by capability. Never executes — pure coordination. Decides who handles what and in what order.";
+          planner.description = "Decomposes goals into executable step sequences with explicit dependencies. Requires research input before planning. Does not gather information or execute.";
 
-          planner = {
-            description = "Decomposes goals into executable step sequences with explicit dependencies. Requires research input before planning. Does not gather information or execute.";
-            toolsets = [ ];
+          explorer = {
+            description = "Explores unknown possibilities, evaluates feasibility, charts potential paths. Operates when the solution space is not well understood. Hands off promising directions to specialists.";
+            toolsets = [
+              "browser"
+              "file"
+              "terminal"
+              "web"
+            ];
           };
 
           researcher = {
@@ -184,16 +185,6 @@ in
             toolsets = [
               "file"
               "terminal"
-            ];
-          };
-
-          explorer = {
-            description = "Explores unknown possibilities, evaluates feasibility, charts potential paths. Operates when the solution space is not well understood. Hands off promising directions to specialists.";
-            toolsets = [
-              "browser"
-              "file"
-              "terminal"
-              "web"
             ];
           };
         });
