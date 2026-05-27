@@ -29,7 +29,7 @@ in
       fish.interactiveShellInit = ''fish_config theme choose "Catppuccin Latte"'';
       helix.settings.theme = "catppuccin_latte"; # :theme
       kitty.themeFile = "Catppuccin-Latte"; # https://github.com/kovidgoyal/kitty-themes/tree/master/themes
-      opencode.settings.theme = "catppuccin"; # https://opencode.ai/docs/themes
+      opencode.tui.theme = "catppuccin"; # https://opencode.ai/docs/themes
 
       bottom.settings = lib.importTOML (
         builtins.fetchurl {

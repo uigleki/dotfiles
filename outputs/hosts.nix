@@ -19,7 +19,7 @@ let
     uid = 1000;
     # do not change on upgrade
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    stateVersion = "25.05";
+    stateVersion = "26.05";
   };
 
   homeHosts = {

@@ -8,9 +8,16 @@
 
     hermes = {
       enable = true;
-      model = {
-        provider = "opencode-go";
-        default = "deepseek-v4-flash";
+      settings = {
+        model = {
+          provider = "opencode-go";
+          default = "deepseek-v4-flash";
+        };
+
+        auxiliary.vision = {
+          provider = "opencode-go";
+          model = "kimi-k2.6";
+        };
       };
     };
   };

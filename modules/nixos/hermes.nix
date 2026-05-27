@@ -1,8 +1,8 @@
 # required secrets – replace values and run:
 #  printf '%s\n' \
 #  'TELEGRAM_ALLOWED_USERS=123456789' \
-#  'TELEGRAM_BOT_TOKEN=1234567890:ABCdefGHIjklmNOPqrstUVwxyz' \
-#  'OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx' \
+#  'TELEGRAM_BOT_TOKEN=1234567890:ABCdef123...' \
+#  'OPENCODE_GO_API_KEY=sk-ABCdef123...' \
 #  | sudo install -o hermes -m 0600 /dev/stdin /var/lib/hermes/.hermes/.env
 
 {
@@ -63,13 +63,21 @@ in
     enable = lib.mkEnableOption "Hermes AI agent";
     container.enable = lib.mkEnableOption "rootful podman container mode";
 
-    model = lib.mkOption {
+    settings = lib.mkOption {
       type = lib.types.attrs;
-      description = "Primary model config";
+      description = "Hermes settings";
+      default = { };
 
       example = {
-        provider = "openrouter";
-        default = "deepseek/deepseek-v4-flash:free";
+        model = {
+          provider = "opencode-go";
+          default = "deepseek-v4-flash";
+        };
+
+        auxiliary.vision = {
+          provider = "opencode-go";
+          model = "kimi-k2.6";
+        };
       };
     };
   };
@@ -89,30 +97,31 @@ in
         uv
       ];
 
-      configFile = yamlFormat.generate "hermes-config.yaml" {
-        inherit (cfg) model;
-        approvals.mode = "off";
-        checkpoints.enabled = true;
-        compression.protect_first_n = 0;
-        kanban.orchestrator_profile = "orchestrator";
-        telegram.reactions = true;
-        tool_loop_guardrails.hard_stop_enabled = true;
+      configFile =
+        yamlFormat.generate "hermes-config.yaml" {
+          approvals.mode = "off";
+          checkpoints.enabled = true;
+          compression.protect_first_n = 0;
+          kanban.orchestrator_profile = "orchestrator";
+          telegram.reactions = true;
+          tool_loop_guardrails.hard_stop_enabled = true;
 
-        agent = {
-          gateway_notify_interval = 0;
-          restart_drain_timeout = 60;
-        };
+          agent = {
+            gateway_notify_interval = 0;
+            restart_drain_timeout = 60;
+          };
 
-        display = {
-          cleanup_progress = true;
-          ephemeral_system_ttl = 10;
-        };
+          display = {
+            cleanup_progress = true;
+            ephemeral_system_ttl = 10;
+          };
 
-        sessions = {
-          auto_prune = true;
-          retention_days = 60;
-        };
-      };
+          sessions = {
+            auto_prune = true;
+            retention_days = 60;
+          };
+        }
+        // cfg.settings;
     };
 
     systemd.services.hermes-agent.environment.AGENT_BROWSER_EXECUTABLE_PATH =
