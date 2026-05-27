@@ -80,8 +80,8 @@ in
       };
 
       "yazi/theme.toml".source = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/yazi-rs/flavors/ffe6e3a/catppuccin-latte.yazi/flavor.toml";
-        sha256 = "JLZpOm0WEQ1xbEhmJYe4SBFNaPx0Jp5l6Wy/3rGk40c=";
+        url = "https://raw.githubusercontent.com/yazi-rs/flavors/c02c804/catppuccin-latte.yazi/flavor.toml";
+        sha256 = "31XnC09PKXJgvgt3zz1lMwhr0Fg+dzjc68IjJ/z6tSA=";
       };
     };
   };

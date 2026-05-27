@@ -34,7 +34,7 @@ let
             mkdir -p $out/${name}/{cron,sessions,logs,memories}
             cp ${
               yamlFormat.generate "${name}-config.yaml" {
-                model = p.model or cfg.model;
+                model = p.model or cfg.settings.model;
                 toolsets = baseTools ++ (p.toolsets or [ ]);
               }
             } $out/${name}/config.yaml
