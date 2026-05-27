@@ -3,7 +3,7 @@
 #  'TELEGRAM_ALLOWED_USERS=123456789' \
 #  'TELEGRAM_BOT_TOKEN=1234567890:ABCdef123...' \
 #  'OPENCODE_GO_API_KEY=sk-ABCdef123...' \
-#  | sudo install -o hermes -m 0600 /dev/stdin /var/lib/hermes/.hermes/.env
+#  | sudo install -o hermes -g hermes -m 0640 /dev/stdin /var/lib/hermes/.hermes/.env
 
 {
   config,
@@ -97,8 +97,8 @@ in
         uv
       ];
 
-      configFile =
-        yamlFormat.generate "hermes-config.yaml" {
+      configFile = yamlFormat.generate "hermes-config.yaml" (
+        lib.recursiveUpdate {
           approvals.mode = "off";
           checkpoints.enabled = true;
           compression.protect_first_n = 0;
@@ -120,9 +120,11 @@ in
             auto_prune = true;
             retention_days = 60;
           };
-        }
-        // cfg.settings;
+        } cfg.settings
+      );
     };
+
+    users.users.${user.name}.extraGroups = [ "hermes" ];
 
     systemd.services.hermes-agent.environment.AGENT_BROWSER_EXECUTABLE_PATH =
       "${pkgs.chromium}/bin/chromium";

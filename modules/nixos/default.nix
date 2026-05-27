@@ -11,6 +11,7 @@
     ./disk.nix
     ./hermes.nix
     ./network.nix
+    ./pi.nix
     ./secure-boot.nix
     ./security.nix
     ./server.nix

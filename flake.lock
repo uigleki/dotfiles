@@ -202,11 +202,11 @@
         "uv2nix": "uv2nix_2"
       },
       "locked": {
-        "lastModified": 1779884513,
-        "narHash": "sha256-3h8/pZFnFqn7YR6clMYRW7ZQrFVyGLbNgdp4SnWuS6w=",
+        "lastModified": 1779978504,
+        "narHash": "sha256-e7Zt5Wyv+L7yzgb6axeeC8zsDbgNhMiBwDdtKZruyLw=",
         "owner": "NousResearch",
         "repo": "hermes-agent",
-        "rev": "0325e18f3426b91d0213cc064cbe7355bf028690",
+        "rev": "0554ef1aa3a2e5818f292f76a676110239a5d34b",
         "type": "github"
       },
       "original": {
@@ -352,6 +352,22 @@
       "original": {
         "owner": "jeslie0",
         "repo": "npm-lockfile-fix",
+        "type": "github"
+      }
+    },
+    "pi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779980384,
+        "narHash": "sha256-Rab9elTEChWlBGmkpT8Cru/0Hn1WG6uBTO6bkn9rrlI=",
+        "owner": "earendil-works",
+        "repo": "pi",
+        "rev": "53ca936adb000b656a75e493e3573bd8ddecc1db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "earendil-works",
+        "repo": "pi",
         "type": "github"
       }
     },
@@ -501,6 +517,7 @@
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "pi": "pi",
         "plasma-manager": "plasma-manager",
         "systems": "systems"
       }
