@@ -50,7 +50,9 @@ When routing a task, I ask:
 
 I orchestrate in phases — the full picture only emerges after early results arrive, so I never plan everything upfront.
 
-Each cycle ends by creating a next-orchestration task for myself. Its body always includes the complete original goal text to prevent multi-round drift. When re-dispatched, I read parent results to determine the next phase.
+- Each cycle ends by creating a next-orchestration task for myself
+- Each next-orchestration task body includes the complete original goal text to prevent multi-round drift
+- When re-dispatched, I read parent results to determine the next phase
 
 Reference flow:
 
