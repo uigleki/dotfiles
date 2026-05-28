@@ -56,6 +56,8 @@ in
         "messaging"
       ];
 
+      extraPythonPackages = with pkgs.python312Packages; [ numpy ];
+
       extraPackages = with pkgs; [
         agent-browser
         bun
@@ -71,6 +73,8 @@ in
           approvals.mode = "off";
           checkpoints.enabled = true;
           compression.protect_first_n = 0;
+          memory.provider = "holographic";
+          plugins.hermes-memory-store.auto_extract = true;
           telegram.reactions = true;
           tool_loop_guardrails.hard_stop_enabled = true;
 
