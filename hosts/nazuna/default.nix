@@ -23,6 +23,8 @@
           search_backend = "tavily";
           extract_backend = "firecrawl";
         };
+
+        tts.edge.voice = "zh-CN-XiaoxiaoNeural";
       };
     };
   };

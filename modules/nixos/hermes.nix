@@ -41,11 +41,6 @@ in
           provider = "opencode-go";
           model = "kimi-k2.6";
         };
-
-        web = {
-          search_backend = "tavily";
-          extract_backend = "firecrawl";
-        };
       };
     };
   };
