@@ -54,14 +54,20 @@ in
     services.hermes-agent = {
       enable = true;
       addToSystemPackages = true;
-      extraDependencyGroups = [ "messaging" ];
+
+      extraDependencyGroups = [
+        "edge-tts"
+        "firecrawl"
+        "messaging"
+      ];
 
       extraPackages = with pkgs; [
+        agent-browser
         bun
         ffmpeg-headless
+        gh
         jq
         pandoc
-        unstable.agent-browser
         uv
       ];
 
