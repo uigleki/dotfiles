@@ -177,7 +177,7 @@ in
           kwinrc = {
             Effect-overview.BorderActivate = 9; # disable top-left overview trigger
             # prevent fcitx5 warning about missing virtual keyboard
-            Wayland.InputMethod = "org.fcitx.Fcitx5.desktop";
+            Wayland.InputMethod = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
           };
         };
       };
