@@ -1,5 +1,6 @@
 # required secrets – replace values and run:
 #  printf '%s\n' \
+#  'BWS_ACCESS_TOKEN=0.ABCdef123' \
 #  'TELEGRAM_ALLOWED_USERS=123456789' \
 #  'TELEGRAM_BOT_TOKEN=1234567890:ABCdef123...' \
 #  'OPENCODE_GO_API_KEY=sk-ABCdef123...' \
@@ -40,6 +41,11 @@ in
         auxiliary.vision = {
           provider = "opencode-go";
           model = "kimi-k2.6";
+        };
+
+        secrets.bitwarden = {
+          enabled = true;
+          project_id = "PASTE_UUID_HERE";
         };
       };
     };

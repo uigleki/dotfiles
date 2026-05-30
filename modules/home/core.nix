@@ -19,6 +19,7 @@
     inherit (user) stateVersion;
 
     packages = with pkgs; [
+      mutagen
       rsync
       unstable.openspec
     ];
