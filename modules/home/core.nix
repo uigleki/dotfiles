@@ -38,11 +38,6 @@
     starship.enable = true;
     yazi.enable = true;
 
-    claude-code = {
-      enable = true;
-      package = pkgs.unstable.claude-code;
-    };
-
     direnv = {
       enable = true;
       nix-direnv.enable = true;
