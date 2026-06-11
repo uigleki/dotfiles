@@ -30,14 +30,10 @@
           "chown *"
 
           # code execution
-          "python* -c *"
-          "node -e *"
           "ruby -e *"
           "perl -e *"
           "bash -c *"
           "sh -c *"
-          "npx *"
-          "bunx *"
           "eval *"
           "exec *"
           "xargs *"
@@ -48,7 +44,6 @@
           "printenv *"
 
           # network access
-          "curl *"
           "wget *"
           "ssh *"
           "scp *"
