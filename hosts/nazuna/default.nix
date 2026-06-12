@@ -16,7 +16,7 @@
 
         auxiliary.vision = {
           provider = "opencode-go";
-          model = "kimi-k2.6";
+          model = "minimax-m3";
         };
 
         secrets.bitwarden = {
