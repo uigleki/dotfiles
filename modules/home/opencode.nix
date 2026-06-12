@@ -36,7 +36,6 @@
           "sh -c *"
           "eval *"
           "exec *"
-          "xargs *"
 
           # environment injection
           "export *"
