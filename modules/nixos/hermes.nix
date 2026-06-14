@@ -40,7 +40,7 @@ in
 
         auxiliary.vision = {
           provider = "opencode-go";
-          model = "minimax-m3";
+          model = "mimo-v2.5";
         };
 
         secrets.bitwarden = {
