@@ -7,6 +7,7 @@
 {
   imports = [
     inputs.nix-index-database.homeModules.nix-index
+    ./claude.nix
     ./fzf.nix
     ./git.nix
     ./helix.nix
