@@ -120,6 +120,11 @@ in
       kdeconnect.enable = true;
       virt-manager.enable = true;
 
+      appimage = {
+        enable = true;
+        binfmt = true;
+      };
+
       steam = {
         enable = true;
         remotePlay.openFirewall = true;

@@ -11,6 +11,7 @@
     ./fzf.nix
     ./git.nix
     ./helix.nix
+    ./mcp.nix
     ./opencode.nix
     ./shell.nix
     ./tmux.nix
@@ -20,6 +21,7 @@
     inherit (user) stateVersion;
 
     packages = with pkgs; [
+      gh
       mutagen
       rsync
       unstable.openspec
