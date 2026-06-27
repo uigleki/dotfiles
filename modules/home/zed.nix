@@ -62,6 +62,8 @@ in
         helix_mode = true;
         lsp.markdownlint.settings.MD013 = false;
         relative_line_numbers = "enabled";
+        semantic_tokens = "combined";
+        sticky_scroll.enabled = true;
         tabs.git_status = true;
         terminal.copy_on_select = true;
         use_smartcase_search = true;

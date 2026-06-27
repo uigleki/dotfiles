@@ -5,13 +5,14 @@
 
     settings = {
       editor = {
-        line-number = "relative";
-        cursorline = true;
-        completion-timeout = 5; # instant completion (docs recommend 5 for instant)
         bufferline = "multiple";
+        completion-timeout = 5; # instant completion (docs recommend 5 for instant)
+        cursor-shape.insert = "bar";
+        cursorline = true;
+        indent-guides.render = true;
+        line-number = "relative";
         trim-final-newlines = true;
         trim-trailing-whitespace = true;
-        cursor-shape.insert = "bar";
 
         auto-save.after-delay = {
           enable = true;

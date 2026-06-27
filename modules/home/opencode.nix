@@ -7,6 +7,9 @@
 
     settings = {
       autoupdate = false;
+      formatter = true;
+      lsp = true;
+
       plugin = [
         "@mohak34/opencode-notifier"
         "@tarquinen/opencode-dcp"
