@@ -13,15 +13,17 @@
       formatter = pkgs.nixfmt;
 
       pre-commit.settings = {
+        package = pkgs.prek; # rust pre-commit alternative
         hooks = {
+          actionlint.enable = true;
           convco.enable = true;
           deadnix.enable = true;
           nil.enable = true;
           nixfmt.enable = true;
+          ripsecrets.enable = true;
           statix.enable = true;
+          typos.enable = true;
         };
-
-        package = pkgs.prek; # rust pre-commit alternative
       };
     };
 }
