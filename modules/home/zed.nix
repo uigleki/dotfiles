@@ -72,11 +72,6 @@ in
           80
           120
         ];
-
-        telemetry = {
-          diagnostics = false;
-          metrics = false;
-        };
       };
 
       userKeymaps = [
