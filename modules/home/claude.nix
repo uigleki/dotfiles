@@ -11,6 +11,18 @@
       model = "opus";
       permissions.defaultMode = "auto";
       theme = "auto";
+
+      hooks.PreToolUse = [
+        {
+          matcher = "Bash";
+          hooks = [
+            {
+              type = "command";
+              command = "rtk hook claude";
+            }
+          ];
+        }
+      ];
     };
   };
 }

@@ -23,6 +23,7 @@
       gh
       mutagen
       rsync
+      rtk
     ];
 
     sessionVariables = {
