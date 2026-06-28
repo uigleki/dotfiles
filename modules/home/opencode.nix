@@ -15,6 +15,7 @@
         "@tarquinen/opencode-dcp"
         "opencode-pty"
         "opencode-vibeguard"
+        "superpowers@git+https://github.com/obra/superpowers.git"
       ];
 
       permission = {

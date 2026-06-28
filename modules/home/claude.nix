@@ -6,9 +6,10 @@
     enableMcpIntegration = true;
 
     settings = {
-      theme = "auto";
+      enabledPlugins."superpowers@claude-plugins-official" = true;
       model = "opus";
       permissions.defaultMode = "auto";
+      theme = "auto";
     };
   };
 }

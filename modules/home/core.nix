@@ -11,7 +11,6 @@
     ./fzf.nix
     ./git.nix
     ./helix.nix
-    ./mcp.nix
     ./opencode.nix
     ./shell.nix
     ./tmux.nix
@@ -24,7 +23,6 @@
       gh
       mutagen
       rsync
-      unstable.openspec
     ];
 
     sessionVariables = {
@@ -53,6 +51,11 @@
         "--group-directories-first"
         "--time-style=iso"
       ];
+    };
+
+    mcp = {
+      enable = true;
+      servers.context7.command = "${pkgs.unstable.context7-mcp}/bin/context7-mcp";
     };
 
     nh = {
