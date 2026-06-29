@@ -7,8 +7,10 @@
 
     settings = {
       agentPushNotifEnabled = true;
+      enableWorkflows = true;
       enabledPlugins."superpowers@claude-plugins-official" = true;
       feedbackSurveyRate = 0;
+      inputNeededNotifEnabled = true;
       model = "opus";
       permissions.defaultMode = "auto";
       remoteControlAtStartup = true;
