@@ -24,6 +24,7 @@
       mutagen
       rsync
       rtk
+      unstable.codex
     ];
 
     sessionVariables = {
