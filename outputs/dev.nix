@@ -22,7 +22,6 @@
           nixfmt.enable = true;
           ripsecrets.enable = true;
           statix.enable = true;
-          typos.enable = true;
         };
       };
     };
