@@ -1,19 +1,22 @@
 { lib, pkgs, ... }:
 let
-  statuslineFilter = pkgs.writeText "claude-statusline.jq" ''
-    def human: (. / 1000 | round) as $k
-      | if $k >= 1000 then "\(. / 100000 | round / 10)M" else "\($k)k" end;
+  statuslineFilter = pkgs.writeTextFile {
+    name = "claude-statusline.jq";
+    text = ''
+      def human: if . < 1e6 then "\(./1e3|round)k" else "\(./1e5|round/10)M" end;
+      def rate($l; $f): values | "\($l) \(.used_percentage|round)% (\(.resets_at|strflocaltime($f)))";
+      [ ([ "[\(.model.display_name)]", (.effort.level // empty), (select(.fast_mode)|"fast") ] | join(" ")),
+        (.context_window | "\(.used_percentage // 0 | round)% (\(.total_input_tokens // 0 | human)/\(.context_window_size // 2e5 | human))"),
+        (.rate_limits.five_hour | rate("5h"; "%H:%M")),
+        (.rate_limits.seven_day | rate("7d"; "%a %H:%M")),
+        (.workspace.current_dir // empty | sub("^\($ENV.HOME)(?=/|$)"; "~"))
+      ] | join(" · ")
+    '';
 
-    def rate_seg($label; $fmt):
-      values | "\($label) \(.used_percentage | round)% (\(.resets_at | strflocaltime($fmt)))";
-
-    [ (.workspace.current_dir | split("/") | last),
-      ([ .model.display_name, (.effort.level // empty), (select(.fast_mode) | "fast") ] | join(" ")),
-      (.context_window | "\(.total_input_tokens // 0 | human)/\(.context_window_size // 200000 | human) \(.used_percentage // 0 | round)%"),
-      (.rate_limits.five_hour | rate_seg("5h"; "%H:%M")),
-      (.rate_limits.seven_day | rate_seg("7d"; "%a %H:%M")) ]
-    | join(" · ")
-  '';
+    checkPhase = ''
+      ${lib.getExe pkgs.jq} -n -f "$target"
+    '';
+  };
 in
 {
   programs.claude-code = {
@@ -60,7 +63,7 @@ in
 
       statusLine = {
         type = "command";
-        command = "${lib.getExe pkgs.jq} -j -f ${statuslineFilter}";
+        command = "${lib.getExe pkgs.jq} -r -f ${statuslineFilter}";
       };
     };
   };

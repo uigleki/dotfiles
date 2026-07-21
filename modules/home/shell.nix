@@ -31,11 +31,13 @@ in
       interactiveShellInit = "set fish_greeting";
 
       shellAbbrs = {
-        a = "opencode";
+        a = "opencode -c";
+        c = "claude -c";
+        co = "codex resume --last";
         d = "yazi";
         f = "$EDITOR";
         g = "lazygit";
-        gc = "git clone";
+        gc = "git clone --depth=1";
         gl = "git pull";
         k = "btm";
         l = "eza -la";
