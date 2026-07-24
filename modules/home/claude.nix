@@ -27,13 +27,13 @@ in
     settings = {
       agentPushNotifEnabled = true;
       askUserQuestionTimeout = "10m";
-      enableWorkflows = true;
       enabledPlugins."superpowers@claude-plugins-official" = true;
       inputNeededNotifEnabled = true;
       model = "opus";
       permissions.defaultMode = "auto";
       remoteControlAtStartup = true;
       theme = "auto";
+      tui = "fullscreen";
 
       attribution = {
         commit = "";
@@ -42,9 +42,13 @@ in
       };
 
       env = {
-        CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = 70;
+        CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = 60;
+        CLAUDE_CODE_AUTO_COMPACT_WINDOW = 700000;
         CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = 1;
         CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = 1;
+        CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION = 1000;
+        CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION = 1000;
+        CLAUDE_CODE_RETRY_WATCHDOG = 1;
         DISABLE_ERROR_REPORTING = 1;
         DISABLE_FEEDBACK_COMMAND = 1;
       };
