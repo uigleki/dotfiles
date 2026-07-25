@@ -3,7 +3,6 @@
   programs.opencode = {
     enable = true;
     package = pkgs.unstable.opencode;
-    enableMcpIntegration = true;
 
     settings = {
       autoupdate = false;
@@ -15,7 +14,6 @@
         "@tarquinen/opencode-dcp"
         "opencode-pty"
         "opencode-vibeguard"
-        "superpowers@git+https://github.com/obra/superpowers.git"
       ];
 
       permission = {

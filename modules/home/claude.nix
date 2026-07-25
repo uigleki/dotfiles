@@ -2,6 +2,8 @@
 let
   statuslineFilter = pkgs.writeTextFile {
     name = "claude-statusline.jq";
+    checkPhase = ''${lib.getExe pkgs.jq} -n -f "$target"'';
+
     text = ''
       def human: if . < 1e6 then "\(./1e3|round)k" else "\(./1e5|round/10)M" end;
       def rate($l; $f): values | "\($l) \(.used_percentage|round)% (\(.resets_at|strflocaltime($f)))";
@@ -12,22 +14,16 @@ let
         (.workspace.current_dir // empty | sub("^\($ENV.HOME)(?=/|$)"; "~"))
       ] | join(" · ")
     '';
-
-    checkPhase = ''
-      ${lib.getExe pkgs.jq} -n -f "$target"
-    '';
   };
 in
 {
   programs.claude-code = {
     enable = true;
-    package = pkgs.unstable.claude-code;
-    enableMcpIntegration = true;
+    package = null; # bun add -g @anthropic-ai/claude-code
 
     settings = {
       agentPushNotifEnabled = true;
       askUserQuestionTimeout = "10m";
-      enabledPlugins."superpowers@claude-plugins-official" = true;
       inputNeededNotifEnabled = true;
       model = "opus";
       permissions.defaultMode = "auto";
@@ -42,8 +38,8 @@ in
       };
 
       env = {
-        CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = 60;
-        CLAUDE_CODE_AUTO_COMPACT_WINDOW = 700000;
+        CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = 75;
+        CLAUDE_CODE_AUTO_COMPACT_WINDOW = 400000;
         CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = 1;
         CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = 1;
         CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION = 1000;
@@ -52,18 +48,6 @@ in
         DISABLE_ERROR_REPORTING = 1;
         DISABLE_FEEDBACK_COMMAND = 1;
       };
-
-      hooks.PreToolUse = [
-        {
-          matcher = "Bash";
-          hooks = [
-            {
-              type = "command";
-              command = "rtk hook claude";
-            }
-          ];
-        }
-      ];
 
       statusLine = {
         type = "command";

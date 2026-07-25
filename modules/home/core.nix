@@ -20,11 +20,14 @@
     inherit (user) stateVersion;
 
     packages = with pkgs; [
-      gh
       mutagen
       rsync
-      rtk
       unstable.codex
+    ];
+
+    sessionPath = [
+      "$HOME/.bun/bin"
+      "$HOME/.local/bin"
     ];
 
     sessionVariables = {
@@ -35,10 +38,13 @@
   programs = {
     bat.enable = true;
     bottom.enable = true;
+    bun.enable = true;
     fd.enable = true;
+    gh.enable = true;
     nix-index-database.comma.enable = true; # run uninstalled commands: , <cmd>
     nix-index.enable = true;
     starship.enable = true;
+    uv.enable = true;
     yazi.enable = true;
 
     direnv = {
@@ -53,11 +59,6 @@
         "--group-directories-first"
         "--time-style=iso"
       ];
-    };
-
-    mcp = {
-      enable = true;
-      servers.context7.command = "${pkgs.unstable.context7-mcp}/bin/context7-mcp";
     };
 
     nh = {

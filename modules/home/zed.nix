@@ -12,7 +12,6 @@ in
     programs.zed-editor = {
       enable = true;
       package = pkgs.unstable.zed-editor;
-      enableMcpIntegration = true;
       mutableUserKeymaps = false;
 
       extensions = [
