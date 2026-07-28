@@ -24,8 +24,8 @@ in
     settings = {
       agentPushNotifEnabled = true;
       askUserQuestionTimeout = "10m";
+      autoMemoryEnabled = false;
       inputNeededNotifEnabled = true;
-      model = "opus";
       permissions.defaultMode = "auto";
       remoteControlAtStartup = true;
       theme = "auto";
@@ -41,7 +41,6 @@ in
         CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = 75;
         CLAUDE_CODE_AUTO_COMPACT_WINDOW = 400000;
         CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = 1;
-        CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = 1;
         CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION = 1000;
         CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION = 1000;
         CLAUDE_CODE_RETRY_WATCHDOG = 1;

@@ -31,9 +31,12 @@ in
       interactiveShellInit = "set fish_greeting";
 
       shellAbbrs = {
-        a = "opencode -c";
-        c = "claude -c";
-        co = "codex resume --last";
+        a = "opencode";
+        aa = "opencode -c";
+        c = "claude";
+        cc = "claude -c";
+        co = "codex";
+        coo = "codex resume --last";
         d = "yazi";
         f = "$EDITOR";
         g = "lazygit";

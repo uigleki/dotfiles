@@ -10,15 +10,11 @@
       feedback.enabled = false;
       file_opener = "none";
       model_auto_compact_token_limit = 300000;
+      notice.hide_rate_limit_model_nudge = true;
       otel.metrics_exporter = "none";
       sandbox_mode = "workspace-write";
       sandbox_workspace_write.network_access = true;
       web_search = "live";
-
-      features = {
-        memories = true;
-        multi_agent_v2 = true;
-      };
 
       tui.status_line = [
         "model-with-reasoning"

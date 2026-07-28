@@ -13,6 +13,7 @@
         "@mohak34/opencode-notifier"
         "@tarquinen/opencode-dcp"
         "opencode-pty"
+        "opencode-status-hud"
         "opencode-vibeguard"
       ];
 
