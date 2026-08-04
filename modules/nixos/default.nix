@@ -54,12 +54,20 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  systemd.tmpfiles.rules = [
-    # docker compatibility symlink for rootless podman
-    "L /var/run/docker.sock - - - - /run/user/${toString user.uid}/podman/podman.sock"
-    # remove legacy channel profiles (flakes-only configuration)
-    "R /nix/var/nix/profiles/per-user/root/channels - - - -"
-  ];
+  systemd = {
+    oomd = {
+      enableSystemSlice = true;
+      enableUserSlices = true;
+      settings.OOM.DefaultMemoryPressureDurationSec = "20s";
+    };
+
+    tmpfiles.rules = [
+      # docker compatibility symlink for rootless podman
+      "L /var/run/docker.sock - - - - /run/user/${toString user.uid}/podman/podman.sock"
+      # remove legacy channel profiles (flakes-only configuration)
+      "R /nix/var/nix/profiles/per-user/root/channels - - - -"
+    ];
+  };
 
   users.users.${user.name} = {
     inherit (user) uid;
