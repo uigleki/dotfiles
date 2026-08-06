@@ -1,9 +1,14 @@
 {
+  config,
   inputs,
+  lib,
   pkgs,
   user,
   ...
 }:
+let
+  inherit (config.home) homeDirectory;
+in
 {
   imports = [
     inputs.nix-index-database.homeModules.nix-index
@@ -18,6 +23,7 @@
 
   home = {
     inherit (user) stateVersion;
+    file.".local/bin/node".source = lib.getExe pkgs.bun;
 
     packages = with pkgs; [
       mutagen
@@ -26,8 +32,8 @@
     ];
 
     sessionPath = [
-      "$HOME/.bun/bin"
-      "$HOME/.local/bin"
+      "${homeDirectory}/.bun/bin"
+      "${homeDirectory}/.local/bin"
     ];
 
     sessionVariables = {

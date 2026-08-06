@@ -3,7 +3,7 @@
   # not loaded — trust needs writable config
   programs.codex = {
     enable = true;
-    package = pkgs.unstable.codex;
+    package = pkgs.unstable.codex; # bun add -g @openai/codex
 
     settings = {
       approvals_reviewer = "auto_review";

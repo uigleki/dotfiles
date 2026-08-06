@@ -56,6 +56,7 @@ in
         cursor_blink = false;
         diagnostics.inline.enabled = true;
         diff_view_style = "unified";
+        format_on_save = "on";
         git_panel.tree_view = true;
         helix_mode = true;
         lsp.markdownlint.settings.MD013 = false;
