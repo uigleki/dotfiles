@@ -11,10 +11,11 @@
 
       plugin = [
         "@mohak34/opencode-notifier"
-        "@tarquinen/opencode-dcp"
+        "@simonwjackson/opencode-direnv"
+        "cc-safety-net"
+        "opencode-acp@stable"
         "opencode-pty"
         "opencode-status-hud"
-        "opencode-vibeguard"
       ];
 
       permission = {
