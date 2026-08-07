@@ -1,8 +1,9 @@
 { lib, pkgs, ... }:
 let
+  jq = lib.getExe pkgs.jq;
   statuslineFilter = pkgs.writeTextFile {
     name = "claude-statusline.jq";
-    checkPhase = ''${lib.getExe pkgs.jq} -n -f "$target"'';
+    checkPhase = ''${jq} -n -f "$target"'';
 
     text = ''
       def human: if . < 1e6 then "\(./1e3|round)k" else "\(./1e5|round/10)M" end;
@@ -27,7 +28,6 @@ in
       disableBundledSkills = true;
       disableClaudeAiConnectors = true;
       disableWorkflows = true;
-      includeGitInstructions = false;
       permissions.defaultMode = "auto";
       remoteControlAtStartup = true;
       theme = "auto";
@@ -67,7 +67,7 @@ in
 
       statusLine = {
         type = "command";
-        command = "${lib.getExe pkgs.jq} -r -f ${statuslineFilter}";
+        command = "${jq} -r -f ${statuslineFilter}";
       };
     };
   };
