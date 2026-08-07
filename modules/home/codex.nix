@@ -12,8 +12,10 @@
       model_auto_compact_token_limit = 300000;
       notice.hide_rate_limit_model_nudge = true;
       otel.metrics_exporter = "none";
+      personality = "none";
       sandbox_mode = "workspace-write";
       sandbox_workspace_write.network_access = true;
+      skills.bundled.enabled = false;
       web_search = "live";
 
       tui.status_line = [

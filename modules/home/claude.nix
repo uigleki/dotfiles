@@ -22,10 +22,12 @@ in
     package = null; # bun add -g @anthropic-ai/claude-code
 
     settings = {
-      agentPushNotifEnabled = true;
-      askUserQuestionTimeout = "10m";
       autoMemoryEnabled = false;
-      inputNeededNotifEnabled = true;
+      disableArtifact = true;
+      disableBundledSkills = true;
+      disableClaudeAiConnectors = true;
+      disableWorkflows = true;
+      includeGitInstructions = false;
       permissions.defaultMode = "auto";
       remoteControlAtStartup = true;
       theme = "auto";
@@ -39,14 +41,29 @@ in
 
       env = {
         CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = 75;
+        CLAUDE_CODE_ATTRIBUTION_HEADER = 0;
         CLAUDE_CODE_AUTO_COMPACT_WINDOW = 400000;
         CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = 1;
-        CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION = 1000;
         CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION = 1000;
         CLAUDE_CODE_RETRY_WATCHDOG = 1;
         DISABLE_ERROR_REPORTING = 1;
         DISABLE_FEEDBACK_COMMAND = 1;
       };
+
+      permissions.deny = [
+        "AskUserQuestion"
+        "CronCreate"
+        "CronDelete"
+        "CronList"
+        "DesignSync"
+        "EnterPlanMode"
+        "ExitPlanMode"
+        "NotebookEdit"
+        "PushNotification"
+        "RemoteTrigger"
+        "ReportFindings"
+        "ScheduleWakeup"
+      ];
 
       statusLine = {
         type = "command";
