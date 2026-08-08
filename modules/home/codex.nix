@@ -1,6 +1,7 @@
+# not loaded — trust needs writable config
+# still the source of truth: ~/.codex/config.toml is hand-written from it
 { pkgs, ... }:
 {
-  # not loaded — trust needs writable config
   programs.codex = {
     enable = true;
     package = pkgs.unstable.codex; # bun add -g @openai/codex
