@@ -28,7 +28,6 @@ in
       disableBundledSkills = true;
       disableClaudeAiConnectors = true;
       disableWorkflows = true;
-      permissions.defaultMode = "auto";
       remoteControlAtStartup = true;
       theme = "auto";
       tui = "fullscreen";
@@ -50,20 +49,25 @@ in
         DISABLE_FEEDBACK_COMMAND = 1;
       };
 
-      permissions.deny = [
-        "AskUserQuestion"
-        "CronCreate"
-        "CronDelete"
-        "CronList"
-        "DesignSync"
-        "EnterPlanMode"
-        "ExitPlanMode"
-        "NotebookEdit"
-        "PushNotification"
-        "RemoteTrigger"
-        "ReportFindings"
-        "ScheduleWakeup"
-      ];
+      permissions = {
+        defaultMode = "auto";
+        additionalDirectories = [ "/tmp" ];
+
+        deny = [
+          "AskUserQuestion"
+          "CronCreate"
+          "CronDelete"
+          "CronList"
+          "DesignSync"
+          "EnterPlanMode"
+          "ExitPlanMode"
+          "NotebookEdit"
+          "PushNotification"
+          "RemoteTrigger"
+          "ReportFindings"
+          "ScheduleWakeup"
+        ];
+      };
 
       statusLine = {
         type = "command";
