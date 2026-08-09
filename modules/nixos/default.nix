@@ -9,7 +9,6 @@
     ../shared/nix.nix
     ./desktop.nix
     ./disk.nix
-    ./hermes.nix
     ./network.nix
     ./secure-boot.nix
     ./security.nix

@@ -5,33 +5,6 @@
   myModules = {
     autoUpdate.enable = true;
     server.enable = true;
-
-    hermes = {
-      enable = true;
-      settings = {
-        model = {
-          provider = "opencode-go";
-          default = "deepseek-v4-flash";
-        };
-
-        auxiliary.vision = {
-          provider = "opencode-go";
-          model = "mimo-v2.5";
-        };
-
-        secrets.bitwarden = {
-          enabled = true;
-          project_id = "99910dbe-e62d-4a27-a544-b45a00883301";
-        };
-
-        web = {
-          search_backend = "tavily";
-          extract_backend = "firecrawl";
-        };
-
-        tts.edge.voice = "zh-CN-XiaoxiaoNeural";
-      };
-    };
   };
 
   boot = {
