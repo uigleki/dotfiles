@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   cfg = config.myModules.network;
-  bufferSize = 16 * 1024 * 1024; # 16MB in bytes
+  bufferSize = 16 * 1024 * 1024; # 16MiB in bytes
 in
 {
   options.myModules.network.enable = lib.mkEnableOption "network optimization and services" // {
@@ -10,7 +10,7 @@ in
 
   config = lib.mkIf cfg.enable {
     boot.kernel.sysctl = {
-      # TCP/BBR optimization for high-throughput, low-latency networking
+      # high-throughput, low-latency networking
       "net.ipv4.tcp_fastopen" = 3;
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.default_qdisc" = "cake";
@@ -22,6 +22,7 @@ in
 
     networking = {
       firewall.enable = true;
+
       # required by dnscrypt-proxy
       nameservers = [
         "127.0.0.1"

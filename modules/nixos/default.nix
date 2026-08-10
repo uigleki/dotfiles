@@ -53,13 +53,23 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  systemd = {
-    oomd = {
-      enableSystemSlice = true;
-      enableUserSlices = true;
-      settings.OOM.DefaultMemoryPressureDurationSec = "20s";
-    };
+  services.earlyoom = {
+    enable = true;
+    enableNotifications = true;
 
+    # free swap is not a headroom signal on zram
+    freeSwapThreshold = 100;
+    freeSwapKillThreshold = 100;
+
+    extraArgs = [
+      # cap the 10% headroom on large-memory hosts
+      "-M"
+      (toString (1024 * 1024)) # 1 GiB
+    ];
+  };
+
+  systemd = {
+    oomd.enable = false; # does nothing without a ManagedOOM slice opt-in
     tmpfiles.rules = [
       # docker compatibility symlink for rootless podman
       "L /var/run/docker.sock - - - - /run/user/${toString user.uid}/podman/podman.sock"

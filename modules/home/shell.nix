@@ -13,7 +13,6 @@ in
     bash = {
       enable = true;
       initExtra = ''
-        # load local secrets if exists
         # not using sops-nix etc: builds should succeed without keys
         [ -f "${secretsFile}" ] && source "${secretsFile}"
 

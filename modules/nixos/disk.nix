@@ -10,7 +10,7 @@ let
   subvol = mountpoint: {
     inherit mountpoint;
     mountOptions = [
-      "compress=zstd" # transparent compression
+      "compress=zstd"
       "noatime" # reduce unnecessary writes
     ];
   };

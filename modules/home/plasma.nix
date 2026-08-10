@@ -92,7 +92,7 @@ in
 
       plasma = {
         enable = true;
-        # overrideConfig = true;
+        # overrideConfig = true; # uncomment to purge unmanaged KDE settings; slows startup
 
         fonts = lib.genAttrs [ "general" "toolbar" "menu" "windowTitle" ] (_: font) // {
           fixedWidth = font // {
