@@ -17,7 +17,7 @@ let
 
   wallpapers = {
     path = "${syncDir}/images/wallpapers/desktop";
-    interval = 3600; # 1 hour
+    interval = 3600; # 1 hour in seconds
   };
 
   sysMonitorWidget =
@@ -34,7 +34,7 @@ let
         Appearance = {
           chartFace = "org.kde.ksysguard.textonly";
           title = "Net Speed";
-          updateRateLimit = 1000; # 1 second
+          updateRateLimit = 1000; # 1 second in ms
         };
 
         Sensors = {

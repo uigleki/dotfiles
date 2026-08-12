@@ -62,9 +62,8 @@
     freeSwapKillThreshold = 100;
 
     extraArgs = [
-      # cap the 10% headroom on large-memory hosts
-      "-M"
-      (toString (1024 * 1024)) # 1 GiB
+      "-M" # cap the 10% headroom on large-memory hosts
+      (toString (1024 * 1024)) # 1 GiB in KiB
     ];
   };
 
@@ -96,7 +95,11 @@
     };
   };
 
-  zramSwap.enable = true;
+  zramSwap = {
+    enable = true;
+    memoryPercent = 100;
+    memoryMax = 8 * 1024 * 1024 * 1024; # 8 GiB in bytes
+  };
 
   system.stateVersion = user.stateVersion;
 }

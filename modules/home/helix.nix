@@ -6,7 +6,7 @@
     settings = {
       editor = {
         bufferline = "multiple";
-        completion-timeout = 5; # instant completion (docs recommend 5 for instant)
+        completion-timeout = 5; # 5 ms; instant completion (docs recommend 5 for instant)
         cursor-shape.insert = "bar";
         cursorline = true;
         indent-guides.render = true;
@@ -16,7 +16,7 @@
 
         auto-save.after-delay = {
           enable = true;
-          timeout = 1000; # 1 second
+          timeout = 1000; # 1 second in ms
         };
       };
 

@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   cfg = config.myModules.network;
-  bufferSize = 16 * 1024 * 1024; # 16MiB in bytes
+  bufferSize = 16 * 1024 * 1024; # 16 MiB in bytes
 in
 {
   options.myModules.network.enable = lib.mkEnableOption "network optimization and services" // {
