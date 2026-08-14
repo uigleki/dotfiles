@@ -31,6 +31,7 @@ in
       remoteControlAtStartup = true;
       theme = "auto";
       tui = "fullscreen";
+      worktree.baseRef = "head";
 
       attribution = {
         commit = "";
