@@ -26,8 +26,10 @@ in
     file.".local/bin/node".source = lib.getExe pkgs.bun;
 
     packages = with pkgs; [
+      _7zz
       mutagen
       rsync
+      unar
       unstable.codex
     ];
 
