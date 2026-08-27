@@ -24,10 +24,10 @@ in
 
     settings = {
       autoMemoryEnabled = false;
-      disableArtifact = true;
       disableBundledSkills = true;
       disableClaudeAiConnectors = true;
       disableWorkflows = true;
+      model = "opus";
       remoteControlAtStartup = true;
       theme = "auto";
       tui = "fullscreen";
@@ -52,9 +52,8 @@ in
 
       permissions = {
         defaultMode = "auto";
-        additionalDirectories = [ "/tmp" ];
-
         deny = [
+          "Artifact"
           "AskUserQuestion"
           "CronCreate"
           "CronDelete"
