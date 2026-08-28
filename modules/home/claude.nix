@@ -23,11 +23,13 @@ in
     package = null; # bun add -g @anthropic-ai/claude-code
 
     settings = {
+      agentPushNotifEnabled = false;
       autoMemoryEnabled = false;
       disableBundledSkills = true;
       disableClaudeAiConnectors = true;
       disableWorkflows = true;
-      model = "opus";
+      inputNeededNotifEnabled = true;
+      model = "opus[1m]";
       remoteControlAtStartup = true;
       theme = "auto";
       tui = "fullscreen";
