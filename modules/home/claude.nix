@@ -29,7 +29,7 @@ in
       disableClaudeAiConnectors = true;
       disableWorkflows = true;
       inputNeededNotifEnabled = true;
-      model = "opus[1m]";
+      model = "claude-fable-5-1[1m]";
       remoteControlAtStartup = true;
       theme = "auto";
       tui = "fullscreen";
@@ -48,6 +48,7 @@ in
         CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH = 1;
         CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION = 1000;
         CLAUDE_CODE_RETRY_WATCHDOG = 1;
+        CLAUDE_CODE_SUBAGENT_MODEL = "claude-fable-5-1[1m]";
         DISABLE_ERROR_REPORTING = 1;
         DISABLE_FEEDBACK_COMMAND = 1;
       };
