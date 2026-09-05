@@ -163,12 +163,6 @@ in
         scheduler = "scx_lavd";
       };
 
-      sunshine = {
-        enable = true;
-        capSysAdmin = true;
-        openFirewall = true;
-      };
-
       udisks2 = {
         enable = true;
         settings."mount_options.conf".defaults.btrfs_defaults = "compress=zstd,noatime";

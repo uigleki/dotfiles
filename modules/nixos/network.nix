@@ -21,7 +21,7 @@ in
     };
 
     networking = {
-      firewall.enable = true;
+      firewall.enable = true; # pinned: a flip would expose every listening port
 
       # required by dnscrypt-proxy
       nameservers = [
