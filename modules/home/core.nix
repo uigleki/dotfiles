@@ -1,7 +1,6 @@
 {
   config,
   inputs,
-  lib,
   pkgs,
   user,
   ...
@@ -23,10 +22,12 @@ in
 
   home = {
     inherit (user) stateVersion;
-    file.".local/bin/node".source = lib.getExe pkgs.bun;
+    file = {
+      ".local/bin/node".source = "${pkgs.bun}/bin/bun";
+      ".local/bin/npx".source = "${pkgs.bun}/bin/bunx";
+    };
 
     packages = with pkgs; [
-      rsync
       unstable.codex
 
       # required by ark for 7z and rar
@@ -34,9 +35,12 @@ in
       unar
 
       # used by coding agents
-      jq
-      python3
+      imagemagick
+      lsof
+      poppler-utils
+      psmisc
       tree
+      unzip
     ];
 
     sessionPath = [

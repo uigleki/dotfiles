@@ -35,11 +35,17 @@
     };
   };
 
+  documentation.doc.enable = false;
+
   environment.systemPackages = with pkgs; [
-    curl
     git
     podman-compose
     vim
+
+    # already in the closure, just not on PATH
+    file
+    jq
+    python3
   ];
 
   networking.hostName = user.hostName;
