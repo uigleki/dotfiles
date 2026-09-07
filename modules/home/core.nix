@@ -29,6 +29,7 @@ in
 
     packages = with pkgs; [
       # used by coding agents
+      bubblewrap # required by codex
       imagemagick
       lsof
       poppler-utils

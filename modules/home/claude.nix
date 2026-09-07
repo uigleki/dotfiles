@@ -20,7 +20,7 @@ in
 {
   programs.claude-code = {
     enable = true;
-    package = null; # bun add -g @anthropic-ai/claude-code
+    package = null; # curl -fsSL https://claude.ai/install.sh | bash
 
     settings = {
       model = "claude-fable-5-1[1m]";

@@ -1,9 +1,11 @@
 # not loaded — trust needs writable config
 # still the source of truth: ~/.codex/config.toml is hand-written from it
+{ pkgs, ... }:
 {
+  home.packages = [ pkgs.bubblewrap ];
   programs.codex = {
     enable = true;
-    package = null; # bun add -g @openai/codex
+    package = null; # curl -fsSL https://chatgpt.com/codex/install.sh | sh
 
     settings = {
       approvals_reviewer = "auto_review";
