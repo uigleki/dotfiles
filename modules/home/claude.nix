@@ -1,3 +1,4 @@
+# curl -fsSL https://claude.ai/install.sh | bash
 { lib, pkgs, ... }:
 let
   jq = lib.getExe pkgs.jq;
@@ -20,7 +21,7 @@ in
 {
   programs.claude-code = {
     enable = true;
-    package = null; # curl -fsSL https://claude.ai/install.sh | bash
+    package = null;
 
     settings = {
       model = "claude-fable-5-1[1m]";

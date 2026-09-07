@@ -12,6 +12,7 @@ in
   imports = [
     inputs.nix-index-database.homeModules.nix-index
     ./claude.nix
+    ./codex.nix
     ./fzf.nix
     ./git.nix
     ./helix.nix
@@ -29,7 +30,6 @@ in
 
     packages = with pkgs; [
       # used by coding agents
-      bubblewrap # required by codex
       imagemagick
       lsof
       poppler-utils
