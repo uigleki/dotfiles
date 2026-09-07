@@ -71,7 +71,7 @@ in
   #     Environment = [
   #       "PATH=${homeDirectory}/.local/bin:/etc/profiles/per-user/${username}/bin:/run/current-system/sw/bin"
   #     ];
-  #     ExecStart = "${lib.getExe pkgs.direnv} exec ${homeDirectory}/${project} ${homeDirectory}/.local/bin/codex app-server --remote-control --listen unix://";
+  #     ExecStart = "${lib.getExe pkgs.bash} -lc 'exec ${lib.getExe pkgs.direnv} exec ${homeDirectory}/${project} ${homeDirectory}/.local/bin/codex app-server --remote-control --listen unix://'";
   #     Restart = "on-failure";
   #     RestartSec = 10;
   #   };
