@@ -1,10 +1,9 @@
 # not loaded — trust needs writable config
 # still the source of truth: ~/.codex/config.toml is hand-written from it
-{ pkgs, ... }:
 {
   programs.codex = {
     enable = true;
-    package = pkgs.unstable.codex; # bun add -g @openai/codex
+    package = null; # bun add -g @openai/codex
 
     settings = {
       approvals_reviewer = "auto_review";
@@ -18,6 +17,11 @@
       sandbox_workspace_write.network_access = true;
       skills.bundled.enabled = false;
       web_search = "live";
+
+      features = {
+        apps = false;
+        tool_suggest = false;
+      };
 
       tui.status_line = [
         "model-with-reasoning"

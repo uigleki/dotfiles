@@ -28,12 +28,6 @@ in
     };
 
     packages = with pkgs; [
-      unstable.codex
-
-      # required by ark for 7z and rar
-      _7zz
-      unar
-
       # used by coding agents
       imagemagick
       lsof

@@ -24,6 +24,10 @@ in
         kitty
         libnotify
         wl-clipboard
+
+        # required by ark for 7z and rar
+        _7zz
+        unar
       ];
 
       plasma6.excludePackages = with pkgs.kdePackages; [
