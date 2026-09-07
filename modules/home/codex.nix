@@ -8,7 +8,9 @@
     package = null; # curl -fsSL https://chatgpt.com/codex/install.sh | sh
 
     settings = {
-      approvals_reviewer = "auto_review";
+      model = "gpt-6-astra";
+      model_reasoning_effort = "medium";
+
       feedback.enabled = false;
       file_opener = "none";
       model_auto_compact_token_limit = 300000;
