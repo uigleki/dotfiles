@@ -67,11 +67,17 @@ in
   #   Unit.Description = "Codex Remote Control for ${project}";
 
   #   Service = {
+  #     Type = "oneshot";
+  #     RemainAfterExit = true;
+
   #     WorkingDirectory = "${homeDirectory}/${project}";
   #     Environment = [
   #       "PATH=${homeDirectory}/.local/bin:/etc/profiles/per-user/${username}/bin:/run/current-system/sw/bin"
   #     ];
-  #     ExecStart = "${lib.getExe pkgs.bash} -lc 'exec ${lib.getExe pkgs.direnv} exec ${homeDirectory}/${project} ${homeDirectory}/.local/bin/codex app-server --remote-control --listen unix://'";
+
+  #     ExecStart = "${lib.getExe pkgs.bash} -lc 'exec ${lib.getExe pkgs.direnv} exec ${homeDirectory}/${project} ${homeDirectory}/.local/bin/codex remote-control start'";
+  #     ExecStop = "${homeDirectory}/.local/bin/codex remote-control stop";
+
   #     Restart = "on-failure";
   #     RestartSec = 10;
   #   };
