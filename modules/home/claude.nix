@@ -5,17 +5,7 @@ let
   statuslineFilter = pkgs.writeTextFile {
     name = "claude-statusline.jq";
     checkPhase = ''${jq} -n -f "$target"'';
-
-    text = ''
-      def human: if . < 1e6 then "\(./1e3|round)k" else "\(./1e5|round/10)M" end;
-      def rate($l; $f): values | "\($l) \(.used_percentage|round)% (\(.resets_at|strflocaltime($f)))";
-      [ ([ "[\(.model.display_name)]", (.effort.level // empty), (select(.fast_mode)|"fast") ] | join(" ")),
-        (.context_window | "\(.used_percentage // 0 | round)% (\(.total_input_tokens // 0 | human)/\(.context_window_size // 2e5 | human))"),
-        (.rate_limits.five_hour | rate("5h"; "%H:%M")),
-        (.rate_limits.seven_day | rate("7d"; "%a %H:%M")),
-        (.workspace.current_dir // empty | sub("^\($ENV.HOME)(?=/|$)"; "~"))
-      ] | join(" · ")
-    '';
+    text = builtins.readFile ./claude-statusline.jq;
   };
 in
 {
