@@ -13,16 +13,14 @@ in
       enable = true;
       package = pkgs.unstable.zed-editor;
       mutableUserKeymaps = false;
+      mutableUserSettings = false;
 
       extensions = [
-        "biome"
         "catppuccin"
         "catppuccin-icons"
         "csharp"
         "dart"
-        "docker-compose"
         "dockerfile"
-        "emmet"
         "env"
         "gdscript"
         "git-firefly"
@@ -31,13 +29,11 @@ in
         "just"
         "log"
         "lua"
-        "markdownlint"
         "nix"
         "rainbow-csv"
         "sql"
         "toml"
         "xml"
-        "zig"
       ];
 
       userSettings = {
@@ -59,13 +55,18 @@ in
         format_on_save = "on";
         git_panel.tree_view = true;
         helix_mode = true;
-        lsp.markdownlint.settings.MD013 = false;
         relative_line_numbers = "enabled";
         semantic_tokens = "combined";
         sticky_scroll.enabled = true;
         tabs.git_status = true;
         terminal.copy_on_select = true;
         use_smartcase_search = true;
+
+        agent.dock = "right";
+        collaboration_panel.dock = "left";
+        git_panel.dock = "left";
+        outline_panel.dock = "left";
+        project_panel.dock = "left";
 
         wrap_guides = [
           80
@@ -84,6 +85,7 @@ in
         }
         {
           context = "Editor";
+          bindings."ctrl-s" = "workspace::Save";
           bindings.f6 = "editor::SortLinesCaseSensitive";
         }
       ];
