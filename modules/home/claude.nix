@@ -19,11 +19,14 @@ in
 
       agentPushNotifEnabled = false;
       autoMemoryEnabled = false;
+      awaySummaryEnabled = false;
       disableBundledSkills = true;
       disableClaudeAiConnectors = true;
       disableWorkflows = true;
       inputNeededNotifEnabled = true;
+      promptSuggestionEnabled = false;
       remoteControlAtStartup = true;
+      spinnerTipsEnabled = false;
       theme = "auto";
       tui = "fullscreen";
       worktree.baseRef = "head";
