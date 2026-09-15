@@ -61,11 +61,6 @@ in
           sha256 = "172k2d2m7xcgp8xkgvjyvyfnksq5812crsfg3bxly22xmg0qmjzp";
         }
       );
-
-      tmux = {
-        plugins = [ pkgs.tmuxPlugins.catppuccin ];
-        extraConfig = ''set -g @catppuccin_flavor "latte"'';
-      };
     };
 
     xdg.configFile = {

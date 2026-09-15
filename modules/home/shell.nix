@@ -46,7 +46,6 @@ in
         l = "eza -la";
         lt = "eza -T";
         r = "rsync -rthP";
-        t = "tmux new -A";
         u = rebuildCmd;
         uu = "nix flake update --flake ${user.flake} && ${rebuildCmd}";
 

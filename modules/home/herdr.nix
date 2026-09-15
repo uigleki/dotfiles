@@ -3,8 +3,12 @@ let
   settings = {
     onboarding = false;
     theme.name = "catppuccin-latte";
-    ui.toast.delivery = "terminal";
     update.version_check = false;
+
+    ui = {
+      status_indicators = "symbols";
+      toast.delivery = "terminal";
+    };
   };
 in
 {

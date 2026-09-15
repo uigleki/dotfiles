@@ -85,7 +85,6 @@ sudo nixos-rebuild switch --flake github:uigleki/dotfiles#inori
 - `f` — Editor (`helix`)
 - `d` — File manager (`yazi`)
 - `g` — Git interface (`lazygit`)
-- `t` — Terminal multiplexer (`tmux`)
 
 ### Navigation Shortcuts
 
