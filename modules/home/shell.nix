@@ -41,6 +41,7 @@ in
         g = "lazygit";
         gc = "git clone --depth=1";
         gl = "git pull";
+        h = "herdr";
         k = "btm";
         l = "eza -la";
         lt = "eza -T";

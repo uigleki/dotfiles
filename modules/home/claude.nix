@@ -1,7 +1,14 @@
 # curl -fsSL https://claude.ai/install.sh | bash
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
+  inherit (config.home) homeDirectory;
   jq = lib.getExe pkgs.jq;
+
   statuslineFilter = pkgs.writeTextFile {
     name = "claude-statusline.jq";
     checkPhase = ''${jq} -n -f "$target"'';
@@ -48,6 +55,19 @@ in
         DISABLE_ERROR_REPORTING = 1;
         DISABLE_FEEDBACK_COMMAND = 1;
       };
+
+      hooks.SessionStart = [
+        {
+          matcher = "*";
+          hooks = [
+            {
+              type = "command";
+              command = "bash '${homeDirectory}/.claude/hooks/herdr-agent-state.sh' session";
+              timeout = 10;
+            }
+          ];
+        }
+      ];
 
       permissions = {
         defaultMode = "auto";
