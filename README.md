@@ -74,7 +74,7 @@ sudo nixos-rebuild switch --flake github:uigleki/dotfiles#inori
 - `, <command>` — Try any tool without installing
 - `u` — Update system
 - `uu` — Update flake + rebuild
-- `sudo nix-collect-garbage -d` — Clean old generations
+- `nh clean all --keep-one && nh os boot` — Clean old generations
 
 ### Core Tools
 

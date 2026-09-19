@@ -11,11 +11,6 @@ let
     model = "gpt-6-astra";
     model_reasoning_effort = "medium";
 
-    # agents = {
-    #   default_subagent_model = "gpt-5.6-luna";
-    #   default_subagent_reasoning_effort = "max";
-    # };
-
     analytics.enabled = false;
     feedback.enabled = false;
     include_collaboration_mode_instructions = false;

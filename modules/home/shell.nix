@@ -9,6 +9,9 @@ let
   secretsFile = "$HOME/.config/secrets.sh";
   rebuildCmd = if osConfig == null then "nh home switch" else "nh os switch";
 
+  skills = "${pkgs.bun}/bin/bunx skills@latest";
+  flags = flag: values: lib.concatMapStringsSep " " (v: "${flag} ${lib.escapeShellArg v}") values;
+
   skillAgents = [
     "claude-code"
     "codex"
@@ -26,13 +29,12 @@ let
     }
   ];
 
-  flags = flag: values: lib.concatMapStringsSep " " (v: "${flag} ${lib.escapeShellArg v}") values;
   # Reinstall from scratch so skills dropped from the list or upstream disappear too.
   updateSkills = pkgs.writeShellScriptBin "update-skills" ''
     set -e
-    skills rm --all -g
+    ${skills} rm --all -g
     ${lib.concatMapStringsSep "\n" (
-      s: "skills add ${s.repo} ${flags "-s" s.skills} -g ${flags "-a" skillAgents} -y"
+      s: "${skills} add ${s.repo} ${flags "-s" s.skills} -g ${flags "-a" skillAgents} -y"
     ) skillSources}
   '';
 in
