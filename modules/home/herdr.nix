@@ -8,6 +8,15 @@ let
     ui = {
       status_indicators = "symbols";
       toast.delivery = "terminal";
+
+      sidebar.agents.rows = [
+        [
+          "state_icon"
+          "agent"
+          "workspace"
+        ]
+        [ "terminal_title_stripped" ]
+      ];
     };
   };
 in

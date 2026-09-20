@@ -10,12 +10,16 @@ def human:
     | (.[0] | if . < 10 then 100 elif . < 100 then 10 else 1 end) as $p
     | "\(.[0]*$p|round/$p)\(.[1])"
   end;
-def rate($l): .used_percentage // empty | "\($l) \(100 - . | [0, ., 100] | sort | .[1] | round)% left" | color("limit");
+def rate($l; $fmt): select(.used_percentage != null)
+  | "\($l) \(100 - .used_percentage | [0, ., 100] | sort | .[1] | round)%"
+  + (.resets_at | if . then " until \(strflocaltime($fmt))" else " left" end)
+  | color("limit");
 [ ([ (.model.display_name // empty), (.effort.level // empty) ] | join(" ") | select(length > 0) | color("model")),
-  ("Fast \(if .fast_mode then "on" else "off" end)" | color("mode")),
-  (.context_window.used_percentage // empty | "Context \(.|round)% used" | color("usage")),
-  (.context_window.context_window_size // empty | "\(.|human) window" | color("usage")),
-  (.rate_limits.five_hour | rate("5h")),
-  (.rate_limits.seven_day | rate("weekly")),
+  (select(.fast_mode) | "Fast" | color("mode")),
+  (.context_window | select(.used_percentage != null)
+    | "\(.used_percentage|round)%" + (.context_window_size | if . then " of \(human)" else "" end)
+    | color("usage")),
+  (.rate_limits.five_hour | rate("5h"; "%H:%M")),
+  (.rate_limits.seven_day | rate("7d"; "%a %H:%M")),
   (.workspace.current_dir // empty | sub("^\($ENV.HOME)(?=/|$)"; "~") | color("path"))
 ] | join("\u001b[2m · \u001b[0m")
