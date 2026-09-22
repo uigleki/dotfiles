@@ -21,8 +21,8 @@ in
     package = null;
 
     settings = {
-      model = "claude-fable-5-1[1m]";
-      env.CLAUDE_CODE_SUBAGENT_MODEL = "opus[1m]";
+      model = "opus[1m]";
+      # env.CLAUDE_CODE_SUBAGENT_MODEL = "opus[1m]";
 
       agentPushNotifEnabled = false;
       autoMemoryEnabled = false;
@@ -58,7 +58,7 @@ in
 
       hooks.SessionStart = [
         {
-          matcher = "*";
+          matcher = "^(startup|resume|clear|compact|fork)$";
           hooks = [
             {
               type = "command";

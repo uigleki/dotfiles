@@ -8,7 +8,7 @@
 let
   inherit (config.home) homeDirectory;
   settings = {
-    model = "gpt-6-astra";
+    model = "gpt-6-sol";
     model_reasoning_effort = "medium";
 
     analytics.enabled = false;
