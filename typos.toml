@@ -1,0 +1,8 @@
+[default]
+locale = "en-us"
+# USB vendor:product IDs, e.g. `04F3:30BA`.
+extend-ignore-re = ["\\b[0-9A-F]{4}:[0-9A-F]{4}\\b"]
+
+[default.extend-identifiers]
+crypted = "crypted"
+optimise = "optimise"

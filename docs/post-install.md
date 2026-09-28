@@ -1,6 +1,8 @@
 # Post-Installation Setup
 
-Commands to run after initial system installation. These configure services and applications that require user interaction or cannot be fully automated through Nix.
+Commands to run after initial system installation.
+These configure services and applications that require user interaction
+or cannot be fully automated through Nix.
 
 ## Server
 
@@ -24,5 +26,6 @@ sudo virsh net-autostart default
 **What these do:**
 
 - **Tailscale**: Connect to your private network and allow non-root management
-- **Flatpak**: Add Flathub repository and install gaming tools (Heroic for Epic/GOG, Bottles for Windows apps)
+- **Flatpak**: Add Flathub repository and install gaming tools
+  (Heroic for Epic/GOG, Bottles for Windows apps)
 - **libvirt**: Enable automatic start of default virtual network for VMs
