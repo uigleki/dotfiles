@@ -24,6 +24,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.mpv = {
       enable = true;
+
       config = {
         profile = "high-quality";
         vo = "gpu-next";
@@ -41,12 +42,6 @@ in
         osd-bar = "no";
         border = "no";
       };
-
-      scripts = with pkgs.mpvScripts; [
-        mpris
-        thumbfast
-        uosc
-      ];
 
       bindings = {
         right = "seek 5; script-binding uosc/flash-timeline";
@@ -69,6 +64,12 @@ in
         "ctrl+1" = ''no-osd change-list glsl-shaders set "${anime}"; show-text "Shaders: Anime"'';
         "ctrl+2" = ''no-osd change-list glsl-shaders set "${film}"; show-text "Shaders: Film"'';
       };
+
+      scripts = with pkgs.mpvScripts; [
+        mpris
+        thumbfast
+        uosc
+      ];
     };
 
     xdg.configFile."mpv/shaders".source =

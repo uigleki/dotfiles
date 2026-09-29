@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.myModules.server;
 in
@@ -6,7 +11,7 @@ in
   options.myModules.server.enable = lib.mkEnableOption "headless server";
 
   config = lib.mkIf cfg.enable {
-    environment.variables.TERM = "xterm-256color"; # fix missing remote terminfo
+    environment.systemPackages = [ pkgs.kitty.terminfo ]; # ssh from kitty keeps TERM=xterm-kitty
 
     services = {
       fail2ban.enable = true;
@@ -17,8 +22,8 @@ in
         openFirewall = true;
 
         settings = {
-          PermitRootLogin = "no";
           PasswordAuthentication = false;
+          PermitRootLogin = "no";
           PubkeyAuthentication = true;
         };
       };

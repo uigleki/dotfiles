@@ -14,6 +14,7 @@ in
   config = lib.mkIf cfg.enable {
     boot = {
       supportedFilesystems = [ "ntfs" ];
+
       kernel.sysctl = {
         "vm.compaction_proactiveness" = 0; # reduce latency spikes in gaming
       };
@@ -43,6 +44,7 @@ in
 
     fonts = {
       enableDefaultPackages = true;
+
       packages = with pkgs; [
         nerd-fonts.ubuntu
         nerd-fonts.ubuntu-mono
@@ -65,7 +67,6 @@ in
     hardware.bluetooth.enable = true;
 
     i18n = {
-      defaultLocale = "en_US.UTF-8";
       extraLocales = [
         "zh_CN.UTF-8/UTF-8"
         "zh_TW.UTF-8/UTF-8"
@@ -78,6 +79,7 @@ in
 
         fcitx5 = {
           waylandFrontend = true;
+
           addons = with pkgs; [
             qt6Packages.fcitx5-chinese-addons
             fcitx5-pinyin-zhwiki
@@ -109,9 +111,11 @@ in
 
     networking = {
       networkmanager.enable = true;
+
+      # required by WiFi hotspot
       firewall = {
-        # required by WiFi hotspot
         allowedTCPPorts = [ 53 ];
+
         allowedUDPPorts = [
           53
           67
@@ -131,10 +135,10 @@ in
 
       steam = {
         enable = true;
-        remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
-        localNetworkGameTransfers.openFirewall = true;
         fontPackages = with pkgs; [ wqy_zenhei ];
+        localNetworkGameTransfers.openFirewall = true;
+        remotePlay.openFirewall = true;
       };
     };
 
@@ -145,10 +149,12 @@ in
       desktopManager.plasma6.enable = true;
       displayManager.sddm.enable = true;
       flatpak.enable = true;
+      udisks2.settings."mount_options.conf".defaults.btrfs_defaults = "compress=zstd,noatime";
 
       # remap Caps Lock to Home key using keyd
       keyd = {
         enable = true;
+
         keyboards.default = {
           ids = [ "*" ];
           settings.main.capslock = "home";
@@ -165,11 +171,6 @@ in
       scx = {
         enable = true;
         scheduler = "scx_lavd";
-      };
-
-      udisks2 = {
-        enable = true;
-        settings."mount_options.conf".defaults.btrfs_defaults = "compress=zstd,noatime";
       };
     };
 

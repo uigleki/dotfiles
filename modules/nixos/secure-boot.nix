@@ -3,7 +3,7 @@
 # This module provides:
 # - Lanzaboote for Secure Boot with automatic key enrollment
 # - LUKS-encrypted btrfs root with TPM2 auto-unlock support
-# - Replaces standard boot and disk-config modules
+# - Replaces the systemd-boot loader
 #
 # Post-install setup:
 # 1. Enter BIOS, set Secure Boot to "Setup Mode", boot system
@@ -29,20 +29,18 @@ in
     myModules.disk.encrypted = true;
 
     boot = {
-      initrd.systemd.enable = true; # required for systemd-cryptenroll TPM unlock
+      loader.systemd-boot.enable = lib.mkForce false;
 
       lanzaboote = {
         enable = true;
-        pkiBundle = "/var/lib/sbctl";
         autoGenerateKeys.enable = true;
+        pkiBundle = "/var/lib/sbctl";
 
         autoEnrollKeys = {
           enable = true;
           autoReboot = true;
         };
       };
-
-      loader.systemd-boot.enable = lib.mkForce false;
     };
 
     environment.systemPackages = [ pkgs.sbctl ];

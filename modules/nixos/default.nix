@@ -20,14 +20,15 @@
   boot = {
     kernel.sysctl = {
       # recommended for zramSwap
+      "vm.page-cluster" = 0;
       "vm.swappiness" = 180;
       "vm.watermark_boost_factor" = 0;
       "vm.watermark_scale_factor" = 125;
-      "vm.page-cluster" = 0;
     };
 
     loader = {
       efi.canTouchEfiVariables = true;
+
       systemd-boot = {
         enable = lib.mkDefault true;
         configurationLimit = 5; # prevent boot partition running out of space
@@ -75,35 +76,36 @@
 
   systemd = {
     oomd.enable = false; # does nothing without a ManagedOOM slice opt-in
+
     tmpfiles.rules = [
       # docker compatibility symlink for rootless podman
-      "L /var/run/docker.sock - - - - /run/user/${toString user.uid}/podman/podman.sock"
+      "L /run/docker.sock - - - - /run/user/${toString user.uid}/podman/podman.sock"
       # remove legacy channel profiles (flakes-only configuration)
-      "R /nix/var/nix/profiles/per-user/root/channels - - - -"
+      "R /nix/var/nix/profiles/per-user/root/channels* - - - -"
     ];
   };
 
   users.users.${user.name} = {
     inherit (user) uid;
     isNormalUser = true;
-    initialPassword = user.name;
     extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keys = user.sshKeys;
+    initialPassword = user.name;
     linger = true; # allow user services to run without login session
+    openssh.authorizedKeys.keys = user.sshKeys;
   };
 
   virtualisation = {
     podman = {
       enable = true;
-      dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
+      dockerCompat = true;
     };
   };
 
   zramSwap = {
     enable = true;
-    memoryPercent = 100;
     memoryMax = 8 * 1024 * 1024 * 1024; # 8 GiB in bytes
+    memoryPercent = 100;
   };
 
   system.stateVersion = user.stateVersion;

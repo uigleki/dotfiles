@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  user,
   osConfig ? null,
   ...
 }:
@@ -40,6 +39,7 @@ let
 in
 {
   home.packages = [ updateSkills ];
+
   programs = {
     bash = {
       enable = true;
@@ -63,20 +63,17 @@ in
       shellAbbrs = {
         c = "claude";
         co = "codex";
-        d = "yazi";
         f = "$EDITOR";
-        g = "lazygit";
         gc = "git clone --depth=1";
         gl = "git pull";
         h = "herdr";
         k = "btm";
         l = "eza -la";
-        lt = "eza -T";
         o = "opencode";
         r = "rsync -rthP";
         u = rebuildCmd;
         us = "update-skills";
-        uu = "nix flake update --flake ${user.flake} && ${rebuildCmd}";
+        uu = "${rebuildCmd} --update";
 
         G = {
           position = "anywhere";

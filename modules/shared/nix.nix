@@ -14,6 +14,7 @@
 
   nixpkgs = {
     config.allowUnfree = true;
+
     overlays = [
       # expose unstable packages as pkgs.unstable.*
       (final: _: {

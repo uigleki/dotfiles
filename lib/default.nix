@@ -20,18 +20,19 @@ in
       extraModules ? [ ],
     }:
     nixpkgs.lib.nixosSystem {
-      inherit (user) system;
       specialArgs = { inherit inputs user; };
 
       modules = [
         ../modules/nixos
         home-manager.nixosModules.home-manager
         {
+          nixpkgs.hostPlatform = user.system;
+
           home-manager = {
+            extraSpecialArgs = { inherit inputs user; };
             useGlobalPkgs = true;
             useUserPackages = true;
             users.${user.name}.imports = [ ../modules/home ];
-            extraSpecialArgs = { inherit inputs user; };
           };
         }
       ]

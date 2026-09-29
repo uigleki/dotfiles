@@ -53,12 +53,10 @@ in
     bottom.enable = true;
     bun.enable = true;
     fd.enable = true;
-    gh.enable = true;
     nix-index-database.comma.enable = true; # run uninstalled commands: , <cmd>
     nix-index.enable = true;
     starship.enable = true;
     uv.enable = true;
-    yazi.enable = true;
 
     direnv = {
       enable = true;
@@ -68,10 +66,16 @@ in
 
     eza = {
       enable = true;
+
       extraOptions = [
         "--group-directories-first"
         "--time-style=iso"
       ];
+    };
+
+    gh = {
+      enable = true;
+      settings.telemetry = "disabled";
     };
 
     nh = {
@@ -82,6 +86,11 @@ in
     ripgrep = {
       enable = true;
       arguments = [ "--smart-case" ];
+    };
+
+    yazi = {
+      enable = true;
+      shellWrapperName = "d";
     };
 
     zoxide = {

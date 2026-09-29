@@ -8,18 +8,11 @@
       autoupdate = false;
       formatter = true;
       lsp = true;
-
-      plugin = [
-        "@mohak34/opencode-notifier"
-        "@simonwjackson/opencode-direnv"
-        "cc-safety-net"
-        "opencode-acp@stable"
-        "opencode-pty"
-        "opencode-status-hud"
-      ];
+      share = "disabled";
 
       permission = {
         external_directory = "allow";
+
         bash = lib.genAttrs [
           # file destruction
           "rm *"
@@ -71,6 +64,15 @@
           "npm publish*"
         ] (_: "ask");
       };
+
+      plugin = [
+        "@mohak34/opencode-notifier"
+        "@simonwjackson/opencode-direnv"
+        "cc-safety-net"
+        "opencode-acp@stable"
+        "opencode-pty"
+        "opencode-status-hud"
+      ];
     };
   };
 }

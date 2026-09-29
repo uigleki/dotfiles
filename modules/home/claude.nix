@@ -25,6 +25,7 @@ in
       # env.CLAUDE_CODE_SUBAGENT_MODEL = "opus[1m]";
 
       agentPushNotifEnabled = false;
+      attribution = false;
       autoMemoryEnabled = false;
       awaySummaryEnabled = false;
       disableBundledSkills = true;
@@ -34,15 +35,10 @@ in
       promptSuggestionEnabled = false;
       remoteControlAtStartup = true;
       spinnerTipsEnabled = false;
+      syncClaudeAiSkills = false;
       theme = "auto";
       tui = "fullscreen";
       worktree.baseRef = "head";
-
-      attribution = {
-        commit = "";
-        pr = "";
-        sessionUrl = false;
-      };
 
       env = {
         CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = 75;
@@ -59,6 +55,7 @@ in
       hooks.SessionStart = [
         {
           matcher = "^(startup|resume|clear|compact|fork)$";
+
           hooks = [
             {
               type = "command";
@@ -71,6 +68,7 @@ in
 
       permissions = {
         defaultMode = "auto";
+
         deny = [
           "Artifact"
           "AskUserQuestion"

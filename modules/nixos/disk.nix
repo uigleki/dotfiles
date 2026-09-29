@@ -51,6 +51,7 @@ in
 
       content = {
         type = "gpt";
+
         partitions = {
           ESP = {
             size = "500M";

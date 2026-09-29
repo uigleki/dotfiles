@@ -29,6 +29,8 @@ let
 
     tui = {
       auto_recap = false;
+      show_tooltips = false;
+
       status_line = [
         "model-with-reasoning"
         "fast-mode"
@@ -40,14 +42,10 @@ let
       ];
     };
   };
+
   declaredSettings = (pkgs.formats.toml { }).generate "codex-settings.toml" settings;
 in
 {
-  programs.codex = {
-    enable = true;
-    package = null;
-  };
-
   home = {
     packages = [ pkgs.bubblewrap ];
 
@@ -63,6 +61,11 @@ in
         printf '%s\n' "$merged" > "$target"
       ''}
     '';
+  };
+
+  programs.codex = {
+    enable = true;
+    package = null;
   };
 
   # template for ~/.config/systemd/user/codex.service; keep temporary projects out of Nix

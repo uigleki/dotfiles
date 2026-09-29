@@ -2,12 +2,14 @@
   programs.fzf = {
     enable = true;
     defaultCommand = "fd --type file";
-    defaultOptions = [
+    fileWidgetCommand = "fd --type file . $dir"; # $dir is set by the fish widget to the typed directory
+
+    fileWidgetOptions = [
       "--preview='bat --color=always --style=numbers --line-range=:100 {}'"
     ];
-    fileWidgetCommand = "fd --type file";
-    historyWidgetOptions = [ "--preview=''" ];
-    changeDirWidgetCommand = "fd --type dir";
+
+    changeDirWidgetCommand = "fd --type dir . $dir";
+
     changeDirWidgetOptions = [
       "--preview='eza -TF --level=2 --color=always {}'"
     ];

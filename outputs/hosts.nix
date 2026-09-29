@@ -27,14 +27,14 @@ let
   };
 
   nixosHosts = {
-    nazuna = {
-      system = "aarch64-linux";
-    };
-
     akira = { };
 
     inori = {
       name = "nixos"; # keep WSL default to avoid home directory migration
+    };
+
+    nazuna = {
+      system = "aarch64-linux";
     };
 
     # future host names: miyabi, hitagi
@@ -42,11 +42,15 @@ let
 in
 {
   flake = {
-    homeConfigurations = lib.mapAttrs (
+    # nh and home-manager look up <username>@<hostname>
+    homeConfigurations = lib.mapAttrs' (
       hostName: extra:
-      mkHome {
+      let
         user = baseUser // { inherit hostName; } // extra;
-      }
+      in
+      lib.nameValuePair "${user.name}@${hostName}" (mkHome {
+        inherit user;
+      })
     ) homeHosts;
 
     nixosConfigurations = lib.mapAttrs (

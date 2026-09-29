@@ -30,6 +30,7 @@ let
     in
     {
       name = "org.kde.plasma.systemmonitor";
+
       config = {
         Appearance = {
           chartFace = "org.kde.ksysguard.textonly";
@@ -94,10 +95,28 @@ in
         enable = true;
         # overrideConfig = true; # uncomment to purge unmanaged KDE settings; slows startup
 
+        krunner.historyBehavior = "disabled";
+        kwin.nightLight.enable = true;
+        workspace.wallpaperSlideShow = wallpapers;
+
+        configFile = {
+          baloofilerc."Basic Settings".Indexing-Enabled = false;
+          kdeglobals.KDE.CursorBlinkRate = 0;
+          knighttimerc.General.Source = "Times";
+          krunnerrc.Plugins = lib.genAttrs disabledKRunnerPlugins (_: false);
+
+          kwinrc = {
+            Effect-overview.BorderActivate = 9; # disable top-left overview trigger
+            # prevent fcitx5 warning about missing virtual keyboard
+            Wayland.InputMethod = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
+          };
+        };
+
         fonts = lib.genAttrs [ "general" "toolbar" "menu" "windowTitle" ] (_: font) // {
           fixedWidth = font // {
             family = "Monospace";
           };
+
           small = font // {
             pointSize = 8;
           };
@@ -108,33 +127,22 @@ in
           repeatRate = 30;
         };
 
-        krunner.historyBehavior = "disabled";
-
-        workspace.wallpaperSlideShow = wallpapers;
-
         kscreenlocker = {
           appearance.wallpaperSlideShow = wallpapers;
           passwordRequiredDelay = 0;
         };
 
-        kwin.nightLight = {
-          enable = true;
-          mode = "times";
-          time = {
-            evening = "18:00";
-            morning = "06:00";
-          };
-        };
-
         panels = [
           {
             location = "bottom";
+
             widgets = [
               { kickoff.settings.General.highlightNewlyInstalledApps = false; }
               "org.kde.plasma.pager"
               {
                 iconTasks = {
                   iconsOnly = false;
+
                   launchers = [
                     "preferred://filemanager"
                     "preferred://browser"
@@ -164,21 +172,9 @@ in
         };
 
         shortcuts = {
-          "kitty.desktop"._launch = "Meta+Return";
+          "services/kitty.desktop"._launch = "Meta+Return";
           ksmserver."Log Out" = "Meta+Shift+E";
           kwin."Window Close" = "Meta+Q";
-        };
-
-        configFile = {
-          baloofilerc."Basic Settings".Indexing-Enabled = false;
-          kdeglobals.KDE.CursorBlinkRate = 0;
-          krunnerrc.Plugins = lib.genAttrs disabledKRunnerPlugins (_: false);
-
-          kwinrc = {
-            Effect-overview.BorderActivate = 9; # disable top-left overview trigger
-            # prevent fcitx5 warning about missing virtual keyboard
-            Wayland.InputMethod = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
-          };
         };
       };
     };

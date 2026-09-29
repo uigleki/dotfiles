@@ -15,7 +15,6 @@ in
 
   config = lib.mkIf cfg.enable {
     wsl.enable = true;
-    boot.loader.systemd-boot.enable = lib.mkForce false;
 
     myModules = {
       disk.enable = false;
@@ -23,6 +22,7 @@ in
       security.enable = false;
     };
 
+    boot.loader.systemd-boot.enable = lib.mkForce false;
     environment.systemPackages = with pkgs; [ wget ];
   };
 }

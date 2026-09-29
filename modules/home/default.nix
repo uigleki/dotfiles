@@ -23,12 +23,13 @@ in
       homeDirectory = "/home/${user.name}";
     };
 
+    news.display = "silent";
+
     nix = {
       package = pkgs.nix;
       gc.dates = "03:15";
     };
 
     programs.home-manager.enable = true;
-    news.display = "silent";
   };
 }

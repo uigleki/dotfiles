@@ -26,7 +26,8 @@ in
     programs = {
       bat.config.theme = theme; # bat --list-themes
       delta.options.syntax-theme = theme; # same as bat
-      fish.interactiveShellInit = ''fish_config theme choose "Catppuccin Latte"'';
+      # every catppuccin theme bundled with fish uses Latte for light mode
+      fish.interactiveShellInit = "fish_config theme choose catppuccin-mocha --color-theme=light";
       helix.settings.theme = "catppuccin_latte"; # :theme
       kitty.themeFile = "Catppuccin-Latte"; # https://github.com/kovidgoyal/kitty-themes/tree/master/themes
       opencode.tui.theme = "catppuccin"; # https://opencode.ai/docs/themes
@@ -67,11 +68,6 @@ in
       "eza/theme.yml".source = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/eza-community/eza-themes/562fb6d/themes/catppuccin-latte.yml";
         sha256 = "sSf7wrJTwnt/zO+dsOF13KDsoIOtKAHyF/g3I5OcRCw=";
-      };
-
-      "fish/themes/Catppuccin Latte.theme".source = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/catppuccin/fish/af622a6/themes/Catppuccin%20Latte.theme";
-        sha256 = "GHxIQkF2Co4vZpkPzz54PGnsrfYvzzl8MF+ak3lUpzA=";
       };
 
       "yazi/theme.toml".source = pkgs.fetchurl {

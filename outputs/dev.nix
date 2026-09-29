@@ -15,10 +15,11 @@
         packages = with pkgs; [ nixd ];
       };
 
-      formatter = pkgs.nixfmt;
+      formatter = pkgs.nixfmt-tree;
 
       pre-commit.settings = {
         package = pkgs.prek; # rust pre-commit alternative
+
         hooks = {
           actionlint.enable = true;
           convco.enable = true;

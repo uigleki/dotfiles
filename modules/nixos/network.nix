@@ -11,9 +11,9 @@ in
   config = lib.mkIf cfg.enable {
     boot.kernel.sysctl = {
       # high-throughput, low-latency networking
-      "net.ipv4.tcp_fastopen" = 3;
-      "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.default_qdisc" = "cake";
+      "net.ipv4.tcp_congestion_control" = "bbr";
+      "net.ipv4.tcp_fastopen" = 3;
 
       # increased buffer sizes for high-throughput scenarios
       "net.core.rmem_max" = bufferSize;
@@ -22,13 +22,6 @@ in
 
     networking = {
       firewall.enable = true; # pinned: a flip would expose every listening port
-
-      # required by dnscrypt-proxy
-      nameservers = [
-        "127.0.0.1"
-        "::1"
-      ];
-
       dhcpcd.extraConfig = "nohook resolv.conf";
       networkmanager.dns = "none";
     };
@@ -42,16 +35,14 @@ in
 
       dnscrypt-proxy = {
         enable = true;
-        settings = {
-          require_dnssec = true;
-          require_nofilter = true;
-          require_nolog = true;
-        };
+        settings.require_dnssec = true;
       };
 
       tailscale = {
         enable = true;
-        useRoutingFeatures = "both";
+        disableUpstreamLogging = true;
+        # "server" and "both" turn on IP forwarding; only the server advertises an exit node
+        useRoutingFeatures = if config.myModules.server.enable then "both" else "client";
       };
     };
   };

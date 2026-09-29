@@ -14,6 +14,7 @@ in
     system.autoUpgrade = {
       enable = true;
       flake = inputs.self.outPath;
+      upgrade = false; # --upgrade only updates channels
 
       flags = [
         # update flake inputs without modifying the repo's lock file

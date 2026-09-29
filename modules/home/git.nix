@@ -25,8 +25,10 @@ in
         credential.helper = helper;
         init.defaultBranch = "main";
         log.date = "iso";
+        merge.conflictStyle = "zdiff3";
         pull.rebase = true;
         push.autoSetupRemote = true;
+        rebase.autoStash = true;
       };
     };
 
@@ -39,6 +41,7 @@ in
     lazygit = {
       enable = true;
       settings.git.pagers = [ { pager = "delta --paging=never"; } ];
+      shellWrapperName = "g";
     };
   };
 }

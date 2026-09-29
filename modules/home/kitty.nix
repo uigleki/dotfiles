@@ -6,6 +6,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.kitty = {
       enable = true;
+
       settings = {
         copy_on_select = "yes";
         cursor_blink_interval = 0;

@@ -12,12 +12,13 @@ in
 
   config = lib.mkIf cfg.enable {
     boot = {
+      kernelParams = [ "bdev_allow_write_mounted=0" ];
+
       blacklistedKernelModules = [
         "appletalk"
         "atm"
         "ax25"
         "cramfs"
-        "dccp"
         "firewire-core"
         "freevxfs"
         "hfs"
@@ -34,52 +35,31 @@ in
         "x25"
       ];
 
-      kernelParams = [ "bdev_allow_write_mounted=0" ];
-
       kernel.sysctl = {
         "dev.tty.ldisc_autoload" = 0;
-        "dev.tty.legacy_tiocsti" = 0;
 
         "fs.protected_fifos" = 2;
-        "fs.protected_hardlinks" = 1;
         "fs.protected_regular" = 2;
-        "fs.protected_symlinks" = 1;
         "fs.suid_dumpable" = 0;
 
-        "kernel.dmesg_restrict" = 1;
-        "kernel.kexec_load_disabled" = 1;
         "kernel.kptr_restrict" = 2;
         "kernel.oops_limit" = 100;
-        "kernel.randomize_va_space" = 2;
         "kernel.warn_limit" = 100;
 
-        "net.ipv4.conf.all.rp_filter" = 1;
         "net.ipv4.conf.all.send_redirects" = 0;
         "net.ipv4.conf.default.accept_redirects" = 0;
-        "net.ipv4.conf.default.accept_source_route" = 0;
-        "net.ipv4.conf.default.rp_filter" = 1;
         "net.ipv4.conf.default.send_redirects" = 0;
         "net.ipv6.conf.all.accept_redirects" = 0;
         "net.ipv6.conf.default.accept_redirects" = 0;
       };
     };
 
-    security = {
-      pam.loginLimits = [
-        # prevent core dump files
-        {
-          domain = "*";
-          type = "-";
-          item = "core";
-          value = "0";
-        }
-      ];
+    security.protectKernelImage = true;
 
-      protectKernelImage = true;
+    # disabling systemd-coredump would make crashing services write core files into their cwd
+    systemd.coredump.settings.Coredump = {
+      ProcessSizeMax = 0;
+      Storage = "none";
     };
-
-    services.dbus.implementation = "broker";
-
-    systemd.coredump.enable = false;
   };
 }
