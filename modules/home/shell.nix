@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   osConfig ? null,
@@ -8,7 +9,7 @@ let
   secretsFile = "$HOME/.config/secrets.sh";
   rebuildCmd = if osConfig == null then "nh home switch" else "nh os switch";
 
-  skills = "${pkgs.bun}/bin/bunx skills@latest";
+  skills = "${lib.getExe' config.programs.bun.package "bunx"} skills@latest";
   flags = flag: values: lib.concatMapStringsSep " " (v: "${flag} ${lib.escapeShellArg v}") values;
 
   skillAgents = [
@@ -49,9 +50,9 @@ in
 
         # Launch fish from bash to preserve login shell profile sourcing.
         # Setting users.users.*.shell = fish directly would skip /etc/profile.
-        if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]; then
+        if [[ $(${lib.getExe' pkgs.procps "ps"} --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]; then
           shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-          exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+          exec ${lib.getExe config.programs.fish.package} $LOGIN_OPTION
         fi
       '';
     };

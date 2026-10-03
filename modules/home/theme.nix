@@ -14,12 +14,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # use builtins.fetchurl because pkgs.fetchurl returns a derivation whose output is not available until build time
     home.sessionVariables.LG_CONFIG_FILE = lib.concatStringsSep "," [
       "${config.xdg.configHome}/lazygit/config.yml"
-      (builtins.fetchurl {
+      (pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/catppuccin/lazygit/21a25af/themes-mergable/latte/mauve.yml";
-        sha256 = "0yjqn59l9kmhzklkbkqy5l4g5pbwyrilpcrmmvha8bgvks4vsxbz";
+        hash = "sha256-f3W9iZ77LaTgrjWzS2P2fN3yCC0ezzXp/LDORFOxWHo=";
       })
     ];
 
@@ -32,6 +31,7 @@ in
       kitty.themeFile = "Catppuccin-Latte"; # https://github.com/kovidgoyal/kitty-themes/tree/master/themes
       opencode.tui.theme = "catppuccin"; # https://opencode.ai/docs/themes
 
+      # importTOML reads the file at eval time, so it needs builtins.fetchurl
       bottom.settings = lib.importTOML (
         builtins.fetchurl {
           url = "https://raw.githubusercontent.com/catppuccin/bottom/eadd75a/themes/latte.toml";
@@ -48,10 +48,12 @@ in
         "--color=border:#9CA0B0,label:#4C4F69"
       ];
 
-      mpv.config.include = builtins.fetchurl {
-        url = "https://raw.githubusercontent.com/catppuccin/mpv/7cb9402/themes/latte/mauve.conf";
-        sha256 = "0bjy7phjxn53qz4f3s47798nlvagrbgfy5c075lldy7439sqwiyn";
-      };
+      mpv.config.include = toString (
+        pkgs.fetchurl {
+          url = "https://raw.githubusercontent.com/catppuccin/mpv/7cb9402/themes/latte/mauve.conf";
+          hash = "sha256-1keOdRrk+EZpOYAV797KT21qUTqH6OHIx6PYLuE9Xi4=";
+        }
+      );
 
       starship.settings = {
         palette = "catppuccin_latte";
@@ -67,12 +69,12 @@ in
     xdg.configFile = {
       "eza/theme.yml".source = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/eza-community/eza-themes/562fb6d/themes/catppuccin-latte.yml";
-        sha256 = "sSf7wrJTwnt/zO+dsOF13KDsoIOtKAHyF/g3I5OcRCw=";
+        hash = "sha256-sSf7wrJTwnt/zO+dsOF13KDsoIOtKAHyF/g3I5OcRCw=";
       };
 
       "yazi/theme.toml".source = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/yazi-rs/flavors/c02c804/catppuccin-latte.yazi/flavor.toml";
-        sha256 = "31XnC09PKXJgvgt3zz1lMwhr0Fg+dzjc68IjJ/z6tSA=";
+        hash = "sha256-31XnC09PKXJgvgt3zz1lMwhr0Fg+dzjc68IjJ/z6tSA=";
       };
     };
   };

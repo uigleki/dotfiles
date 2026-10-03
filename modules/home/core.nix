@@ -1,12 +1,14 @@
 {
   config,
   inputs,
+  lib,
   pkgs,
   user,
   ...
 }:
 let
   inherit (config.home) homeDirectory;
+  bun = config.programs.bun.package;
 in
 {
   imports = [
@@ -24,8 +26,8 @@ in
   home = {
     inherit (user) stateVersion;
     file = {
-      ".local/bin/node".source = "${pkgs.bun}/bin/bun";
-      ".local/bin/npx".source = "${pkgs.bun}/bin/bunx";
+      ".local/bin/node".source = lib.getExe bun;
+      ".local/bin/npx".source = lib.getExe' bun "bunx";
     };
 
     packages = with pkgs; [

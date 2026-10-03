@@ -57,7 +57,7 @@ in
         mkdir -p ${lib.escapeShellArg "${homeDirectory}/.codex"}
         target=${lib.escapeShellArg "${homeDirectory}/.codex/config.toml"}
         touch "$target"
-        merged=$(${pkgs.yq}/bin/tomlq -t -s '.[0] * .[1]' "$target" ${declaredSettings})
+        merged=$(${lib.getExe' pkgs.yq "tomlq"} -t -s '.[0] * .[1]' "$target" ${declaredSettings})
         printf '%s\n' "$merged" > "$target"
       ''}
     '';

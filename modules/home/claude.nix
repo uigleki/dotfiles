@@ -59,7 +59,7 @@ in
           hooks = [
             {
               type = "command";
-              command = "bash '${homeDirectory}/.claude/hooks/herdr-agent-state.sh' session";
+              command = "${lib.getExe pkgs.bash} '${homeDirectory}/.claude/hooks/herdr-agent-state.sh' session";
               timeout = 10;
             }
           ];
