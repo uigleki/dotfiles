@@ -70,7 +70,6 @@ in
         h = "herdr";
         k = "btm";
         l = "eza -la";
-        o = "opencode";
         r = "rsync -rthP";
         u = rebuildCmd;
         us = "update-skills";

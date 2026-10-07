@@ -19,7 +19,6 @@ in
     ./git.nix
     ./helix.nix
     ./herdr.nix
-    ./opencode.nix
     ./shell.nix
   ];
 

@@ -29,7 +29,6 @@ in
       fish.interactiveShellInit = "fish_config theme choose catppuccin-mocha --color-theme=light";
       helix.settings.theme = "catppuccin_latte"; # :theme
       kitty.themeFile = "Catppuccin-Latte"; # https://github.com/kovidgoyal/kitty-themes/tree/master/themes
-      opencode.tui.theme = "catppuccin"; # https://opencode.ai/docs/themes
 
       # importTOML reads the file at eval time, so it needs builtins.fetchurl
       bottom.settings = lib.importTOML (
