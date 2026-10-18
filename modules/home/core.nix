@@ -35,6 +35,7 @@ in
       lsof
       poppler-utils
       psmisc
+      python3Packages.trafilatura
       tree
       unzip
     ];
