@@ -33,27 +33,6 @@ in
       inputNeededNotifEnabled = true;
       promptSuggestionEnabled = false;
       remoteControlAtStartup = true;
-
-      # Hide bundled skills that would only waste the skill listing here.
-      skillOverrides =
-        lib.genAttrs [
-          # Artifact is denied below
-          "artifact-capabilities"
-          "artifact-design"
-          "artifact-diagramming"
-          "dataviz"
-          "fewer-permission-prompts" # auto mode already skips most prompts
-          "keybindings-help"
-          "plugin-authoring"
-          "update-config" # settings.json is a read-only Nix store link
-        ] (_: "off")
-        # still typable as /name, but kept out of the model's skill listing
-        // lib.genAttrs [
-          "claude-api"
-          "init"
-          "security-review"
-        ] (_: "user-invocable-only");
-
       spinnerTipsEnabled = false;
       syncClaudeAiSkills = false;
       theme = "auto";
@@ -99,6 +78,25 @@ in
           "ReportFindings"
         ];
       };
+
+      # Hide bundled skills that would only waste the skill listing here.
+      skillOverrides =
+        lib.genAttrs [
+          # Artifact is denied below
+          "artifact-capabilities"
+          "artifact-design"
+          "artifact-diagramming"
+          "dataviz"
+          "fewer-permission-prompts" # auto mode already skips most prompts
+          "keybindings-help"
+          "plugin-authoring"
+          "update-config" # settings.json is a read-only Nix store link
+        ] (_: "off")
+        # still typable as /name, but kept out of the model's skill listing
+        // lib.genAttrs [
+          "init"
+          "security-review"
+        ] (_: "user-invocable-only");
 
       statusLine = {
         type = "command";
