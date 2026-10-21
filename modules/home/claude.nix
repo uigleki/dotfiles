@@ -28,12 +28,31 @@ in
       attribution = false;
       autoMemoryEnabled = false;
       awaySummaryEnabled = false;
-      disableBundledSkills = true;
       disableClaudeAiConnectors = true;
       disableWorkflows = true;
+      includeGitInstructions = false;
       inputNeededNotifEnabled = true;
       promptSuggestionEnabled = false;
       remoteControlAtStartup = true;
+
+      # Hide bundled skills that would only waste the skill listing here.
+      skillOverrides =
+        lib.genAttrs [
+          "dataviz"
+          "fewer-permission-prompts" # auto mode already skips most prompts
+          "keybindings-help"
+          "loop" # Cron* and ScheduleWakeup are denied below
+          "plugin-authoring"
+          "schedule" # RemoteTrigger is denied below
+          "update-config" # settings.json is a read-only Nix store link
+        ] (_: "off")
+        # still typable as /name, but kept out of the model's skill listing
+        // lib.genAttrs [
+          "claude-api"
+          "init"
+          "security-review"
+        ] (_: "user-invocable-only");
+
       spinnerTipsEnabled = false;
       syncClaudeAiSkills = false;
       theme = "auto";
@@ -59,7 +78,7 @@ in
           hooks = [
             {
               type = "command";
-              command = "${lib.getExe pkgs.bash} '${homeDirectory}/.claude/hooks/herdr-agent-state.sh' session";
+              command = "bash '${homeDirectory}/.claude/hooks/herdr-agent-state.sh' session";
               timeout = 10;
             }
           ];

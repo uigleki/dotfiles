@@ -8,39 +8,8 @@
 let
   secretsFile = "$HOME/.config/secrets.sh";
   rebuildCmd = if osConfig == null then "nh home switch" else "nh os switch";
-
-  skills = "${lib.getExe' config.programs.bun.package "bunx"} skills@latest";
-  flags = flag: values: lib.concatMapStringsSep " " (v: "${flag} ${lib.escapeShellArg v}") values;
-
-  skillAgents = [
-    "claude-code"
-    "codex"
-  ];
-
-  # Add a line here to install skills from another repo; "*" means all of them.
-  skillSources = [
-    {
-      repo = "mattpocock/skills";
-      skills = [ "*" ];
-    }
-    {
-      repo = "herdrdev/herdr";
-      skills = [ "herdr" ];
-    }
-  ];
-
-  # Reinstall from scratch so skills dropped from the list or upstream disappear too.
-  updateSkills = pkgs.writeShellScriptBin "update-skills" ''
-    set -e
-    ${skills} rm --all -g
-    ${lib.concatMapStringsSep "\n" (
-      s: "${skills} add ${s.repo} ${flags "-s" s.skills} -g ${flags "-a" skillAgents} -y"
-    ) skillSources}
-  '';
 in
 {
-  home.packages = [ updateSkills ];
-
   programs = {
     bash = {
       enable = true;
@@ -72,7 +41,6 @@ in
         l = "eza -la";
         r = "rsync -rthP";
         u = rebuildCmd;
-        us = "update-skills";
         uu = "${rebuildCmd} --update";
 
         G = {
