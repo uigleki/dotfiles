@@ -30,7 +30,6 @@ in
       awaySummaryEnabled = false;
       disableClaudeAiConnectors = true;
       disableWorkflows = true;
-      includeGitInstructions = false;
       inputNeededNotifEnabled = true;
       promptSuggestionEnabled = false;
       remoteControlAtStartup = true;
@@ -38,12 +37,14 @@ in
       # Hide bundled skills that would only waste the skill listing here.
       skillOverrides =
         lib.genAttrs [
+          # Artifact is denied below
+          "artifact-capabilities"
+          "artifact-design"
+          "artifact-diagramming"
           "dataviz"
           "fewer-permission-prompts" # auto mode already skips most prompts
           "keybindings-help"
-          "loop" # Cron* and ScheduleWakeup are denied below
           "plugin-authoring"
-          "schedule" # RemoteTrigger is denied below
           "update-config" # settings.json is a read-only Nix store link
         ] (_: "off")
         # still typable as /name, but kept out of the model's skill listing
@@ -63,8 +64,7 @@ in
         CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = 75;
         CLAUDE_CODE_AUTO_COMPACT_WINDOW = 400000;
         CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = 1;
-        CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS = 5;
-        CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH = 1;
+        CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH = 2;
         CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION = 1000;
         CLAUDE_CODE_RETRY_WATCHDOG = 1;
         DISABLE_ERROR_REPORTING = 1;
@@ -91,17 +91,12 @@ in
         deny = [
           "Artifact"
           "AskUserQuestion"
-          "CronCreate"
-          "CronDelete"
-          "CronList"
           "DesignSync"
           "EnterPlanMode"
           "ExitPlanMode"
           "NotebookEdit"
           "PushNotification"
-          "RemoteTrigger"
           "ReportFindings"
-          "ScheduleWakeup"
         ];
       };
 
