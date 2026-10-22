@@ -43,6 +43,7 @@ in
         CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = 75;
         CLAUDE_CODE_AUTO_COMPACT_WINDOW = 400000;
         CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = 1;
+        CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS = 10;
         CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH = 2;
         CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION = 1000;
         CLAUDE_CODE_RETRY_WATCHDOG = 1;
@@ -82,7 +83,7 @@ in
       # Hide bundled skills that would only waste the skill listing here.
       skillOverrides =
         lib.genAttrs [
-          # Artifact is denied below
+          # Artifact is denied above
           "artifact-capabilities"
           "artifact-design"
           "artifact-diagramming"
