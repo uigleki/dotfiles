@@ -24,6 +24,7 @@
 
         settings = {
           model = "opus[1m]";
+          # uncomment when model is Fable: its quota is half the weekly limit and drains fast
           # env.CLAUDE_CODE_SUBAGENT_MODEL = "opus[1m]";
 
           agentPushNotifEnabled = false;

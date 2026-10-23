@@ -12,6 +12,7 @@ in
     sshKeys = mkOption { type = types.listOf str; };
     flakeDir = mkOption { type = str; }; # relative to home
     syncDir = mkOption { type = str; }; # relative to home
+    timeZone = mkOption { type = str; };
     stateVersion = mkOption { type = str; };
   };
 
@@ -29,6 +30,9 @@ in
 
     flakeDir = ".config/dotfiles";
     syncDir = "sync/a";
+
+    # also the clock for every timer, e.g. auto-upgrade at 04:40
+    timeZone = "Asia/Shanghai";
 
     # Bumped with every NixOS release: no host runs services whose data depends on it.
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

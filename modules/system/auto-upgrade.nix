@@ -4,6 +4,7 @@
     enable = true;
     flake = inputs.self.outPath;
     upgrade = false; # --upgrade only updates channels
+    allowReboot = true;
 
     flags = [
       # update flake inputs without modifying the repo's lock file
