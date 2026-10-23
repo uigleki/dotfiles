@@ -15,5 +15,4 @@ A NixOS and home-manager configuration flake.
 
 - Use Conventional Commits.
 - Write comments, documentation, and commit messages in English.
-- Commit everything staged as one commit;
-  a bundled `flake.lock` diff is intentional.
+- Comments carry the why the code cannot show.
