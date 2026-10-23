@@ -51,6 +51,9 @@ yet infinitely customizable when needed.
 
 ```bash
 nix run github:nix-community/nixos-anywhere -- --flake ~/.config/dotfiles#nazuna --target-host <user>@<host>
+
+# On the server: join the tailnet, then disable key expiry for it in the admin console
+tailscale up
 ```
 
 ### For desktop (Secure Boot + TPM)
@@ -70,10 +73,10 @@ sudo nixos-install --no-root-passwd --flake github:uigleki/dotfiles#akira
 
 # After reboot, enroll TPM for automatic LUKS unlock
 sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 /dev/disk/by-partlabel/disk-main-luks
-```
 
-See [post-installation setup](docs/post-install.md)
-for additional configuration.
+# Join the tailnet
+tailscale up
+```
 
 ### For WSL
 

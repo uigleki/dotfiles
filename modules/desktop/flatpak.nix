@@ -1,16 +1,18 @@
+{ inputs, ... }:
 {
-  flake.modules.nixos.desktop =
-    { pkgs, ... }:
-    {
-      services.flatpak.enable = true;
+  flake.modules.nixos.desktop = {
+    imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
 
-      systemd.services.flatpak-flathub = {
-        wantedBy = [ "multi-user.target" ];
-        wants = [ "network-online.target" ];
-        after = [ "network-online.target" ];
-        path = [ pkgs.flatpak ];
-        serviceConfig.Type = "oneshot";
-        script = "flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo";
-      };
+    services.flatpak = {
+      enable = true;
+
+      packages = [
+        "com.heroicgameslauncher.hgl"
+        "com.usebottles.bottles"
+      ];
+
+      uninstallUnmanaged = true;
+      update.auto.enable = true;
     };
+  };
 }
