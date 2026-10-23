@@ -1,11 +1,11 @@
 {
-  config,
   lib,
+  osConfig,
   pkgs,
   ...
 }:
 let
-  cfg = config.myModules.desktop;
+  cfg = osConfig.myModules.desktop;
 
   # Anime4K Mode A (Fast), as in the upstream template
   anime = lib.concatStringsSep ":" [

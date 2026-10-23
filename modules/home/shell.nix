@@ -2,12 +2,10 @@
   config,
   lib,
   pkgs,
-  osConfig ? null,
   ...
 }:
 let
   secretsFile = "$HOME/.config/secrets.sh";
-  rebuildCmd = if osConfig == null then "nh home switch" else "nh os switch";
 in
 {
   programs = {
@@ -40,8 +38,8 @@ in
         k = "btm";
         l = "eza -la";
         r = "rsync -rthP";
-        u = rebuildCmd;
-        uu = "${rebuildCmd} --update";
+        u = "nh os switch";
+        uu = "nh os switch --update";
 
         G = {
           position = "anywhere";

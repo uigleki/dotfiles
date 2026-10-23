@@ -1,10 +1,15 @@
 { inputs, ... }:
 {
   nix = {
-    settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
+    channel.enable = false;
+
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
 
     gc = {
       automatic = true;

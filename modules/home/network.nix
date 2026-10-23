@@ -1,18 +1,6 @@
+{ lib, osConfig, ... }:
 {
-  config,
-  lib,
-  osConfig ? null,
-  ...
-}:
-let
-  cfg = config.myModules.network;
-in
-{
-  options.myModules.network.enable = lib.mkEnableOption "network services" // {
-    default = osConfig.myModules.network.enable or false;
-  };
-
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf osConfig.myModules.network.enable {
     services.syncthing.enable = true;
   };
 }

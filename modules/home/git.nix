@@ -1,11 +1,11 @@
 {
-  config,
+  osConfig,
   pkgs,
   user,
   ...
 }:
 let
-  isDesktop = config.myModules.desktop.enable;
+  isDesktop = osConfig.myModules.desktop.enable;
   package = if isDesktop then pkgs.gitFull else pkgs.git;
   helper = if isDesktop then "libsecret" else "store"; # desktop: keyring, server: plaintext
 in

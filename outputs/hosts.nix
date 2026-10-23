@@ -1,7 +1,5 @@
 { inputs, lib, ... }:
 let
-  inherit (import ../lib { inherit inputs; }) mkHome mkSystem;
-
   baseUser = {
     name = "u";
     system = "x86_64-linux";
@@ -22,10 +20,6 @@ let
     stateVersion = "26.05";
   };
 
-  homeHosts = {
-    kurisu = { };
-  };
-
   nixosHosts = {
     akira = { };
 
@@ -37,27 +31,34 @@ let
       system = "aarch64-linux";
     };
 
-    # future host names: miyabi, hitagi
+    # future host names: kurisu, miyabi, hitagi, yuna
   };
 in
 {
   flake = {
-    # nh and home-manager look up <username>@<hostname>
-    homeConfigurations = lib.mapAttrs' (
+    nixosConfigurations = lib.mapAttrs (
       hostName: extra:
       let
         user = baseUser // { inherit hostName; } // extra;
       in
-      lib.nameValuePair "${user.name}@${hostName}" (mkHome {
-        inherit user;
-      })
-    ) homeHosts;
+      inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs user; };
 
-    nixosConfigurations = lib.mapAttrs (
-      hostName: extra:
-      mkSystem {
-        user = baseUser // { inherit hostName; } // extra;
-        extraModules = [ ../hosts/${hostName} ];
+        modules = [
+          ../modules/nixos
+          ../hosts/${hostName}
+          inputs.home-manager.nixosModules.home-manager
+          {
+            nixpkgs.hostPlatform = user.system;
+
+            home-manager = {
+              extraSpecialArgs = { inherit inputs user; };
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.${user.name}.imports = [ ../modules/home ];
+            };
+          }
+        ];
       }
     ) nixosHosts;
   };

@@ -2,11 +2,12 @@
   config,
   inputs,
   lib,
+  osConfig,
   user,
   ...
 }:
 let
-  cfg = config.myModules.desktop;
+  cfg = osConfig.myModules.desktop;
   syncDir = lib.replaceStrings [ "$HOME" ] [ config.home.homeDirectory ] user.syncDir;
   musicDir = "${syncDir}/music";
 

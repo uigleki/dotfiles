@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, osConfig, ... }:
 let
-  cfg = config.myModules.desktop;
+  cfg = osConfig.myModules.desktop;
 in
 {
   config = lib.mkIf cfg.enable {

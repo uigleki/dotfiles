@@ -1,12 +1,11 @@
 {
-  config,
   lib,
   pkgs,
-  osConfig ? null,
+  osConfig,
   ...
 }:
 let
-  cfg = config.myModules.desktop;
+  cfg = osConfig.myModules.desktop;
 in
 {
   imports = [
@@ -15,10 +14,6 @@ in
     ./plasma.nix
     ./zed.nix
   ];
-
-  options.myModules.desktop.enable = lib.mkEnableOption "desktop applications" // {
-    default = osConfig.myModules.desktop.enable or false;
-  };
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [

@@ -6,10 +6,10 @@
 }:
 {
   imports = [
-    ../shared/nix.nix
     ./desktop.nix
     ./disk.nix
     ./network.nix
+    ./nix.nix
     ./secure-boot.nix
     ./security.nix
     ./server.nix
@@ -50,11 +50,6 @@
   ];
 
   networking.hostName = user.hostName;
-
-  nix = {
-    channel.enable = false;
-    settings.auto-optimise-store = true;
-  };
 
   programs.nix-ld.enable = true;
 

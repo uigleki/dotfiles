@@ -1,35 +1,108 @@
 {
+  config,
+  inputs,
   lib,
   pkgs,
   user,
-  osConfig ? null,
   ...
 }:
 let
-  isStandalone = osConfig == null; # not running as NixOS module
+  inherit (config.home) homeDirectory;
+  bun = config.programs.bun.package;
 in
 {
   imports = [
-    ./core.nix
+    inputs.nix-index-database.homeModules.nix-index
+    ./claude.nix
+    ./codex.nix
     ./desktop.nix
+    ./fzf.nix
+    ./git.nix
+    ./helix.nix
+    ./herdr.nix
     ./network.nix
+    ./shell.nix
     ./theme.nix
-  ]
-  ++ lib.optionals isStandalone [ ../shared/nix.nix ];
+  ];
 
-  config = lib.mkIf isStandalone {
-    home = {
-      username = user.name;
-      homeDirectory = "/home/${user.name}";
+  home = {
+    inherit (user) stateVersion;
+    file = {
+      ".local/bin/node".source = lib.getExe bun;
+      ".local/bin/npx".source = lib.getExe' bun "bunx";
     };
 
-    news.display = "silent";
+    packages = with pkgs; [
+      nix-tree
 
-    nix = {
-      package = pkgs.nix;
-      gc.dates = "03:15";
+      # used by coding agents
+      imagemagick
+      lsof
+      poppler-utils
+      psmisc
+      python3Packages.trafilatura
+      tree
+      unzip
+    ];
+
+    sessionPath = [
+      "${homeDirectory}/.bun/bin"
+      "${homeDirectory}/.local/bin"
+    ];
+
+    sessionVariables = {
+      COLORTERM = "truecolor";
+    };
+  };
+
+  programs = {
+    bat.enable = true;
+    bottom.enable = true;
+    bun.enable = true;
+    fd.enable = true;
+    nix-index-database.comma.enable = true; # run uninstalled commands: , <cmd>
+    nix-index.enable = true;
+    starship.enable = true;
+    uv.enable = true;
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      silent = true;
     };
 
-    programs.home-manager.enable = true;
+    eza = {
+      enable = true;
+
+      extraOptions = [
+        "--group-directories-first"
+        "--time-style=iso"
+      ];
+    };
+
+    gh = {
+      enable = true;
+      settings.telemetry = "disabled";
+    };
+
+    nh = {
+      inherit (user) flake;
+      enable = true;
+    };
+
+    ripgrep = {
+      enable = true;
+      arguments = [ "--smart-case" ];
+    };
+
+    yazi = {
+      enable = true;
+      shellWrapperName = "d";
+    };
+
+    zoxide = {
+      enable = true;
+      options = [ "--cmd j" ]; # use j instead of default z
+    };
   };
 }
