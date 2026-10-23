@@ -30,6 +30,8 @@ in
     };
 
     packages = with pkgs; [
+      nix-tree
+
       # used by coding agents
       imagemagick
       lsof

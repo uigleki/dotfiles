@@ -104,6 +104,7 @@ in
           kdeglobals.KDE.CursorBlinkRate = 0;
           knighttimerc.General.Source = "Times";
           krunnerrc.Plugins = lib.genAttrs disabledKRunnerPlugins (_: false);
+          plasmanotifyrc."Applications/@other".ShowInHistory = true;
 
           kwinrc = {
             Effect-overview.BorderActivate = 9; # disable top-left overview trigger

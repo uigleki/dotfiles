@@ -172,6 +172,11 @@ in
         enable = true;
         scheduler = "scx_lavd";
       };
+
+      smartd = {
+        enable = true;
+        notifications.systembus-notify.enable = true;
+      };
     };
 
     time.timeZone = "Asia/Shanghai";
