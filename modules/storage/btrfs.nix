@@ -3,17 +3,17 @@
     { pkgs, ... }:
     {
       environment.systemPackages = [ pkgs.e2fsprogs ]; # chattr/lsattr, only auto-added for ext filesystems
-
       services.btrfs.autoScrub.enable = true;
 
       systemd = {
         services.btrfs-stats = {
+          serviceConfig.Type = "oneshot";
           description = "Check btrfs device error counters";
+
           path = with pkgs; [
             btrfs-progs
             dbus
           ];
-          serviceConfig.Type = "oneshot";
 
           # systembus-notify relays this signal as a desktop popup
           script = ''
@@ -26,12 +26,12 @@
         };
 
         timers.btrfs-stats = {
-          wantedBy = [ "timers.target" ];
-
           timerConfig = {
             OnCalendar = "daily";
             Persistent = true;
           };
+
+          wantedBy = [ "timers.target" ];
         };
       };
     };

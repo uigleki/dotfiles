@@ -15,11 +15,9 @@
         bat.config.theme = theme; # bat --list-themes
         bottom.settings = lib.importTOML "${inputs.catppuccin-bottom}/themes/latte.toml";
         delta.options.syntax-theme = theme; # same as bat
+
         # every catppuccin theme bundled with fish uses Latte for light mode
         fish.interactiveShellInit = "fish_config theme choose catppuccin-mocha --color-theme=light";
-        helix.settings.theme = "catppuccin_latte"; # :theme
-        kitty.themeFile = "Catppuccin-Latte"; # https://github.com/kovidgoyal/kitty-themes/tree/master/themes
-        mpv.config.include = "${inputs.catppuccin-mpv}/themes/latte/mauve.conf";
 
         fzf.defaultOptions = [
           # https://github.com/catppuccin/fzf/blob/main/themes/catppuccin-fzf-latte.sh
@@ -30,6 +28,10 @@
           "--color=border:#9CA0B0,label:#4C4F69"
         ];
 
+        helix.settings.theme = "catppuccin_latte"; # :theme
+        kitty.themeFile = "Catppuccin-Latte"; # https://github.com/kovidgoyal/kitty-themes/tree/master/themes
+        mpv.config.include = "${inputs.catppuccin-mpv}/themes/latte/mauve.conf";
+
         starship.settings = {
           palette = "catppuccin_latte";
         }
@@ -37,6 +39,7 @@
 
         yazi = {
           flavors.catppuccin-latte = "${inputs.yazi-flavors}/catppuccin-latte.yazi";
+
           theme.flavor = {
             light = "catppuccin-latte";
             dark = "catppuccin-latte";
@@ -44,8 +47,6 @@
         };
       };
 
-      xdg.configFile = {
-        "eza/theme.yml".source = "${inputs.eza-themes}/themes/catppuccin-latte.yml";
-      };
+      xdg.configFile."eza/theme.yml".source = "${inputs.eza-themes}/themes/catppuccin-latte.yml";
     };
 }

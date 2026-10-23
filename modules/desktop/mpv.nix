@@ -24,35 +24,20 @@
 
         config = {
           profile = "high-quality";
-          hwdec = "auto-safe";
 
-          # chs and sc match fansub file suffixes like `.chs.ass`
-          slang = "zh-Hans,zh-CN,chs,sc,zh";
+          # languages; chs and sc match fansub file suffixes like `.chs.ass`
           alang = "ja";
+          slang = "zh-Hans,zh-CN,chs,sc,zh";
           sub-auto = "fuzzy";
 
+          # uosc draws its own OSD bars and window border
+          border = "no";
+          osd-bar = "no";
+
           fullscreen = "yes";
+          hwdec = "auto-safe";
           idle = "once"; # keep open if no file, quit after playback
           save-position-on-quit = "yes";
-
-          # uosc draws its own OSD bars and window border
-          osd-bar = "no";
-          border = "no";
-        };
-
-        profiles.no-resume = {
-          profile-desc = "Don't resume nearly finished, short or audio-only files";
-
-          profile-cond = lib.concatStringsSep " or " [
-            "get('percent-pos', 0) >= 90"
-            "get('duration', math.huge) <= 300"
-            "not p.vid"
-            "p['current-tracks/video/albumart']"
-            "p['current-tracks/video/image']"
-          ];
-
-          profile-restore = "copy";
-          save-position-on-quit = "no";
         };
 
         # Written by hand, as `bindings` sorts keys and would scramble the order of
@@ -95,6 +80,21 @@
 
           q  quit  #! Quit
         '';
+
+        profiles.no-resume = {
+          profile-desc = "Don't resume nearly finished, short or audio-only files";
+
+          profile-cond = lib.concatStringsSep " or " [
+            "get('percent-pos', 0) >= 90"
+            "get('duration', math.huge) <= 300"
+            "not p.vid"
+            "p['current-tracks/video/albumart']"
+            "p['current-tracks/video/image']"
+          ];
+
+          profile-restore = "copy";
+          save-position-on-quit = "no";
+        };
 
         scripts = with pkgs.mpvScripts; [
           mpris

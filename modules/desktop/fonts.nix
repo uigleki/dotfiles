@@ -5,12 +5,6 @@
       fonts = {
         enableDefaultPackages = true;
 
-        packages = with pkgs; [
-          nerd-fonts.ubuntu
-          nerd-fonts.ubuntu-mono
-          noto-fonts-cjk-sans
-        ];
-
         fontconfig.defaultFonts = {
           monospace = [
             "UbuntuMono Nerd Font"
@@ -22,6 +16,12 @@
             "Noto Sans CJK SC"
           ];
         };
+
+        packages = with pkgs; [
+          nerd-fonts.ubuntu
+          nerd-fonts.ubuntu-mono
+          noto-fonts-cjk-sans
+        ];
       };
     };
 }

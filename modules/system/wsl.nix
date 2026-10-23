@@ -5,11 +5,11 @@
     {
       imports = [ inputs.nixos-wsl.nixosModules.default ];
 
+      environment.systemPackages = [ pkgs.wget ];
+
       wsl = {
         enable = true;
         defaultUser = config.owner.username;
       };
-
-      environment.systemPackages = [ pkgs.wget ];
     };
 }

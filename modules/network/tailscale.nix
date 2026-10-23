@@ -14,8 +14,8 @@
 
       # "server" and "both" turn on IP forwarding; only the server advertises an exit node
       server.services.tailscale = {
-        useRoutingFeatures = "both";
         extraSetFlags = [ "--advertise-exit-node" ];
+        useRoutingFeatures = "both";
       };
     };
 

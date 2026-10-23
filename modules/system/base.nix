@@ -19,7 +19,6 @@ in
       ];
 
       programs.nix-ld.enable = true;
-
       system.stateVersion = owner.stateVersion;
       time.timeZone = owner.timeZone;
     };

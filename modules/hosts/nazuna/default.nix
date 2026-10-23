@@ -19,7 +19,7 @@ in
 
       boot = {
         binfmt.emulatedSystems = [ "x86_64-linux" ]; # run x86 binaries on ARM
-        loader.timeout = 0; # skip bootloader menu
+        loader.timeout = 0;
       };
 
       disko.devices.disk.main.device = "/dev/sda";

@@ -18,18 +18,12 @@
         ];
 
         sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
-
-        sessionVariables = {
-          COLORTERM = "truecolor";
-        };
+        sessionVariables.COLORTERM = "truecolor";
       };
 
       programs = {
         bat.enable = true;
         bottom.enable = true;
-        fd.enable = true;
-        starship.enable = true;
-        uv.enable = true;
 
         eza = {
           enable = true;
@@ -40,6 +34,8 @@
           ];
         };
 
+        fd.enable = true;
+
         gh = {
           enable = true;
           settings.telemetry = "disabled";
@@ -49,6 +45,9 @@
           enable = true;
           arguments = [ "--smart-case" ];
         };
+
+        starship.enable = true;
+        uv.enable = true;
 
         yazi = {
           enable = true;

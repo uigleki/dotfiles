@@ -12,7 +12,6 @@ in
       ];
 
       hardware.bluetooth.enable = true;
-
       home-manager.users.${config.owner.username}.imports = [ homeManager.desktop ];
 
       programs.appimage = {

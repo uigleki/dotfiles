@@ -22,37 +22,44 @@
 
         hooks = {
           actionlint.enable = true;
-          convco.enable = true;
-          deadnix.enable = true;
-          nixfmt.enable = true;
-          statix.enable = true;
-          typos.enable = true;
 
           betterleaks = {
             enable = true;
             package = pkgs.betterleaks;
+
             # Scans the files it is given; the official `git --staged` would ignore them.
             entry = "${lib.getExe pkgs.betterleaks} dir --redact --no-banner --verbose";
+
             types = [ "text" ];
           };
+
+          convco.enable = true;
+          deadnix.enable = true;
 
           nil = {
             enable = true;
             settings.denyWarnings = true;
           };
 
+          nixfmt.enable = true;
+
           rumdl = {
             enable = true;
             args = [ "--fix" ];
           };
 
+          statix.enable = true;
+
           tombi = {
             enable = true;
             package = pkgs.tombi;
             entry = "${lib.getExe pkgs.tombi} format --offline";
+
             # Not `types = [ "toml" ]`: Cargo.lock is tagged toml too.
             files = "\\.toml$";
           };
+
+          typos.enable = true;
 
           yamlfmt = {
             enable = true;

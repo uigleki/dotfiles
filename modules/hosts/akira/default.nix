@@ -17,7 +17,6 @@ in
       ];
 
       boot.loader.timeout = 1;
-
       disko.devices.disk.main.device = "/dev/nvme0n1";
 
       hardware.nvidia = {

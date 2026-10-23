@@ -3,8 +3,6 @@
     { config, ... }:
     {
       networking = {
-        networkmanager.enable = true;
-
         # required by WiFi hotspot
         firewall = {
           allowedTCPPorts = [ 53 ];
@@ -14,6 +12,8 @@
             67
           ];
         };
+
+        networkmanager.enable = true;
       };
 
       users.users.${config.owner.username}.extraGroups = [ "networkmanager" ];

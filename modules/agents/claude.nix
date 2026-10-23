@@ -23,8 +23,9 @@
         package = null;
 
         settings = {
+          # retuned often; uncomment the subagent model while model is Fable:
+          # its quota is half the weekly limit and drains fast
           model = "opus[1m]";
-          # uncomment when model is Fable: its quota is half the weekly limit and drains fast
           # env.CLAUDE_CODE_SUBAGENT_MODEL = "opus[1m]";
 
           agentPushNotifEnabled = false;
@@ -33,14 +34,6 @@
           awaySummaryEnabled = false;
           disableClaudeAiConnectors = true;
           disableWorkflows = true;
-          inputNeededNotifEnabled = true;
-          promptSuggestionEnabled = false;
-          remoteControlAtStartup = true;
-          spinnerTipsEnabled = false;
-          syncClaudeAiSkills = false;
-          theme = "auto";
-          tui = "fullscreen";
-          worktree.baseRef = "head";
 
           env = {
             CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = 75;
@@ -68,6 +61,8 @@
             }
           ];
 
+          inputNeededNotifEnabled = true;
+
           permissions = {
             defaultMode = "auto";
 
@@ -82,6 +77,9 @@
               "ReportFindings"
             ];
           };
+
+          promptSuggestionEnabled = false;
+          remoteControlAtStartup = true;
 
           # Hide bundled skills that would only waste the skill listing here.
           skillOverrides =
@@ -102,10 +100,17 @@
               "security-review"
             ] (_: "user-invocable-only");
 
+          spinnerTipsEnabled = false;
+
           statusLine = {
             type = "command";
             command = "${jq} -r -f ${statuslineFilter}";
           };
+
+          syncClaudeAiSkills = false;
+          theme = "auto";
+          tui = "fullscreen";
+          worktree.baseRef = "head";
         };
       };
     };

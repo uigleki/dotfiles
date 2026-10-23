@@ -5,8 +5,6 @@
       bun = config.programs.bun.package;
     in
     {
-      programs.bun.enable = true;
-
       home = {
         file = {
           ".local/bin/node".source = lib.getExe bun;
@@ -15,5 +13,7 @@
 
         sessionPath = [ "${config.home.homeDirectory}/.bun/bin" ];
       };
+
+      programs.bun.enable = true;
     };
 }

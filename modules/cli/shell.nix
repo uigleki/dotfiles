@@ -13,6 +13,7 @@
       programs = {
         bash = {
           enable = true;
+
           initExtra = ''
             # not using sops-nix etc: builds should succeed without keys
             [ -f "${secretsFile}" ] && source "${secretsFile}"
@@ -34,6 +35,12 @@
             c = "claude";
             co = "codex";
             f = "$EDITOR";
+
+            G = {
+              expansion = "| rg";
+              position = "anywhere";
+            };
+
             gc = "git clone --depth=1";
             gl = "git pull";
             h = "herdr";
@@ -42,11 +49,6 @@
             r = "rsync -rthP";
             u = "nh os switch";
             uu = "nh os switch --update";
-
-            G = {
-              position = "anywhere";
-              expansion = "| rg";
-            };
           };
         };
       };

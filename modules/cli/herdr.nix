@@ -5,12 +5,8 @@
       settings = {
         onboarding = false;
         theme.name = "catppuccin-latte";
-        update.version_check = false;
 
         ui = {
-          status_indicators = "symbols";
-          toast.delivery = "terminal";
-
           sidebar.agents.rows = [
             [
               "state_icon"
@@ -19,7 +15,12 @@
             ]
             [ "terminal_title_stripped" ]
           ];
+
+          status_indicators = "symbols";
+          toast.delivery = "terminal";
         };
+
+        update.version_check = false;
       };
     in
     {

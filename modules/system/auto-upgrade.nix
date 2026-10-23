@@ -2,8 +2,6 @@
 {
   flake.modules.nixos.auto-upgrade.system.autoUpgrade = {
     enable = true;
-    flake = inputs.self.outPath;
-    upgrade = false; # --upgrade only updates channels
     allowReboot = true;
 
     flags = [
@@ -11,5 +9,8 @@
       "--recreate-lock-file"
       "--no-write-lock-file"
     ];
+
+    flake = inputs.self.outPath;
+    upgrade = false; # --upgrade only updates channels
   };
 }

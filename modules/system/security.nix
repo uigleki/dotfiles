@@ -3,8 +3,6 @@
 {
   flake.modules.nixos.security = {
     boot = {
-      kernelParams = [ "bdev_allow_write_mounted=0" ];
-
       blacklistedKernelModules = [
         "appletalk"
         "atm"
@@ -43,6 +41,8 @@
         "net.ipv6.conf.all.accept_redirects" = 0;
         "net.ipv6.conf.default.accept_redirects" = 0;
       };
+
+      kernelParams = [ "bdev_allow_write_mounted=0" ];
     };
 
     security.protectKernelImage = true;
