@@ -3,7 +3,7 @@
 Maximum efficiency, minimum complexity development environment using Nix flakes.
 
 **⚠️ Fork First**: This is my personal configuration.
-Fork it and modify `outputs/hosts.nix` before using.
+Fork it and modify `modules/owner.nix` and `modules/hosts/` before using.
 
 ## The Problem
 
