@@ -35,7 +35,6 @@ in
     timeZone = "Asia/Shanghai";
 
     # Bumped with every NixOS release: no host runs services whose data depends on it.
-    # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "26.05";
   };
 }

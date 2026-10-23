@@ -57,7 +57,7 @@
 
         zoxide = {
           enable = true;
-          options = [ "--cmd j" ]; # use j instead of default z
+          options = [ "--cmd j" ];
         };
       };
     };

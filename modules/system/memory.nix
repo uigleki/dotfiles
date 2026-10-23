@@ -1,4 +1,6 @@
 {
+  flake.modules.nixos.desktop.services.earlyoom.enableNotifications = true;
+
   flake.modules.nixos.base = {
     boot.kernel.sysctl = {
       # recommended for zramSwap
@@ -10,7 +12,6 @@
 
     services.earlyoom = {
       enable = true;
-      enableNotifications = true;
 
       # free swap is not a headroom signal on zram
       freeSwapThreshold = 100;

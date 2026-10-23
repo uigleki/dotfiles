@@ -60,7 +60,7 @@ nix run github:nix-community/nixos-anywhere -- --flake ~/.config/dotfiles#nazuna
 nmtui
 
 # Partition disk (will prompt for LUKS encryption password)
-nix-shell -p disko --run "sudo disko --mode disko --flake github:uigleki/dotfiles#akira"
+nix-shell -p disko --run "sudo disko --mode destroy,format,mount --flake github:uigleki/dotfiles#akira"
 
 # Install system
 sudo nixos-install --no-root-passwd --flake github:uigleki/dotfiles#akira
@@ -86,8 +86,8 @@ sudo nixos-rebuild switch --flake github:uigleki/dotfiles#inori
 ### System Management
 
 - `, <command>` — Try any tool without installing
-- `u` — Update system
-- `uu` — Update flake + rebuild
+- `u` — Rebuild and switch
+- `uu` — Update flake inputs and rebuild
 - `nh clean all --keep-one && nh os boot` — Clean old generations
 
 ### Core Tools

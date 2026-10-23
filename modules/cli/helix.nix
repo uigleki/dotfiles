@@ -7,7 +7,7 @@
       settings = {
         editor = {
           bufferline = "multiple";
-          completion-timeout = 5; # 5 ms; instant completion (docs recommend 5 for instant)
+          completion-timeout = 5; # ms
           cursor-shape.insert = "bar";
           cursorline = true;
           indent-guides.render = true;

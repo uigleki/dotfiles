@@ -19,11 +19,11 @@
     "catppuccin-lazygit": {
       "flake": false,
       "locked": {
-        "lastModified": 1717520038,
-        "narHash": "sha256-jQjg4YHIj321+dLoCxI0bjf2QYKvpINwqeicx9vqZmE=",
+        "lastModified": 1791650580,
+        "narHash": "sha256-TUrQcoA5T46Jvl9jeHiNO/+8ZddtUqRY6eDr51zGbYU=",
         "owner": "catppuccin",
         "repo": "lazygit",
-        "rev": "21a25afd92327ddea8446ab9171ca7039b431e9e",
+        "rev": "1a4b26cbc2b5be05cc5494d0d7f764120a2cf86d",
         "type": "github"
       },
       "original": {
@@ -35,11 +35,11 @@
     "catppuccin-mpv": {
       "flake": false,
       "locked": {
-        "lastModified": 1722974339,
-        "narHash": "sha256-XhqxanLv/VRhFSUGevt349zyc+RnFV7Fnuv5QZY4ENc=",
+        "lastModified": 1754544320,
+        "narHash": "sha256-oUheJNWk2R6gNEmkK8H6PWX0iofx2KMGDoFWtnr420A=",
         "owner": "catppuccin",
         "repo": "mpv",
-        "rev": "7cb94023a922b3253b018b6add464846152ab6ea",
+        "rev": "08e90daf511eee2c10c98f0031b51bb9de240d60",
         "type": "github"
       },
       "original": {
@@ -51,11 +51,11 @@
     "catppuccin-starship": {
       "flake": false,
       "locked": {
-        "lastModified": 1723614341,
-        "narHash": "sha256-2JLybPsgFZ/Fzz4e0dd4Vo0lfi4tZVnRbw/jUCmN6Rw=",
+        "lastModified": 1754058577,
+        "narHash": "sha256-FLHjbClpTqaK4n2qmepCPkb8rocaAo3qeV4Zp1hia0g=",
         "owner": "catppuccin",
         "repo": "starship",
-        "rev": "0cf91419f9649e9a47bb5c85797e4b83ecefe45c",
+        "rev": "5906cc369dd8207e063c0e6e2d27bd0c0b567cb8",
         "type": "github"
       },
       "original": {
@@ -103,11 +103,11 @@
     "eza-themes": {
       "flake": false,
       "locked": {
-        "lastModified": 1765813820,
-        "narHash": "sha256-6E+SwOa5fAMeJMHOGlZvSX0FeKmreLdoJrTr+XV5Dv8=",
+        "lastModified": 1784485423,
+        "narHash": "sha256-53J0plgB+d6b4LzSwrCezmIhfVm7WZrKMA1ORGdUtQU=",
         "owner": "eza-community",
         "repo": "eza-themes",
-        "rev": "562fb6d4afe0593cd072dd25b8706296eca8f4f7",
+        "rev": "21184b55bfe34e8473c8160f9de0c03e4f76857f",
         "type": "github"
       },
       "original": {
@@ -445,11 +445,11 @@
     "yazi-flavors": {
       "flake": false,
       "locked": {
-        "lastModified": 1772541353,
-        "narHash": "sha256-ZXJx4iwGCAi6qqDiLSuJvX3UL6XzypxSO7ptspDD/Yw=",
+        "lastModified": 1790697555,
+        "narHash": "sha256-E1OUF1+mT0V3crVxkewG2Y7hRu8fO+0oRl6NlINmw+o=",
         "owner": "yazi-rs",
         "repo": "flavors",
-        "rev": "c02c804bb7c8873da8182745654fb57dc63b7348",
+        "rev": "1183892c904f7f0efdf4473e856ed308b7bea98d",
         "type": "github"
       },
       "original": {

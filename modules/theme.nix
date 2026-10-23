@@ -34,11 +34,18 @@
           palette = "catppuccin_latte";
         }
         // lib.importTOML "${inputs.catppuccin-starship}/themes/latte.toml";
+
+        yazi = {
+          flavors.catppuccin-latte = "${inputs.yazi-flavors}/catppuccin-latte.yazi";
+          theme.flavor = {
+            light = "catppuccin-latte";
+            dark = "catppuccin-latte";
+          };
+        };
       };
 
       xdg.configFile = {
         "eza/theme.yml".source = "${inputs.eza-themes}/themes/catppuccin-latte.yml";
-        "yazi/theme.toml".source = "${inputs.yazi-flavors}/catppuccin-latte.yazi/flavor.toml";
       };
     };
 }
