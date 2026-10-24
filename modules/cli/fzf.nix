@@ -2,6 +2,7 @@
   flake.modules.homeManager.base = {
     programs.fzf = {
       enable = true;
+
       # both widget commands escape $dir so the fish widget, not hm-session-vars.sh, fills in the typed directory
       changeDirWidgetCommand = "fd --type dir . \\$dir";
 
