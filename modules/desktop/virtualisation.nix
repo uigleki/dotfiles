@@ -5,9 +5,8 @@
       programs.virt-manager.enable = true;
 
       # virsh net-autostart default
-      systemd.tmpfiles.rules = [
-        "L /var/lib/libvirt/qemu/networks/autostart/default.xml - - - - /var/lib/libvirt/qemu/networks/default.xml"
-      ];
+      systemd.tmpfiles.settings.libvirt-autostart."/var/lib/libvirt/qemu/networks/autostart/default.xml".L.argument =
+        "/var/lib/libvirt/qemu/networks/default.xml";
 
       users.users.${config.owner.username}.extraGroups = [ "libvirtd" ];
 
