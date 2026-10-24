@@ -3,6 +3,8 @@ paths:
   - "**/*.nix"
 ---
 
+# Nix
+
 Order attribute sets in these tiers, names as listed, others alphabetically:
 
 1. `imports`, `options`, `config`; system before user; base before extensions.
@@ -18,4 +20,4 @@ Comment a deviation whose reason is not obvious.
 
 Blank lines go around multi-line entries and comment-headed groups.
 
-Name each file after its one feature.
+Name each Nix file after its one feature.
