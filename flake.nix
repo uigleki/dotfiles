@@ -1,7 +1,7 @@
 {
   inputs = {
     # retuned often: release branches, bumped together
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -74,7 +74,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
 
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
