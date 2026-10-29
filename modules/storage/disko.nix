@@ -68,7 +68,7 @@ in
 
         content = {
           type = "luks";
-          name = "crypted";
+          name = "root";
 
           settings = {
             allowDiscards = true;
