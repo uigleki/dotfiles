@@ -13,9 +13,7 @@ Order attribute sets in these tiers, names as listed, others alphabetically:
 4. Knobs the user retunes often, under `# retuned often`.
 5. The rest, with a comment-headed group of related keys as one entry.
 
-Keep any meaningful order
-(execution, display, file format, idiom),
-in sets and lists alike; sort other lists alphabetically.
+Keep any meaningful order (execution, display, file format, idiom), in sets and lists alike; sort other lists alphabetically.
 Comment a deviation whose reason is not obvious.
 
 Blank lines go around multi-line entries and comment-headed groups.

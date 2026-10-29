@@ -7,16 +7,13 @@ Fork it and modify `modules/owner.nix` and `modules/hosts/` before using.
 
 ## The Problem
 
-Most development setups are chaotic: scattered config files,
-broken dependencies, "works on my machine" issues,
-hours spent on environment setup instead of actual work.
+Most development setups are chaotic: scattered config files, broken dependencies, "works on my machine" issues, hours spent on environment setup instead of actual work.
 
 ## Why Nix
 
 **Reproducible** • **Declarative** • **Reliable**
 
-One configuration that creates identical environments everywhere - from WSL to
-cloud servers to bare metal.
+One configuration that creates identical environments everywhere - from WSL to cloud servers to bare metal.
 
 ## Why This Configuration
 
@@ -29,8 +26,7 @@ No hidden system state, no scattered dotfiles, no mysterious breakages.
 **Zero Setup Friction**: Clone once, works everywhere.
 Same keybindings, same tools, same workflow across all machines.
 
-**Modern Toolchain**: Each tool chosen
-for proven superiority - `fd` over `find`, `rg` over `grep`, `eza` over `ls`.
+**Modern Toolchain**: Each tool chosen for proven superiority - `fd` over `find`, `rg` over `grep`, `eza` over `ls`.
 Not trendy, just better.
 
 **Smart Isolation**: Services in containers, projects in flakes.
@@ -42,8 +38,7 @@ Explore freely, commit nothing.
 **Bulletproof Updates**: Atomic changes with instant rollbacks.
 System updates cannot break your workflow.
 
-**Intelligent Defaults**: Works immediately out of the box,
-yet infinitely customizable when needed.
+**Intelligent Defaults**: Works immediately out of the box, yet infinitely customizable when needed.
 
 ## Usage
 
