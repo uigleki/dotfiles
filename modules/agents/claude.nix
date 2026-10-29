@@ -47,19 +47,39 @@
             DISABLE_FEEDBACK_COMMAND = 1;
           };
 
-          hooks.SessionStart = [
-            {
-              matcher = "^(startup|resume|clear|compact|fork)$";
+          hooks = {
+            CwdChanged = [
+              {
+                hooks = [
+                  {
+                    type = "command";
+                    command = ''direnv export bash > "$CLAUDE_ENV_FILE"'';
+                  }
+                ];
+              }
+            ];
 
-              hooks = [
-                {
-                  type = "command";
-                  command = "bash '${homeDirectory}/.claude/hooks/herdr-agent-state.sh' session";
-                  timeout = 10;
-                }
-              ];
-            }
-          ];
+            SessionStart = [
+              {
+                hooks = [
+                  {
+                    type = "command";
+                    command = ''direnv export bash > "$CLAUDE_ENV_FILE"'';
+                  }
+                ];
+              }
+              {
+                matcher = "^(startup|resume|clear|compact|fork)$";
+                hooks = [
+                  {
+                    type = "command";
+                    command = "bash '${homeDirectory}/.claude/hooks/herdr-agent-state.sh' session";
+                    timeout = 10;
+                  }
+                ];
+              }
+            ];
+          };
 
           inputNeededNotifEnabled = true;
 
