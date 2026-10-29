@@ -16,6 +16,14 @@ in
 
           git = {
             enable = true;
+
+            ignores = [
+              "**/.claude/settings.local.json"
+
+              ".direnv"
+              "/.pre-commit-config.yaml"
+            ];
+
             lfs.enable = true;
 
             settings = {
