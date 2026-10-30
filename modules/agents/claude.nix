@@ -52,7 +52,7 @@
               hooks = [
                 {
                   type = "command";
-                  command = ''direnv export bash > "$CLAUDE_ENV_FILE"'';
+                  command = ''cd "$CLAUDE_PROJECT_DIR" && direnv export bash > "$CLAUDE_ENV_FILE"'';
                 }
               ];
             }
