@@ -36,8 +36,10 @@
           disableWorkflows = true;
 
           env = {
+            # compact at ~300k: context rot degrades output long before 1M
             CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = 75;
             CLAUDE_CODE_AUTO_COMPACT_WINDOW = 400000;
+
             CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = 1;
             CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS = 10;
             CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH = 2;
@@ -75,8 +77,10 @@
 
             deny = [
               "Artifact"
+              # mid-turn questions either stall unattended runs or time out into a guess
               "AskUserQuestion"
               "DesignSync"
+              # auto mode replaces the plan-then-approve loop
               "EnterPlanMode"
               "ExitPlanMode"
               "NotebookEdit"
@@ -117,7 +121,6 @@
           syncClaudeAiSkills = false;
           theme = "auto";
           tui = "fullscreen";
-          worktree.baseRef = "head";
         };
       };
     };
