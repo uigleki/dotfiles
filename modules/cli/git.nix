@@ -18,10 +18,12 @@ in
             enable = true;
 
             ignores = [
+              # Claude Code adds this on its own
               "**/.claude/settings.local.json"
 
-              ".direnv"
+              ".direnv/"
               "/.pre-commit-config.yaml"
+              ".rumdl_cache/"
             ];
 
             lfs.enable = true;
