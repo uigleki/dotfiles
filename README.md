@@ -67,7 +67,8 @@ sudo nixos-install --no-root-passwd --flake github:uigleki/dotfiles#akira
 # Lanzaboote will auto-enroll Secure Boot keys and reboot
 
 # After reboot, enroll TPM for automatic LUKS unlock
-sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 /dev/disk/by-partlabel/disk-main-luks
+# Re-run after BIOS or Secure Boot (dbx) updates, which change the bound PCRs
+sudo systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto --tpm2-pcrs=0+2+7+12 /dev/disk/by-partlabel/disk-main-luks
 
 # Join the tailnet
 tailscale up
