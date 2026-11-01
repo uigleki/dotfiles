@@ -22,6 +22,7 @@
         enable = true;
         package = null;
 
+        # cloud sessions read only the repo's .claude/settings.json; mirror behavior-changing keys there
         settings = {
           # retuned often; uncomment the subagent model while model is Fable:
           # its quota is half the weekly limit and drains fast
@@ -36,10 +37,8 @@
           disableWorkflows = true;
 
           env = {
-            # compact at ~300k: context rot degrades output long before 1M
-            CLAUDE_AUTOCOMPACT_PCT_OVERRIDE = 75;
-            CLAUDE_CODE_AUTO_COMPACT_WINDOW = 400000;
-
+            # compacts at 300k (33k below the window): context rot degrades output long before 1M
+            CLAUDE_CODE_AUTO_COMPACT_WINDOW = 333000;
             CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = 1;
             CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS = 10;
             CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH = 2;
@@ -73,44 +72,24 @@
           inputNeededNotifEnabled = true;
 
           permissions = {
+            # only claude -p needs this: interactive sessions already default to auto
             defaultMode = "auto";
 
             deny = [
+              # denied rather than enableArtifact = false, which also drops the session scratchpad
               "Artifact"
               # mid-turn questions either stall unattended runs or time out into a guess
               "AskUserQuestion"
-              "DesignSync"
               # auto mode replaces the plan-then-approve loop
               "EnterPlanMode"
               "ExitPlanMode"
-              "NotebookEdit"
-              "PushNotification"
+              # makes /code-review fork a fresh reviewer even when driven from the app or claude.ai
               "ReportFindings"
             ];
           };
 
           promptSuggestionEnabled = false;
           remoteControlAtStartup = true;
-
-          # Hide bundled skills that would only waste the skill listing here.
-          skillOverrides =
-            lib.genAttrs [
-              # Artifact is denied above
-              "artifact-capabilities"
-              "artifact-design"
-              "artifact-diagramming"
-              "dataviz"
-              "fewer-permission-prompts" # auto mode already skips most prompts
-              "keybindings-help"
-              "plugin-authoring"
-              "update-config" # settings.json is a read-only Nix store link
-            ] (_: "off")
-            # still typable as /name, but kept out of the model's skill listing
-            // lib.genAttrs [
-              "init"
-              "security-review"
-            ] (_: "user-invocable-only");
-
           spinnerTipsEnabled = false;
 
           statusLine = {
