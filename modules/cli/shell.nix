@@ -10,45 +10,51 @@
       secretsFile = "$HOME/.config/secrets.sh";
     in
     {
-      programs = {
-        bash = {
-          enable = true;
+      options.updateCommands = lib.mkOption { type = with lib.types; listOf str; };
 
-          initExtra = ''
-            # not using sops-nix etc: builds should succeed without keys
-            [ -f "${secretsFile}" ] && source "${secretsFile}"
+      config = {
+        updateCommands = lib.mkBefore [ "nh os switch --update" ];
 
-            # Launch fish from bash to preserve login shell profile sourcing.
-            # Setting users.users.*.shell = fish directly would skip /etc/profile.
-            if [[ $(${lib.getExe' pkgs.procps "ps"} --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]; then
-              shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-              exec ${lib.getExe config.programs.fish.package} $LOGIN_OPTION
-            fi
-          '';
-        };
+        programs = {
+          bash = {
+            enable = true;
 
-        fish = {
-          enable = true;
-          interactiveShellInit = "set fish_greeting";
+            initExtra = ''
+              # not using sops-nix etc: builds should succeed without keys
+              [ -f "${secretsFile}" ] && source "${secretsFile}"
 
-          shellAbbrs = {
-            c = "claude";
-            co = "codex";
-            f = "$EDITOR";
+              # Launch fish from bash to preserve login shell profile sourcing.
+              # Setting users.users.*.shell = fish directly would skip /etc/profile.
+              if [[ $(${lib.getExe' pkgs.procps "ps"} --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]; then
+                shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+                exec ${lib.getExe config.programs.fish.package} $LOGIN_OPTION
+              fi
+            '';
+          };
 
-            G = {
-              expansion = "| rg";
-              position = "anywhere";
+          fish = {
+            enable = true;
+            interactiveShellInit = "set fish_greeting";
+
+            shellAbbrs = {
+              c = "claude";
+              co = "codex";
+              f = "$EDITOR";
+
+              G = {
+                expansion = "| rg";
+                position = "anywhere";
+              };
+
+              gc = "git clone --depth=1";
+              gl = "git pull";
+              h = "herdr";
+              k = "btm";
+              l = "eza -la";
+              r = "rsync -rthP";
+              u = "nh os switch";
+              uu = lib.concatStringsSep " && " config.updateCommands;
             };
-
-            gc = "git clone --depth=1";
-            gl = "git pull";
-            h = "herdr";
-            k = "btm";
-            l = "eza -la";
-            r = "rsync -rthP";
-            u = "nh os switch";
-            uu = "nh os switch --update";
           };
         };
       };
