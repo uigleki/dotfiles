@@ -53,7 +53,8 @@
               hooks = [
                 {
                   type = "command";
-                  command = ''cd "$CLAUDE_PROJECT_DIR" && direnv export bash > "$CLAUDE_ENV_FILE"'';
+                  # a Claude worktree's .envrc starts blocked
+                  command = ''cd "''${CLAUDE_PROJECT_DIR%%/.claude/worktrees/*}" && direnv export bash > "$CLAUDE_ENV_FILE"'';
                 }
               ];
             }
