@@ -11,6 +11,17 @@
       inherit (config.home) homeDirectory;
       jq = lib.getExe pkgs.jq;
 
+      # prek needs .pre-commit-config.yaml in each worktree
+      linkPreCommitConfig = {
+        type = "command";
+        command = ''
+          main=''${PWD%%/.claude/worktrees/*}
+          if [ "''${PWD%/*}" = "$main/.claude/worktrees" ] && [ -L "$main/.pre-commit-config.yaml" ] && [ ! -L .pre-commit-config.yaml ]; then
+            ln -s ../../../.pre-commit-config.yaml .
+          fi
+        '';
+      };
+
       statuslineFilter = pkgs.writeTextFile {
         name = "claude-statusline.jq";
         checkPhase = ''${jq} -n -f "$target"'';
@@ -49,27 +60,35 @@
               DISABLE_FEEDBACK_COMMAND = 1;
             };
 
-            hooks.SessionStart = [
-              {
-                hooks = [
-                  {
-                    type = "command";
-                    # a Claude worktree's .envrc starts blocked
-                    command = ''cd "''${CLAUDE_PROJECT_DIR%%/.claude/worktrees/*}" && direnv export bash > "$CLAUDE_ENV_FILE"'';
-                  }
-                ];
-              }
-              {
-                matcher = "^(startup|resume|clear|compact|fork)$";
-                hooks = [
-                  {
-                    type = "command";
-                    command = "bash '${homeDirectory}/.claude/hooks/herdr-agent-state.sh' session";
-                    timeout = 10;
-                  }
-                ];
-              }
-            ];
+            hooks = {
+              PostToolUse = [
+                {
+                  matcher = "EnterWorktree";
+                  hooks = [ linkPreCommitConfig ];
+                }
+              ];
+
+              SessionStart = [
+                {
+                  hooks = [
+                    {
+                      type = "command";
+                      # a Claude worktree's .envrc starts blocked
+                      command = ''cd "''${CLAUDE_PROJECT_DIR%%/.claude/worktrees/*}" && direnv export bash > "$CLAUDE_ENV_FILE"'';
+                    }
+                    {
+                      # what `herdr integration install claude` would add
+                      type = "command";
+                      command = "bash '${homeDirectory}/.claude/hooks/herdr-agent-state.sh' session";
+                      timeout = 10;
+                    }
+                    linkPreCommitConfig
+                  ];
+                }
+              ];
+
+              SubagentStart = [ { hooks = [ linkPreCommitConfig ]; } ];
+            };
 
             inputNeededNotifEnabled = true;
 
