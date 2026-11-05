@@ -13,6 +13,11 @@
       devShells.default = pkgs.mkShell {
         inputsFrom = [ config.pre-commit.devShell ];
         packages = with pkgs; [ nixd ];
+
+        shellHook = ''
+          # git-hooks.nix sets core.hooksPath to .git/hooks, so linked worktrees skip every hook.
+          git config --local --unset-all core.hooksPath || true
+        '';
       };
 
       formatter = pkgs.nixfmt-tree;
@@ -55,7 +60,7 @@
             package = pkgs.tombi;
             entry = "${lib.getExe pkgs.tombi} format --offline";
 
-            # Not `types = [ "toml" ]`: Cargo.lock is tagged toml too.
+            # Not `types = [ "toml" ]`: some lock files are tagged toml too.
             files = "\\.toml$";
           };
 
