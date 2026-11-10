@@ -4,10 +4,11 @@
     enable = true;
     allowReboot = true;
 
+    # only nixpkgs floats past the lock: the stable channel is where security fixes land
     flags = [
-      # update flake inputs without modifying the repo's lock file
-      "--recreate-lock-file"
-      "--no-write-lock-file"
+      "--override-input"
+      "nixpkgs"
+      (import ../../flake.nix).inputs.nixpkgs.url
     ];
 
     flake = inputs.self.outPath;
