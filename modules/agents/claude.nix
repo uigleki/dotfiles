@@ -1,14 +1,8 @@
 # curl -fsSL https://claude.ai/install.sh | bash
 {
   flake.modules.homeManager.base =
-    {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
+    { lib, pkgs, ... }:
     let
-      inherit (config.home) homeDirectory;
       jq = lib.getExe pkgs.jq;
 
       # prek needs .pre-commit-config.yaml in each worktree
@@ -80,12 +74,6 @@
                       type = "command";
                       # a Claude worktree's .envrc starts blocked
                       command = ''cd "''${CLAUDE_PROJECT_DIR%%/.claude/worktrees/*}" && direnv export bash > "$CLAUDE_ENV_FILE"'';
-                    }
-                    {
-                      # what `herdr integration install claude` would add
-                      type = "command";
-                      command = "bash '${homeDirectory}/.claude/hooks/herdr-agent-state.sh' session";
-                      timeout = 10;
                     }
                     linkPreCommitConfig
                   ];
