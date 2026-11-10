@@ -11,9 +11,9 @@ in
         nixos.base
         nixos.desktop
         nixos.disko-btrfs-luks
-        nixos.lanzaboote
         nixos.network
         nixos.security
+        nixos.tpm-unlock
       ];
 
       boot.loader.timeout = 1;
