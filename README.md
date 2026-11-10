@@ -66,7 +66,10 @@ sudo nixos-install --no-root-passwd --flake github:uigleki/dotfiles#akira
 # Reboot, enter BIOS, set Secure Boot to "Setup Mode", then boot
 # Lanzaboote will auto-enroll Secure Boot keys and reboot
 
-# After reboot, enroll TPM for automatic LUKS unlock
+# After reboot, replace the initial password, which is the username
+passwd
+
+# Enroll TPM for automatic LUKS unlock
 # Re-run after BIOS or Secure Boot (dbx) updates, which change the bound PCRs
 sudo systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto --tpm2-pcrs=0+2+7+12 /dev/disk/by-partlabel/disk-main-luks
 
