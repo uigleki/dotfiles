@@ -1,6 +1,9 @@
 # Hardening options based on kernel-hardening-checker recommendations.
 # Excludes settings that impact normal usage or performance.
 {
+  # with no cores stored, DrKonqi's pickup skips every crash and never exits, so it times out at each login
+  flake.modules.nixos.desktop.systemd.user.services.drkonqi-coredump-pickup.enable = false;
+
   flake.modules.nixos.security = {
     boot = {
       blacklistedKernelModules = [
