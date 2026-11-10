@@ -71,7 +71,7 @@ passwd
 
 # Enroll TPM for automatic LUKS unlock
 # Re-run after BIOS or Secure Boot (dbx) updates, which change the bound PCRs
-sudo systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto --tpm2-pcrs=0+2+7+12 /dev/disk/by-partlabel/disk-main-luks
+sudo tpm-enroll
 
 # Join the tailnet
 tailscale up
