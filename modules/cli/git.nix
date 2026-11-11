@@ -19,13 +19,39 @@ in
             lfs.enable = true;
 
             settings = {
+              branch.sort = "-committerdate";
+              column.ui = "auto";
+              commit.verbose = true;
               credential.helper = lib.mkDefault "store"; # plaintext; desktop uses the keyring
+
+              diff = {
+                algorithm = "histogram";
+                colorMoved = true;
+              };
+
+              fetch = {
+                all = true;
+                prune = true;
+              };
+
               init.defaultBranch = "main";
               log.date = "iso";
               merge.conflictStyle = "zdiff3";
               pull.rebase = true;
-              push.autoSetupRemote = true;
-              rebase.autoStash = true;
+
+              push = {
+                autoSetupRemote = true;
+                followTags = true;
+              };
+
+              rebase = {
+                autoSquash = true;
+                autoStash = true;
+                updateRefs = true;
+              };
+
+              rerere.enabled = true;
+              tag.sort = "version:refname";
 
               user = {
                 name = owner.gitName;
