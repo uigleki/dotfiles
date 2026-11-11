@@ -63,13 +63,13 @@ nix-shell -p disko --run "sudo disko --mode destroy,format,mount --flake github:
 # Install system
 sudo nixos-install --no-root-passwd --flake github:uigleki/dotfiles#akira
 
+# Set the login password now: the first login creates the KWallet with it
+sudo nixos-enter -c 'passwd <user>'
+
 # Reboot, enter BIOS, set Secure Boot to "Setup Mode", then boot
 # Lanzaboote will auto-enroll Secure Boot keys and reboot
 
-# After reboot, replace the initial password, which is the username
-passwd
-
-# Enroll TPM for automatic LUKS unlock
+# After reboot, enroll TPM for automatic LUKS unlock
 # Re-run after BIOS or Secure Boot (dbx) updates, which change the bound PCRs
 sudo tpm-enroll
 
