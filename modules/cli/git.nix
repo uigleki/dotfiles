@@ -62,7 +62,7 @@ in
 
           lazygit = {
             enable = true;
-            settings.git.pagers = [ { pager = "delta --paging=never"; } ];
+            settings.git.diffRenderers = [ { command = "delta --paging=never"; } ];
             shellWrapperName = "g";
           };
         };
