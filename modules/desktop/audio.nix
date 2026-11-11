@@ -4,10 +4,6 @@
     security.rtkit.enable = true;
 
     # Plasma enables PipeWire itself
-    services.pipewire = {
-      alsa.enable = true;
-      jack.enable = true;
-      pulse.enable = true;
-    };
+    services.pipewire.jack.enable = true;
   };
 }

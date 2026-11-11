@@ -28,22 +28,18 @@ let
       nixos.btrfs
     ];
 
-    disko.devices.disk.main = {
-      type = "disk";
+    disko.devices.disk.main.content = {
+      type = "gpt";
 
-      content = {
-        type = "gpt";
+      partitions.ESP = {
+        size = "500M";
+        type = "EF00";
 
-        partitions.ESP = {
-          size = "500M";
-          type = "EF00";
-
-          content = {
-            type = "filesystem";
-            format = "vfat";
-            mountOptions = [ "umask=0077" ];
-            mountpoint = "/boot";
-          };
+        content = {
+          type = "filesystem";
+          format = "vfat";
+          mountOptions = [ "umask=0077" ];
+          mountpoint = "/boot";
         };
       };
     };

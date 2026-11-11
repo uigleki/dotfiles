@@ -3,8 +3,6 @@
     { pkgs, ... }:
     {
       fonts = {
-        enableDefaultPackages = true;
-
         fontconfig.defaultFonts = {
           monospace = [
             "UbuntuMono Nerd Font"
