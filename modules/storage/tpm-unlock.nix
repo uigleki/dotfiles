@@ -11,7 +11,7 @@ in
       ...
     }:
     let
-      inherit (config.disko.devices.disk.main.content.partitions) luks;
+      inherit (config.boot.initrd.luks.devices) root;
 
       tpm-enroll = pkgs.writeShellApplication {
         name = "tpm-enroll";
@@ -24,7 +24,7 @@ in
           fi
 
           exec systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto \
-            --tpm2-pcrs=0+2+7+12+15:sha256=${lib.strings.replicate 64 "0"} ${luks.device}
+            --tpm2-pcrs=0+2+7+12+15:sha256=${lib.strings.replicate 64 "0"} ${root.device}
         '';
       };
     in
@@ -32,7 +32,7 @@ in
       # the bound PCRs identify the boot chain only while Secure Boot restricts what may boot
       imports = [ nixos.lanzaboote ];
 
-      disko.devices.disk.main.content.partitions.luks.content.settings.crypttabExtraOpts = [
+      boot.initrd.luks.devices.root.crypttabExtraOpts = [
         "tpm2-device=auto"
         # tpm-enroll binds the slot to a zeroed PCR 15, which this extends on unlock,
         # so a system booted from a substituted volume cannot unseal the key
