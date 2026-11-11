@@ -5,6 +5,8 @@
       home = {
         packages = with pkgs; [
           nix-tree
+          nodejs-slim
+          pnpm
 
           # used by coding agents
           bc
