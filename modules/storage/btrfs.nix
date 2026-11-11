@@ -23,16 +23,11 @@
               exit 1
             fi
           '';
+
+          startAt = "daily";
         };
 
-        timers.btrfs-stats = {
-          timerConfig = {
-            OnCalendar = "daily";
-            Persistent = true;
-          };
-
-          wantedBy = [ "timers.target" ];
-        };
+        timers.btrfs-stats.timerConfig.Persistent = true;
       };
     };
 }
