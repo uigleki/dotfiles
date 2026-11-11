@@ -1,11 +1,6 @@
 {
   flake.modules.homeManager.base =
-    {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
+    { config, lib, ... }:
     {
       options.updateCommands = lib.mkOption { type = with lib.types; listOf str; };
 
@@ -16,10 +11,11 @@
           bash = {
             enable = true;
 
-            initExtra = ''
+            # before fzf's init at 200, which the exec would discard
+            initExtra = lib.mkOrder 150 ''
               # Launch fish from bash to preserve login shell profile sourcing.
               # Setting users.users.*.shell = fish directly would skip /etc/profile.
-              if [[ $(${lib.getExe' pkgs.procps "ps"} --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]; then
+              if [[ $(< /proc/$PPID/comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]] 2> /dev/null; then
                 shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
                 exec ${lib.getExe config.programs.fish.package} $LOGIN_OPTION
               fi
