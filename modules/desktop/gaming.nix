@@ -15,7 +15,7 @@
         steam = {
           enable = true;
           dedicatedServer.openFirewall = true;
-          fontPackages = with pkgs; [ wqy_zenhei ];
+          fontPackages = [ pkgs.wqy_zenhei ];
           localNetworkGameTransfers.openFirewall = true;
           remotePlay.openFirewall = true;
         };
