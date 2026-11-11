@@ -13,8 +13,8 @@
 
             # before fzf's init at 200, which the exec would discard
             initExtra = lib.mkOrder 150 ''
-              # Launch fish from bash to preserve login shell profile sourcing.
-              # Setting users.users.*.shell = fish directly would skip /etc/profile.
+              # Bash stays the login shell so that $SHELL stays POSIX:
+              # fish rejects the sh syntax that programs pass to $SHELL -c or send over SSH.
               if [[ $(< /proc/$PPID/comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]] 2> /dev/null; then
                 shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
                 exec ${lib.getExe config.programs.fish.package} $LOGIN_OPTION
