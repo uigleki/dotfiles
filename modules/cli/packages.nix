@@ -19,7 +19,7 @@
           unzip
         ];
 
-        sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
+        sessionPath = [ config.xdg.binHome ];
         sessionVariables.COLORTERM = "truecolor";
       };
 

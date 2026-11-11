@@ -5,7 +5,7 @@ in
 {
   flake = {
     deploy.nodes.nazuna = {
-      hostname = "nazuna";
+      hostname = nazuna.networking.hostName;
 
       profiles.system = {
         path = nazuna.system.build.toplevel;
