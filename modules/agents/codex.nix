@@ -69,11 +69,6 @@
         packages = [ pkgs.bubblewrap ];
       };
 
-      programs.codex = {
-        enable = true;
-        package = null;
-      };
-
       # template for ~/.config/systemd/user/codex.service; keep temporary projects out of Nix
       # systemd.user.services.codex = {
       #   Unit.Description = "Codex Remote Control for ${project}";
