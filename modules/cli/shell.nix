@@ -7,6 +7,11 @@
       config = {
         updateCommands = lib.mkBefore [ "nh os switch --update" ];
 
+        home = {
+          sessionPath = [ config.xdg.binHome ];
+          sessionVariables.COLORTERM = "truecolor";
+        };
+
         programs = {
           bash = {
             enable = true;
@@ -46,6 +51,8 @@
               uu = lib.concatStringsSep " && " config.updateCommands;
             };
           };
+
+          starship.enable = true;
         };
       };
     };

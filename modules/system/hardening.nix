@@ -1,7 +1,7 @@
 # Hardening options based on kernel-hardening-checker recommendations.
 # Excludes settings that impact normal usage or performance.
 {
-  nixos.modules.security = {
+  nixos.modules.hardening = {
     boot = {
       blacklistedKernelModules = [
         "appletalk"

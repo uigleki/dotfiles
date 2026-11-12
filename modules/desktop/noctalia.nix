@@ -3,17 +3,10 @@ let
   inherit (config) owner;
 in
 {
-  nixos.modules.desktop = {
-    qt = {
-      enable = true;
-      platformTheme = "qt5ct"; # qt6ct answers to this name too
-    };
-
-    # the battery and power profile widgets read these
-    services = {
-      power-profiles-daemon.enable = true;
-      upower.enable = true;
-    };
+  # the battery and power profile widgets read these
+  nixos.modules.desktop.services = {
+    power-profiles-daemon.enable = true;
+    upower.enable = true;
   };
 
   homeManager.modules.desktop =
@@ -138,15 +131,11 @@ in
         pkgs.adw-gtk3 # the gtk templates select this theme
       ];
 
-      qt = {
-        enable = true;
-
-        # the qt template only writes the palette; qt6ct has to be pointed at it
-        qt6ctSettings.Appearance = {
-          color_scheme_path = "${config.xdg.configHome}/qt6ct/colors/noctalia.conf";
-          custom_palette = true;
-          style = "Fusion";
-        };
+      # the qt template only writes the palette; qt6ct has to be pointed at it
+      qt.qt6ctSettings.Appearance = {
+        color_scheme_path = "${config.xdg.configHome}/qt6ct/colors/noctalia.conf";
+        custom_palette = true;
+        style = "Fusion";
       };
 
       # home-manager master has programs.noctalia, which replaces this file and its validation once a release ships it

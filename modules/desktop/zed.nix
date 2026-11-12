@@ -7,8 +7,6 @@
         package = pkgs.unstable.zed-editor;
 
         extensions = [
-          "catppuccin"
-          "catppuccin-icons"
           "csharp"
           "dart"
           "dockerfile"
@@ -57,22 +55,10 @@
           project_panel.dock = "left";
 
           autosave = "on_focus_change";
-          cursor_blink = false;
           diagnostics.inline.enabled = true;
           diff_view_style = "unified";
           format_on_save = "on";
           helix_mode = true;
-
-          # Catppuccin, matching the rest of the desktop
-          icon_theme = {
-            light = "Catppuccin Latte";
-            dark = "Catppuccin Macchiato";
-          };
-
-          theme = {
-            light = "Catppuccin Latte";
-            dark = "Catppuccin Macchiato";
-          };
 
           relative_line_numbers = "enabled";
           semantic_tokens = "combined";
@@ -93,5 +79,7 @@
           ];
         };
       };
+
+      xdg.mimeApps.defaultApplications."text/plain" = "dev.zed.Zed.desktop";
     };
 }

@@ -1,27 +1,12 @@
 {
   homeManager.modules.base =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     {
-      home = {
-        packages = with pkgs; [
-          nix-tree
-          nodejs-slim
-          pnpm
-
-          # used by coding agents
-          bc
-          imagemagick
-          lsof
-          poppler-utils
-          psmisc
-          python3Packages.trafilatura
-          tree
-          unzip
-        ];
-
-        sessionPath = [ config.xdg.binHome ];
-        sessionVariables.COLORTERM = "truecolor";
-      };
+      home.packages = with pkgs; [
+        nix-tree
+        nodejs-slim
+        pnpm
+      ];
 
       programs = {
         bat.enable = true;
@@ -48,7 +33,6 @@
           arguments = [ "--smart-case" ];
         };
 
-        starship.enable = true;
         uv.enable = true;
 
         yazi = {

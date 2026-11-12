@@ -11,8 +11,8 @@ in
         nixos.auto-upgrade
         nixos.base
         nixos.disko-btrfs
+        nixos.hardening
         nixos.network
-        nixos.security
         nixos.server
         nixos.systemd-boot
       ];

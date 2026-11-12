@@ -4,7 +4,6 @@
     {
       environment.systemPackages = [ pkgs.xwayland-satellite ]; # niri runs X11 apps through it
       programs.niri.enable = true;
-      security.pam.services.passwd.enableGnomeKeyring = true; # passwd then re-keys the login keyring too
       services.libinput.enable = true; # on Wayland this only installs libinput's udev rules
     };
 

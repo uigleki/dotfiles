@@ -9,8 +9,8 @@ in
       nixos.base
       nixos.desktop
       nixos.disko-btrfs-luks
+      nixos.hardening
       nixos.network
-      nixos.security
       nixos.tpm-unlock
     ];
 

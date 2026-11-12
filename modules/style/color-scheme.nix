@@ -45,6 +45,25 @@
             dark = "catppuccin-latte";
           };
         };
+
+        zed-editor = {
+          extensions = [
+            "catppuccin"
+            "catppuccin-icons"
+          ];
+
+          userSettings = {
+            icon_theme = {
+              light = "Catppuccin Latte";
+              dark = "Catppuccin Macchiato";
+            };
+
+            theme = {
+              light = "Catppuccin Latte";
+              dark = "Catppuccin Macchiato";
+            };
+          };
+        };
       };
 
       xdg.configFile."eza/theme.yml".source = "${inputs.eza-themes}/themes/catppuccin-latte.yml";

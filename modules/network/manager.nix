@@ -3,7 +3,7 @@
     { config, ... }:
     {
       networking = {
-        # required by WiFi hotspot
+        # a NetworkManager hotspot serves DHCP and DNS to the devices that join it
         firewall = {
           allowedTCPPorts = [ 53 ];
 

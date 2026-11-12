@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  nixos.modules.lanzaboote =
+  nixos.modules.secure-boot =
     { pkgs, ... }:
     {
       imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];

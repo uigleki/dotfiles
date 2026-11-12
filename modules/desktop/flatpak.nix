@@ -5,12 +5,6 @@
 
     services.flatpak = {
       enable = true;
-
-      packages = [
-        "com.heroicgameslauncher.hgl"
-        "com.usebottles.bottles"
-      ];
-
       uninstallUnmanaged = true;
     };
   };

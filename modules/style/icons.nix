@@ -15,16 +15,7 @@
       };
     in
     {
-      gtk = {
-        enable = true;
-        iconTheme = theme;
-      };
-
-      home.pointerCursor = {
-        inherit (theme) name package;
-        gtk.enable = true;
-        size = 24;
-      };
+      gtk.iconTheme = theme;
 
       qt.qt6ctSettings.Appearance.icon_theme = theme.name;
     };

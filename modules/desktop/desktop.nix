@@ -11,12 +11,9 @@ in
         wl-clipboard
       ];
 
-      hardware.bluetooth.enable = true;
       home-manager.users.${config.owner.username}.imports = [ homeManager.desktop ];
-
-      programs.appimage = {
-        enable = true;
-        binfmt = true;
-      };
     };
+
+  # each app's file names the types it opens
+  homeManager.modules.desktop.xdg.mimeApps.enable = true;
 }

@@ -30,7 +30,7 @@ in
     in
     {
       # the bound PCRs identify the boot chain only while Secure Boot restricts what may boot
-      imports = [ nixos.lanzaboote ];
+      imports = [ nixos.secure-boot ];
 
       boot.initrd.luks.devices.root.crypttabExtraOpts = [
         "tpm2-device=auto"

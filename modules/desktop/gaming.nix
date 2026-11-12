@@ -20,5 +20,7 @@
           remotePlay.openFirewall = true;
         };
       };
+
+      services.flatpak.packages = [ "com.heroicgameslauncher.hgl" ];
     };
 }
