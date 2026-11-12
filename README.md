@@ -63,7 +63,7 @@ nix-shell -p disko --run "sudo disko --mode destroy,format,mount --flake github:
 # Install system
 sudo nixos-install --no-root-passwd --flake github:uigleki/dotfiles#akira
 
-# Set the login password now: the first login creates the KWallet with it
+# Set the login password now: the first login creates the login keyring with it
 sudo nixos-enter -c 'passwd <user>'
 
 # Reboot, enter BIOS, set Secure Boot to "Setup Mode", then boot

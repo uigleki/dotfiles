@@ -76,12 +76,6 @@
 
     nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
 
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.home-manager.follows = "home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     systems.url = "github:nix-systems/default";
   };
 
