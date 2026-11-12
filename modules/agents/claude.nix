@@ -32,13 +32,13 @@
           settings = {
             # retuned often; uncomment the subagent model while model is Fable:
             # its quota is half the weekly limit and drains fast
-            model = "fable";
+            model = "opus";
             # env.CLAUDE_CODE_SUBAGENT_MODEL = "opus";
 
-            modelSettings = {
-              claude-fable-5-2.effortLevel = "xhigh";
-              claude-opus-5-5.effortLevel = "xhigh";
-            };
+            # modelSettings = {
+            #   claude-fable-5-2.effortLevel = "xhigh";
+            #   claude-opus-5-5.effortLevel = "xhigh";
+            # };
 
             agentPushNotifEnabled = false;
             attribution = false;
