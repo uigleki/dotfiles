@@ -1,9 +1,9 @@
 { config, ... }:
 let
-  inherit (config.flake.modules) homeManager;
+  homeManager = config.homeManager.modules;
 in
 {
-  flake.modules.nixos.desktop =
+  nixos.modules.desktop =
     { config, pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [

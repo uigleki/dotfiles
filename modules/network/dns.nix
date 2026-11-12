@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.network = {
+  nixos.modules.network = {
     # keep DHCP and NetworkManager from overriding dnscrypt-proxy in resolv.conf
     networking = {
       dhcpcd.extraConfig = "nohook resolv.conf";

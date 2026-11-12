@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos = {
+  nixos.modules = {
     base = {
       boot.kernel.sysctl = {
         # recommended for zramSwap

@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base =
+  homeManager.modules.base =
     { config, lib, ... }:
     {
       options.updateCommands = lib.mkOption { type = with lib.types; listOf str; };

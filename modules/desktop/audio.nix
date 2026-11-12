@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.desktop = {
+  nixos.modules.desktop = {
     # real-time scheduling for PipeWire
     security.rtkit.enable = true;
 

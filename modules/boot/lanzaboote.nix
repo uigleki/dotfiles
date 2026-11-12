@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.lanzaboote =
+  nixos.modules.lanzaboote =
     { pkgs, ... }:
     {
       imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];

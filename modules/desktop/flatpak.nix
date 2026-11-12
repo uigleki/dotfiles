@@ -1,21 +1,19 @@
 { inputs, ... }:
 {
-  flake.modules = {
-    nixos.desktop = {
-      imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
+  nixos.modules.desktop = {
+    imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
 
-      services.flatpak = {
-        enable = true;
+    services.flatpak = {
+      enable = true;
 
-        packages = [
-          "com.heroicgameslauncher.hgl"
-          "com.usebottles.bottles"
-        ];
+      packages = [
+        "com.heroicgameslauncher.hgl"
+        "com.usebottles.bottles"
+      ];
 
-        uninstallUnmanaged = true;
-      };
+      uninstallUnmanaged = true;
     };
-
-    homeManager.desktop.updateCommands = [ "flatpak update -y" ];
   };
+
+  homeManager.modules.desktop.updateCommands = [ "flatpak update -y" ];
 }

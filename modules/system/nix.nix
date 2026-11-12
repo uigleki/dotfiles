@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.base = {
+  nixos.modules.base = {
     nix = {
       channel.enable = false;
 

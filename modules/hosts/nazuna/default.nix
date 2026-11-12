@@ -1,9 +1,9 @@
 { config, ... }:
 let
-  inherit (config.flake.modules) nixos;
+  nixos = config.nixos.modules;
 in
 {
-  configurations.nixos.nazuna.module =
+  nixos.configurations.nazuna.module =
     { config, ... }:
     {
       imports = [

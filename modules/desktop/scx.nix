@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.desktop.services.scx = {
+  nixos.modules.desktop.services.scx = {
     enable = true;
     scheduler = "scx_lavd";
   };

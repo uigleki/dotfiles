@@ -1,9 +1,9 @@
 { config, ... }:
 let
-  inherit (config.flake.modules) nixos;
+  nixos = config.nixos.modules;
 in
 {
-  configurations.nixos.inori.module = {
+  nixos.configurations.inori.module = {
     imports = [
       nixos.base
       nixos.wsl

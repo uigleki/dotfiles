@@ -1,6 +1,6 @@
 {
   # nixpkgs unstable has services.displayManager.noctalia-greeter, which replaces this whole module once a release ships it
-  flake.modules.nixos.desktop =
+  nixos.modules.desktop =
     {
       config,
       lib,

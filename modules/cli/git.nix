@@ -3,7 +3,7 @@ let
   inherit (config) owner;
 in
 {
-  flake.modules.homeManager.base.programs = {
+  homeManager.modules.base.programs = {
     delta = {
       enable = true;
       enableGitIntegration = true;

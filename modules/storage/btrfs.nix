@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.btrfs =
+  nixos.modules.btrfs =
     { pkgs, ... }:
     {
       environment.systemPackages = [ pkgs.e2fsprogs ]; # chattr/lsattr, only auto-added for ext filesystems

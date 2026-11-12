@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.auto-upgrade.system.autoUpgrade = {
+  nixos.modules.auto-upgrade.system.autoUpgrade = {
     enable = true;
     allowReboot = true;
 

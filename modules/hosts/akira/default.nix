@@ -1,9 +1,9 @@
 { config, ... }:
 let
-  inherit (config.flake.modules) nixos;
+  nixos = config.nixos.modules;
 in
 {
-  configurations.nixos.akira.module = {
+  nixos.configurations.akira.module = {
     imports = [
       ./_hardware-configuration.nix
       nixos.base

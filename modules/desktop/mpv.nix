@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.desktop =
+  homeManager.modules.desktop =
     { lib, pkgs, ... }:
     let
       # Anime4K Mode A (Fast), as in the upstream template

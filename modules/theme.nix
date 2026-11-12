@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.base =
+  homeManager.modules.base =
     { config, lib, ... }:
     let
       theme = "Catppuccin Latte";

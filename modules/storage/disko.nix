@@ -1,6 +1,6 @@
 { config, inputs, ... }:
 let
-  inherit (config.flake.modules) nixos;
+  nixos = config.nixos.modules;
 
   subvol = mountpoint: {
     inherit mountpoint;
@@ -46,7 +46,7 @@ let
   };
 in
 {
-  flake.modules.nixos = {
+  nixos.modules = {
     disko-btrfs = {
       imports = [ common ];
 

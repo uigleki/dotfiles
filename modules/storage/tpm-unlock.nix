@@ -1,9 +1,9 @@
 { config, ... }:
 let
-  inherit (config.flake.modules) nixos;
+  nixos = config.nixos.modules;
 in
 {
-  flake.modules.nixos.tpm-unlock =
+  nixos.modules.tpm-unlock =
     {
       config,
       lib,

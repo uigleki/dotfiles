@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.desktop =
+  nixos.modules.desktop =
     { config, ... }:
     {
       networking = {

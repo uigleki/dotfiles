@@ -3,7 +3,7 @@ let
   inherit (config) owner;
 in
 {
-  flake.modules.nixos.base =
+  nixos.modules.base =
     { pkgs, ... }:
     {
       documentation.doc.enable = false;

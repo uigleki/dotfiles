@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.desktop.services.smartd = {
+  nixos.modules.desktop.services.smartd = {
     enable = true;
     notifications.systembus-notify.enable = true;
   };

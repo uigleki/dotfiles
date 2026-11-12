@@ -1,6 +1,6 @@
 # curl -fsSL https://claude.ai/install.sh | bash
 {
-  flake.modules.homeManager.base =
+  homeManager.modules.base =
     { lib, pkgs, ... }:
     let
       jq = lib.getExe pkgs.jq;

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.desktop = {
+  nixos.modules.desktop = {
     # libinput takes keyd's virtual keyboard for an external one and stops disabling the touchpad while typing
     environment.etc."libinput/local-overrides.quirks".text = ''
       [Serial Keyboards]

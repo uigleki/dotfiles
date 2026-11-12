@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.wsl =
+  nixos.modules.wsl =
     { config, pkgs, ... }:
     {
       imports = [ inputs.nixos-wsl.nixosModules.default ];

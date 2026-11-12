@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.desktop =
+  nixos.modules.desktop =
     { pkgs, ... }:
     {
       boot.kernel.sysctl."vm.compaction_proactiveness" = 0; # reduce latency spikes in gaming

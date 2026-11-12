@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.network.services.chrony = {
+  nixos.modules.network.services.chrony = {
     enable = true;
     enableNTS = true;
 

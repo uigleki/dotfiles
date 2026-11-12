@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.server.services = {
+  nixos.modules.server.services = {
     fail2ban.enable = true;
 
     # pin defaults that would lock us out of the VPS if they flipped
