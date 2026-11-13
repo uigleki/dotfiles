@@ -8,7 +8,7 @@
     flags = [
       "--override-input"
       "nixpkgs"
-      (import ../../flake.nix).inputs.nixpkgs.url
+      (import "${inputs.self}/flake.nix").inputs.nixpkgs.url
     ];
 
     flake = inputs.self.outPath;
