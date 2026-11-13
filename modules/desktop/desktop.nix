@@ -1,11 +1,18 @@
 { config, ... }:
 let
+  nixos = config.nixos.modules;
   homeManager = config.homeManager.modules;
 in
 {
   nixos.modules.desktop =
     { config, pkgs, ... }:
     {
+      imports = with nixos; [
+        base
+        hardening
+        network
+      ];
+
       environment.systemPackages = with pkgs; [
         libnotify
         wl-clipboard

@@ -1,4 +1,14 @@
+{ config, ... }:
+let
+  nixos = config.nixos.modules;
+in
 {
+  nixos.modules.server.imports = with nixos; [
+    base
+    hardening
+    network
+  ];
+
   nixos.modules.server.services = {
     fail2ban.enable = true;
 

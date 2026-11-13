@@ -21,10 +21,7 @@ in
       imports = [
         ./_hardware-configuration.nix
         nixos.auto-upgrade
-        nixos.base
         nixos.disko-btrfs
-        nixos.hardening
-        nixos.network
         nixos.server
         nixos.systemd-boot
       ];

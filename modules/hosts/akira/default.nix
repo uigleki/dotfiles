@@ -6,11 +6,8 @@ in
   nixos.configurations.akira.module = {
     imports = [
       ./_hardware-configuration.nix
-      nixos.base
       nixos.desktop
       nixos.disko-btrfs-luks
-      nixos.hardening
-      nixos.network
       nixos.tpm-unlock
     ];
 

@@ -2,11 +2,11 @@
 let
   # the key lets a module imported along two paths apply once
   option =
-    class: name:
+    name:
     lib.mkOption {
       type = lib.types.deferredModule;
       apply = module: {
-        key = "${class}.${name}";
+        key = name;
         imports = [ module ];
       };
     };
@@ -27,11 +27,11 @@ in
       "systemd-boot"
       "tpm-unlock"
       "wsl"
-    ] (option "nixos");
+    ] option;
 
     homeManager.modules = lib.genAttrs [
       "base"
       "desktop"
-    ] (option "homeManager");
+    ] option;
   };
 }
