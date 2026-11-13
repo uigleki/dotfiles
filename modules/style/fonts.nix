@@ -4,13 +4,16 @@
     let
       generics = region: rec {
         monospace = [
-          "UbuntuMono Nerd Font"
+          "Ubuntu Sans Mono"
           "Noto Sans Mono CJK ${region}"
+          "Symbols Nerd Font Mono"
         ];
 
         sans-serif = [
-          "Ubuntu Nerd Font"
+          "Ubuntu Sans"
           "Noto Sans CJK ${region}"
+          "Symbols Nerd Font"
+          "Noto Color Emoji"
         ];
 
         serif = sans-serif;
@@ -55,8 +58,9 @@
         };
 
         packages = with pkgs; [
-          nerd-fonts.ubuntu
-          nerd-fonts.ubuntu-mono
+          nerd-fonts.symbols-only
+          ubuntu-sans
+          ubuntu-sans-mono
         ];
       };
     };
