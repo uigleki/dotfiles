@@ -25,21 +25,25 @@
     };
 
   # generic names leave the family to fontconfig above; sizes follow GNOME's defaults
-  homeManager.modules.desktop = {
-    dconf.settings."org/gnome/desktop/interface" = {
-      document-font-name = "Sans Serif 12";
-      monospace-font-name = "Monospace 11";
-    };
-
-    gtk.font = {
-      name = "Sans Serif";
+  homeManager.modules.desktop =
+    let
       size = 11;
-    };
+    in
+    {
+      dconf.settings."org/gnome/desktop/interface" = {
+        document-font-name = "Sans Serif ${toString (size + 1)}";
+        monospace-font-name = "Monospace ${toString size}";
+      };
 
-    # qt6ct parses the quotes; unquoted, QSettings splits the value at the comma
-    qt.qt6ctSettings.Fonts = {
-      fixed = ''"Monospace,11"'';
-      general = ''"Sans Serif,11"'';
+      gtk.font = {
+        inherit size;
+        name = "Sans Serif";
+      };
+
+      # qt6ct parses the quotes; unquoted, QSettings splits the value at the comma
+      qt.qt6ctSettings.Fonts = {
+        fixed = ''"Monospace,${toString size}"'';
+        general = ''"Sans Serif,${toString size}"'';
+      };
     };
-  };
 }

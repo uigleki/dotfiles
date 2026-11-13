@@ -21,7 +21,7 @@
     inputs.nixpkgs.lib.nixosSystem {
       modules = [
         module
-        { networking.hostName = lib.mkDefault name; }
+        { networking.hostName = name; }
       ];
     }
   ) config.nixos.configurations;

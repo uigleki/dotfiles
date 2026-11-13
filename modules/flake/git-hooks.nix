@@ -6,7 +6,7 @@
     { lib, pkgs, ... }:
     {
       pre-commit.settings = {
-        package = pkgs.prek; # rust pre-commit alternative
+        package = pkgs.prek;
 
         hooks = {
           actionlint.enable = true;

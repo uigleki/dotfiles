@@ -54,12 +54,12 @@
 
           userSettings = {
             icon_theme = {
-              light = "Catppuccin Latte";
+              light = theme;
               dark = "Catppuccin Macchiato";
             };
 
             theme = {
-              light = "Catppuccin Latte";
+              light = theme;
               dark = "Catppuccin Macchiato";
             };
           };

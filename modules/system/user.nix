@@ -19,7 +19,7 @@ in
           isNormalUser = true;
           extraGroups = [ "wheel" ];
           initialPassword = config.owner.username;
-          linger = true; # allow user services to run without login session
+          linger = true;
           openssh.authorizedKeys.keys = owner.sshKeys;
         };
       };

@@ -8,6 +8,7 @@
     }:
     let
       inherit (pkgs.unstable) herdr;
+      hook = ".claude/hooks/herdr-agent-state.sh";
 
       settings = {
         onboarding = false;
@@ -34,7 +35,7 @@
       home = {
         # herdr reads its integration version from this path and asks to reinstall when it lags the binary;
         # its installer overwrites the path with a regular file
-        file.".claude/hooks/herdr-agent-state.sh" = {
+        file.${hook} = {
           force = true;
           source = "${herdr}/share/herdr/integrations/claude/herdr-agent-state.sh";
         };
@@ -48,7 +49,7 @@
           hooks = [
             {
               type = "command";
-              command = "bash '${config.home.homeDirectory}/.claude/hooks/herdr-agent-state.sh' session";
+              command = "bash '${config.home.homeDirectory}/${hook}' session";
               timeout = 10;
             }
           ];

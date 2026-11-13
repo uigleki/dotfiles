@@ -1,8 +1,20 @@
 { config, ... }:
 let
+  nazuna = config.flake.nixosConfigurations.nazuna.config;
   nixos = config.nixos.modules;
 in
 {
+  flake.deploy.nodes.nazuna = {
+    hostname = nazuna.networking.hostName;
+
+    profiles.system = {
+      path = nazuna.system.build.toplevel;
+      remoteBuild = true; # the desktop cannot build aarch64
+      sshUser = nazuna.owner.username;
+      user = "root";
+    };
+  };
+
   nixos.configurations.nazuna.module =
     { config, ... }:
     {
