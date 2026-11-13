@@ -11,7 +11,7 @@ in
         wl-clipboard
       ];
 
-      home-manager.users.${config.owner.username}.imports = [ homeManager.desktop ];
+      home-manager.users.${config.user.username}.imports = [ homeManager.desktop ];
     };
 
   # each app's file names the types it opens

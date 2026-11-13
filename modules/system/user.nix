@@ -1,26 +1,26 @@
 { config, ... }:
 let
-  inherit (config) owner;
+  inherit (config) user;
 in
 {
   nixos.modules.base =
     { config, lib, ... }:
     {
-      options.owner.username = lib.mkOption {
+      options.user.username = lib.mkOption {
         type = lib.types.singleLineStr;
-        default = owner.username;
+        default = user.username;
       };
 
       config = {
         security.sudo.wheelNeedsPassword = false;
 
-        users.users.${config.owner.username} = {
-          inherit (owner) uid;
+        users.users.${config.user.username} = {
+          inherit (user) uid;
           isNormalUser = true;
           extraGroups = [ "wheel" ];
-          initialPassword = config.owner.username;
+          initialPassword = config.user.username;
           linger = true;
-          openssh.authorizedKeys.keys = owner.sshKeys;
+          openssh.authorizedKeys.keys = user.sshKeys;
         };
       };
     };

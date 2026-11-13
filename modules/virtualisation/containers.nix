@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config) owner;
+  inherit (config) user;
 in
 {
   nixos.modules.base =
@@ -10,7 +10,7 @@ in
 
       # docker compatibility symlink for rootless podman
       systemd.tmpfiles.settings.docker-compat."/run/docker.sock".L.argument =
-        "/run/user/${toString owner.uid}/podman/podman.sock";
+        "/run/user/${toString user.uid}/podman/podman.sock";
 
       virtualisation.podman = {
         enable = true;

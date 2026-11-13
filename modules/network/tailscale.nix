@@ -6,7 +6,7 @@
         services.tailscale = {
           enable = true;
           disableUpstreamLogging = true;
-          extraSetFlags = [ "--operator=${config.owner.username}" ];
+          extraSetFlags = [ "--operator=${config.user.username}" ];
           useRoutingFeatures = lib.mkDefault "client";
         };
       };

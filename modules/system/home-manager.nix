@@ -1,6 +1,6 @@
 { config, inputs, ... }:
 let
-  inherit (config) owner;
+  inherit (config) user;
   homeManager = config.homeManager.modules;
 in
 {
@@ -12,9 +12,9 @@ in
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        users.${config.owner.username}.imports = [ homeManager.base ];
+        users.${config.user.username}.imports = [ homeManager.base ];
       };
     };
 
-  homeManager.modules.base.home.stateVersion = owner.stateVersion;
+  homeManager.modules.base.home.stateVersion = user.stateVersion;
 }

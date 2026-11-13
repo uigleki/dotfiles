@@ -20,7 +20,7 @@
               action.lookup("program") == "${lib.getExe' package "noctalia-greeter-apply-appearance"}" &&
               action.lookup("user") == "root" &&
               subject.local && subject.active &&
-              subject.user == "${config.owner.username}") {
+              subject.user == "${config.user.username}") {
             return polkit.Result.YES;
           }
         });

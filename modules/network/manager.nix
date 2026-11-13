@@ -16,6 +16,6 @@
         networkmanager.enable = true;
       };
 
-      users.users.${config.owner.username}.extraGroups = [ "networkmanager" ];
+      users.users.${config.user.username}.extraGroups = [ "networkmanager" ];
     };
 }

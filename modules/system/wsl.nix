@@ -9,7 +9,7 @@
 
       wsl = {
         enable = true;
-        defaultUser = config.owner.username;
+        defaultUser = config.user.username;
       };
     };
 }

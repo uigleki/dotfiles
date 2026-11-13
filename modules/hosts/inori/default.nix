@@ -10,6 +10,6 @@ in
     ];
 
     nixpkgs.hostPlatform = "x86_64-linux";
-    owner.username = "nixos"; # keep WSL default to avoid home directory migration
+    user.username = "nixos"; # keep WSL default to avoid home directory migration
   };
 }

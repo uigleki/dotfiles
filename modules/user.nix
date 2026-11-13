@@ -4,7 +4,7 @@ let
   str = types.singleLineStr;
 in
 {
-  options.owner = {
+  options.user = {
     flakeDir = mkOption { type = str; }; # relative to home
     gitEmail = mkOption { type = str; };
     gitName = mkOption { type = str; };
@@ -16,7 +16,7 @@ in
     username = mkOption { type = str; };
   };
 
-  config.owner = {
+  config.user = {
     # retuned often: bumped with the release inputs in flake.nix,
     # as no host runs services whose data depends on it
     stateVersion = "26.05";

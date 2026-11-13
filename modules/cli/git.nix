@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config) owner;
+  inherit (config) user;
 in
 {
   homeManager.modules.base.programs = {
@@ -49,8 +49,8 @@ in
         tag.sort = "version:refname";
 
         user = {
-          name = owner.gitName;
-          email = owner.gitEmail;
+          name = user.gitName;
+          email = user.gitEmail;
         };
       };
     };

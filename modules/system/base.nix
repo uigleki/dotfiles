@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config) owner;
+  inherit (config) user;
 in
 {
   nixos.modules.base =
@@ -19,7 +19,7 @@ in
       ];
 
       programs.nix-ld.enable = true;
-      system.stateVersion = owner.stateVersion;
-      time.timeZone = owner.timeZone;
+      system.stateVersion = user.stateVersion;
+      time.timeZone = user.timeZone;
     };
 }

@@ -10,7 +10,7 @@ in
     profiles.system = {
       path = nazuna.system.build.toplevel;
       remoteBuild = true; # the desktop cannot build aarch64
-      sshUser = nazuna.owner.username;
+      sshUser = nazuna.user.username;
       user = "root";
     };
   };
@@ -37,6 +37,6 @@ in
       disko.devices.disk.main.device = "/dev/sda";
 
       # expose syncthing GUI for remote access
-      home-manager.users.${config.owner.username}.services.syncthing.guiAddress = "0.0.0.0:8384";
+      home-manager.users.${config.user.username}.services.syncthing.guiAddress = "0.0.0.0:8384";
     };
 }

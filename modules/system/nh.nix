@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config) owner;
+  inherit (config) user;
 in
 {
   nixos.modules.base =
@@ -16,7 +16,7 @@ in
           extraArgs = "--keep-since 30d --keep-one";
         };
 
-        flake = "${config.users.users.${config.owner.username}.home}/${owner.flakeDir}";
+        flake = "${config.users.users.${config.user.username}.home}/${user.flakeDir}";
       };
     };
 }

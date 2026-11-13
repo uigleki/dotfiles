@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  inherit (config) owner;
+  inherit (config) user;
 in
 {
   # the battery and power profile widgets read these
@@ -103,7 +103,7 @@ in
         };
 
         wallpaper = {
-          directory = "${config.home.homeDirectory}/${owner.syncDir}/images/wallpapers/desktop";
+          directory = "${config.home.homeDirectory}/${user.syncDir}/images/wallpapers/desktop";
 
           automation = {
             enabled = true;
