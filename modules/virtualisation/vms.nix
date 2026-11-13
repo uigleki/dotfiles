@@ -2,6 +2,7 @@
   nixos.modules.desktop =
     { config, ... }:
     {
+      environment.persistence."/persist".directories = [ "/var/lib/libvirt" ];
       programs.virt-manager.enable = true;
 
       # virsh net-autostart default

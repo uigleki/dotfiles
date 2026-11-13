@@ -8,6 +8,7 @@ in
       ./_hardware-configuration.nix
       nixos.desktop
       nixos.disko-btrfs-luks
+      nixos.impermanence
       nixos.tpm-unlock
     ];
 

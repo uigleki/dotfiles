@@ -3,10 +3,17 @@ let
   inherit (config) user;
 in
 {
-  # the battery and power profile widgets read these
-  nixos.modules.desktop.services = {
-    power-profiles-daemon.enable = true;
-    upower.enable = true;
+  nixos.modules.desktop = {
+    environment.persistence."/persist".directories = [
+      "/var/lib/power-profiles-daemon"
+      "/var/lib/upower"
+    ];
+
+    # the battery and power profile widgets read these
+    services = {
+      power-profiles-daemon.enable = true;
+      upower.enable = true;
+    };
   };
 
   homeManager.modules.desktop =

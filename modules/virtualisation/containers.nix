@@ -6,7 +6,10 @@ in
   nixos.modules.base =
     { pkgs, ... }:
     {
-      environment.systemPackages = [ pkgs.podman-compose ];
+      environment = {
+        persistence."/persist".directories = [ "/var/lib/containers" ];
+        systemPackages = [ pkgs.podman-compose ];
+      };
 
       # docker compatibility symlink for rootless podman
       systemd.tmpfiles.settings.docker-compat."/run/docker.sock".L.argument =

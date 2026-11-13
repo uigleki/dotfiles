@@ -1,13 +1,19 @@
 {
-  nixos.modules.network.services.chrony = {
-    enable = true;
-    enableNTS = true;
+  nixos.modules.network =
+    { config, ... }:
+    {
+      environment.persistence."/persist".directories = [ config.services.chrony.directory ];
 
-    # three sources let chrony outvote a bad one
-    servers = [
-      "nts.netnod.se"
-      "ptbtime1.ptb.de"
-      "time.cloudflare.com"
-    ];
-  };
+      services.chrony = {
+        enable = true;
+        enableNTS = true;
+
+        # three sources let chrony outvote a bad one
+        servers = [
+          "nts.netnod.se"
+          "ptbtime1.ptb.de"
+          "time.cloudflare.com"
+        ];
+      };
+    };
 }

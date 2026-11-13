@@ -1,3 +1,6 @@
 {
-  nixos.modules.desktop.services.fwupd.enable = true;
+  nixos.modules.desktop = {
+    environment.persistence."/persist".directories = [ "/var/lib/fwupd" ];
+    services.fwupd.enable = true;
+  };
 }

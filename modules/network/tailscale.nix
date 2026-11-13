@@ -3,6 +3,8 @@
     network =
       { config, lib, ... }:
       {
+        environment.persistence."/persist".directories = [ "/var/lib/tailscale" ];
+
         services.tailscale = {
           enable = true;
           disableUpstreamLogging = true;

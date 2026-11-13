@@ -11,7 +11,14 @@
       package = pkgs.unstable.noctalia-greeter;
     in
     {
-      environment.systemPackages = [ package ]; # the shell looks its sync helper up on PATH
+      environment = {
+        persistence."/persist".directories = [
+          "/var/lib/AccountsService"
+          "/var/lib/noctalia-greeter"
+        ];
+
+        systemPackages = [ package ]; # the shell looks its sync helper up on PATH
+      };
 
       # the shell copies its theme to the greeter on every wallpaper change, which would prompt each time
       security.polkit.extraConfig = ''

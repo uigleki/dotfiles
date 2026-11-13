@@ -22,6 +22,7 @@ in
         ./_hardware-configuration.nix
         nixos.auto-upgrade
         nixos.disko-btrfs
+        nixos.impermanence
         nixos.server
         nixos.systemd-boot
       ];

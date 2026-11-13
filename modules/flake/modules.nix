@@ -21,6 +21,7 @@ in
       "disko-btrfs"
       "disko-btrfs-luks"
       "hardening"
+      "impermanence"
       "network"
       "secure-boot"
       "server"

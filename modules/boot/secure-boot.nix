@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   nixos.modules.secure-boot =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
 
@@ -22,6 +22,10 @@
         loader.efi.canTouchEfiVariables = true;
       };
 
-      environment.systemPackages = [ pkgs.sbctl ];
+      environment = {
+        # a missing key directory makes lanzaboote generate keys the firmware has never enrolled
+        persistence."/persist".directories = [ config.boot.lanzaboote.pkiBundle ];
+        systemPackages = [ pkgs.sbctl ];
+      };
     };
 }

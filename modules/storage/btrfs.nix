@@ -2,7 +2,11 @@
   nixos.modules.btrfs =
     { pkgs, ... }:
     {
-      environment.systemPackages = [ pkgs.e2fsprogs ]; # chattr/lsattr, only auto-added for ext filesystems
+      environment = {
+        persistence."/persist".directories = [ "/var/lib/btrfs" ]; # scrub progress, to resume and report
+        systemPackages = [ pkgs.e2fsprogs ]; # chattr/lsattr, only auto-added for ext filesystems
+      };
+
       services.btrfs.autoScrub.enable = true;
 
       systemd = {

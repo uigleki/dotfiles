@@ -12,6 +12,14 @@ in
       };
 
       config = {
+        # the first-use lecture record; whole, or impermanence creates the parent 0755
+        environment.persistence."/persist".directories = [
+          {
+            directory = "/var/db/sudo";
+            mode = "0711";
+          }
+        ];
+
         security.sudo.wheelNeedsPassword = false;
 
         users.users.${config.user.username} = {

@@ -18,6 +18,8 @@ let
       root = subvol "/";
       home = subvol "/home";
       nix = subvol "/nix";
+      tmp = subvol "/tmp";
+      persist = subvol "/persist";
     };
   };
 

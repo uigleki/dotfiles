@@ -2,6 +2,7 @@
 {
   nixos.modules.desktop = {
     imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
+    environment.persistence."/persist".directories = [ "/var/lib/flatpak" ];
 
     services.flatpak = {
       enable = true;
