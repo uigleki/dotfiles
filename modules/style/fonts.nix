@@ -1,20 +1,57 @@
 {
   nixos.modules.desktop =
-    { config, pkgs, ... }:
+    { lib, pkgs, ... }:
+    let
+      generics = region: rec {
+        monospace = [
+          "UbuntuMono Nerd Font"
+          "Noto Sans Mono CJK ${region}"
+        ];
+
+        sans-serif = [
+          "Ubuntu Nerd Font"
+          "Noto Sans CJK ${region}"
+        ];
+
+        serif = sans-serif;
+      };
+
+      regions = {
+        ja = "JP";
+        ko = "KR";
+        zh-hk = "HK";
+        zh-tw = "TC";
+      };
+
+      rule = lang: generic: families: ''
+        <match target="pattern">
+          <test name="lang" compare="contains"><string>${lang}</string></test>
+          <test name="family"><string>${generic}</string></test>
+          <edit name="family" mode="prepend" binding="strong">
+            ${lib.concatMapStrings (family: "<string>${family}</string>") families}
+          </edit>
+        </match>
+      '';
+    in
     {
       fonts = {
-        fontconfig.defaultFonts = {
-          monospace = [
-            "UbuntuMono Nerd Font"
-            "Noto Sans Mono CJK SC"
-          ];
+        fontconfig = {
+          defaultFonts = with generics "SC"; {
+            inherit monospace serif;
+            sansSerif = sans-serif;
+          };
 
-          sansSerif = [
-            "Ubuntu Nerd Font"
-            "Noto Sans CJK SC"
-          ];
-
-          serif = config.fonts.fontconfig.defaultFonts.sansSerif;
+          # fontconfig ranks family order above language, so SC's glyphs would render every CJK language;
+          # the regional font outranks SC only by binding strongly and running before the default-fonts alias
+          localConf = ''
+            <?xml version="1.0"?>
+            <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+            <fontconfig>
+              ${lib.concatMapAttrsStringSep "" (
+                lang: region: lib.concatMapAttrsStringSep "" (rule lang) (generics region)
+              ) regions}
+            </fontconfig>
+          '';
         };
 
         packages = with pkgs; [
