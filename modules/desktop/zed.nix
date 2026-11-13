@@ -1,6 +1,9 @@
 {
   homeManager.modules.desktop =
-    { pkgs, ... }:
+    { osConfig, pkgs, ... }:
+    let
+      inherit (osConfig.fonts.fontconfig) defaultFonts;
+    in
     {
       programs.zed-editor = {
         enable = true;
@@ -55,6 +58,7 @@
           project_panel.dock = "left";
 
           autosave = "on_focus_change";
+          buffer_font_family = builtins.head defaultFonts.monospace;
           diagnostics.inline.enabled = true;
           diff_view_style = "unified";
           format_on_save = "on";
@@ -71,6 +75,7 @@
           };
 
           terminal.copy_on_select = true;
+          ui_font_family = builtins.head defaultFonts.sansSerif;
           use_smartcase_search = true;
 
           wrap_guides = [
