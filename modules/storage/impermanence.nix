@@ -76,7 +76,6 @@ in
             "/var/cache"
 
             "/var/lib/systemd/coredump"
-            "/var/log"
 
             {
               directory = "/tmp";

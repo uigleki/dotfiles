@@ -19,6 +19,7 @@ let
       root = subvol "/";
       home = subvol "/home";
       nix = subvol "/nix";
+      log = subvol "/var/log";
       persist = subvol "/persist";
       cache = subvol "/cache";
       snapshots = subvol "/snapshots";
