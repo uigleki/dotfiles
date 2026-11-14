@@ -3,8 +3,8 @@
     { pkgs, ... }:
     {
       home.pointerCursor = {
-        name = "Adwaita";
-        package = pkgs.adwaita-icon-theme;
+        name = "Bibata-Modern-Classic";
+        package = pkgs.bibata-cursors;
         gtk.enable = true;
         size = 24;
       };

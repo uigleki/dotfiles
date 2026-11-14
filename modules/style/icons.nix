@@ -10,8 +10,8 @@
     { pkgs, ... }:
     let
       theme = {
-        name = "Adwaita";
-        package = pkgs.adwaita-icon-theme;
+        name = "Papirus-Light";
+        package = pkgs.papirus-icon-theme;
       };
     in
     {
