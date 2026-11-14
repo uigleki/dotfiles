@@ -42,6 +42,7 @@ in
             "network_rx"
             "cpu"
             "ram"
+            "disk"
             "tray"
             "notifications"
             "clipboard"
@@ -123,6 +124,12 @@ in
           battery.hide_when_full = true;
           brightness.show_label = false;
           clock.tooltip_format = "{:%Y-%m-%d %A}";
+
+          disk = {
+            type = "sysmon";
+            stat = "disk_free";
+          };
+
           media.hide_when_no_media = true;
           network.show_label = false;
           network_rx.network_speed_compact = true;
