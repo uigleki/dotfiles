@@ -2,7 +2,11 @@
   nixos.modules.desktop =
     { config, ... }:
     {
-      environment.persistence."/persist".directories = [ "/var/lib/libvirt" ];
+      environment.persistence."/persist".directories = [
+        "/var/lib/libvirt"
+        "/var/lib/swtpm-localca" # existing vTPMs' EK certificates chain to this CA
+      ];
+
       programs.virt-manager.enable = true;
 
       # virsh net-autostart default
@@ -12,7 +16,15 @@
       users.users.${config.user.username}.extraGroups = [ "libvirtd" ];
 
       virtualisation = {
-        libvirtd.enable = true;
+        libvirtd = {
+          enable = true;
+
+          qemu = {
+            runAsRoot = false;
+            swtpm.enable = true;
+          };
+        };
+
         spiceUSBRedirection.enable = true;
       };
     };
