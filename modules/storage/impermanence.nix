@@ -1,12 +1,28 @@
 { inputs, ... }:
+let
+  roots = [
+    "/cache" # state that only has to survive a reboot
+    "/persist" # state worth a snapshot
+  ];
+in
 {
   nixos.modules = {
-    # feature modules declare state under environment.persistence; it binds only on hosts importing impermanence
     base =
-      { lib, ... }:
+      { config, lib, ... }:
       {
         imports = [ inputs.impermanence.nixosModules.impermanence ];
-        environment.persistence."/persist".enable = lib.mkDefault false;
+
+        # a misspelt root is a new root, enabled by default on every host
+        assertions = [
+          {
+            assertion = lib.attrNames config.environment.persistence == roots;
+            message = "environment.persistence takes only ${toString roots}";
+          }
+        ];
+
+        environment.persistence = lib.genAttrs roots (_: {
+          enable = lib.mkDefault false;
+        });
       };
 
     impermanence =
@@ -51,7 +67,7 @@
           wantedBy = [ "initrd.target" ];
         };
 
-        environment.persistence."/persist" = {
+        environment.persistence."/cache" = {
           enable = true;
 
           directories = [
@@ -59,6 +75,28 @@
             "/root/.cache/nix"
             "/var/cache"
 
+            "/var/lib/systemd/coredump"
+            "/var/log"
+
+            {
+              directory = "/tmp";
+              mode = "1777";
+            }
+
+            {
+              directory = "/var/tmp";
+              mode = "1777";
+            }
+          ];
+
+          hideMounts = true;
+          users.${config.user.username}.directories = [ ".cache" ];
+        };
+
+        environment.persistence."/persist" = {
+          enable = true;
+
+          directories = [
             "/var/lib/lastlog"
             "/var/lib/logrotate"
             "/var/lib/machines"
@@ -66,12 +104,6 @@
             "/var/lib/portables"
             "/var/lib/systemd" # whole: credential.secret is created on first use and opened with O_NOFOLLOW, so a per-file symlink never holds it
             "/var/lib/userborn"
-            "/var/log"
-
-            {
-              directory = "/var/tmp";
-              mode = "1777";
-            }
           ]
           ++ lib.optional config.networking.dhcpcd.enable "/var/lib/dhcpcd"; # DUID, or each boot is a new DHCP client
 
@@ -86,7 +118,9 @@
           hideMounts = true;
         };
 
-        fileSystems."/persist".neededForBoot = true;
+        fileSystems = lib.genAttrs ([ "/home" ] ++ roots) (_: {
+          neededForBoot = true;
+        });
 
         # logrotate replaces its state file by rename, which a bind-mounted file cannot take (nix-community/impermanence#270)
         services.logrotate.extraArgs = lib.mkAfter [

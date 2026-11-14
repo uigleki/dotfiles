@@ -25,6 +25,7 @@ in
       "network"
       "secure-boot"
       "server"
+      "snapshots"
       "systemd-boot"
       "tpm-unlock"
       "wsl"

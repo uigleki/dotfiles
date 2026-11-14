@@ -14,12 +14,14 @@ let
     type = "btrfs";
     extraArgs = [ "-f" ];
 
+    # disko creates these only at install; a host missing one drops to emergency mode at boot
     subvolumes = {
       root = subvol "/";
       home = subvol "/home";
       nix = subvol "/nix";
-      tmp = subvol "/tmp";
       persist = subvol "/persist";
+      cache = subvol "/cache";
+      snapshots = subvol "/snapshots";
     };
   };
 

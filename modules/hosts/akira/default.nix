@@ -9,6 +9,7 @@ in
       nixos.desktop
       nixos.disko-btrfs-luks
       nixos.impermanence
+      nixos.snapshots
       nixos.tpm-unlock
     ];
 

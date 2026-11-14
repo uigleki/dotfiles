@@ -2,10 +2,14 @@
   nixos.modules.desktop =
     { config, ... }:
     {
-      environment.persistence."/persist".directories = [
-        "/var/lib/libvirt"
-        "/var/lib/swtpm-localca" # existing vTPMs' EK certificates chain to this CA
-      ];
+      environment.persistence = {
+        "/cache".directories = [ "/var/lib/libvirt/images" ];
+
+        "/persist".directories = [
+          "/var/lib/libvirt"
+          "/var/lib/swtpm-localca" # existing vTPMs' EK certificates chain to this CA
+        ];
+      };
 
       programs.virt-manager.enable = true;
 

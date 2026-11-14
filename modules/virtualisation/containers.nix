@@ -4,10 +4,14 @@ let
 in
 {
   nixos.modules.base =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       environment = {
-        persistence."/persist".directories = [ "/var/lib/containers" ];
+        persistence."/cache" = {
+          directories = [ "/var/lib/containers" ];
+          users.${config.user.username}.directories = [ ".local/share/containers" ];
+        };
+
         systemPackages = [ pkgs.podman-compose ];
       };
 
