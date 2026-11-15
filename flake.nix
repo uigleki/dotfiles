@@ -11,12 +11,14 @@
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "";
     };
 
     # retuned often: pinned release tag
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.2.0";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.pre-commit.follows = "";
     };
 
     # Catppuccin Latte ports
@@ -63,6 +65,7 @@
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "";
     };
 
     import-tree.url = "github:vic/import-tree";
