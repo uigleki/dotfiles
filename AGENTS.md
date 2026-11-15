@@ -8,6 +8,7 @@ A NixOS and home-manager configuration flake.
 
 - Verify an edit: `prek run --files <file>` — the same hooks the commit will run.
 - Eval a host without building it: `nix eval .#nixosConfigurations.<host>.config.system.build.toplevel.drvPath`
+  - Hosts importing `auto-upgrade` change drvPath on every edit, since it embeds the flake source.
 
 ## Conventions
 
