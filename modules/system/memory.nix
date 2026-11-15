@@ -1,12 +1,17 @@
 {
   nixos.modules = {
     base = {
-      boot.kernel.sysctl = {
-        # recommended for zramSwap
-        "vm.page-cluster" = 0;
-        "vm.swappiness" = 180;
-        "vm.watermark_boost_factor" = 0;
-        "vm.watermark_scale_factor" = 125;
+      boot.kernel = {
+        sysctl = {
+          # recommended for zramSwap
+          "vm.page-cluster" = 0;
+          "vm.swappiness" = 180;
+          "vm.watermark_boost_factor" = 0;
+          "vm.watermark_scale_factor" = 125;
+        };
+
+        # zram thrashing otherwise pins every CPU indefinitely once working sets outgrow RAM
+        sysfs.kernel.mm.lru_gen.min_ttl_ms = 1000;
       };
 
       services.earlyoom = {
