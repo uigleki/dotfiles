@@ -6,4 +6,8 @@
     # the graphical-desktop module enables PipeWire itself
     services.pipewire.jack.enable = true;
   };
+
+  homeManager.modules.desktop.home.persistence."/persist".directories = [
+    ".local/state/wireplumber" # volumes and default devices
+  ];
 }

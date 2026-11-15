@@ -140,6 +140,8 @@ in
       };
     in
     {
+      home.persistence."/persist".directories = [ ".local/state/noctalia" ]; # settings, clipboard and notification history
+
       home.packages = [
         package
         pkgs.adw-gtk3 # the gtk templates select this theme

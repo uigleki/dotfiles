@@ -35,6 +35,11 @@ in
       };
     };
 
+    home-manager.users.${config.user.username}.home.persistence."/persist" = {
+      directories = [ ".config/systemd" ]; # hand-written user units and whether they are enabled
+      files = [ ".nvidia-settings-rc" ];
+    };
+
     nixpkgs.config.allowUnfreePackages = [
       "nvidia-settings"
       "nvidia-x11"

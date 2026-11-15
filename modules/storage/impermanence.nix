@@ -1,8 +1,8 @@
 { inputs, ... }:
 let
   roots = [
-    "/cache" # state that only has to survive a reboot
-    "/persist" # state worth a snapshot
+    "/cache" # rebuilt by refetching or recomputing, or too large to snapshot
+    "/persist" # anything else worth keeping
   ];
 in
 {
@@ -15,8 +15,12 @@ in
         # a misspelt root is a new root, enabled by default on every host
         assertions = [
           {
-            assertion = lib.attrNames config.environment.persistence == roots;
-            message = "environment.persistence takes only ${toString roots}";
+            assertion = lib.all (persistence: lib.attrNames persistence == roots) (
+              [ config.environment.persistence ]
+              ++ map (user: user.home.persistence) (lib.attrValues config.home-manager.users)
+            );
+
+            message = "environment.persistence and home.persistence take only ${toString roots}";
           }
         ];
 
@@ -89,7 +93,6 @@ in
           ];
 
           hideMounts = true;
-          users.${config.user.username}.directories = [ ".cache" ];
         };
 
         environment.persistence."/persist" = {
@@ -117,7 +120,7 @@ in
           hideMounts = true;
         };
 
-        fileSystems = lib.genAttrs ([ "/home" ] ++ roots) (_: {
+        fileSystems = lib.genAttrs roots (_: {
           neededForBoot = true;
         });
 
@@ -137,4 +140,29 @@ in
         users.users.root.createHome = true;
       };
   };
+
+  homeManager.modules.base =
+    { lib, osConfig, ... }:
+    {
+      # a Home Manager root is enabled on its own, even where its NixOS root is off
+      home.persistence = lib.mkMerge [
+        (lib.genAttrs roots (root: {
+          inherit (osConfig.environment.persistence.${root}) enable hideMounts;
+        }))
+
+        {
+          "/persist".directories = [
+            {
+              directory = ".ssh";
+              mode = "0700";
+            }
+          ];
+
+          "/cache".directories = [
+            ".cache"
+            "Projects" # the XDG projects directory, where the flake lives
+          ];
+        }
+      ];
+    };
 }

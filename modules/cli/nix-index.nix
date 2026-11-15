@@ -9,6 +9,7 @@
 
   homeManager.modules.base = {
     imports = [ inputs.nix-index-database.homeModules.nix-index ];
+    home.persistence."/persist".directories = [ ".local/state/comma" ]; # picks remembered per command
 
     programs = {
       nix-index.enable = true;

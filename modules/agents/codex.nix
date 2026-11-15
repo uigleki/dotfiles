@@ -53,6 +53,11 @@
     in
     {
       home = {
+        persistence = {
+          "/persist".directories = [ ".codex" ];
+          "/cache".directories = [ ".codex/packages" ];
+        };
+
         # Nix settings win; undeclared state such as project trust remains writable.
         activation.codexSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
           run ${pkgs.writeShellScript "merge-codex-settings" ''

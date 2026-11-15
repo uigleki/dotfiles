@@ -2,16 +2,20 @@
   homeManager.modules.base =
     { pkgs, ... }:
     {
-      # used by coding agents
-      home.packages = with pkgs; [
-        bc
-        imagemagick
-        lsof
-        poppler-utils
-        psmisc
-        python3Packages.trafilatura
-        tree
-        unzip
-      ];
+      home = {
+        # used by coding agents
+        packages = with pkgs; [
+          bc
+          imagemagick
+          lsof
+          poppler-utils
+          psmisc
+          python3Packages.trafilatura
+          tree
+          unzip
+        ];
+
+        persistence."/persist".directories = [ ".agents" ]; # skills shared by Claude Code and Codex
+      };
     };
 }

@@ -10,5 +10,8 @@
     };
   };
 
-  homeManager.modules.desktop.updateCommands = [ "flatpak update -y" ];
+  homeManager.modules.desktop = {
+    home.persistence."/persist".directories = [ ".local/share/flatpak" ]; # per-user portal permissions
+    updateCommands = [ "flatpak update -y" ];
+  };
 }

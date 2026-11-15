@@ -8,6 +8,15 @@
         updateCommands = lib.mkBefore [ "nh os switch --update" ];
 
         home = {
+          persistence = {
+            "/persist".directories = [
+              ".config/fish" # universal variables
+              ".local/share/fish"
+            ];
+
+            "/cache".directories = [ ".local/bin" ]; # links into installs that are themselves in /cache
+          };
+
           sessionPath = [ config.xdg.binHome ];
           sessionVariables.COLORTERM = "truecolor";
         };

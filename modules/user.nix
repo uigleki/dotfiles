@@ -21,7 +21,7 @@ in
     # as no host runs services whose data depends on it
     stateVersion = "26.05";
 
-    flakeDir = ".config/dotfiles";
+    flakeDir = "Projects/dotfiles";
     gitName = "Ray";
     gitEmail = "30580339+uigleki@users.noreply.github.com";
 
@@ -29,7 +29,7 @@ in
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDm+4u9INuS/Cm3sqqAaJknGGVIpjA8bVNVdLarmUbjD"
     ];
 
-    syncDir = "sync/a";
+    syncDir = "Sync/a";
 
     # also the clock for every timer, e.g. auto-upgrade at 04:40
     timeZone = "Asia/Shanghai";

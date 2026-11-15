@@ -19,4 +19,9 @@ in
         flake = "${config.users.users.${config.user.username}.home}/${user.flakeDir}";
       };
     };
+
+  # build times nix-output-monitor estimates from
+  homeManager.modules.base.home.persistence."/cache".directories = [
+    ".local/state/nix-output-monitor"
+  ];
 }

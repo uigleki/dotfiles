@@ -9,4 +9,11 @@
         rules.password.unix.control = lib.mkForce "required";
       };
     };
+
+  homeManager.modules.desktop.home.persistence."/persist".directories = [
+    {
+      directory = ".local/share/keyrings";
+      mode = "0700";
+    }
+  ];
 }

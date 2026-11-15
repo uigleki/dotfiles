@@ -2,7 +2,14 @@
   homeManager.modules.desktop =
     { lib, pkgs, ... }:
     {
-      home.packages = [ pkgs.qbittorrent-enhanced ];
+      home = {
+        packages = [ pkgs.qbittorrent-enhanced ];
+
+        persistence."/persist".directories = [
+          ".config/qBittorrent"
+          ".local/share/qBittorrent" # torrents and their resume data
+        ];
+      };
 
       xdg.mimeApps.defaultApplications = lib.genAttrs [
         "application/x-bittorrent"

@@ -45,7 +45,7 @@ System updates cannot break your workflow.
 ### For server
 
 ```bash
-nix run github:nix-community/nixos-anywhere -- --flake ~/.config/dotfiles#nazuna --target-host <user>@<host>
+nix run github:nix-community/nixos-anywhere -- --flake ~/Projects/dotfiles#nazuna --target-host <user>@<host>
 
 # On the server: join the tailnet, then disable key expiry for it in the admin console
 tailscale up

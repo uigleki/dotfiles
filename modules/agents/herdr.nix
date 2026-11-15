@@ -41,6 +41,11 @@
         };
 
         packages = [ herdr ];
+
+        persistence."/persist".directories = [
+          ".config/herdr" # sessions and logs beside the declared config
+          ".local/state/herdr"
+        ];
       };
 
       # what `herdr integration install claude` would add

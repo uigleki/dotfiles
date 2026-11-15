@@ -5,6 +5,13 @@
   homeManager.modules.desktop =
     { lib, ... }:
     {
+      home.persistence."/persist".directories = [
+        ".config/google-chrome"
+        ".config/mozilla"
+        ".local/share/pki" # NSS certificates and client keys
+        ".pki"
+      ];
+
       programs = {
         firefox = {
           enable = true;

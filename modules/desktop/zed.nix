@@ -5,6 +5,18 @@
       inherit (osConfig.fonts.fontconfig) defaultFonts;
     in
     {
+      home.persistence = {
+        "/persist".directories = [ ".local/share/zed" ];
+
+        # downloaded on demand
+        "/cache".directories = [
+          ".local/share/zed/extensions"
+          ".local/share/zed/external_agents"
+          ".local/share/zed/languages"
+          ".local/share/zed/node"
+        ];
+      };
+
       programs.zed-editor = {
         enable = true;
         package = pkgs.unstable.zed-editor;

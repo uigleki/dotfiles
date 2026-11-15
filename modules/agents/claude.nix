@@ -1,7 +1,12 @@
 # curl -fsSL https://claude.ai/install.sh | bash
 {
   homeManager.modules.base =
-    { lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       jq = lib.getExe pkgs.jq;
 
@@ -23,6 +28,18 @@
       };
     in
     {
+      home = {
+        persistence = {
+          "/persist".directories = [ ".claude" ];
+          "/cache".directories = [ ".local/share/claude" ];
+        };
+
+        # Claude Code replaces .claude.json by rename, which a bind-mounted file refuses; here it lives inside .claude
+        sessionVariables.CLAUDE_CONFIG_DIR = config.programs.claude-code.configDir;
+      };
+
+      systemd.user.sessionVariables.CLAUDE_CONFIG_DIR = config.programs.claude-code.configDir;
+
       programs = {
         claude-code = {
           enable = true;

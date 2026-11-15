@@ -1,6 +1,6 @@
 [sandbox_workspace_write]
 writable_roots = [
-  "~/.config/dotfiles/.git",
+  "~/Projects/dotfiles/.git",
   "~/.cache/nix",
   "~/.cache/prek",
 ]

@@ -61,4 +61,6 @@ in
       shellWrapperName = "g";
     };
   };
+
+  homeManager.modules.base.home.persistence."/persist".directories = [ ".local/state/lazygit" ]; # recent repos, popups already seen
 }

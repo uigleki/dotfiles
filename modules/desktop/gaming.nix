@@ -1,13 +1,8 @@
 {
   nixos.modules.desktop =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     {
       boot.kernel.sysctl."vm.compaction_proactiveness" = 0; # reduce latency spikes in gaming
-
-      environment.persistence."/cache".users.${config.user.username}.directories = [
-        ".local/share/Steam"
-        "Games" # Heroic's install directory
-      ];
 
       nixpkgs.config.allowUnfreePackages = [
         "steam"
@@ -28,4 +23,23 @@
 
       services.flatpak.packages = [ "com.heroicgameslauncher.hgl" ];
     };
+
+  homeManager.modules.desktop.home.persistence = {
+    "/persist".directories = [
+      ".config/unity3d" # Unity games save here
+      ".local/share/Steam/userdata" # local saves and per-game settings
+      ".var/app/com.heroicgameslauncher.hgl/config" # store logins and game settings
+
+      # saves of particular games, outside any engine's default
+      ".local/share/freebirdgames"
+    ];
+
+    "/cache".directories = [
+      ".local/share/Steam"
+      ".steam"
+      ".var/app/com.heroicgameslauncher.hgl/Games"
+      ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools" # Wine, Proton and DXVK builds
+      "Games" # Heroic's install directory
+    ];
+  };
 }

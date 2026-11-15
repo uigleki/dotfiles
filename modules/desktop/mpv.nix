@@ -19,6 +19,8 @@
       ];
     in
     {
+      home.persistence."/persist".directories = [ ".local/state/mpv" ]; # watch-later positions
+
       programs.mpv = {
         enable = true;
 

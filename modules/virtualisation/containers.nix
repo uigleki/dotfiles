@@ -4,13 +4,10 @@ let
 in
 {
   nixos.modules.base =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     {
       environment = {
-        persistence."/cache" = {
-          directories = [ "/var/lib/containers" ];
-          users.${config.user.username}.directories = [ ".local/share/containers" ];
-        };
+        persistence."/cache".directories = [ "/var/lib/containers" ];
 
         systemPackages = [ pkgs.podman-compose ];
       };
@@ -25,4 +22,6 @@ in
         dockerCompat = true;
       };
     };
+
+  homeManager.modules.base.home.persistence."/cache".directories = [ ".local/share/containers" ];
 }
