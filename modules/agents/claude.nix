@@ -8,6 +8,7 @@
       ...
     }:
     let
+      inherit (config.programs.claude-code) configDir;
       jq = lib.getExe pkgs.jq;
 
       # prek needs .pre-commit-config.yaml in each worktree
@@ -21,6 +22,9 @@
         '';
       };
 
+      # Claude Code replaces .claude.json by rename, which a bind-mounted file refuses; here it lives inside .claude
+      sessionVariables.CLAUDE_CONFIG_DIR = configDir;
+
       statuslineFilter = pkgs.writeTextFile {
         name = "claude-statusline.jq";
         checkPhase = ''${jq} -n -f "$target"'';
@@ -29,16 +33,15 @@
     in
     {
       home = {
+        inherit sessionVariables;
+
         persistence = {
-          "/persist".directories = [ ".claude" ];
+          "/persist".directories = [ (lib.removePrefix "${config.home.homeDirectory}/" configDir) ];
           "/cache".directories = [ ".local/share/claude" ];
         };
-
-        # Claude Code replaces .claude.json by rename, which a bind-mounted file refuses; here it lives inside .claude
-        sessionVariables.CLAUDE_CONFIG_DIR = config.programs.claude-code.configDir;
       };
 
-      systemd.user.sessionVariables.CLAUDE_CONFIG_DIR = config.programs.claude-code.configDir;
+      systemd.user = { inherit sessionVariables; };
 
       programs = {
         claude-code = {

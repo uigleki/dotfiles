@@ -8,7 +8,7 @@
     }:
     let
       inherit (pkgs.unstable) herdr;
-      hook = ".claude/hooks/herdr-agent-state.sh";
+      hook = "${config.programs.claude-code.configDir}/hooks/herdr-agent-state.sh";
 
       settings = {
         onboarding = false;
@@ -54,7 +54,7 @@
           hooks = [
             {
               type = "command";
-              command = "bash '${config.home.homeDirectory}/${hook}' session";
+              command = "bash '${hook}' session";
               timeout = 10;
             }
           ];
