@@ -1,7 +1,3 @@
-{ config, ... }:
-let
-  inherit (config) user;
-in
 {
   nixos.modules.base =
     { pkgs, ... }:
@@ -12,10 +8,6 @@ in
         systemPackages = [ pkgs.podman-compose ];
       };
 
-      # docker compatibility symlink for rootless podman
-      systemd.tmpfiles.settings.docker-compat."/run/docker.sock".L.argument =
-        "/run/user/${toString user.uid}/podman/podman.sock";
-
       virtualisation.podman = {
         enable = true;
         defaultNetwork.settings.dns_enabled = true;
@@ -23,5 +15,16 @@ in
       };
     };
 
-  homeManager.modules.base.home.persistence."/cache".directories = [ ".local/share/containers" ];
+  homeManager.modules.base =
+    let
+      sessionVariables.DOCKER_HOST = "unix://\${XDG_RUNTIME_DIR}/podman/podman.sock";
+    in
+    {
+      home = {
+        inherit sessionVariables;
+        persistence."/cache".directories = [ ".local/share/containers" ];
+      };
+
+      systemd.user = { inherit sessionVariables; };
+    };
 }
