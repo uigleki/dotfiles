@@ -29,6 +29,7 @@ in
 
         environment.persistence = lib.genAttrs roots (_: {
           enable = lib.mkDefault false;
+          hideMounts = true;
         });
       };
 
@@ -94,8 +95,6 @@ in
               mode = "1777";
             }
           ];
-
-          hideMounts = true;
         };
 
         environment.persistence."/persist" = {
@@ -119,8 +118,6 @@ in
             "/etc/subgid"
             "/etc/subuid"
           ];
-
-          hideMounts = true;
         };
 
         fileSystems = lib.genAttrs roots (_: {
