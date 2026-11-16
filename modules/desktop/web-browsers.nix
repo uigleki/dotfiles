@@ -15,6 +15,12 @@
       programs = {
         firefox = {
           enable = true;
+
+          policies = {
+            DisableTelemetry = true;
+            FirefoxHome.SponsoredTopSites = false;
+          };
+
           profiles.default = { }; # pin profile name
         };
 
