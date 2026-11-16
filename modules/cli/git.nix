@@ -3,64 +3,66 @@ let
   inherit (config) user;
 in
 {
-  homeManager.modules.base.programs = {
-    delta = {
-      enable = true;
-      enableGitIntegration = true;
-      options.navigate = true;
-    };
+  homeManager.modules.base = {
+    home.persistence."/persist".directories = [ ".local/state/lazygit" ]; # recent repos, popups already seen
 
-    git = {
-      enable = true;
-      lfs.enable = true;
+    programs = {
+      delta = {
+        enable = true;
+        enableGitIntegration = true;
+        options.navigate = true;
+      };
 
-      settings = {
-        branch.sort = "-committerdate";
-        column.ui = "auto";
-        commit.verbose = true;
+      git = {
+        enable = true;
+        lfs.enable = true;
 
-        diff = {
-          algorithm = "histogram";
-          colorMoved = true;
-        };
+        settings = {
+          branch.sort = "-committerdate";
+          column.ui = "auto";
+          commit.verbose = true;
 
-        fetch = {
-          all = true;
-          prune = true;
-        };
+          diff = {
+            algorithm = "histogram";
+            colorMoved = true;
+          };
 
-        init.defaultBranch = "main";
-        log.date = "iso";
-        merge.conflictStyle = "zdiff3";
-        pull.rebase = true;
+          fetch = {
+            all = true;
+            prune = true;
+          };
 
-        push = {
-          autoSetupRemote = true;
-          followTags = true;
-        };
+          init.defaultBranch = "main";
+          log.date = "iso";
+          merge.conflictStyle = "zdiff3";
+          pull.rebase = true;
 
-        rebase = {
-          autoSquash = true;
-          autoStash = true;
-          updateRefs = true;
-        };
+          push = {
+            autoSetupRemote = true;
+            followTags = true;
+          };
 
-        rerere.enabled = true;
-        tag.sort = "version:refname";
+          rebase = {
+            autoSquash = true;
+            autoStash = true;
+            updateRefs = true;
+          };
 
-        user = {
-          name = user.gitName;
-          email = user.gitEmail;
+          rerere.enabled = true;
+          tag.sort = "version:refname";
+
+          user = {
+            name = user.gitName;
+            email = user.gitEmail;
+          };
         };
       };
-    };
 
-    lazygit = {
-      enable = true;
-      settings.git.diffRenderers = [ { command = "delta --paging=never"; } ];
-      shellWrapperName = "g";
+      lazygit = {
+        enable = true;
+        settings.git.diffRenderers = [ { command = "delta --paging=never"; } ];
+        shellWrapperName = "g";
+      };
     };
   };
-
-  homeManager.modules.base.home.persistence."/persist".directories = [ ".local/state/lazygit" ]; # recent repos, popups already seen
 }

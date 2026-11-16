@@ -140,12 +140,14 @@ in
       };
     in
     {
-      home.persistence."/persist".directories = [ ".local/state/noctalia" ]; # settings, clipboard and notification history
+      home = {
+        packages = [
+          package
+          pkgs.adw-gtk3 # the gtk templates select this theme
+        ];
 
-      home.packages = [
-        package
-        pkgs.adw-gtk3 # the gtk templates select this theme
-      ];
+        persistence."/persist".directories = [ ".local/state/noctalia" ]; # settings, clipboard and notification history
+      };
 
       # the qt template only writes the palette; qt6ct has to be pointed at it
       qt.qt6ctSettings.Appearance = {
