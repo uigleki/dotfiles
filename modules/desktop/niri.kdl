@@ -23,7 +23,7 @@ layer-rule {
     place-within-backdrop true
 }
 
-// The wallpaper covers the backdrop, so this shows only before Noctalia draws it at login
+// The wallpaper covers the backdrop, so this shows only at login, until Noctalia fades the wallpaper in
 overview {
     backdrop-color "#000000"
 }

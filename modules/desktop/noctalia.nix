@@ -118,6 +118,8 @@ in
             interval_seconds = 3600;
             recursive = true;
           };
+
+          transition_on_startup = true;
         };
 
         widget = {
