@@ -12,10 +12,10 @@
     in
     {
       environment = {
-        persistence."/persist".directories = [
-          "/var/lib/AccountsService"
-          "/var/lib/noctalia-greeter"
-        ];
+        persistence = {
+          "/cache".directories = [ "/var/lib/noctalia-greeter" ]; # the shell's theme, copied again on every wallpaper change
+          "/persist".directories = [ "/var/lib/AccountsService" ];
+        };
 
         systemPackages = [ package ]; # the shell looks its sync helper up on PATH
       };

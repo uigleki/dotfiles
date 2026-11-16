@@ -4,10 +4,10 @@ let
 in
 {
   nixos.modules.desktop = {
-    environment.persistence."/persist".directories = [
-      "/var/lib/power-profiles-daemon"
-      "/var/lib/upower"
-    ];
+    environment.persistence = {
+      "/cache".directories = [ "/var/lib/upower" ]; # battery history, rewritten whole on every save
+      "/persist".directories = [ "/var/lib/power-profiles-daemon" ];
+    };
 
     # the battery and power profile widgets read these
     services = {

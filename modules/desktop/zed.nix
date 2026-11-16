@@ -5,17 +5,7 @@
       inherit (osConfig.fonts.fontconfig) defaultFonts;
     in
     {
-      home.persistence = {
-        "/persist".directories = [ ".local/share/zed" ];
-
-        # downloaded on demand
-        "/cache".directories = [
-          ".local/share/zed/extensions"
-          ".local/share/zed/external_agents"
-          ".local/share/zed/languages"
-          ".local/share/zed/node"
-        ];
-      };
+      home.persistence."/cache".directories = [ ".local/share/zed" ]; # downloads and workspace state; settings come from Nix
 
       programs.zed-editor = {
         enable = true;
