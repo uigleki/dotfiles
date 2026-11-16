@@ -16,5 +16,8 @@ in
       };
     };
 
-  homeManager.modules.base.home.stateVersion = user.stateVersion;
+  homeManager.modules.base.home = {
+    inherit (user) stateVersion;
+    persistence."/cache".directories = [ ".local/state/home-manager" ]; # the previous generation, so boot restarts only changed units
+  };
 }
