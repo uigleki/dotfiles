@@ -1,9 +1,20 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
+let
+  nixos = config.nixos.modules;
+in
 {
   nixos.modules.secure-boot =
-    { config, pkgs, ... }:
     {
-      imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
+      imports = [
+        inputs.lanzaboote.nixosModules.lanzaboote
+        nixos.systemd-boot
+      ];
 
       boot = {
         lanzaboote = {
@@ -15,11 +26,11 @@
           };
 
           autoGenerateKeys.enable = true;
-          configurationLimit = 5; # prevent boot partition running out of space
           pkiBundle = "/var/lib/sbctl";
         };
 
-        loader.efi.canTouchEfiVariables = true;
+        # lanzaboote replaces systemd-boot's installer but reads its settings
+        loader.systemd-boot.enable = lib.mkForce false;
       };
 
       environment = {
