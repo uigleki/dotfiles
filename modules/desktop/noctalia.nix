@@ -81,7 +81,6 @@ in
         };
 
         location = {
-          auto_locate = true;
           custom_schedule = true;
           sunrise = "06:00";
           sunset = "18:00";
@@ -94,6 +93,7 @@ in
 
         shell = {
           greeter_sync.auto_sync = true;
+          offline_mode = true;
           polkit_agent = true;
           setup_wizard_enabled = false;
         };
