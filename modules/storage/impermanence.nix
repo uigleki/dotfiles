@@ -1,7 +1,10 @@
 { inputs, ... }:
 let
   roots = [
-    "/cache" # rebuilt by refetching or recomputing, or too large to snapshot
+    # kept like /persist but never snapshotted, for paths whose history is worthless or costly: rebuilt by refetching or recomputing, or churning enough to pin a copy in every snapshot
+    # a churning path goes here whole when its irreplaceable part has no fixed subpath to nest in /persist, such as sources beside build outputs or saves inside game prefixes
+    "/cache"
+
     "/persist" # anything else worth keeping
   ];
 in
