@@ -18,7 +18,17 @@
           ];
         };
 
-        networkmanager.enable = true;
+        networkmanager = {
+          enable = true;
+
+          # a randomized MAC is still trackable while DHCP announces the hostname
+          settings.connection = {
+            "ipv4.dhcp-send-hostname" = false;
+            "ipv6.dhcp-send-hostname" = false;
+          };
+
+          wifi.macAddress = "stable";
+        };
       };
 
       users.users.${config.user.username}.extraGroups = [ "networkmanager" ];
