@@ -121,6 +121,7 @@
 
             promptSuggestionEnabled = false;
             remoteControlAtStartup = true;
+            skipDangerousModePermissionPrompt = true;
             spinnerTipsEnabled = false;
 
             statusLine = {
