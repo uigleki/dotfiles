@@ -23,6 +23,11 @@ layer-rule {
     place-within-backdrop true
 }
 
+// The wallpaper covers the backdrop, so this shows only before Noctalia draws it at login
+overview {
+    backdrop-color "#000000"
+}
+
 spawn-at-startup "noctalia"
 
 hotkey-overlay {
