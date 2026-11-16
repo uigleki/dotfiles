@@ -18,7 +18,7 @@
           };
 
           sessionPath = [ config.xdg.binHome ];
-          sessionVariables.COLORTERM = "truecolor";
+          sessionVariables.COLORTERM = "truecolor"; # SSH drops it and Windows Terminal never sets it
         };
 
         programs = {
