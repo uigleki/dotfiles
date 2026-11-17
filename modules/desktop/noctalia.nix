@@ -17,14 +17,20 @@ in
   };
 
   homeManager.modules.desktop =
-    { config, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       package = pkgs.unstable.noctalia;
+      barPosition = "bottom";
 
       configFile = (pkgs.formats.toml { }).generate "noctalia-config.toml" {
         bar.default = {
           margin_ends = 0;
-          position = "bottom";
+          position = barPosition;
           radius = 0;
 
           start = [
@@ -91,10 +97,28 @@ in
           temperature_night = 4500;
         };
 
+        notification.position = "${barPosition}_right";
+        osd.position = "${barPosition}_center";
+
         shell = {
           greeter_sync.auto_sync = true;
           offline_mode = true;
+
+          panel = lib.mergeAttrsList (
+            map
+              (name: {
+                "${name}_placement" = "floating";
+                "open_near_click_${name}" = true;
+              })
+              [
+                "control_center"
+                "session"
+                "wallpaper"
+              ]
+          );
+
           polkit_agent = true;
+          readline_shortcuts = true;
           setup_wizard_enabled = false;
         };
 
@@ -121,6 +145,8 @@ in
 
           transition_on_startup = true;
         };
+
+        weather.enabled = false; # its card only shows "No location set"
 
         widget = {
           battery.hide_when_full = true;
