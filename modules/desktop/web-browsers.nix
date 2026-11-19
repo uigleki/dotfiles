@@ -3,7 +3,7 @@
   nixos.modules.desktop.nixpkgs.config.allowUnfreePackages = [ "google-chrome" ];
 
   homeManager.modules.desktop =
-    { lib, ... }:
+    { config, ... }:
     {
       home.persistence."/persist".directories = [
         ".config/google-chrome"
@@ -27,10 +27,6 @@
         google-chrome.enable = true;
       };
 
-      xdg.mimeApps.defaultApplications = lib.genAttrs [
-        "text/html"
-        "x-scheme-handler/http"
-        "x-scheme-handler/https"
-      ] (_: "firefox.desktop");
+      xdg.mimeApps.defaultApplicationPackages = [ config.programs.firefox.finalPackage ];
     };
 }
