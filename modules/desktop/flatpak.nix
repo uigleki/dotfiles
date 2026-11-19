@@ -7,6 +7,15 @@
     services.flatpak = {
       enable = true;
       uninstallUnmanaged = true;
+
+      overrides.global = {
+        Context.filesystems = [
+          "/nix/store:ro" # home-manager's fontconfig files, icons and cursors are symlinks into it
+          "xdg-config/fontconfig:ro"
+        ];
+
+        Environment.XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
+      };
     };
   };
 
