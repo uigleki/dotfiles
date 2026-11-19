@@ -1,6 +1,12 @@
 {
-  # home-manager shares the system pkgs, so its unfree packages are allowed there
-  nixos.modules.desktop.nixpkgs.config.allowUnfreePackages = [ "google-chrome" ];
+  nixos.modules.desktop = {
+    nixpkgs.config.allowUnfreePackages = [ "google-chrome" ];
+
+    programs.chromium = {
+      enable = true;
+      extraOpts.MetricsReportingEnabled = false;
+    };
+  };
 
   homeManager.modules.desktop =
     { config, ... }:
@@ -27,7 +33,10 @@
             FirefoxHome.SponsoredTopSites = false;
           };
 
-          profiles.default = { }; # pin profile name
+          profiles.default.search = {
+            default = "ddg";
+            force = true;
+          };
         };
 
         google-chrome.enable = true;
