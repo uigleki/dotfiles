@@ -35,6 +35,7 @@ in
 
     "/cache".directories = [
       ".local/share/Steam"
+      ".local/share/umu" # the Steam Runtime that Heroic runs Proton in
       ".steam"
       ".var/app/${heroic}/Games"
       ".var/app/${heroic}/config/heroic/tools" # Wine, Proton and DXVK builds
