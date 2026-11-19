@@ -8,7 +8,18 @@
           "Sync" # the folders it shares
         ];
 
-        services.syncthing.enable = true;
+        services.syncthing = {
+          enable = true;
+
+          # devices and folders come from the introducer
+          overrideDevices = false;
+          overrideFolders = false;
+
+          settings.options = {
+            crashReportingEnabled = false;
+            urAccepted = -1;
+          };
+        };
       };
     };
 
