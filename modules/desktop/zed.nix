@@ -12,24 +12,13 @@
         package = pkgs.unstable.zed-editor;
 
         extensions = [
-          "csharp"
-          "dart"
-          "dockerfile"
-          "env"
           "gdscript"
           "git-firefly"
           "html"
-          "ini"
-          "jq"
           "just"
           "kdl"
-          "log"
-          "lua"
           "nix"
-          "rainbow-csv"
-          "sql"
           "toml"
-          "xml"
         ];
 
         mutableUserKeymaps = false;
