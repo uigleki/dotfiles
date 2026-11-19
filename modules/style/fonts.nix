@@ -67,10 +67,22 @@
 
   # generic names leave the family to fontconfig above; sizes follow GNOME's defaults
   homeManager.modules.desktop =
+    { osConfig, ... }:
     let
       size = 11;
     in
     {
+      # Steam and Flatpak apps bring their own /etc/fonts and read only the user's configuration
+      fonts.fontconfig = {
+        inherit (osConfig.fonts.fontconfig) defaultFonts;
+
+        configFile.regional = {
+          enable = true;
+          priority = 51;
+          text = osConfig.fonts.fontconfig.localConf;
+        };
+      };
+
       dconf.settings."org/gnome/desktop/interface" = {
         document-font-name = "Sans Serif ${toString (size + 1)}";
         monospace-font-name = "Monospace ${toString size}";

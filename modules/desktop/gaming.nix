@@ -2,29 +2,26 @@ let
   heroic = "com.heroicgameslauncher.hgl";
 in
 {
-  nixos.modules.desktop =
-    { pkgs, ... }:
-    {
-      boot.kernel.sysctl."vm.compaction_proactiveness" = 0; # reduce latency spikes in gaming
+  nixos.modules.desktop = {
+    boot.kernel.sysctl."vm.compaction_proactiveness" = 0; # reduce latency spikes in gaming
 
-      nixpkgs.config.allowUnfreePackages = [
-        "steam"
-        "steam-unwrapped"
-      ];
+    nixpkgs.config.allowUnfreePackages = [
+      "steam"
+      "steam-unwrapped"
+    ];
 
-      programs = {
-        gamemode.enable = true;
+    programs = {
+      gamemode.enable = true;
 
-        steam = {
-          enable = true;
-          fontPackages = [ pkgs.wqy_zenhei ];
-          localNetworkGameTransfers.openFirewall = true;
-          remotePlay.openFirewall = true;
-        };
+      steam = {
+        enable = true;
+        localNetworkGameTransfers.openFirewall = true;
+        remotePlay.openFirewall = true;
       };
-
-      services.flatpak.packages = [ heroic ];
     };
+
+    services.flatpak.packages = [ heroic ];
+  };
 
   homeManager.modules.desktop.home.persistence = {
     "/persist".directories = [
