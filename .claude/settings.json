@@ -2,7 +2,7 @@
   "attribution": false,
   "disableWorkflows": true,
   "env": {
-    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "333000"
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": 333000
   },
   "permissions": {
     "deny": [
