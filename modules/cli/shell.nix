@@ -55,7 +55,6 @@
               h = "herdr";
               k = "btm";
               l = "eza -la";
-              r = "rsync -rthP";
               u = "nh os switch";
               uu = lib.concatStringsSep " && " config.updateCommands;
             };

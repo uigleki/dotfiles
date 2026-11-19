@@ -7,7 +7,6 @@
         packages = with pkgs; [
           bc
           imagemagick
-          lsof
           poppler-utils
           psmisc
           python3Packages.trafilatura
