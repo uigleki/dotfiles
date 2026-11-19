@@ -14,6 +14,7 @@
       # prek needs .pre-commit-config.yaml in each worktree
       linkPreCommitConfig = {
         type = "command";
+
         command = ''
           main=''${PWD%%/.claude/worktrees/*}
           if [ "''${PWD%/*}" = "$main/.claude/worktrees" ] && [ -L "$main/.pre-commit-config.yaml" ] && [ ! -L .pre-commit-config.yaml ]; then

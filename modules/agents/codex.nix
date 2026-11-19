@@ -53,11 +53,6 @@
     in
     {
       home = {
-        persistence = {
-          "/persist".directories = [ ".codex" ];
-          "/cache".directories = [ ".codex/packages" ];
-        };
-
         # Nix settings win; undeclared state such as project trust remains writable.
         activation.codexSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
           run ${pkgs.writeShellScript "merge-codex-settings" ''
@@ -72,6 +67,11 @@
         '';
 
         packages = [ pkgs.bubblewrap ];
+
+        persistence = {
+          "/persist".directories = [ ".codex" ];
+          "/cache".directories = [ ".codex/packages" ];
+        };
       };
 
       # template for ~/.config/systemd/user/codex.service; keep temporary projects out of Nix
