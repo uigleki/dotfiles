@@ -10,13 +10,10 @@
           nautilus
         ];
 
-        persistence = {
-          "/persist".directories = [
-            ".local/share/gvfs-metadata" # per-file metadata, e.g. custom icons
-            ".local/share/nautilus" # starred files and scripts
-          ];
-          "/cache".directories = [ ".local/share/Trash" ]; # can grow large, and is already thrown away
-        };
+        persistence."/persist".directories = [
+          ".local/share/gvfs-metadata" # per-file metadata, e.g. custom icons
+          ".local/share/nautilus" # starred files and scripts
+        ];
       };
 
       xdg.mimeApps.defaultApplications."inode/directory" = "org.gnome.Nautilus.desktop";

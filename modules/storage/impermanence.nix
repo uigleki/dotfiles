@@ -148,6 +148,7 @@ in
       home.persistence = lib.mkMerge [
         (lib.genAttrs roots (root: {
           inherit (osConfig.environment.persistence.${root}) enable hideMounts;
+          allowTrash = true;
         }))
 
         {
