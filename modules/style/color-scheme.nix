@@ -19,14 +19,24 @@
         # every catppuccin theme bundled with fish uses Latte for light mode
         fish.interactiveShellInit = "fish_config theme choose catppuccin-mocha --color-theme=light";
 
-        fzf.defaultOptions = [
-          # https://github.com/catppuccin/fzf/blob/main/themes/catppuccin-fzf-latte.sh
-          "--color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39"
-          "--color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78"
-          "--color=marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39"
-          "--color=selected-bg:#BCC0CC"
-          "--color=border:#9CA0B0,label:#4C4F69"
-        ];
+        # https://github.com/catppuccin/fzf/blob/main/themes/catppuccin-fzf-latte.sh
+        fzf.colors = {
+          bg = "#EFF1F5";
+          "bg+" = "#CCD0DA";
+          border = "#9CA0B0";
+          fg = "#4C4F69";
+          "fg+" = "#4C4F69";
+          header = "#D20F39";
+          hl = "#D20F39";
+          "hl+" = "#D20F39";
+          info = "#8839EF";
+          label = "#4C4F69";
+          marker = "#7287FD";
+          pointer = "#DC8A78";
+          prompt = "#8839EF";
+          selected-bg = "#BCC0CC";
+          spinner = "#DC8A78";
+        };
 
         helix.settings.theme = "catppuccin_latte"; # :theme
         kitty.themeFile = "Catppuccin-Latte"; # https://github.com/kovidgoyal/kitty-themes/tree/master/themes
