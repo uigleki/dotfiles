@@ -15,7 +15,10 @@
           ];
 
           settings = {
-            addons.pinyin.globalSection.ShuangpinProfile = "Xiaohe";
+            addons.pinyin.globalSection = {
+              FirstRun = "False";
+              ShuangpinProfile = "Xiaohe";
+            };
 
             globalOptions = {
               Behavior.ShareInputState = "All";
