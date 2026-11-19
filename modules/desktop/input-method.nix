@@ -42,7 +42,6 @@
     };
 
   homeManager.modules.desktop.home.persistence."/persist".directories = [
-    ".config/fcitx5"
     ".config/mozc" # learned conversions
     ".local/share/fcitx5" # learned pinyin and user dictionaries
   ];
