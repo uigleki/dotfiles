@@ -78,7 +78,7 @@
 
         configFile.regional = {
           enable = true;
-          priority = 51;
+          priority = 51; # before home-manager's default-fonts alias at 52
           text = osConfig.fonts.fontconfig.localConf;
         };
       };
