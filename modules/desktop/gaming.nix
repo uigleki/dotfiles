@@ -32,7 +32,7 @@ in
         "/persist".directories = [
           ".config/unity3d" # Unity games save here
           ".local/share/Steam/userdata" # local saves and per-game settings
-          ".var/app/${heroic}/config" # store logins and game settings
+          ".var/app/${heroic}" # store logins and game settings
           backups
 
           # saves of particular games, outside any engine's default
@@ -44,7 +44,6 @@ in
           ".local/share/Steam"
           ".local/share/umu" # the Steam Runtime that Heroic runs Proton in
           ".steam"
-          ".var/app/${heroic}/Games"
           ".var/app/${heroic}/cache"
           ".var/app/${heroic}/config/heroic/tools" # Wine, Proton and DXVK builds
           "Games" # Heroic's install directory
