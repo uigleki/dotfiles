@@ -5,6 +5,7 @@
   perSystem =
     { lib, pkgs, ... }:
     {
+      # TODO: on 26.11, group the formatter hooks
       pre-commit.settings = {
         package = pkgs.prek;
 

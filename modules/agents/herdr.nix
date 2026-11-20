@@ -7,6 +7,7 @@
       ...
     }:
     let
+      # TODO: on 26.11, use stable and the native module
       inherit (pkgs.unstable) herdr;
       hook = "${config.programs.claude-code.configDir}/hooks/herdr-agent-state.sh";
 

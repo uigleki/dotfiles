@@ -1,5 +1,5 @@
 {
-  # nixpkgs unstable has services.displayManager.noctalia-greeter, which replaces this whole module once a release ships it
+  # TODO: on 26.11, use the native module
   nixos.modules.desktop =
     {
       config,

@@ -9,7 +9,7 @@
 
       programs.zed-editor = {
         enable = true;
-        package = pkgs.unstable.zed-editor;
+        package = pkgs.unstable.zed-editor; # TODO: on 26.11, use stable
 
         extensions = [
           "gdscript"

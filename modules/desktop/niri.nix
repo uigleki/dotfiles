@@ -10,7 +10,7 @@
   homeManager.modules.desktop =
     { lib, pkgs, ... }:
     {
-      # home-manager master has wayland.windowManager.niri, which replaces this file and its validation once a release ships it
+      # TODO: on 26.11, use the native module
       xdg.configFile."niri/config.kdl".source = pkgs.writeTextFile {
         name = "niri-config.kdl";
         checkPhase = ''${lib.getExe pkgs.niri} validate --config "$target"'';

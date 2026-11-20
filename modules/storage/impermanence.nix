@@ -114,7 +114,7 @@ in
           files = [
             "/etc/machine-id"
 
-            # userborn on 26.05 never writes these (rootless podman fails on fresh installs); drop on 26.11 (NixOS/nixpkgs#508608)
+            # TODO: on 26.11, drop these; userborn on 26.05 never writes them (NixOS/nixpkgs#508608)
             "/etc/subgid"
             "/etc/subuid"
           ];

@@ -24,7 +24,7 @@ in
       ...
     }:
     let
-      package = pkgs.unstable.noctalia;
+      package = pkgs.unstable.noctalia; # TODO: on 26.11, use stable
       barPosition = "bottom";
 
       configFile = (pkgs.formats.toml { }).generate "noctalia-config.toml" {
@@ -184,7 +184,7 @@ in
         style = "Fusion";
       };
 
-      # home-manager master has programs.noctalia, which replaces this file and its validation once a release ships it
+      # TODO: on 26.11, use the native module
       xdg.configFile."noctalia/config.toml".source =
         pkgs.runCommand "noctalia-config.toml" { nativeBuildInputs = [ package ]; }
           ''
