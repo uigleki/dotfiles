@@ -25,8 +25,6 @@
         enable = true;
 
         config = {
-          profile = "high-quality";
-
           # languages; chs and sc match fansub file suffixes like `.chs.ass`
           alang = "ja";
           slang = "zh-Hans,zh-CN,chs,sc,zh";
@@ -41,6 +39,8 @@
           idle = "once"; # keep open if no file, quit after playback
           save-position-on-quit = "yes";
         };
+
+        defaultProfiles = [ "high-quality" ];
 
         # Written by hand, as `bindings` sorts keys and would scramble the order of
         # the uosc menu, which is built from the `#!` comments below.
