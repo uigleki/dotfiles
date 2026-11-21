@@ -7,7 +7,7 @@
     services.flatpak = {
       enable = true;
 
-      overrides.global = {
+      overrides.settings.global = {
         Context.filesystems = [
           "/nix/store:ro" # home-manager's fontconfig files, icons and cursors are symlinks into it
           "xdg-config/fontconfig:ro"
