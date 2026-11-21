@@ -15,7 +15,5 @@
           git config --local --unset-all core.hooksPath || true
         '';
       };
-
-      formatter = pkgs.nixfmt-tree;
     };
 }
