@@ -1,6 +1,6 @@
 {
   inputs = {
-    # retuned often: release branches, bumped together
+    # retuned often: release branches; keep in sync with each other
     nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
 
     home-manager = {
