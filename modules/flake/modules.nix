@@ -14,6 +14,7 @@ in
 {
   options = {
     nixos.modules = lib.genAttrs [
+      # keep-sorted start
       "auto-upgrade"
       "base"
       "btrfs"
@@ -29,6 +30,7 @@ in
       "systemd-boot"
       "tpm-unlock"
       "wsl"
+      # keep-sorted end
     ] option;
 
     homeManager.modules = lib.genAttrs [

@@ -12,6 +12,7 @@
         package = pkgs.unstable.zed-editor; # TODO: on 26.11, use stable
 
         extensions = [
+          # keep-sorted start
           "gdscript"
           "git-firefly"
           "html"
@@ -19,6 +20,7 @@
           "kdl"
           "nix"
           "toml"
+          # keep-sorted end
         ];
 
         mutableUserKeymaps = false;

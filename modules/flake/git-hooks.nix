@@ -20,6 +20,7 @@
 
           convco.enable = true;
           deadnix.enable = true;
+          keep-sorted.enable = true;
 
           nil = {
             enable = true;

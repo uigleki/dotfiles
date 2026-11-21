@@ -4,6 +4,7 @@
   nixos.modules.hardening = {
     boot = {
       blacklistedKernelModules = [
+        # keep-sorted start
         "appletalk"
         "atm"
         "ax25"
@@ -22,9 +23,11 @@
         "tipc"
         "udf"
         "x25"
+        # keep-sorted end
       ];
 
       kernel.sysctl = {
+        # keep-sorted start
         "dev.tty.ldisc_autoload" = 0;
         "fs.protected_fifos" = 2;
         "fs.protected_regular" = 2;
@@ -37,6 +40,7 @@
         "net.ipv4.conf.default.send_redirects" = 0;
         "net.ipv6.conf.all.accept_redirects" = 0;
         "net.ipv6.conf.default.accept_redirects" = 0;
+        # keep-sorted end
       };
 
       kernelParams = [ "bdev_allow_write_mounted=0" ];
