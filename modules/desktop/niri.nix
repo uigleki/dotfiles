@@ -13,8 +13,8 @@
       # TODO: on 26.11, use the native module
       xdg.configFile."niri/config.kdl".source = pkgs.writeTextFile {
         name = "niri-config.kdl";
-        checkPhase = ''${lib.getExe pkgs.niri} validate --config "$target"'';
         text = builtins.readFile ./niri.kdl;
+        checkPhase = ''${lib.getExe pkgs.niri} validate --config "$target"'';
       };
     };
 }

@@ -11,7 +11,6 @@ in
 
         clean = {
           enable = true;
-
           # without --keep-one, direnv projects lose every gcroot
           extraArgs = "--keep-since 30d --keep-one";
         };

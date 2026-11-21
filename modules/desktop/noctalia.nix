@@ -135,14 +135,13 @@ in
         };
 
         wallpaper = {
-          directory = "${config.home.homeDirectory}/${user.syncDir}/images/wallpapers/desktop";
-
           automation = {
             enabled = true;
             interval_seconds = 3600;
             recursive = true;
           };
 
+          directory = "${config.home.homeDirectory}/${user.syncDir}/images/wallpapers/desktop";
           transition_on_startup = true;
         };
 

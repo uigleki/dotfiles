@@ -11,13 +11,14 @@
 
       systemd = {
         services.btrfs-stats = {
-          serviceConfig.Type = "oneshot";
           description = "Check btrfs device error counters";
 
           path = with pkgs; [
             btrfs-progs
             dbus
           ];
+
+          serviceConfig.Type = "oneshot";
 
           # systembus-notify relays this signal as a desktop popup
           script = ''

@@ -5,7 +5,7 @@
   ...
 }:
 {
-  # future host names: kurisu, miyabi, hitagi, yuna
+  # host names: nazuna, akira, inori, kurisu, miyabi, hitagi, yuna
   options.nixos.configurations = lib.mkOption {
     type = lib.types.lazyAttrsOf (
       lib.types.submodule {

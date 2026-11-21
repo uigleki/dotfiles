@@ -29,16 +29,6 @@ in
     in
     {
       home.persistence = {
-        "/persist".directories = [
-          ".config/unity3d" # Unity games save here
-          ".local/share/Steam/userdata" # local saves and per-game settings
-          ".var/app/${heroic}" # store logins and game settings
-          backups
-
-          # saves of particular games, outside any engine's default
-          ".local/share/freebirdgames"
-        ];
-
         "/cache".directories = [
           ".config/ludusavi" # the downloaded manifest of save locations
           ".local/share/Steam"
@@ -47,6 +37,16 @@ in
           ".var/app/${heroic}/cache"
           ".var/app/${heroic}/config/heroic/tools" # Wine, Proton and DXVK builds
           "Games" # Heroic's install directory
+        ];
+
+        "/persist".directories = [
+          ".config/unity3d" # Unity games save here
+          ".local/share/Steam/userdata" # local saves and per-game settings
+          ".var/app/${heroic}" # store logins and game settings
+          backups
+
+          # saves of particular games, outside any engine's default
+          ".local/share/freebirdgames"
         ];
       };
 
@@ -68,12 +68,10 @@ in
               path = "~/.local/share/Steam";
               store = "steam";
             }
-
             {
               path = "~/.var/app/${heroic}/config/heroic";
               store = "heroic";
             }
-
             {
               path = "~/.var/app/com.usebottles.bottles/data/bottles/bottles/*";
               store = "otherWine";

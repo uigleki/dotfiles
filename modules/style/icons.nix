@@ -16,9 +16,7 @@
     in
     {
       gtk.iconTheme = theme;
-
       qt.qt6ctSettings.Appearance.icon_theme = theme.name;
-
       # Flatpak apps see the user's icons but not the home-manager profile
       xdg.dataFile."icons/${theme.name}".source = "${theme.package}/share/icons/${theme.name}";
     };

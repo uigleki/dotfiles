@@ -2,7 +2,6 @@
 {
   nixos.modules.base = {
     environment.persistence."/persist".directories = [ "/root/.local/state/comma" ]; # the package picked when several provide a command
-
     # the channel tarball ships programs.sqlite, which turns this on; nix-index answers instead
     programs.command-not-found.enable = false;
   };

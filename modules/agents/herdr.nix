@@ -37,8 +37,8 @@
         # herdr reads its integration version from this path and asks to reinstall when it lags the binary;
         # its installer overwrites the path with a regular file
         file.${hook} = {
-          force = true;
           source = "${herdr}/share/herdr/integrations/claude/herdr-agent-state.sh";
+          force = true;
         };
 
         packages = [ herdr ];

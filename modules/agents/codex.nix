@@ -16,13 +16,13 @@
         model_reasoning_effort = "medium";
 
         analytics.enabled = false;
-        feedback.enabled = false;
 
         features = {
           apps = false;
           memories = false;
         };
 
+        feedback.enabled = false;
         include_collaboration_mode_instructions = false;
         model_auto_compact_token_limit = 300000;
         notice.hide_rate_limit_model_nudge = true;
@@ -69,8 +69,8 @@
         packages = [ pkgs.bubblewrap ];
 
         persistence = {
-          "/persist".directories = [ ".codex" ];
           "/cache".directories = [ ".codex/packages" ];
+          "/persist".directories = [ ".codex" ];
         };
       };
 

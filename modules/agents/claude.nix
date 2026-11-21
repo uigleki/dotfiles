@@ -28,8 +28,8 @@
 
       statuslineFilter = pkgs.writeTextFile {
         name = "claude-statusline.jq";
-        checkPhase = ''${jq} -n -f "$target"'';
         text = builtins.readFile ./claude-statusline.jq;
+        checkPhase = ''${jq} -n -f "$target"'';
       };
     in
     {
@@ -37,12 +37,10 @@
         inherit sessionVariables;
 
         persistence = {
-          "/persist".directories = [ (lib.removePrefix "${config.home.homeDirectory}/" configDir) ];
           "/cache".directories = [ ".local/share/claude" ];
+          "/persist".directories = [ (lib.removePrefix "${config.home.homeDirectory}/" configDir) ];
         };
       };
-
-      systemd.user = { inherit sessionVariables; };
 
       programs = {
         claude-code = {
@@ -81,23 +79,23 @@
             };
 
             hooks = {
-              PostToolUse = [
-                {
-                  matcher = "EnterWorktree";
-                  hooks = [ linkPreCommitConfig ];
-                }
-              ];
-
               SessionStart = [
                 {
                   hooks = [
+                    linkPreCommitConfig
                     {
                       type = "command";
                       # a Claude worktree's .envrc starts blocked
                       command = ''cd "''${CLAUDE_PROJECT_DIR%%/.claude/worktrees/*}" && direnv export bash > "$CLAUDE_ENV_FILE"'';
                     }
-                    linkPreCommitConfig
                   ];
+                }
+              ];
+
+              PostToolUse = [
+                {
+                  matcher = "EnterWorktree";
+                  hooks = [ linkPreCommitConfig ];
                 }
               ];
 
@@ -146,5 +144,7 @@
           "**/.claude/worktrees/"
         ];
       };
+
+      systemd.user = { inherit sessionVariables; };
     };
 }

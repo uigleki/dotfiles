@@ -6,8 +6,8 @@ in
 {
   options.user = {
     flakeDir = mkOption { type = str; }; # relative to home
-    gitEmail = mkOption { type = str; };
     gitName = mkOption { type = str; };
+    gitEmail = mkOption { type = str; };
     sshKeys = mkOption { type = types.listOf str; };
     stateVersion = mkOption { type = str; };
     syncDir = mkOption { type = str; }; # relative to home
@@ -30,13 +30,10 @@ in
     ];
 
     syncDir = "Sync/a";
-
     # also the clock for every timer, e.g. auto-upgrade at 04:40
     timeZone = "Asia/Shanghai";
-
     # changing this would break ownership of all existing files
     uid = 1000;
-
     username = "u";
   };
 }

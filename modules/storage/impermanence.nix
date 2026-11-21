@@ -4,7 +4,6 @@ let
     # kept like /persist but never snapshotted, for paths whose history is worthless or costly: rebuilt by refetching or recomputing, or churning enough to pin a copy in every snapshot
     # a churning path goes here whole when its irreplaceable part has no fixed subpath to nest in /persist, such as sources beside build outputs or saves inside game prefixes
     "/cache"
-
     "/persist" # anything else worth keeping
   ];
 in
@@ -54,6 +53,9 @@ in
 
           before = [ "sysroot.mount" ];
           requires = [ deviceUnit ];
+          wantedBy = [ "initrd.target" ];
+          unitConfig.DefaultDependencies = false;
+          serviceConfig.Type = "oneshot";
 
           script = ''
             mkdir /btrfs_tmp
@@ -69,71 +71,69 @@ in
             done
             btrfs subvolume create /btrfs_tmp/root
           '';
-
-          serviceConfig.Type = "oneshot";
-          unitConfig.DefaultDependencies = false;
-          wantedBy = [ "initrd.target" ];
         };
 
-        environment.persistence."/cache" = {
-          enable = true;
+        environment.persistence = {
+          "/cache" = {
+            enable = true;
 
-          directories = [
-            # caches, to skip refetching (root's flake inputs, fwupd metadata)
-            "/root/.cache/nix"
-            "/var/cache"
+            directories = [
+              # caches, to skip refetching (root's flake inputs, fwupd metadata)
+              "/root/.cache/nix"
+              "/var/cache"
 
-            "/var/lib/systemd/coredump"
+              "/var/lib/systemd/coredump"
+              {
+                directory = "/tmp";
+                mode = "1777";
+              }
+              {
+                directory = "/var/tmp";
+                mode = "1777";
+              }
+            ];
+          };
 
-            {
-              directory = "/tmp";
-              mode = "1777";
-            }
+          "/persist" = {
+            enable = true;
 
-            {
-              directory = "/var/tmp";
-              mode = "1777";
-            }
-          ];
-        };
+            directories = [
+              "/var/lib/lastlog"
+              "/var/lib/logrotate"
+              "/var/lib/machines"
+              "/var/lib/nixos" # unused under userborn; persisted so impermanence's uid/gid warning stays quiet
+              "/var/lib/portables"
+              "/var/lib/systemd" # whole: credential.secret is created on first use and opened with O_NOFOLLOW, so a per-file symlink never holds it
+              "/var/lib/userborn"
+            ]
+            ++ lib.optional config.networking.dhcpcd.enable "/var/lib/dhcpcd"; # DUID, or each boot is a new DHCP client
 
-        environment.persistence."/persist" = {
-          enable = true;
+            files = [
+              "/etc/machine-id"
 
-          directories = [
-            "/var/lib/lastlog"
-            "/var/lib/logrotate"
-            "/var/lib/machines"
-            "/var/lib/nixos" # unused under userborn; persisted so impermanence's uid/gid warning stays quiet
-            "/var/lib/portables"
-            "/var/lib/systemd" # whole: credential.secret is created on first use and opened with O_NOFOLLOW, so a per-file symlink never holds it
-            "/var/lib/userborn"
-          ]
-          ++ lib.optional config.networking.dhcpcd.enable "/var/lib/dhcpcd"; # DUID, or each boot is a new DHCP client
-
-          files = [
-            "/etc/machine-id"
-
-            # TODO: on 26.11, drop these; userborn on 26.05 never writes them (NixOS/nixpkgs#508608)
-            "/etc/subgid"
-            "/etc/subuid"
-          ];
+              # TODO: on 26.11, drop these; userborn on 26.05 never writes them (NixOS/nixpkgs#508608)
+              "/etc/subgid"
+              "/etc/subuid"
+            ];
+          };
         };
 
         fileSystems = lib.genAttrs roots (_: {
           neededForBoot = true;
         });
 
-        # logrotate replaces its state file by rename, which a bind-mounted file cannot take (nix-community/impermanence#270)
-        services.logrotate.extraArgs = lib.mkAfter [
-          "--state"
-          "/var/lib/logrotate/logrotate.status"
-        ];
+        services = {
+          # logrotate replaces its state file by rename, which a bind-mounted file cannot take (nix-community/impermanence#270)
+          logrotate.extraArgs = lib.mkAfter [
+            "--state"
+            "/var/lib/logrotate/logrotate.status"
+          ];
 
-        # passwd renames a new /etc/shadow into place, which fails on a bind-mounted file; userborn's symlink is resolved first
-        services.userborn = {
-          enable = true;
-          passwordFilesLocation = "/persist/etc";
+          # passwd renames a new /etc/shadow into place, which fails on a bind-mounted file; userborn's symlink is resolved first
+          userborn = {
+            enable = true;
+            passwordFilesLocation = "/persist/etc";
+          };
         };
 
         # only the perl user script creates /root; otherwise impermanence makes it as a 0755 parent
@@ -152,16 +152,16 @@ in
         }))
 
         {
+          "/cache".directories = [
+            ".cache"
+            "Projects" # the XDG projects directory, where the flake lives
+          ];
+
           "/persist".directories = [
             {
               directory = ".ssh";
               mode = "0700";
             }
-          ];
-
-          "/cache".directories = [
-            ".cache"
-            "Projects" # the XDG projects directory, where the flake lives
           ];
         }
       ];

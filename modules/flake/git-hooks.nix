@@ -7,18 +7,14 @@
     {
       # TODO: on 26.11, group the formatter hooks
       pre-commit.settings = {
-        package = pkgs.prek;
-
         hooks = {
           actionlint.enable = true;
 
           betterleaks = {
             enable = true;
             package = pkgs.betterleaks;
-
             # Scans the files it is given; the official `git --staged` would ignore them.
             entry = "${lib.getExe pkgs.betterleaks} dir --redact --no-banner --verbose";
-
             types = [ "text" ];
           };
 
@@ -43,7 +39,6 @@
             enable = true;
             package = pkgs.tombi;
             entry = "${lib.getExe pkgs.tombi} format --offline";
-
             # Not `types = [ "toml" ]`: some lock files are tagged toml too.
             files = "\\.toml$";
           };
@@ -55,6 +50,8 @@
             settings.lint-only = false;
           };
         };
+
+        package = pkgs.prek;
       };
     };
 }

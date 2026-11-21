@@ -4,7 +4,6 @@
     {
       environment = {
         persistence."/cache".directories = [ "/var/lib/containers" ];
-
         systemPackages = [ pkgs.podman-compose ];
       };
 

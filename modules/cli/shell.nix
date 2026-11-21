@@ -5,16 +5,14 @@
       options.updateCommands = lib.mkOption { type = with lib.types; listOf str; };
 
       config = {
-        updateCommands = lib.mkBefore [ "nh os switch --update" ];
-
         home = {
           persistence = {
+            "/cache".directories = [ ".local/bin" ]; # links into installs that are themselves in /cache
+
             "/persist".directories = [
               ".config/fish" # universal variables
               ".local/share/fish"
             ];
-
-            "/cache".directories = [ ".local/bin" ]; # links into installs that are themselves in /cache
           };
 
           sessionPath = [ config.xdg.binHome ];
@@ -41,15 +39,14 @@
             interactiveShellInit = "set fish_greeting";
 
             shellAbbrs = {
-              c = "claude";
-              co = "codex";
-              f = "$EDITOR";
-
               G = {
                 expansion = "| rg";
                 position = "anywhere";
               };
 
+              c = "claude";
+              co = "codex";
+              f = "$EDITOR";
               gc = "git clone --depth=1";
               gl = "git pull";
               h = "herdr";
@@ -62,6 +59,8 @@
 
           starship.enable = true;
         };
+
+        updateCommands = lib.mkBefore [ "nh os switch --update" ];
       };
     };
 }

@@ -6,7 +6,6 @@
 
     services.flatpak = {
       enable = true;
-      uninstallUnmanaged = true;
 
       overrides.global = {
         Context.filesystems = [
@@ -16,6 +15,8 @@
 
         Environment.XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
       };
+
+      uninstallUnmanaged = true;
     };
   };
 

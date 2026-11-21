@@ -4,7 +4,6 @@
     { config, pkgs, ... }:
     {
       imports = [ inputs.nixos-wsl.nixosModules.default ];
-
       environment.systemPackages = [ pkgs.wget ];
 
       wsl = {

@@ -72,6 +72,11 @@
       size = 11;
     in
     {
+      dconf.settings."org/gnome/desktop/interface" = {
+        document-font-name = "Sans Serif ${toString (size + 1)}";
+        monospace-font-name = "Monospace ${toString size}";
+      };
+
       # Steam and Flatpak apps bring their own /etc/fonts and read only the user's configuration
       fonts.fontconfig = {
         inherit (osConfig.fonts.fontconfig) defaultFonts;
@@ -81,11 +86,6 @@
           priority = 51; # before home-manager's default-fonts alias at 52
           text = osConfig.fonts.fontconfig.localConf;
         };
-      };
-
-      dconf.settings."org/gnome/desktop/interface" = {
-        document-font-name = "Sans Serif ${toString (size + 1)}";
-        monospace-font-name = "Monospace ${toString size}";
       };
 
       gtk.font = {
