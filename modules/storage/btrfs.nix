@@ -7,7 +7,10 @@
         systemPackages = [ pkgs.e2fsprogs ]; # chattr/lsattr, only auto-added for ext filesystems
       };
 
-      services.btrfs.autoScrub.enable = true;
+      services = {
+        btrfs.autoScrub.enable = true;
+        systembus-notify.enable = true;
+      };
 
       systemd = {
         services.btrfs-stats = {
