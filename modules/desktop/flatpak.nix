@@ -20,8 +20,16 @@
     };
   };
 
-  homeManager.modules.desktop = {
-    home.persistence."/persist".directories = [ ".local/share/flatpak" ]; # per-user portal permissions
-    updateCommands = [ "flatpak update -y" ];
-  };
+  homeManager.modules.desktop =
+    { config, ... }:
+    let
+      inherit (config.gtk) iconTheme;
+    in
+    {
+      home.persistence."/persist".directories = [ ".local/share/flatpak" ]; # per-user portal permissions
+      updateCommands = [ "flatpak update -y" ];
+      # Flatpak apps see the user's icons but not the home-manager profile
+      xdg.dataFile."icons/${iconTheme.name}".source =
+        "${iconTheme.package}/share/icons/${iconTheme.name}";
+    };
 }
