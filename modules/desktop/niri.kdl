@@ -71,6 +71,18 @@ window-rule {
     default-window-height { fixed 920; }
 }
 
+window-rule {
+    match app-id="^gcr-prompter$"
+    block-out-from "screencast"
+}
+
+// noctalia-panel is matched for the clipboard history and polkit prompt
+layer-rule {
+    match namespace="^noctalia-notification$"
+    match namespace="^noctalia-(attached-)?panel$"
+    block-out-from "screencast"
+}
+
 // Mod+Space belongs to fcitx5, which switches input methods with it
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
