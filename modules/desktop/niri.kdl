@@ -91,21 +91,21 @@ binds {
     Mod+Z hotkey-overlay-title="Open the Browser: Firefox" { spawn "firefox"; }
     Mod+X hotkey-overlay-title="Open the Editor: Zed" { spawn "zeditor"; }
     Mod+E hotkey-overlay-title="Open the File Manager: Nautilus" { spawn "nautilus"; }
-    Mod+D hotkey-overlay-title="Run an Application" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
-    Mod+S hotkey-overlay-title="Control Center" { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
-    Mod+Shift+Comma hotkey-overlay-title="Settings" { spawn "noctalia" "msg" "settings-toggle"; }
+    Mod+D repeat=false hotkey-overlay-title="Run an Application" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Mod+S repeat=false hotkey-overlay-title="Control Center" { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
+    Mod+Shift+Comma repeat=false hotkey-overlay-title="Settings" { spawn "noctalia" "msg" "settings-toggle"; }
     Mod+V repeat=false hotkey-overlay-title="Clipboard History" { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "noctalia" "msg" "session" "lock"; }
+    Super+Alt+L repeat=false hotkey-overlay-title="Lock the Screen" { spawn "noctalia" "msg" "session" "lock"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia" "msg" "volume-up"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia" "msg" "volume-down"; }
-    XF86AudioMute        allow-when-locked=true { spawn "noctalia" "msg" "volume-mute"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn "noctalia" "msg" "mic-mute"; }
+    XF86AudioMute        allow-when-locked=true repeat=false { spawn "noctalia" "msg" "volume-mute"; }
+    XF86AudioMicMute     allow-when-locked=true repeat=false { spawn "noctalia" "msg" "mic-mute"; }
 
-    XF86AudioPlay allow-when-locked=true { spawn "noctalia" "msg" "media" "toggle"; }
-    XF86AudioStop allow-when-locked=true { spawn "noctalia" "msg" "media" "stop"; }
-    XF86AudioPrev allow-when-locked=true { spawn "noctalia" "msg" "media" "previous"; }
-    XF86AudioNext allow-when-locked=true { spawn "noctalia" "msg" "media" "next"; }
+    XF86AudioPlay allow-when-locked=true repeat=false { spawn "noctalia" "msg" "media" "toggle"; }
+    XF86AudioStop allow-when-locked=true repeat=false { spawn "noctalia" "msg" "media" "stop"; }
+    XF86AudioPrev allow-when-locked=true repeat=false { spawn "noctalia" "msg" "media" "previous"; }
+    XF86AudioNext allow-when-locked=true repeat=false { spawn "noctalia" "msg" "media" "next"; }
 
     XF86MonBrightnessUp   allow-when-locked=true { spawn "noctalia" "msg" "brightness-up"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia" "msg" "brightness-down"; }
