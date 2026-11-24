@@ -86,6 +86,47 @@ in
           pre_action_fade_seconds = 30;
         };
 
+        lockscreen = {
+          blur_intensity = 0;
+          tint_intensity = 0;
+        };
+
+        # noctalia saves this section into its state settings.toml, which overrides edits here until deleted
+        lockscreen_widgets = {
+          enabled = true;
+
+          widget =
+            let
+              width = 1920;
+
+              clock = {
+                cx = width / 2;
+                # cx and cy scale from this size to the actual output
+                placement_width = width;
+                placement_height = 1080;
+                # clocks have no font size; the content is scaled to fit this box
+                box_width = 800;
+
+                settings = {
+                  background = false;
+                  color = "#ffffff";
+                };
+              };
+            in
+            lib.mapAttrs (_: lib.recursiveUpdate clock) {
+              time = {
+                cy = 330;
+                box_height = 200;
+              };
+
+              date = {
+                cy = 460;
+                box_height = 40;
+                settings.format = "{:%A, %B %d}";
+              };
+            };
+        };
+
         location = {
           custom_schedule = true;
           sunrise = "06:00";
