@@ -57,6 +57,13 @@ window-rule {
     open-floating true
 }
 
+// Steam's notifications skip the notification daemon and open as floating windows mid-screen
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+    open-focused false
+}
+
 window-rule {
     match app-id="dev.noctalia.Noctalia"
     open-floating true
