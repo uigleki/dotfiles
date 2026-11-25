@@ -22,8 +22,8 @@ in
         open = true; # only set to false if older than RTX 20 series
 
         powerManagement = {
-          enable = true; # preserve VRAM on suspend
-          finegrained = true; # power off dGPU when idle
+          enable = true;
+          finegrained = true;
         };
 
         prime = {

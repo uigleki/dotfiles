@@ -7,7 +7,7 @@ let
 
     mountOptions = [
       "compress=zstd"
-      "noatime" # reduce unnecessary writes
+      "noatime"
     ];
   };
 

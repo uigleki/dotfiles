@@ -24,7 +24,6 @@
       })
     ];
 
-    # remove legacy channel profiles (flakes-only configuration)
     systemd.tmpfiles.settings.remove-channels."/nix/var/nix/profiles/per-user/root/channels*".R = { };
   };
 

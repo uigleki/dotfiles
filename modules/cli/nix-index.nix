@@ -12,7 +12,7 @@
 
     programs = {
       nix-index.enable = true;
-      nix-index-database.comma.enable = true; # run uninstalled commands: , <cmd>
+      nix-index-database.comma.enable = true;
     };
   };
 }

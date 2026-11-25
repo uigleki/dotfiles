@@ -4,18 +4,18 @@
     let
       # Anime4K Mode A (Fast), as in the upstream template
       anime = lib.concatStringsSep ":" [
-        "~~/shaders/Anime4K_Clamp_Highlights.glsl" # prevent overshoot
+        "~~/shaders/Anime4K_Clamp_Highlights.glsl"
         "~~/shaders/Anime4K_Restore_CNN_M.glsl" # denoise & restore
-        "~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl" # 2x upscale
+        "~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"
         "~~/shaders/Anime4K_AutoDownscalePre_x2.glsl" # fit to screen after the 1st upscale
         "~~/shaders/Anime4K_AutoDownscalePre_x4.glsl" # fit so the 2nd upscale matches screen
         "~~/shaders/Anime4K_Upscale_CNN_x2_S.glsl" # 2nd upscale, low-res sources only
       ];
 
       film = lib.concatStringsSep ":" [
-        "~~/shaders/FSRCNNX_x2_8-0-4-1.glsl" # luma upscale
-        "~~/shaders/KrigBilateral.glsl" # chroma upscale
-        "~~/shaders/SSimDownscaler.glsl" # perceptual downscaler
+        "~~/shaders/FSRCNNX_x2_8-0-4-1.glsl"
+        "~~/shaders/KrigBilateral.glsl"
+        "~~/shaders/SSimDownscaler.glsl"
       ];
     in
     {
@@ -36,7 +36,7 @@
 
           fullscreen = "yes";
           hwdec = "auto-safe";
-          idle = "once"; # keep open if no file, quit after playback
+          idle = "once";
           save-position-on-quit = "yes";
         };
 

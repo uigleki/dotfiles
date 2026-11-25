@@ -13,7 +13,6 @@
 
       programs.virt-manager.enable = true;
 
-      # virsh net-autostart default
       systemd.tmpfiles.settings.libvirt-autostart."/var/lib/libvirt/qemu/networks/autostart/default.xml".L.argument =
         "/var/lib/libvirt/qemu/networks/default.xml";
 

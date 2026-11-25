@@ -47,7 +47,6 @@
         ];
 
         userSettings = {
-          # panels
           agent.dock = "right";
           collaboration_panel.dock = "left";
 

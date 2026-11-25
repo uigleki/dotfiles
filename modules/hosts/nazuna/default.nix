@@ -26,7 +26,7 @@ in
     ];
 
     boot = {
-      binfmt.emulatedSystems = [ "x86_64-linux" ]; # run x86 binaries on ARM
+      binfmt.emulatedSystems = [ "x86_64-linux" ];
       loader.timeout = 0;
     };
 
