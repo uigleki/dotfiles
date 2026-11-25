@@ -53,11 +53,6 @@
             model = "opus";
             env.CLAUDE_CODE_SUBAGENT_MODEL = "opus";
 
-            # modelSettings = {
-            #   claude-fable-5-2.effortLevel = "xhigh";
-            #   claude-opus-5-5.effortLevel = "xhigh";
-            # };
-
             agentPushNotifEnabled = false;
             attribution = false;
             autoMemoryEnabled = false;
