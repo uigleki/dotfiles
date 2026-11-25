@@ -74,27 +74,5 @@
           "/persist".directories = [ ".codex" ];
         };
       };
-
-      # template for ~/.config/systemd/user/codex.service; keep temporary projects out of Nix
-      # systemd.user.services.codex = {
-      #   Unit.Description = "Codex Remote Control for ${project}";
-      #
-      #   Service = {
-      #     Type = "oneshot";
-      #
-      #     Environment = [
-      #       "PATH=${homeDirectory}/.local/bin:/etc/profiles/per-user/${username}/bin:/run/current-system/sw/bin"
-      #     ];
-      #
-      #     ExecStart = "${lib.getExe pkgs.bash} -lc 'exec ${lib.getExe pkgs.direnv} exec ${homeDirectory}/${project} ${homeDirectory}/.local/bin/codex remote-control start'";
-      #     ExecStop = "${homeDirectory}/.local/bin/codex remote-control stop";
-      #     RemainAfterExit = true;
-      #     Restart = "on-failure";
-      #     RestartSec = 10;
-      #     WorkingDirectory = "${homeDirectory}/${project}";
-      #   };
-      #
-      #   Install.WantedBy = [ "default.target" ];
-      # };
     };
 }
