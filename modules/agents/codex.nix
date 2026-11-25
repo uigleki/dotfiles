@@ -53,7 +53,8 @@
     in
     {
       home = {
-        # Nix settings win; undeclared state such as project trust remains writable.
+        # Nix settings win; undeclared state such as project trust remains writable,
+        # so a key removed from `settings` stays in config.toml until deleted by hand.
         activation.codexSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
           run ${pkgs.writeShellScript "merge-codex-settings" ''
             set -eu
