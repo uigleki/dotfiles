@@ -100,6 +100,7 @@ in
               width = 1920;
 
               clock = {
+                type = "clock";
                 cx = width / 2;
                 # cx and cy scale from this size to the actual output
                 placement_width = width;
@@ -228,7 +229,9 @@ in
       xdg.configFile."noctalia/config.toml".source =
         pkgs.runCommand "noctalia-config.toml" { nativeBuildInputs = [ package ]; }
           ''
-            noctalia config validate ${configFile}
+            # validate exits 0 on warnings, which include unknown settings and widget types
+            noctalia config validate ${configFile} | tee validate.log
+            if grep -q WARN validate.log; then exit 1; fi
             cp ${configFile} $out
           '';
     };
