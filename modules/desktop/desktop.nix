@@ -1,11 +1,10 @@
 { config, ... }:
 let
   nixos = config.nixos.modules;
-  homeManager = config.homeManager.modules;
 in
 {
   nixos.modules.desktop =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     {
       imports = with nixos; [
         base
@@ -17,8 +16,6 @@ in
         libnotify
         wl-clipboard
       ];
-
-      home-manager.users.${config.user.username}.imports = [ homeManager.desktop ];
     };
 
   homeManager.modules.desktop = {

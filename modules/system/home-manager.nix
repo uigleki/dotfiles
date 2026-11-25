@@ -1,20 +1,16 @@
 { config, inputs, ... }:
 let
   inherit (config) user;
-  homeManager = config.homeManager.modules;
 in
 {
-  nixos.modules.base =
-    { config, ... }:
-    {
-      imports = [ inputs.home-manager.nixosModules.home-manager ];
+  nixos.modules.base = {
+    imports = [ inputs.home-manager.nixosModules.home-manager ];
 
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users.${config.user.username}.imports = [ homeManager.base ];
-      };
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
     };
+  };
 
   homeManager.modules.base.home = {
     inherit (user) stateVersion;

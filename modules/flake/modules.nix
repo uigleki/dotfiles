@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 let
   # the key lets a module imported along two paths apply once
   option =
@@ -36,6 +36,15 @@ in
     homeManager.modules = lib.genAttrs [
       "base"
       "desktop"
+      "network"
     ] option;
   };
+
+  config.nixos.modules = lib.mapAttrs (
+    _: module:
+    { config, ... }:
+    {
+      home-manager.users.${config.user.username}.imports = [ module ];
+    }
+  ) config.homeManager.modules;
 }
