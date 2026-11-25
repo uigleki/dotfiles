@@ -49,10 +49,9 @@
 
           # cloud sessions read only the repo's .claude/settings.json; mirror behavior-changing keys there
           settings = {
-            # retuned often; uncomment the subagent model while model is Fable:
-            # its quota is half the weekly limit and drains fast
+            # retuned often; subagents get the model best at doing the work, since they otherwise inherit the session model, /model switches included
             model = "opus";
-            # env.CLAUDE_CODE_SUBAGENT_MODEL = "opus";
+            env.CLAUDE_CODE_SUBAGENT_MODEL = "opus";
 
             # modelSettings = {
             #   claude-fable-5-2.effortLevel = "xhigh";
