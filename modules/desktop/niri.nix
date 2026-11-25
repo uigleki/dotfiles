@@ -8,13 +8,18 @@
     };
 
   homeManager.modules.desktop =
-    { lib, pkgs, ... }:
+    {
+      lib,
+      osConfig,
+      pkgs,
+      ...
+    }:
     {
       # TODO: on 26.11, use the native module and take the cursor theme and size from home.pointerCursor
       xdg.configFile."niri/config.kdl".source = pkgs.writeTextFile {
         name = "niri-config.kdl";
         text = builtins.readFile ./niri.kdl;
-        checkPhase = ''${lib.getExe pkgs.niri} validate --config "$target"'';
+        checkPhase = ''${lib.getExe osConfig.programs.niri.package} validate --config "$target"'';
       };
     };
 }
