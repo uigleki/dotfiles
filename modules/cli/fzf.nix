@@ -2,9 +2,9 @@
   homeManager.modules.base.programs.fzf = {
     enable = true;
 
-    # fzf runs these through $SHELL, so eval re-parses the fish-escaped $dir; \$ defers it past hm-session-vars.sh
-    changeDirWidgetCommand = "eval fd --type dir . \\$dir";
-    fileWidgetCommand = "eval fd --type file . \\$dir";
+    # fzf runs these through $SHELL, so fish itself unescapes the fish-escaped $dir; \$ defers it past hm-session-vars.sh
+    changeDirWidgetCommand = "fish --no-config -c 'fd --type dir . (string unescape -- \\$dir)'";
+    fileWidgetCommand = "fish --no-config -c 'fd --type file . (string unescape -- \\$dir)'";
 
     changeDirWidgetOptions = [
       "--preview='eza -TF --level=2 --color=always {}'"
