@@ -72,10 +72,6 @@ in
               path = "~/.var/app/${heroic}/config/heroic";
               store = "heroic";
             }
-            {
-              path = "~/.var/app/com.usebottles.bottles/data/bottles/bottles/*";
-              store = "otherWine";
-            }
           ];
         };
       };
