@@ -18,13 +18,10 @@
     };
 
     # retuned often: pinned release tag
+    # lzbt builds against lanzaboote's own locked nixpkgs, which moves only with the tag: no binary cache serves lzbt
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.2.0";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        pre-commit.follows = "";
-      };
+      inputs.pre-commit.follows = "";
     };
 
     # Catppuccin Latte ports
