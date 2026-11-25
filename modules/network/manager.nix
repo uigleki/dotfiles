@@ -10,12 +10,13 @@
       networking = {
         # a NetworkManager hotspot serves DHCP and DNS to the devices that join it
         firewall = {
-          allowedTCPPorts = [ 53 ];
+          allowedUDPPorts = [ 67 ];
 
-          allowedUDPPorts = [
-            53
-            67
-          ];
+          # only to NetworkManager's default shared subnet: libvirt's and podman's resolvers also listen on 53
+          extraCommands = ''
+            iptables -A nixos-fw -d 10.42.0.0/16 -p tcp --dport 53 -j nixos-fw-accept
+            iptables -A nixos-fw -d 10.42.0.0/16 -p udp --dport 53 -j nixos-fw-accept
+          '';
         };
 
         networkmanager = {
