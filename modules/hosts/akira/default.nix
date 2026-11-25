@@ -3,7 +3,7 @@ let
   nixos = config.nixos.modules;
 in
 {
-  nixos.configurations.akira.module =
+  nixos.configurations.akira =
     { config, ... }:
     {
       imports = [

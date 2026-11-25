@@ -3,7 +3,7 @@ let
   nixos = config.nixos.modules;
 in
 {
-  nixos.configurations.inori.module = {
+  nixos.configurations.inori = {
     imports = [
       nixos.base
       nixos.wsl

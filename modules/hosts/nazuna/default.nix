@@ -15,7 +15,7 @@ in
     };
   };
 
-  nixos.configurations.nazuna.module = {
+  nixos.configurations.nazuna = {
     imports = [
       ./_hardware-configuration.nix
       nixos.auto-upgrade
