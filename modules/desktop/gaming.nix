@@ -50,7 +50,6 @@ in
 
     services.ludusavi = {
       enable = true;
-      frequency = "hourly";
 
       settings = {
         backup = {
