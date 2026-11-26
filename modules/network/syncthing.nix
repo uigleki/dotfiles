@@ -1,8 +1,12 @@
+{ config, ... }:
+let
+  inherit (config) user;
+in
 {
   homeManager.modules.network = {
     home.persistence."/persist".directories = [
       ".local/state/syncthing" # device keys; a new identity re-pairs every device
-      "Sync" # the folders it shares
+      user.dirs.sync # the folders it shares
     ];
 
     services.syncthing = {

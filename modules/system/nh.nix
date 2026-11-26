@@ -15,7 +15,7 @@ in
           extraArgs = "--keep-since 30d --keep-one";
         };
 
-        flake = "${config.users.users.${config.user.username}.home}/${user.flakeDir}";
+        flake = "${config.users.users.${config.user.username}.home}/${user.dirs.flake}";
       };
     };
 

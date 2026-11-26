@@ -183,7 +183,7 @@ in
             recursive = true;
           };
 
-          directory = "${config.home.homeDirectory}/${user.syncDir}/images/wallpapers/desktop";
+          directory = "${config.home.homeDirectory}/${user.dirs.wallpapers}";
           transition_on_startup = true;
         };
 

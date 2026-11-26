@@ -1,5 +1,8 @@
+{ config, ... }:
 let
+  inherit (config) user;
   heroic = "com.heroicgameslauncher.hgl";
+  backups = "~/${user.dirs.ludusavi}";
 in
 {
   nixos.modules.desktop = {
@@ -23,56 +26,52 @@ in
     services.flatpak.packages = [ heroic ];
   };
 
-  homeManager.modules.desktop =
-    let
-      backups = "~/Sync/ludusavi";
-    in
-    {
-      home.persistence = {
-        "/cache".directories = [
-          ".config/ludusavi" # the downloaded manifest of save locations
-          ".local/share/Steam"
-          ".local/share/umu" # the Steam Runtime that Heroic runs Proton in
-          ".steam"
-          ".var/app/${heroic}/cache"
-          ".var/app/${heroic}/config/heroic/tools" # Wine, Proton and DXVK builds
-          "Games" # Heroic's install directory
-        ];
+  homeManager.modules.desktop = {
+    home.persistence = {
+      "/cache".directories = [
+        ".config/ludusavi" # the downloaded manifest of save locations
+        ".local/share/Steam"
+        ".local/share/umu" # the Steam Runtime that Heroic runs Proton in
+        ".steam"
+        ".var/app/${heroic}/cache"
+        ".var/app/${heroic}/config/heroic/tools" # Wine, Proton and DXVK builds
+        "Games" # Heroic's install directory
+      ];
 
-        "/persist".directories = [
-          ".config/unity3d" # Unity games save here
-          ".local/share/Steam/userdata" # local saves and per-game settings
-          ".var/app/${heroic}" # store logins and game settings
+      "/persist".directories = [
+        ".config/unity3d" # Unity games save here
+        ".local/share/Steam/userdata" # local saves and per-game settings
+        ".var/app/${heroic}" # store logins and game settings
 
-          # saves of particular games, outside any engine's default
-          ".local/share/freebirdgames"
-        ];
-      };
+        # saves of particular games, outside any engine's default
+        ".local/share/freebirdgames"
+      ];
+    };
 
-      services.ludusavi = {
-        enable = true;
-        frequency = "hourly";
+    services.ludusavi = {
+      enable = true;
+      frequency = "hourly";
 
-        settings = {
-          backup = {
-            onlyConstructive = true;
-            path = backups;
-          };
-
-          release.check = false;
-          restore.path = backups;
-
-          roots = [
-            {
-              path = "~/.local/share/Steam";
-              store = "steam";
-            }
-            {
-              path = "~/.var/app/${heroic}/config/heroic";
-              store = "heroic";
-            }
-          ];
+      settings = {
+        backup = {
+          onlyConstructive = true;
+          path = backups;
         };
+
+        release.check = false;
+        restore.path = backups;
+
+        roots = [
+          {
+            path = "~/.local/share/Steam";
+            store = "steam";
+          }
+          {
+            path = "~/.var/app/${heroic}/config/heroic";
+            store = "heroic";
+          }
+        ];
       };
     };
+  };
 }

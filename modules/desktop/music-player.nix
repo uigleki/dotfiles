@@ -7,7 +7,7 @@ in
     { config, pkgs, ... }:
     {
       dconf.settings."com/github/neithern/g4music".music-dir =
-        "file://${config.home.homeDirectory}/${user.syncDir}/music";
+        "file://${config.home.homeDirectory}/${user.dirs.music}";
 
       home.packages = [ pkgs.gapless ];
     };
