@@ -34,6 +34,7 @@
         "fs.suid_dumpable" = 0;
         "kernel.kptr_restrict" = 2;
         "kernel.oops_limit" = 100;
+        "net.ipv4.conf.all.accept_redirects" = 0;
         "net.ipv4.conf.all.send_redirects" = 0;
         "net.ipv4.conf.default.accept_redirects" = 0;
         "net.ipv4.conf.default.send_redirects" = 0;
