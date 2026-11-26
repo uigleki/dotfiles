@@ -56,6 +56,11 @@ in
         backup = {
           onlyConstructive = true;
           path = backups;
+
+          retention = {
+            full = 2;
+            differential = 2;
+          };
         };
 
         release.check = false;
