@@ -25,7 +25,7 @@ in
 
   homeManager.modules.desktop =
     let
-      backups = ".local/state/backups/ludusavi";
+      backups = "~/Sync/ludusavi";
     in
     {
       home.persistence = {
@@ -43,7 +43,6 @@ in
           ".config/unity3d" # Unity games save here
           ".local/share/Steam/userdata" # local saves and per-game settings
           ".var/app/${heroic}" # store logins and game settings
-          backups
 
           # saves of particular games, outside any engine's default
           ".local/share/freebirdgames"
@@ -57,11 +56,11 @@ in
         settings = {
           backup = {
             onlyConstructive = true;
-            path = "~/${backups}";
+            path = backups;
           };
 
           release.check = false;
-          restore.path = "~/${backups}";
+          restore.path = backups;
 
           roots = [
             {
