@@ -35,7 +35,6 @@ in
     gitEmail = "30580339+uigleki@users.noreply.github.com";
 
     sshKeys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDm+4u9INuS/Cm3sqqAaJknGGVIpjA8bVNVdLarmUbjD"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMTmqHPV6+E/bpC3LuQ/lA6sWB9KuCQ+IQDkj6R8f7rU u@akira"
     ];
 
