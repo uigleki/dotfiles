@@ -158,6 +158,7 @@ in
           ];
 
           "/persist".directories = [
+            ".local/share/systemd/timers"
             {
               directory = ".ssh";
               mode = "0700";

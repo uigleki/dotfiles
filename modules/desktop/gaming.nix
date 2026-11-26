@@ -78,5 +78,7 @@ in
         ];
       };
     };
+
+    systemd.user.timers.ludusavi.Timer.Persistent = true;
   };
 }
