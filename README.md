@@ -47,7 +47,11 @@ System updates cannot break your workflow.
 ```bash
 nix run github:nix-community/nixos-anywhere -- --flake ~/Projects/dotfiles#nazuna --target-host <user>@<host>
 
-# On the server: join the tailnet, then disable key expiry for it in the admin console
+# On the server:
+# The initial password is the username, which is public
+passwd
+
+# Join the tailnet, then disable key expiry for it in the admin console
 tailscale up
 ```
 
@@ -63,13 +67,13 @@ nix-shell -p disko --run "sudo disko --mode destroy,format,mount --flake github:
 # Install system
 sudo nixos-install --no-root-passwd --flake github:uigleki/dotfiles#akira
 
-# Set the login password now: the first login creates the login keyring with it
-sudo nixos-enter -c 'passwd <user>'
-
 # Reboot, enter BIOS, set Secure Boot to "Setup Mode", then boot
 # Lanzaboote will auto-enroll Secure Boot keys and reboot
 
-# After reboot, enroll TPM for automatic LUKS unlock
+# The initial password is the username, which is public
+passwd
+
+# Enroll TPM for automatic LUKS unlock
 # Re-run after BIOS or Secure Boot (dbx) updates, which change the bound PCRs
 sudo tpm-enroll
 
