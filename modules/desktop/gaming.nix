@@ -23,7 +23,10 @@ in
       };
     };
 
-    services.flatpak.packages = [ heroic ];
+    services.flatpak = {
+      packages = [ heroic ];
+      overrides.settings.${heroic}.Context.filesystems = [ "~/${user.dirs.games}" ];
+    };
   };
 
   homeManager.modules.desktop = {

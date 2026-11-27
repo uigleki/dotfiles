@@ -6,9 +6,14 @@ in
 {
   options.user = {
     # relative to home
-    dirs = lib.genAttrs [ "flake" "sync" "music" "wallpapers" "ludusavi" ] (
-      _: mkOption { type = str; }
-    );
+    dirs = lib.genAttrs [
+      "flake"
+      "sync"
+      "music"
+      "wallpapers"
+      "ludusavi"
+      "games"
+    ] (_: mkOption { type = str; });
     gitName = mkOption { type = str; };
     gitEmail = mkOption { type = str; };
     sshKeys = mkOption { type = types.listOf str; };
@@ -29,6 +34,7 @@ in
       music = "${sync}/a/music";
       wallpapers = "${sync}/a/images/wallpapers/desktop";
       ludusavi = "${sync}/ludusavi";
+      games = "${sync}/games";
     };
 
     gitName = "Ray";
