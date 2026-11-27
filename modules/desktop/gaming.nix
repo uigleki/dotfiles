@@ -14,7 +14,10 @@ in
     ];
 
     programs = {
-      gamemode.enable = true;
+      gamemode = {
+        enable = true;
+        settings.general.renice = 10;
+      };
 
       steam = {
         enable = true;
@@ -27,6 +30,8 @@ in
       packages = [ heroic ];
       overrides.settings.${heroic}.Context.filesystems = [ "~/${user.dirs.games}" ];
     };
+
+    users.users.${user.username}.extraGroups = [ "gamemode" ];
   };
 
   homeManager.modules.desktop = {
