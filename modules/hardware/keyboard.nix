@@ -10,7 +10,14 @@
 
     services.keyd = {
       enable = true;
-      keyboards.default.settings.main.capslock = "home";
+      keyboards.default.settings.main = {
+        capslock = "home";
+
+        # keyd otherwise sends the left modifier, and some games bind the two apart
+        rightcontrol = "rightcontrol";
+        rightmeta = "rightmeta";
+        rightshift = "rightshift";
+      };
     };
   };
 }
