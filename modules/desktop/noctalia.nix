@@ -114,13 +114,13 @@ in
                 };
               };
             in
-            lib.mapAttrs (_: lib.recursiveUpdate clock) {
-              time = {
+            {
+              time = lib.recursiveUpdate clock {
                 cy = 330;
                 box_height = 200;
               };
 
-              date = {
+              date = lib.recursiveUpdate clock {
                 cy = 460;
                 box_height = 40;
                 settings.format = "{:%A, %B %d}";
