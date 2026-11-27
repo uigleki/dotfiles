@@ -17,7 +17,6 @@
           "git-firefly"
           "html"
           "just"
-          "kdl"
           "nix"
           "toml"
           # keep-sorted end
@@ -47,7 +46,6 @@
         ];
 
         userSettings = {
-          agent.dock = "right";
           collaboration_panel.dock = "left";
 
           git_panel = {
@@ -62,6 +60,7 @@
           buffer_font_family = builtins.head defaultFonts.monospace;
           diagnostics.inline.enabled = true;
           diff_view_style = "unified";
+          disable_ai = true;
           format_on_save = "on";
           helix_mode = true;
           relative_line_numbers = "enabled";
