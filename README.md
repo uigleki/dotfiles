@@ -53,6 +53,9 @@ passwd
 
 # Join the tailnet, then disable key expiry for it in the admin console
 tailscale up
+
+# Save the check's ping URL from healthchecks.io; until then the check reports the host as down
+sudo install -m 600 /dev/stdin /persist/etc/healthcheck-url <<< '<ping URL>'
 ```
 
 ### For desktop (Secure Boot + TPM)
