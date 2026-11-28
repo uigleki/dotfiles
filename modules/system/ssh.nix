@@ -12,30 +12,22 @@ in
         network
       ];
 
-      environment.persistence."/persist" = {
-        directories = [ "/var/lib/fail2ban" ];
+      # a new host key breaks known_hosts on every client and deploy
+      environment.persistence."/persist".files = lib.concatMap (key: [
+        key.path
+        "${key.path}.pub"
+      ]) config.services.openssh.hostKeys;
 
-        # a new host key breaks known_hosts on every client and deploy
-        files = lib.concatMap (key: [
-          key.path
-          "${key.path}.pub"
-        ]) config.services.openssh.hostKeys;
-      };
+      # pin defaults that would lock us out of the VPS if they flipped
+      services.openssh = {
+        enable = true;
+        openFirewall = true;
 
-      services = {
-        fail2ban.enable = true;
-
-        # pin defaults that would lock us out of the VPS if they flipped
-        openssh = {
-          enable = true;
-          openFirewall = true;
-
-          settings = {
-            KbdInteractiveAuthentication = false;
-            PasswordAuthentication = false;
-            PermitRootLogin = "no";
-            PubkeyAuthentication = true;
-          };
+        settings = {
+          KbdInteractiveAuthentication = false;
+          PasswordAuthentication = false;
+          PermitRootLogin = "no";
+          PubkeyAuthentication = true;
         };
       };
     };
