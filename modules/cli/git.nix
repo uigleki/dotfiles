@@ -3,66 +3,68 @@ let
   inherit (config) user;
 in
 {
-  homeManager.modules.base = {
-    home.persistence."/persist".directories = [ ".local/state/lazygit" ]; # recent repos, popups already seen
+  homeManager.modules = {
+    base = {
+      home.persistence."/persist".directories = [ ".local/state/lazygit" ]; # recent repos, popups already seen
 
-    programs = {
-      delta = {
-        enable = true;
-        enableGitIntegration = true;
-        options.navigate = true;
-      };
+      programs = {
+        delta = {
+          enable = true;
+          enableGitIntegration = true;
+          options.navigate = true;
+        };
 
-      git = {
-        enable = true;
-        lfs.enable = true;
+        git = {
+          enable = true;
+          lfs.enable = true;
 
-        settings = {
-          branch.sort = "-committerdate";
-          column.ui = "auto";
-          commit.verbose = true;
+          settings = {
+            branch.sort = "-committerdate";
+            column.ui = "auto";
+            commit.verbose = true;
 
-          diff = {
-            algorithm = "histogram";
-            colorMoved = true;
-          };
+            diff = {
+              algorithm = "histogram";
+              colorMoved = true;
+            };
 
-          fetch = {
-            all = true;
-            prune = true;
-          };
+            fetch = {
+              all = true;
+              prune = true;
+            };
 
-          init.defaultBranch = "main";
-          log.date = "iso";
-          merge.conflictStyle = "zdiff3";
-          pull.rebase = true;
+            init.defaultBranch = "main";
+            log.date = "iso";
+            merge.conflictStyle = "zdiff3";
+            pull.rebase = true;
 
-          push = {
-            autoSetupRemote = true;
-            followTags = true;
-          };
+            push = {
+              autoSetupRemote = true;
+              followTags = true;
+            };
 
-          rebase = {
-            autoSquash = true;
-            autoStash = true;
-            updateRefs = true;
-          };
+            rebase = {
+              autoSquash = true;
+              autoStash = true;
+              updateRefs = true;
+            };
 
-          rerere.enabled = true;
-          tag.sort = "version:refname";
-
-          user = {
-            name = user.gitName;
-            email = user.gitEmail;
+            rerere.enabled = true;
+            tag.sort = "version:refname";
           };
         };
-      };
 
-      lazygit = {
-        enable = true;
-        settings.git.diffRenderers = [ { command = "delta --paging=never"; } ];
-        shellWrapperName = "g";
+        lazygit = {
+          enable = true;
+          settings.git.diffRenderers = [ { command = "delta --paging=never"; } ];
+          shellWrapperName = "g";
+        };
       };
+    };
+
+    desktop.programs.git.settings.user = {
+      name = user.gitName;
+      email = user.gitEmail;
     };
   };
 }
