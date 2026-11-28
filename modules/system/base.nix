@@ -20,6 +20,11 @@ in
         nix-ld.enable = true;
       };
 
+      services.journald.extraConfig = ''
+        SystemMaxUse=1G
+        MaxRetentionSec=1month
+      '';
+
       system.stateVersion = user.stateVersion;
       time.timeZone = user.timeZone;
     };
